@@ -713,8 +713,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
 
                       {/* Middle Body: Left Typography + Right Showroom Machine on Pedestal */}
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center flex-1 relative z-10 my-1">
-                        {/* Left Details (col-span-6) */}
-                        <div className="sm:col-span-6 space-y-3">
+                        {/* Left Details (col-span-7) */}
+                        <div className="sm:col-span-7 space-y-3">
                           <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight leading-tight">
                             {firstProduct.name}{' '}
                             <span className="text-blue-600">{firstProduct.nameAccent}</span>
@@ -746,20 +746,20 @@ export const ShowroomSolutionsSection: React.FC = () => {
                             })}
                           </div>
 
-                          {/* Red Pill CTA Button */}
+                          {/* Red Pill CTA Button - Single Row Guaranteed */}
                           <div className="pt-2 sm:pt-3">
                             <Link
                               to={firstProduct.link}
-                              className="inline-flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn"
+                              className="inline-flex items-center space-x-2 px-5 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn whitespace-nowrap shrink-0 max-w-full"
                             >
-                              <span>Explore {firstProduct.name} {firstProduct.nameAccent}</span>
-                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                              <span className="whitespace-nowrap">Explore {firstProduct.name} {firstProduct.nameAccent}</span>
+                              <ArrowRight className="w-4 h-4 shrink-0 group-hover/btn:translate-x-1 transition-transform" />
                             </Link>
                           </div>
                         </div>
 
-                        {/* Right Machine Imagery on Lighted Circular Podium (col-span-6) */}
-                        <div className="sm:col-span-6 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
+                        {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
+                        <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
                           {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
                           <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-cyan-400/35 via-blue-500/25 to-transparent rounded-[100%] blur-md pointer-events-none" />
                           <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-sky-100 rounded-[100%] border border-cyan-200/90 shadow-[0_12px_28px_rgba(56,189,248,0.3)] pointer-events-none" />
@@ -803,8 +803,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
 
                         {/* Middle Body: Left Typography + Right Showroom Machine on Pedestal */}
                         <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center flex-1 relative z-10 my-1">
-                          {/* Left Details (col-span-6) */}
-                          <div className="sm:col-span-6 space-y-3">
+                          {/* Left Details (col-span-7) */}
+                          <div className="sm:col-span-7 space-y-3">
                             <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight leading-tight">
                               {secondProduct.name}{' '}
                               <span className="text-red-600">{secondProduct.nameAccent}</span>
@@ -836,20 +836,20 @@ export const ShowroomSolutionsSection: React.FC = () => {
                               })}
                             </div>
 
-                            {/* Red Pill CTA Button */}
+                            {/* Red Pill CTA Button - Single Row Guaranteed */}
                             <div className="pt-2 sm:pt-3">
                               <Link
                                 to={secondProduct.link}
-                                className="inline-flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn"
+                                className="inline-flex items-center space-x-2 px-5 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn whitespace-nowrap shrink-0 max-w-full"
                               >
-                                <span>Explore {secondProduct.name} {secondProduct.nameAccent}</span>
-                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                <span className="whitespace-nowrap">Explore {secondProduct.name} {secondProduct.nameAccent}</span>
+                                <ArrowRight className="w-4 h-4 shrink-0 group-hover/btn:translate-x-1 transition-transform" />
                               </Link>
                             </div>
                           </div>
 
-                          {/* Right Machine Imagery on Lighted Circular Podium (col-span-6) */}
-                          <div className="sm:col-span-6 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
+                          {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
+                          <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
                             {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
                             <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-red-500/25 via-rose-400/20 to-transparent rounded-[100%] blur-md pointer-events-none" />
                             <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-rose-50 rounded-[100%] border border-red-200/80 shadow-[0_12px_28px_rgba(244,63,94,0.25)] pointer-events-none" />

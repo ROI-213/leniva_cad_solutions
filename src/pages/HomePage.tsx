@@ -49,7 +49,6 @@ export const HomePage: React.FC = () => {
   ]
 
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
 
   const nextSlide = useCallback(() => {
     setCurrentSlide(prev => (prev + 1) % slides.length)
@@ -59,13 +58,13 @@ export const HomePage: React.FC = () => {
     setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length)
   }, [slides.length])
 
+  // Continuous auto-scrolling every 4 seconds
   useEffect(() => {
-    if (isPaused) return
     const timer = setInterval(() => {
       nextSlide()
-    }, 6000)
+    }, 4000)
     return () => clearInterval(timer)
-  }, [isPaused, nextSlide])
+  }, [nextSlide])
 
   return (
     <div className="space-y-6 sm:space-y-8 pb-8 sm:pb-10">
@@ -74,8 +73,6 @@ export const HomePage: React.FC = () => {
          ==================================================== */}
       <section 
         className="relative bg-white text-slate-900 pt-1 pb-2 lg:pb-3 overflow-hidden"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
       >
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           {/* Main Panoramic Hero Showcase Carousel with Curved Edges */}
@@ -87,19 +84,19 @@ export const HomePage: React.FC = () => {
                 return (
                   <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                       isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                     }`}
                   >
                     <img
-                      src={`${slide.image}?v=hd_master_2`}
+                      src={`${slide.image}?v=hd_master_3`}
                       alt={slide.alt}
-                      className="w-full h-full object-contain bg-white"
+                      className="w-full h-full object-contain bg-white select-none"
                       loading="eager"
                       fetchPriority="high"
-                      decoding="async"
+                      decoding="sync"
                       style={{
-                        imageRendering: 'auto',
+                        imageRendering: '-webkit-optimize-contrast',
                         WebkitBackfaceVisibility: 'hidden',
                         backfaceVisibility: 'hidden',
                         transform: 'translateZ(0)',

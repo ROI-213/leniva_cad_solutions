@@ -29,7 +29,7 @@ import { useApp } from '../context/AppContext'
 import { siteConfig } from '../data/siteConfig'
 
 export const Header: React.FC = () => {
-  const { cartCount, wishlistCount, openQuoteModal, openSearchModal } = useApp()
+  const { wishlistCount, openQuoteModal, openSearchModal } = useApp()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null)
@@ -448,19 +448,6 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* Cart Link with Badge */}
-            <Link
-              to="/cart"
-              className="p-1.5 text-slate-700 hover:text-red-600 transition-colors relative"
-              title="Shopping Cart"
-              aria-label="Cart"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1.5 w-4 h-4 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                {cartCount}
-              </span>
-            </Link>
-
             {/* Highlighted Request a Demo Button */}
             <button
               onClick={() => openQuoteModal('3DeVOK 3D Scanner Demo Request')}
@@ -587,9 +574,6 @@ export const Header: React.FC = () => {
               </Link>
               <Link to="/contact" className="block px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50">
                 Contact
-              </Link>
-              <Link to="/cart" className="block px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50">
-                Shopping Cart ({cartCount})
               </Link>
               <Link to="/wishlist" className="block px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50">
                 Wishlist ({wishlistCount})

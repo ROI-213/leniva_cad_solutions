@@ -307,10 +307,10 @@ export const devokMTData: ScannerProductDetail = {
     'The 3DeVOK MT is a professional high-performance 3D scanner designed for reverse engineering, quality inspection, product design, 3D measurement, digital archiving, visualization and industrial applications.',
   trustLine:
     'VDI/VDE 2634 compliant industrial inspection solution trusted by automotive, aerospace, and precision tooling manufacturers.',
-  heroImage: '/images/products/3devok-mt.jpg',
-  transparentImage: '/images/products/3devok-mt.jpg',
+  heroImage: '/images/products/3devok-mt.png',
+  transparentImage: '/images/products/3devok-mt.png',
   galleryImages: [
-    '/images/products/3devok-mt.jpg',
+    '/images/products/3devok-mt.png',
     '/images/scanners/scanner-inspection.jpg',
     '/images/scanners/scanner-color-texture.jpg',
     'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',

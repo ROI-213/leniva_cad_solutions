@@ -522,8 +522,8 @@ export const products: Product[] = [
     tagline: 'Versatile Handheld & Desktop Optical 3D Scanner',
     shortDescription: 'Multi-functional handheld and desktop 3D scanner delivering high accuracy for reverse engineering, product design, and digital archiving.',
     description: 'The EinScan 3D Scanner series is the industry benchmark for versatile, portable 3D digitization. Featuring hybrid LED and infrared structured light modes, it captures high-density point clouds with true color texture in minutes. Seamlessly pairs with CAD modeling and reverse engineering software.',
-    heroImage: '/images/scanners/einscan-pro-hd.jpg',
-    images: ['/images/scanners/einscan-pro-hd.jpg', '/images/scanners/einscan-hx.jpg', '/images/scanners/einscan-spv2.jpg'],
+    heroImage: '/images/scanners/einscan-pro-hd.png',
+    images: ['/images/scanners/einscan-pro-hd.png', '/images/scanners/einscan-hx.png', '/images/scanners/einscan-spv2.png'],
     keySpecs: [
       { label: 'Accuracy', value: 'Up to 0.04 mm' },
       { label: 'Scan Modes', value: 'Handheld Rapid / Fixed Turntable' },

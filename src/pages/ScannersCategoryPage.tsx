@@ -1793,7 +1793,7 @@ export const ScannersCategoryPage: React.FC = () => {
               <div className="relative rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200/80 p-8 border border-slate-200 w-full flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-x-0 h-0.5 bg-orange-500/80 shadow-[0_0_12px_#f97316] pointer-events-none animate-laser-sweep z-20" />
                 <img
-                  src="/images/products/3devok-mt.jpg"
+                  src="/images/products/3devok-mt.png"
                   alt="3DeVOK 3D Scanner"
                   className="max-h-60 sm:max-h-72 w-auto object-contain drop-shadow-xl z-10"
                 />

@@ -23,28 +23,28 @@ export const HomePage: React.FC = () => {
     {
       id: 1,
       image: '/hero-banner-1.png',
-      alt: 'Industrial Grade 3D Printing Solutions — Make3D & Leniva CAD Solutions',
-      title: 'Industrial Grade 3D Printing Solutions',
-      subtitle: 'From Ideas to Real-World Impact',
-      tag: 'Make3D Authorized Technology Partner',
+      alt: 'Next Generation 3D Solutions — Leniva CAD Solutions',
+      title: 'Next Generation 3D Solutions',
+      subtitle: 'Powering Creativity, Enabling Industry',
+      tag: 'Design • Prototype • Manufacture',
       badge: 'Full Additive Ecosystem',
       primaryBtnText: 'Explore 3D Printers',
       primaryBtnLink: '/products',
       secondaryBtnText: 'Request Quote',
-      quoteSubject: 'Industrial 3D Printers Inquiry',
+      quoteSubject: 'Next Generation 3D Solutions Consultation',
     },
     {
       id: 2,
       image: '/hero-banner-2.png',
-      alt: 'Next Generation 3D Solutions — Leniva CAD Solutions',
-      title: 'Next Generation 3D Solutions',
-      subtitle: 'Powering Creativity, Enabling Industry',
-      tag: 'Advanced 3D Printing Technologies',
+      alt: 'Industrial Grade Precision Performance Possibilities — Leniva CAD Solutions',
+      title: 'Precision, Performance, Possibilities',
+      subtitle: 'Large Ideas, Bigger Possibilities',
+      tag: 'Industrial Grade 3D Technologies',
       badge: 'Full Additive Ecosystem',
       primaryBtnText: 'Explore Our Range',
       primaryBtnLink: '/products',
       secondaryBtnText: 'Request a Demo',
-      quoteSubject: 'Next Generation 3D Solutions Consultation',
+      quoteSubject: 'Industrial Grade 3D Solutions Consultation',
     },
   ]
 
@@ -68,12 +68,12 @@ export const HomePage: React.FC = () => {
   }, [isPaused, nextSlide])
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-6 sm:space-y-8 pb-8 sm:pb-10">
       {/* ====================================================
           SECTION 1: HERO SHOWCASE CAROUSEL BANNER (WHITE BACKGROUND)
          ==================================================== */}
       <section 
-        className="relative bg-white text-slate-900 pt-3 pb-12 lg:pb-16 overflow-hidden"
+        className="relative bg-white text-slate-900 pt-1 pb-2 lg:pb-3 overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -92,13 +92,17 @@ export const HomePage: React.FC = () => {
                     }`}
                   >
                     <img
-                      src={`${slide.image}?v=hd_master`}
+                      src={`${slide.image}?v=hd_master_2`}
                       alt={slide.alt}
                       className="w-full h-full object-contain bg-white"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                       style={{
                         imageRendering: 'auto',
                         WebkitBackfaceVisibility: 'hidden',
                         backfaceVisibility: 'hidden',
+                        transform: 'translateZ(0)',
                       }}
                     />
                   </div>
@@ -413,8 +417,8 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           SECTION 6: COMPANY INTRODUCTION
          ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 pt-6">
-        <div className="bg-slate-50 rounded-3xl p-8 sm:p-12 lg:p-16 border border-slate-200/80 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 pt-1">
+        <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-6">
             <div className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
               — ABOUT US —
@@ -502,8 +506,8 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           INDUSTRIES WE EMPOWER (CONTINUOUS SLIDING MARQUEE)
          ==================================================== */}
-      <section className="w-full overflow-hidden py-14 sm:py-18">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-10 text-center">
+      <section className="w-full overflow-hidden py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-5 text-center">
           <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
             Cross-Sector Precision
           </span>
@@ -557,7 +561,7 @@ export const HomePage: React.FC = () => {
           BOTTOM HIGH-IMPACT CTA STRIP
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-slate-950 text-white rounded-3xl p-8 sm:p-12 lg:p-14 border border-slate-800 text-center space-y-6 relative overflow-hidden">
+        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-800 text-center space-y-4 relative overflow-hidden">
           <div className="max-w-2xl mx-auto space-y-3 relative z-10">
             <span className="text-xs font-bold uppercase tracking-wider text-red-400">Collaborate with Leniva</span>
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">

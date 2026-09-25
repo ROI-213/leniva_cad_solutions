@@ -258,7 +258,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
         description: 'Rapid 3D data capture with photorealistic 24-bit texture mapping and high-resolution geometry.',
         modelsCount: '4 MODELS',
         badgeLabel: 'Color Metrology',
-        image: '/images/scanners/3devok-mq.jpg',
+        image: '/images/scanners/3devok-mq.png',
         link: '/3d-scanners/3devok-mq',
         quoteInquiry: '3DeVOK MQ Color 3D Scanner Inquiry',
         isContain: true,
@@ -276,7 +276,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
         description: 'VDI/VDE 2634 Part 2 certified scanner engineered for robotic inline verification and CAD comparison.',
         modelsCount: '4 MODELS',
         badgeLabel: 'Metrology Grade',
-        image: '/images/scanners/3devok-mt.jpg',
+        image: '/images/scanners/3devok-mt.png',
         link: '/3d-scanners/3devok-mt',
         quoteInquiry: '3DeVOK MT Metrology Scanner Inquiry',
         isContain: true,
@@ -294,7 +294,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
         description: 'Hybrid blue LED and laser light sources for reflective metal, dark surfaces and high-speed inspection.',
         modelsCount: '4 MODELS',
         badgeLabel: 'Hybrid Laser/LED',
-        image: '/images/scanners/einscan-hx.jpg',
+        image: '/images/scanners/einscan-hx.png',
         link: '/products/einscan',
         quoteInquiry: 'EinScan HX Dual Light Scanner Inquiry',
         isContain: true,
@@ -312,7 +312,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
         description: 'Eye-safe infrared speckle technology with integrated color camera for body, face and heritage scanning.',
         modelsCount: '4 MODELS',
         badgeLabel: 'Eye-Safe Infrared',
-        image: '/images/scanners/einscan-h2.jpg',
+        image: '/images/scanners/einscan-h2.png',
         link: '/products/einscan',
         quoteInquiry: 'EinScan H2 Dual Light Scanner Inquiry',
         isContain: true,
@@ -494,154 +494,190 @@ export const ShowroomSolutionsSection: React.FC = () => {
   }
 
   return (
-    <div className="w-full space-y-16 sm:space-y-24 py-6">
-      {showcaseCategories.map((section) => {
-        const currentIndex = activeIndices[section.id] || 0
-        const totalProducts = section.products.length
+    <>
+      <section id="showroom-solutions" className="w-full relative overflow-hidden py-1 sm:py-2">
+        {/* Showroom Panoramic Background */}
+        <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6">
+          {/* Showroom Stage Outer Container: Single unified section without blank spaces */}
+          <div className="relative rounded-3xl bg-gradient-to-b from-[#f8fafc]/95 via-[#f0f7ff]/75 to-[#e2e8f0]/65 p-4 sm:p-6 lg:p-7 xl:p-8 border border-slate-200/90 shadow-2xl overflow-hidden">
+            {/* Background Ambient Lighting & Potted Plant Accents */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/6 rounded-full blur-3xl pointer-events-none" />
 
-        // Get 4 cards to display simultaneously across the showroom carousel:
-        // Card 0: Previous item (peeking from left edge)
-        // Card 1: Active item 1 (full card)
-        // Card 2: Active item 2 (full card)
-        // Card 3: Next item (peeking from right edge)
-        const prevProductIndex = (currentIndex - 1 + totalProducts) % totalProducts
-        const prevProduct = section.products[prevProductIndex]
+            {/* Tropical Palm Fronds framing the showroom stage */}
+            <PalmFoliageLeft className="absolute -top-3 -left-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
+            <PalmFoliageRight className="absolute -top-3 -right-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
 
-        const firstProduct = section.products[currentIndex]
+            {/* Subtle Industrial Grid Floor Pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style={{
+                backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
+                backgroundSize: '48px 48px',
+              }}
+            />
 
-        const secondProductIndex = (currentIndex + 1) % totalProducts
-        const secondProduct = totalProducts > 1 ? section.products[secondProductIndex] : null
+            <div className="relative z-10 space-y-6 sm:space-y-8">
+              {showcaseCategories.map((section, catIndex) => {
+                const isFirstCategory = catIndex === 0
+                const currentIndex = activeIndices[section.id] || 0
+                const totalProducts = section.products.length
 
-        const nextProductIndex = (currentIndex + 2) % totalProducts
-        const nextProduct = totalProducts > 2 ? section.products[nextProductIndex] : prevProduct
+                // Get 4 cards to display simultaneously across the showroom carousel:
+                // Card 0: Previous item (peeking from left edge)
+                // Card 1: Active item 1 (full card)
+                // Card 2: Active item 2 (full card)
+                // Card 3: Next item (peeking from right edge)
+                const prevProductIndex = (currentIndex - 1 + totalProducts) % totalProducts
+                const prevProduct = section.products[prevProductIndex]
 
-        return (
-          <section
-            key={section.id}
-            id={`showcase-${section.id}`}
-            className="w-full relative overflow-hidden"
-          >
-            {/* Showroom Panoramic Background */}
-            <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6">
-              {/* Showroom Stage Outer Container */}
-              <div className="relative rounded-3xl bg-gradient-to-b from-[#f8fafc]/95 via-[#f0f7ff]/75 to-[#e2e8f0]/65 p-4 sm:p-6 lg:p-8 xl:p-10 border border-slate-200/90 shadow-2xl overflow-hidden">
-                {/* Background Ambient Lighting & Potted Plant Accents (Matching Reference) */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/6 rounded-full blur-3xl pointer-events-none" />
+                const firstProduct = section.products[currentIndex]
 
-                {/* Tropical Palm Fronds framing the showroom stage (matching reference mockup) */}
-                <PalmFoliageLeft className="absolute -top-3 -left-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
-                <PalmFoliageRight className="absolute -top-3 -right-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
+                const secondProductIndex = (currentIndex + 1) % totalProducts
+                const secondProduct = totalProducts > 1 ? section.products[secondProductIndex] : null
 
-                {/* Subtle Industrial Grid Floor Pattern */}
-                <div
-                  className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                  style={{
-                    backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
-                    backgroundSize: '48px 48px',
-                  }}
-                />
+                const nextProductIndex = (currentIndex + 2) % totalProducts
+                const nextProduct = totalProducts > 2 ? section.products[nextProductIndex] : prevProduct
 
-                {/* ====================================================
-                    1. SECTION HEADER (PIXEL-PERFECT REPLICA OF USER REFERENCE)
-                   ==================================================== */}
-                <div className="relative z-20 mb-6 sm:mb-10">
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Left Decorative Side Tag: FROM CONCEPT TO CREATION */}
-                    <div className="hidden xl:flex items-center space-x-2.5 shrink-0">
-                      <div className="w-1.5 h-10 border-l-2 border-t-2 border-b-2 border-red-500/80 rounded-l-xs" />
-                      <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug">
-                        <div>FROM</div>
-                        <div>CONCEPT</div>
-                        <div>TO CREATION</div>
-                      </div>
-                    </div>
+                return (
+                  <div
+                    key={section.id}
+                    id={`showcase-${section.id}`}
+                    className="w-full relative scroll-mt-24"
+                  >
+                    {/* Subtle Elegant Divider for Down 3 Categories */}
+                    {!isFirstCategory && (
+                      <div className="border-t border-slate-200/90 mb-8 sm:mb-12" />
+                    )}
 
-                    {/* Center Header: Category Title & Feature Pills */}
-                    <div className="text-center space-y-2 max-w-3xl mx-auto">
-                      {/* Top Tag: — EXPLORE OUR — */}
-                      <div className="flex items-center justify-center space-x-2 text-[11px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">
-                        <span className="w-6 h-[1.5px] bg-slate-300" />
-                        <span>{section.categoryTag}</span>
-                        <span className="w-6 h-[1.5px] bg-slate-300" />
-                      </div>
-
-                      {/* Main Title */}
-                      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-                        {section.titlePrimary}{' '}
-                        <span className="text-blue-600">{section.titleAccent}</span>
-                      </h2>
-
-                      {/* Subtitle */}
-                      <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
-                        {section.subtitle}
-                      </p>
-
-                      {/* Feature Highlights Bar (4 Badges with Icons) */}
-                      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-2">
-                        {section.badges.map(b => {
-                          const IconComponent = b.icon
-                          return (
-                            <div
-                              key={b.label}
-                              className="flex items-center space-x-1.5 text-xs text-slate-700 font-semibold"
-                            >
-                              <IconComponent className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                              <span>{b.label}</span>
+                    {/* ====================================================
+                        HEADER:
+                        Category 1: Full Showcase Header (Tag, Title, Subtitle, Badges, Side Tags)
+                        Down 3 Categories: ONLY Category Name & Products (no separate sections)
+                       ==================================================== */}
+                    {isFirstCategory ? (
+                      <div className="relative z-20 mb-6 sm:mb-10">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                          {/* Left Decorative Side Tag: FROM CONCEPT TO CREATION */}
+                          <div className="hidden xl:flex items-center space-x-2.5 shrink-0">
+                            <div className="w-1.5 h-10 border-l-2 border-t-2 border-b-2 border-red-500/80 rounded-l-xs" />
+                            <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug">
+                              <div>FROM</div>
+                              <div>CONCEPT</div>
+                              <div>TO CREATION</div>
                             </div>
-                          )
-                        })}
-                      </div>
-                    </div>
+                          </div>
 
-                    {/* Right Decorative Side Tag & Catalog Link Button */}
-                    <div className="flex flex-col items-center md:items-end space-y-2 shrink-0">
-                      <Link
-                        to={section.catalogLink}
-                        className="px-5 py-2.5 rounded-full border border-red-500/80 hover:border-red-600 bg-white hover:bg-red-50 text-red-600 hover:text-red-700 text-xs font-bold transition-all shadow-xs flex items-center space-x-1.5 group cursor-pointer"
-                      >
-                        <span>{section.catalogText}</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                          {/* Center Header: Category Title & Feature Pills */}
+                          <div className="text-center space-y-2 max-w-3xl mx-auto">
+                            {/* Top Tag: — EXPLORE OUR — */}
+                            <div className="flex items-center justify-center space-x-2 text-[11px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">
+                              <span className="w-6 h-[1.5px] bg-slate-300" />
+                              <span>{section.categoryTag}</span>
+                              <span className="w-6 h-[1.5px] bg-slate-300" />
+                            </div>
 
-                      <div className="hidden xl:flex items-center space-x-2.5 pt-1">
-                        <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug text-right">
-                          <div>INDUSTRIAL</div>
-                          <div>3D PRINTING</div>
-                          <div>SOLUTIONS</div>
+                            {/* Main Title */}
+                            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+                              {section.titlePrimary}{' '}
+                              <span className="text-blue-600">{section.titleAccent}</span>
+                            </h2>
+
+                            {/* Subtitle */}
+                            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
+                              {section.subtitle}
+                            </p>
+
+                            {/* Feature Highlights Bar (4 Badges with Icons) */}
+                            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-2">
+                              {section.badges.map(b => {
+                                const IconComponent = b.icon
+                                return (
+                                  <div
+                                    key={b.label}
+                                    className="flex items-center space-x-1.5 text-xs text-slate-700 font-semibold"
+                                  >
+                                    <IconComponent className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                                    <span>{b.label}</span>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          </div>
+
+                          {/* Right Decorative Side Tag & Catalog Link Button */}
+                          <div className="flex flex-col items-center md:items-end space-y-2 shrink-0">
+                            <Link
+                              to={section.catalogLink}
+                              className="px-5 py-2.5 rounded-full border border-red-500/80 hover:border-red-600 bg-white hover:bg-red-50 text-red-600 hover:text-red-700 text-xs font-bold transition-all shadow-xs flex items-center space-x-1.5 group cursor-pointer"
+                            >
+                              <span>{section.catalogText}</span>
+                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+
+                            <div className="hidden xl:flex items-center space-x-2.5 pt-1">
+                              <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug text-right">
+                                <div>INDUSTRIAL</div>
+                                <div>3D PRINTING</div>
+                                <div>SOLUTIONS</div>
+                              </div>
+                              <div className="w-1.5 h-10 border-r-2 border-t-2 border-b-2 border-red-500/80 rounded-r-xs" />
+                            </div>
+                          </div>
                         </div>
-                        <div className="w-1.5 h-10 border-r-2 border-t-2 border-b-2 border-red-500/80 rounded-r-xs" />
                       </div>
-                    </div>
-                  </div>
-                </div>
+                    ) : (
+                      /* DOWN 3 CATEGORIES: ONLY DISPLAY NAME & LINK */
+                      <div className="relative z-20 mb-6 sm:mb-8 text-center space-y-2">
+                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+                          {section.titlePrimary}{' '}
+                          <span className="text-blue-600">{section.titleAccent}</span>
+                        </h3>
+                        <div>
+                          <Link
+                            to={section.catalogLink}
+                            className="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 hover:underline transition-all group"
+                          >
+                            <span>{section.catalogText}</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
+                    )}
 
-                {/* ====================================================
-                    2. SHOWROOM STAGE: 4 PRODUCTS DISPLAYED SIMULTANEOUSLY
-                    (MATCHING EXACT MOCKUP WITH 2 FULL CARDS & 2 PEEKING CARDS)
-                   ==================================================== */}
-                <div className="relative z-10 w-full">
-                  {/* Left / Right Navigation Chevrons (Positioned at Card Boundaries) */}
-                  <button
-                    onClick={() => handlePrev(section.id, totalProducts)}
-                    aria-label="Previous Product"
-                    className="absolute left-1 sm:left-3 lg:left-[115px] xl:left-[145px] 2xl:left-[170px] top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
-                  >
-                    <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
-                  </button>
+                    {/* ====================================================
+                        2. SHOWROOM STAGE: PRODUCTS DISPLAYED SIMULTANEOUSLY
+                       ==================================================== */}
+                    <div className="relative z-10 w-full">
+                      {/* Left / Right Navigation Chevrons */}
+                      <button
+                        onClick={() => handlePrev(section.id, totalProducts)}
+                        aria-label="Previous Product"
+                        className={`absolute ${
+                          totalProducts > 2
+                            ? 'left-1 sm:left-3 lg:left-[115px] xl:left-[145px] 2xl:left-[170px]'
+                            : 'left-1 sm:left-3'
+                        } top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95`}
+                      >
+                        <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
+                      </button>
 
-                  <button
-                    onClick={() => handleNext(section.id, totalProducts)}
-                    aria-label="Next Product"
-                    className="absolute right-1 sm:right-3 lg:right-[115px] xl:right-[145px] 2xl:right-[170px] top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
-                  >
-                    <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
-                  </button>
+                      <button
+                        onClick={() => handleNext(section.id, totalProducts)}
+                        aria-label="Next Product"
+                        className={`absolute ${
+                          totalProducts > 2
+                            ? 'right-1 sm:right-3 lg:right-[115px] xl:right-[145px] 2xl:right-[170px]'
+                            : 'right-1 sm:right-3'
+                        } top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95`}
+                      >
+                        <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+                      </button>
 
                   {/* 4-Product Horizontal Track */}
                   <div className="flex items-stretch justify-center gap-4 sm:gap-6 lg:gap-7 w-full">
                     {/* Card 0: Left Peeking Product */}
-                    {prevProduct && (
+                    {prevProduct && totalProducts > 2 && (
                       <div
                         onClick={() => handlePrev(section.id, totalProducts)}
                         className="hidden lg:flex flex-col justify-between shrink-0 w-[140px] xl:w-[175px] 2xl:w-[210px] -ml-6 xl:-ml-10 2xl:-ml-14 rounded-3xl bg-white/80 backdrop-blur-md border border-white/90 shadow-xl p-3 sm:p-4 cursor-pointer hover:bg-white/95 hover:shadow-2xl transition-all duration-300 opacity-70 hover:opacity-100 group overflow-hidden relative select-none"
@@ -867,7 +903,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     )}
 
                     {/* Card 3: Right Peeking Product */}
-                    {nextProduct && (
+                    {nextProduct && totalProducts > 2 && (
                       <div
                         onClick={() => handleNext(section.id, totalProducts)}
                         className="hidden lg:flex flex-col justify-between shrink-0 w-[140px] xl:w-[175px] 2xl:w-[210px] -mr-6 xl:-mr-10 2xl:-mr-14 rounded-3xl bg-white/80 backdrop-blur-md border border-white/90 shadow-xl p-3 sm:p-4 cursor-pointer hover:bg-white/95 hover:shadow-2xl transition-all duration-300 opacity-70 hover:opacity-100 group overflow-hidden relative select-none"
@@ -933,10 +969,12 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        )
-      })}
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
 
       {/* FULLSCREEN ZOOM MODAL */}
       {zoomItem && (
@@ -996,7 +1034,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

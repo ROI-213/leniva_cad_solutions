@@ -26,10 +26,10 @@ export const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-10 sm:pt-12 pb-10 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Top Newsletter & Advisory Banner */}
-        <div className="bg-slate-900/90 rounded-2xl p-6 sm:p-8 border border-slate-800 mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="bg-slate-900/90 rounded-2xl p-6 sm:p-7 border border-slate-800 mb-8 sm:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-7 space-y-1">
             <span className="text-xs font-bold uppercase tracking-wider text-red-400">Engineering Briefing</span>
             <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">

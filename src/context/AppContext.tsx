@@ -1,5 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { CartItem, WishlistItem, QuoteFormData } from '../types'
+import { siteConfig } from '../data/siteConfig'
+
+interface SiteSettingsType {
+  companyName: string
+  phone: string
+  email: string
+  address: string
+  workingHours: string
+  whatsapp: string
+  bannerNotice: string
+}
 
 interface AppContextType {
   // Cart
@@ -28,6 +39,9 @@ interface AppContextType {
   isSearchModalOpen: boolean
   openSearchModal: () => void
   closeSearchModal: () => void
+
+  // Live Site Settings from PostgreSQL
+  liveSiteSettings: SiteSettingsType
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
@@ -59,6 +73,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Search Modal state
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false)
+
+  // Live Site Settings from PostgreSQL (defaults from static siteConfig)
+  const [liveSiteSettings, setLiveSiteSettings] = useState<SiteSettingsType>({
+    companyName: siteConfig.name,
+    phone: siteConfig.phone,
+    email: siteConfig.email,
+    address: siteConfig.address,
+    workingHours: siteConfig.workingHours,
+    whatsapp: siteConfig.whatsappNumber,
+    bannerNotice: 'Now Delivering Advanced 3D Scanners & Industrial Printers PAN-India',
+  })
+
+  // Fetch live settings from PostgreSQL on mount
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(r => r.json())
+      .then(data => {
+        if (data?.general_info) {
+          setLiveSiteSettings(prev => ({ ...prev, ...data.general_info }))
+        }
+      })
+      .catch(() => {
+        // Silently fall back to siteConfig defaults
+      })
+  }, [])
 
   useEffect(() => {
     try {
@@ -183,6 +222,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         isSearchModalOpen,
         openSearchModal,
         closeSearchModal,
+        liveSiteSettings,
       }}
     >
       {children}

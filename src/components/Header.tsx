@@ -29,7 +29,7 @@ import { useApp } from '../context/AppContext'
 import { siteConfig } from '../data/siteConfig'
 
 export const Header: React.FC = () => {
-  const { wishlistCount, openQuoteModal, openSearchModal } = useApp()
+  const { wishlistCount, openQuoteModal, openSearchModal, liveSiteSettings } = useApp()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null)
@@ -146,18 +146,18 @@ export const Header: React.FC = () => {
           {/* Left contact info */}
           <div className="flex items-center space-x-5 text-[11px] sm:text-xs">
             <a
-              href={`mailto:${siteConfig.email}`}
+              href={`mailto:${liveSiteSettings.email}`}
               className="flex items-center space-x-1.5 text-slate-600 hover:text-red-600 transition-colors"
             >
               <Mail className="w-3.5 h-3.5 text-slate-500" />
-              <span>{siteConfig.email}</span>
+              <span>{liveSiteSettings.email}</span>
             </a>
             <a
-              href={`tel:${siteConfig.phone}`}
+              href={`tel:${liveSiteSettings.phone}`}
               className="hidden sm:flex items-center space-x-1.5 text-slate-600 hover:text-red-600 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-slate-500" />
-              <span>{siteConfig.phone}</span>
+              <span>{liveSiteSettings.phone}</span>
             </a>
             <div className="hidden md:flex items-center space-x-1.5 text-slate-600">
               <span className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-300 flex items-center justify-center shrink-0">

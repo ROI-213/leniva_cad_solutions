@@ -12,8 +12,10 @@ import {
   Send,
 } from 'lucide-react'
 import { siteConfig } from '../data/siteConfig'
+import { useApp } from '../context/AppContext'
 
 export const Footer: React.FC = () => {
+  const { liveSiteSettings } = useApp()
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false)
 
@@ -169,7 +171,7 @@ export const Footer: React.FC = () => {
             <MapPin className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-white block mb-0.5">Google Address & Headquarters</strong>
-              <p>{siteConfig.address}</p>
+              <p>{liveSiteSettings.address}</p>
               <a
                 href={siteConfig.mapUrl}
                 target="_blank"
@@ -185,7 +187,7 @@ export const Footer: React.FC = () => {
             <Phone className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-white block mb-0.5">Direct Phone Numbers</strong>
-              <p>Main Contact: <a href={`tel:${siteConfig.phone}`} className="hover:text-red-400">{siteConfig.phone}</a></p>
+              <p>Main Contact: <a href={`tel:${liveSiteSettings.phone}`} className="hover:text-red-400">{liveSiteSettings.phone}</a></p>
               <p>Secondary Contact: <a href={`tel:${siteConfig.supportPhone}`} className="hover:text-red-400">{siteConfig.supportPhone}</a></p>
             </div>
           </div>
@@ -194,8 +196,8 @@ export const Footer: React.FC = () => {
             <Mail className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-white block mb-0.5">Email Communications</strong>
-              <p>Main Email: <a href={`mailto:${siteConfig.email}`} className="hover:text-red-400">{siteConfig.email}</a></p>
-              <p className="text-slate-500 mt-0.5">WhatsApp: <a href={`https://wa.me/${siteConfig.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400">{siteConfig.whatsappDisplay}</a></p>
+              <p>Main Email: <a href={`mailto:${liveSiteSettings.email}`} className="hover:text-red-400">{liveSiteSettings.email}</a></p>
+              <p className="text-slate-500 mt-0.5">WhatsApp: <a href={`https://wa.me/${liveSiteSettings.whatsapp || siteConfig.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400">{liveSiteSettings.phone}</a></p>
             </div>
           </div>
         </div>

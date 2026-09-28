@@ -229,6 +229,10 @@ export default function AdminPage() {
   const [sqlError, setSqlError] = useState('')
   const [isExecutingSql, setIsExecutingSql] = useState(false)
 
+  // Contact Management State
+  const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null)
+  const [contactNotesInput, setContactNotesInput] = useState('')
+
   // File Upload State
   const [uploadFile, setUploadFile] = useState<File | null>(null)
   const [uploadBucket, setUploadBucket] = useState('media')
@@ -736,6 +740,50 @@ export default function AdminPage() {
       setSqlError(err.message || 'Error executing query')
     } finally {
       setIsExecutingSql(false)
+    }
+  }
+
+  // Contact message operations
+  const handleUpdateContactStatus = async (id: number, newStatus: string, notes?: string) => {
+    try {
+      const res = await fetch(`/api/contacts/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus, notes }),
+      })
+      if (res.ok) {
+        setContacts(prev => prev.map(c => c.id === id ? { ...c, status: newStatus, notes: notes ?? (c as any).notes } : c))
+        if (selectedContact && selectedContact.id === id) {
+          setSelectedContact(prev => prev ? { ...prev, status: newStatus } : null)
+        }
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteContact = async (id: number) => {
+    if (!confirm('Delete this contact message from PostgreSQL?')) return
+    try {
+      const res = await fetch(`/api/contacts/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setContacts(prev => prev.filter(c => c.id !== id))
+        if (selectedContact?.id === id) setSelectedContact(null)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteCategory = async (id: number) => {
+    if (!confirm('Delete this category from PostgreSQL? Products using it will still exist.')) return
+    try {
+      const res = await fetch(`/api/categories/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setCategoriesList(prev => prev.filter(c => c.id !== id))
+      }
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -1338,31 +1386,149 @@ export default function AdminPage() {
              ==================================================== */}
           {activeTab === 'contacts' && (
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
-              <div>
-                <h3 className="text-lg font-black text-slate-900">Contact Form Inquiries</h3>
-                <p className="text-xs text-slate-500">Live records from PostgreSQL table <code>contact_messages</code></p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-black text-slate-900">Contact Form Inquiries</h3>
+                  <p className="text-xs text-slate-500">Manage status &amp; notes for each message in <code>contact_messages</code></p>
+                </div>
+                <div className="text-xs font-mono text-slate-500 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+                  {contacts.length} total messages
+                </div>
               </div>
 
-              <div className="space-y-3">
-                {contacts.map(c => (
-                  <div key={c.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-slate-50 transition-colors space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <span className="font-bold text-slate-900 text-sm">{c.name}</span>
-                        <span className="text-xs text-slate-500">({c.email})</span>
-                        {c.phone && <span className="text-xs text-slate-400 font-mono">| {c.phone}</span>}
-                      </div>
-                      <span className="text-[10px] font-mono text-slate-400">
-                        {new Date(c.created_at).toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="text-xs font-semibold text-blue-700">Subject: {c.subject}</div>
-                    <p className="text-xs text-slate-700 leading-relaxed">{c.message}</p>
-                  </div>
-                ))}
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider bg-slate-50/50">
+                      <th className="py-3 px-3">ID</th>
+                      <th className="py-3 px-3">Contact</th>
+                      <th className="py-3 px-3">Subject</th>
+                      <th className="py-3 px-3">Message Preview</th>
+                      <th className="py-3 px-3">Date</th>
+                      <th className="py-3 px-3">Status</th>
+                      <th className="py-3 px-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {contacts.map(c => (
+                      <tr key={c.id} className="hover:bg-slate-50 transition-colors">
+                        <td className="py-3 px-3 font-mono font-bold text-slate-400">#{c.id}</td>
+                        <td className="py-3 px-3">
+                          <div className="font-bold text-slate-900">{c.name}</div>
+                          <div className="text-[11px] text-slate-500">{c.email}</div>
+                          {c.phone && <div className="text-[11px] text-slate-400 font-mono">{c.phone}</div>}
+                        </td>
+                        <td className="py-3 px-3 font-semibold text-blue-700">{c.subject}</td>
+                        <td className="py-3 px-3 text-slate-600 max-w-xs truncate">{c.message}</td>
+                        <td className="py-3 px-3 text-slate-400 font-mono text-[11px]">
+                          {new Date(c.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="py-3 px-3">
+                          <select
+                            value={c.status}
+                            onChange={e => handleUpdateContactStatus(c.id, e.target.value)}
+                            className="text-xs font-bold rounded-lg border border-slate-200 bg-white px-2 py-1 cursor-pointer focus:ring-1 focus:ring-blue-500"
+                          >
+                            <option value="unread">Unread</option>
+                            <option value="read">Read</option>
+                            <option value="replied">Replied</option>
+                            <option value="resolved">Resolved</option>
+                          </select>
+                        </td>
+                        <td className="py-3 px-3 text-right space-x-2">
+                          <button
+                            onClick={() => {
+                              setSelectedContact(c)
+                              setContactNotesInput((c as any).notes || '')
+                            }}
+                            className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
+                            title="View details & add notes"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteContact(c.id)}
+                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
+                            title="Delete message"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
+
+          {/* Contact Message Detail Modal */}
+          {selectedContact && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div className="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <h4 className="text-base font-black text-slate-900">
+                    Contact #{selectedContact.id}
+                  </h4>
+                  <button
+                    onClick={() => setSelectedContact(null)}
+                    className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div className="space-y-3 text-xs">
+                  <div>
+                    <span className="text-slate-500 block">From:</span>
+                    <strong className="text-sm text-slate-900">{selectedContact.name}</strong>
+                    <span className="text-slate-500 ml-2">({selectedContact.email})</span>
+                    {selectedContact.phone && <span className="text-slate-400 ml-2 font-mono">{selectedContact.phone}</span>}
+                  </div>
+                  <div>
+                    <span className="text-slate-500 block">Subject:</span>
+                    <strong className="text-blue-700">{selectedContact.subject}</strong>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span className="text-slate-500 block mb-1 font-bold">Message:</span>
+                    <p className="text-slate-700 leading-relaxed font-normal">{selectedContact.message}</p>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">Admin Notes / Reply Reference</label>
+                    <textarea
+                      rows={3}
+                      value={contactNotesInput}
+                      onChange={e => setContactNotesInput(e.target.value)}
+                      placeholder="e.g. Replied via email on 28 Sep. Referred to sales team."
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-between">
+                  <button
+                    onClick={() => handleUpdateContactStatus(selectedContact.id, selectedContact.status, contactNotesInput)}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+                  >
+                    Save Notes
+                  </button>
+                  <button
+                    onClick={() => { handleUpdateContactStatus(selectedContact.id, 'replied'); setSelectedContact(null) }}
+                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+                  >
+                    Mark Replied & Close
+                  </button>
+                  <button
+                    onClick={() => setSelectedContact(null)}
+                    className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold cursor-pointer"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
 
           {/* ====================================================
               TAB 4: PRODUCTS CATALOG (FULL CRUD)
@@ -2719,11 +2885,7 @@ export default function AdminPage() {
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
-                        onClick={async () => {
-                          if (!confirm(`Delete category ${cat.title}?`)) return
-                          await fetch(`/api/categories/${cat.id}`, { method: 'DELETE' })
-                          setCategoriesList(prev => prev.filter(c => c.id !== cat.id))
-                        }}
+                        onClick={() => handleDeleteCategory(cat.id)}
                         className="p-1.5 text-red-500 hover:bg-red-50 rounded-md cursor-pointer"
                         title="Delete category"
                       >

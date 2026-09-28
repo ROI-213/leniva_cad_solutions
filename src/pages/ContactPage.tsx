@@ -9,8 +9,10 @@ import {
   MessageSquare,
 } from 'lucide-react'
 import { siteConfig } from '../data/siteConfig'
+import { useApp } from '../context/AppContext'
 
 export const ContactPage: React.FC = () => {
+  const { liveSiteSettings } = useApp()
   const [formData, setFormData] = useState({
     fullName: '',
     company: '',
@@ -77,7 +79,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <strong className="block text-slate-900 font-semibold mb-0.5">Phone Inquiries</strong>
-                    <p className="text-slate-600">Main: <a href={`tel:${siteConfig.phone}`} className="hover:text-red-600 font-medium">{siteConfig.phone}</a></p>
+                    <p className="text-slate-600">Main: <a href={`tel:${liveSiteSettings.phone}`} className="hover:text-red-600 font-medium">{liveSiteSettings.phone}</a></p>
                     <p className="text-slate-600">Secondary: <a href={`tel:${siteConfig.supportPhone}`} className="hover:text-red-600 font-medium">{siteConfig.supportPhone}</a></p>
                   </div>
                 </div>
@@ -88,7 +90,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <strong className="block text-slate-900 font-semibold mb-0.5">Email Communications</strong>
-                    <p className="text-slate-600">Main Email: <a href={`mailto:${siteConfig.email}`} className="hover:text-red-600 font-medium">{siteConfig.email}</a></p>
+                    <p className="text-slate-600">Main Email: <a href={`mailto:${liveSiteSettings.email}`} className="hover:text-red-600 font-medium">{liveSiteSettings.email}</a></p>
                   </div>
                 </div>
 
@@ -98,7 +100,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <strong className="block text-slate-900 font-semibold mb-0.5">Google Address & Headquarters</strong>
-                    <p className="text-slate-600 leading-relaxed">{siteConfig.address}</p>
+                    <p className="text-slate-600 leading-relaxed">{liveSiteSettings.address}</p>
                     <a
                       href={siteConfig.mapUrl}
                       target="_blank"
@@ -116,7 +118,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <strong className="block text-slate-900 font-semibold mb-0.5">Operational Hours</strong>
-                    <p className="text-slate-600">{siteConfig.workingHours}</p>
+                    <p className="text-slate-600">{liveSiteSettings.workingHours}</p>
                   </div>
                 </div>
               </div>
@@ -124,13 +126,13 @@ export const ContactPage: React.FC = () => {
               {/* Direct WhatsApp Action Card */}
               <div className="pt-4 border-t border-slate-100">
                 <a
-                  href={`https://wa.me/${siteConfig.whatsappNumber}?text=Hello%20Leniva%20CAD%20Solutions,%20I%20have%20an%20engineering%20inquiry.`}
+                  href={`https://wa.me/${liveSiteSettings.whatsapp || siteConfig.whatsappNumber}?text=Hello%20Leniva%20CAD%20Solutions,%20I%20have%20an%20engineering%20inquiry.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl flex items-center justify-center space-x-2 transition-colors shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Chat on WhatsApp Directly ({siteConfig.whatsappDisplay})</span>
+                  <span>Chat on WhatsApp Directly ({liveSiteSettings.phone})</span>
                 </a>
               </div>
             </div>
@@ -140,7 +142,7 @@ export const ContactPage: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">Visitor Protocol & Location</span>
               <h4 className="text-sm font-bold">Visiting Our Bengaluru Technology Center</h4>
               <p className="text-xs text-slate-300 leading-relaxed">
-                {siteConfig.address}
+                {liveSiteSettings.address}
               </p>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Prior appointment is required for machine demonstrations and benchmark sample testing.

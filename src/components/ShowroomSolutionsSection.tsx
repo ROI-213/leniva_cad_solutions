@@ -380,87 +380,6 @@ const showcaseCategories: ShowcaseCategorySection[] = [
   },
 ]
 
-const PalmFoliageLeft: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg
-    viewBox="0 0 200 240"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={`pointer-events-none select-none ${className}`}
-  >
-    <defs>
-      <linearGradient id="palmStem" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#064e3b" />
-        <stop offset="100%" stopColor="#047857" />
-      </linearGradient>
-      <linearGradient id="palmGreen1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#10b981" />
-        <stop offset="40%" stopColor="#059669" />
-        <stop offset="100%" stopColor="#047857" />
-      </linearGradient>
-      <linearGradient id="palmGreen2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#34d399" />
-        <stop offset="50%" stopColor="#10b981" />
-        <stop offset="100%" stopColor="#065f46" />
-      </linearGradient>
-      <linearGradient id="palmGreen3" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#059669" />
-        <stop offset="60%" stopColor="#047857" />
-        <stop offset="100%" stopColor="#022c22" />
-      </linearGradient>
-    </defs>
-    {/* Main Arching Palm Frond */}
-    <g opacity="0.95">
-      <path d="M-10,-10 Q40,60 90,140" stroke="url(#palmStem)" strokeWidth="3" strokeLinecap="round" />
-      <path d="M10,15 C25,12 45,18 55,22 C42,26 25,24 10,18 Z" fill="url(#palmGreen1)" />
-      <path d="M20,30 C40,26 65,34 80,40 C62,45 38,41 20,34 Z" fill="url(#palmGreen2)" />
-      <path d="M30,50 C55,44 85,55 105,62 C82,69 50,63 30,54 Z" fill="url(#palmGreen1)" />
-      <path d="M42,70 C70,64 105,76 128,85 C100,94 65,85 42,75 Z" fill="url(#palmGreen2)" />
-      <path d="M55,95 C85,88 120,102 145,112 C115,120 78,110 55,99 Z" fill="url(#palmGreen1)" />
-      <path d="M68,118 C96,112 128,128 150,140 C122,146 88,135 68,122 Z" fill="url(#palmGreen2)" />
-      <path d="M80,135 C102,130 130,148 148,162 C122,166 95,152 80,139 Z" fill="url(#palmGreen1)" />
-      <path d="M90,140 C105,145 125,168 135,182 C115,180 98,160 90,140 Z" fill="url(#palmGreen3)" />
-      
-      <path d="M15,22 C5,35 0,55 -5,70 C2,55 8,40 15,22 Z" fill="url(#palmGreen3)" />
-      <path d="M25,40 C12,58 8,82 2,100 C12,80 20,60 25,40 Z" fill="url(#palmGreen3)" />
-      <path d="M38,62 C22,82 18,110 12,130 C24,105 32,82 38,62 Z" fill="url(#palmGreen1)" />
-      <path d="M50,85 C32,110 28,138 22,160 C36,132 45,108 50,85 Z" fill="url(#palmGreen2)" />
-      <path d="M65,110 C48,135 44,162 38,185 C52,158 60,132 65,110 Z" fill="url(#palmGreen1)" />
-      <path d="M78,130 C62,152 58,178 52,200 C65,175 74,152 78,130 Z" fill="url(#palmGreen3)" />
-    </g>
-
-    {/* Secondary Spreading Frond */}
-    <g opacity="0.9">
-      <path d="M-15,40 Q50,45 130,70" stroke="url(#palmStem)" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M10,40 C30,30 60,25 85,28 C65,36 35,38 10,42 Z" fill="url(#palmGreen2)" />
-      <path d="M30,42 C55,30 90,26 120,30 C95,38 60,42 30,44 Z" fill="url(#palmGreen1)" />
-      <path d="M55,45 C85,32 125,30 155,36 C125,44 85,47 55,48 Z" fill="url(#palmGreen2)" />
-      <path d="M80,52 C112,40 150,42 175,50 C145,56 110,57 80,55 Z" fill="url(#palmGreen1)" />
-      <path d="M105,60 C135,52 168,58 188,70 C160,72 130,68 105,62 Z" fill="url(#palmGreen2)" />
-      <path d="M130,70 C155,68 180,78 195,92 C170,90 145,80 130,70 Z" fill="url(#palmGreen3)" />
-
-      <path d="M25,44 C35,58 45,75 52,92 C42,75 32,60 25,44 Z" fill="url(#palmGreen3)" />
-      <path d="M50,48 C65,65 78,85 86,105 C74,85 60,68 50,48 Z" fill="url(#palmGreen1)" />
-      <path d="M75,53 C92,72 108,95 118,118 C104,95 88,75 75,53 Z" fill="url(#palmGreen2)" />
-      <path d="M102,62 C120,80 135,102 145,125 C132,102 116,82 102,62 Z" fill="url(#palmGreen1)" />
-    </g>
-
-    {/* Lower Drooping Frond */}
-    <g opacity="0.8">
-      <path d="M-10,80 Q20,130 50,210" stroke="url(#palmStem)" strokeWidth="2" strokeLinecap="round" />
-      <path d="M5,100 C18,115 32,130 42,150 C30,132 18,118 5,102 Z" fill="url(#palmGreen1)" />
-      <path d="M18,125 C32,142 48,162 58,185 C45,165 30,145 18,128 Z" fill="url(#palmGreen2)" />
-      <path d="M30,155 C44,175 58,198 68,222 C55,200 42,178 30,158 Z" fill="url(#palmGreen1)" />
-      <path d="M42,185 C52,205 62,225 68,245 C58,225 48,205 42,187 Z" fill="url(#palmGreen3)" />
-    </g>
-  </svg>
-)
-
-const PalmFoliageRight: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <div className={`scale-x-[-1] pointer-events-none select-none ${className}`}>
-    <PalmFoliageLeft />
-  </div>
-)
-
 export const ShowroomSolutionsSection: React.FC = () => {
   const { openQuoteModal } = useApp()
   // Maintain current slide index for each category
@@ -503,10 +422,6 @@ export const ShowroomSolutionsSection: React.FC = () => {
             {/* Background Ambient Lighting & Potted Plant Accents */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/6 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Tropical Palm Fronds framing the showroom stage */}
-            <PalmFoliageLeft className="absolute -top-3 -left-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
-            <PalmFoliageRight className="absolute -top-3 -right-3 w-36 sm:w-48 lg:w-56 h-auto pointer-events-none z-10 opacity-90 drop-shadow-md" />
 
             {/* Subtle Industrial Grid Floor Pattern */}
             <div

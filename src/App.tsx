@@ -31,6 +31,7 @@ import ScannersCategoryPage from './pages/ScannersCategoryPage'
 import DevokMQPage from './pages/DevokMQPage'
 import DevokMTPage from './pages/DevokMTPage'
 import EinscanPage from './pages/EinscanPage'
+import AdminPage from './pages/AdminPage'
 
 export default function App() {
   return (
@@ -201,7 +202,10 @@ export default function App() {
             <Route path="/wishlist" element={<WishlistPage />} />
             <Route path="/my-account" element={<MyAccountPage />} />
 
-            {/* 10. Fallback redirect */}
+            {/* 10. Admin Console (PostgreSQL Native Management) */}
+            <Route path="/admin" element={<AdminPage />} />
+
+            {/* 11. Fallback redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

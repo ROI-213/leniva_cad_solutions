@@ -29,7 +29,22 @@ export const ContactPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 800))
+    try {
+      await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          subject: `${formData.requirementType || 'General Inquiry'} - ${formData.company}`,
+          message: formData.message,
+        }),
+      })
+    } catch (err) {
+      console.warn('API submission fallback:', err)
+    }
+    await new Promise(resolve => setTimeout(resolve, 500))
     setIsSubmitting(false)
     setIsSubmitted(true)
   }

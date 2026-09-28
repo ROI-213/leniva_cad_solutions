@@ -625,12 +625,207 @@ app.get('/api/storage/:bucket/:fileName', async (req, res) => {
   }
 })
 
-// Delete file from PostgreSQL storage table
-app.delete('/api/storage/:id', async (req, res) => {
+// ====================================================================
+// 11. CATEGORIES MANAGEMENT (FULL CRUD)
+// ====================================================================
+app.post('/api/categories', async (req, res) => {
+  try {
+    const { id, slug, title, subtitle, description, image, hero_banner, icon } = req.body
+    const catId = id || slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const catSlug = slug || catId
+
+    const result = await pool.query(`
+      INSERT INTO categories (id, slug, title, subtitle, description, image, hero_banner, icon)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      ON CONFLICT (id) DO UPDATE SET
+        title = EXCLUDED.title,
+        subtitle = EXCLUDED.subtitle,
+        description = EXCLUDED.description,
+        image = EXCLUDED.image,
+        hero_banner = EXCLUDED.hero_banner,
+        icon = EXCLUDED.icon
+      RETURNING *;
+    `, [catId, catSlug, title, subtitle || '', description || '', image || '', hero_banner || '', icon || 'Box'])
+    res.status(201).json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.delete('/api/categories/:id', async (req, res) => {
   try {
     const { id } = req.params
-    await pool.query('DELETE FROM storage_files WHERE id = $1', [id])
-    res.json({ success: true, message: `Storage file ${id} deleted` })
+    await pool.query('DELETE FROM categories WHERE id = $1', [id])
+    res.json({ success: true, message: `Category ${id} deleted` })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ====================================================================
+// 12. SERVICES MANAGEMENT (FULL CRUD)
+// ====================================================================
+app.post('/api/services', async (req, res) => {
+  try {
+    const { id, slug, title, short_description, description, image, badge, applications, advantages, workflow } = req.body
+    const sId = id || slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const sSlug = slug || sId
+
+    const result = await pool.query(`
+      INSERT INTO services (id, slug, title, short_description, description, image, badge, applications, advantages, workflow)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      RETURNING *;
+    `, [
+      sId,
+      sSlug,
+      title,
+      short_description || '',
+      description || '',
+      image || '',
+      badge || '',
+      JSON.stringify(applications || []),
+      JSON.stringify(advantages || []),
+      JSON.stringify(workflow || []),
+    ])
+    res.status(201).json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.delete('/api/services/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await pool.query('DELETE FROM services WHERE id = $1', [id])
+    res.json({ success: true, message: `Service ${id} deleted` })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ====================================================================
+// 13. SITE SETTINGS & CMS CONFIGURATION (FULL CONTROL)
+// ====================================================================
+app.get('/api/settings', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT key, value, updated_at FROM site_settings')
+    const settingsMap = {}
+    result.rows.forEach(row => {
+      settingsMap[row.key] = row.value
+    })
+    res.json(settingsMap)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.post('/api/settings', async (req, res) => {
+  try {
+    const { key, value } = req.body
+    if (!key || value === undefined) {
+      return res.status(400).json({ error: 'Key and value required' })
+    }
+
+    const result = await pool.query(`
+      INSERT INTO site_settings (key, value, updated_at)
+      VALUES ($1, $2, CURRENT_TIMESTAMP)
+      ON CONFLICT (key) DO UPDATE SET
+        value = EXCLUDED.value,
+        updated_at = CURRENT_TIMESTAMP
+      RETURNING *;
+    `, [key, typeof value === 'object' ? JSON.stringify(value) : value])
+
+    res.json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ====================================================================
+// 14. ADMIN USERS & SECURITY MANAGEMENT (FULL CONTROL)
+// ====================================================================
+app.get('/api/admin/users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT id, username, email, full_name, role, created_at, updated_at FROM admin_users ORDER BY id ASC')
+    res.json(result.rows)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.post('/api/admin/users', async (req, res) => {
+  try {
+    const { username, email, password, full_name, role } = req.body
+    if (!username || !password || !email) {
+      return res.status(400).json({ error: 'Username, email and password required' })
+    }
+
+    const hashed = hashPassword(password)
+    const result = await pool.query(`
+      INSERT INTO admin_users (username, email, password_hash, full_name, role)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id, username, email, full_name, role, created_at;
+    `, [username, email, hashed, full_name || 'Admin User', role || 'admin'])
+
+    res.status(201).json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.put('/api/admin/users/:id/password', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { newPassword } = req.body
+    if (!newPassword) {
+      return res.status(400).json({ error: 'New password required' })
+    }
+
+    const hashed = hashPassword(newPassword)
+    await pool.query('UPDATE admin_users SET password_hash = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2', [hashed, id])
+    res.json({ success: true, message: 'Password updated successfully in PostgreSQL' })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.delete('/api/admin/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await pool.query('DELETE FROM admin_users WHERE id = $1', [id])
+    res.json({ success: true, message: 'User deleted' })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ====================================================================
+// 15. DIRECT POSTGRESQL SQL CONSOLE (FULL DATABASE CONTROL)
+// ====================================================================
+app.post('/api/admin/query', async (req, res) => {
+  try {
+    const { sql } = req.body
+    if (!sql || typeof sql !== 'string') {
+      return res.status(400).json({ error: 'SQL query string required' })
+    }
+
+    // Safety guard: reject destructive DROP DATABASE / DROP USER
+    if (/drop\s+(database|user|role)/i.test(sql)) {
+      return res.status(403).json({ error: 'Destructive DROP operations are restricted' })
+    }
+
+    const start = Date.now()
+    const result = await pool.query(sql)
+    const durationMs = Date.now() - start
+
+    res.json({
+      success: true,
+      command: result.command,
+      rowCount: result.rowCount,
+      fields: (result.fields || []).map(f => f.name),
+      rows: result.rows || [],
+      durationMs,
+    })
   } catch (err) {
     res.status(500).json({ error: err.message })
   }

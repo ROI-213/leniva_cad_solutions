@@ -17,6 +17,13 @@ import {
   AlertCircle,
   ExternalLink,
   ChevronRight,
+  Edit,
+  Key,
+  Sliders,
+  Terminal,
+  Save,
+  Check,
+  Search,
 } from 'lucide-react'
 
 interface Stats {
@@ -39,6 +46,7 @@ interface QuoteRequest {
   timeline: string
   message: string
   status: string
+  notes?: string
   created_at: string
 }
 
@@ -62,6 +70,8 @@ interface ProductItem {
   category_slug: string
   technology: string
   tagline: string
+  short_description?: string
+  description?: string
   hero_image: string
   price: number
   in_stock: boolean
@@ -86,7 +96,19 @@ interface BlogPostItem {
   category: string
   read_time: string
   date: string
+  excerpt?: string
+  content?: string
+  image?: string
   published: boolean
+}
+
+interface AdminUser {
+  id: number
+  username: string
+  email: string
+  full_name: string
+  role: string
+  created_at: string
 }
 
 export default function AdminPage() {
@@ -97,7 +119,19 @@ export default function AdminPage() {
   const [passwordInput, setPasswordInput] = useState('Admin@Leniva2026!')
   const [loginError, setLoginError] = useState('')
 
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'quotes' | 'contacts' | 'products' | 'blogs' | 'storage' | 'diagnostics'>('dashboard')
+  type AdminTab =
+    | 'dashboard'
+    | 'quotes'
+    | 'contacts'
+    | 'products'
+    | 'blogs'
+    | 'storage'
+    | 'categories'
+    | 'settings'
+    | 'users'
+    | 'sql_console'
+
+  const [activeTab, setActiveTab] = useState<AdminTab>('dashboard')
   const [isLoading, setIsLoading] = useState(false)
   const [dbHealth, setDbHealth] = useState<any>(null)
   const [stats, setStats] = useState<Stats | null>(null)
@@ -108,10 +142,19 @@ export default function AdminPage() {
   const [productsList, setProductsList] = useState<ProductItem[]>([])
   const [storageFiles, setStorageFiles] = useState<StorageFile[]>([])
   const [blogsList, setBlogsList] = useState<BlogPostItem[]>([])
+  const [adminUsers, setAdminUsers] = useState<AdminUser[]>([])
+  const [categoriesList, setCategoriesList] = useState<any[]>([])
 
-  // Modal / Form States
+  // Search & Filter
+  const [productSearch, setProductSearch] = useState('')
+  const [quoteFilter, setQuoteFilter] = useState('all')
+
+  // Modals / Forms
   const [selectedQuote, setSelectedQuote] = useState<QuoteRequest | null>(null)
+  const [quoteNotesInput, setQuoteNotesInput] = useState('')
   const [isNewProductOpen, setIsNewProductOpen] = useState(false)
+  const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null)
+
   const [newProd, setNewProd] = useState({
     name: '',
     brand: 'Leniva',
@@ -123,6 +166,50 @@ export default function AdminPage() {
     price: 95000,
     heroImage: '/images/products/pratham-mini.png',
   })
+
+  // Blog Form
+  const [isNewBlogOpen, setIsNewBlogOpen] = useState(false)
+  const [newBlog, setNewBlog] = useState({
+    title: '',
+    category: '3D Printing Innovations',
+    read_time: '5 min read',
+    excerpt: '',
+    content: '',
+    image: '/images/showcase/pratham-showcase.png',
+  })
+
+  // Category Form
+  const [isNewCategoryOpen, setIsNewCategoryOpen] = useState(false)
+  const [newCategory, setNewCategory] = useState({
+    title: '',
+    slug: '',
+    description: '',
+    image: '',
+  })
+
+  // Settings State
+  const [siteSettings, setSiteSettings] = useState<any>({
+    companyName: 'Leniva CAD Solutions',
+    phone: '+91 90234 56789',
+    email: 'contact@lenivacadsolution.in',
+    address: 'Bengaluru Technology Center, Karnataka, India',
+    workingHours: 'Mon – Sat: 9:00 AM – 6:30 PM IST',
+    whatsapp: '919023456789',
+    bannerNotice: 'Now Delivering Advanced 3D Scanners & Industrial Printers PAN-India',
+  })
+  const [settingsSavedMsg, setSettingsSavedMsg] = useState('')
+
+  // User Management Form
+  const [newUser, setNewUser] = useState({ username: '', email: '', password: '', fullName: '', role: 'admin' })
+  const [passwordChangeId, setPasswordChangeId] = useState<number | null>(null)
+  const [newPasswordValue, setNewPasswordValue] = useState('')
+  const [userMsg, setUserMsg] = useState('')
+
+  // SQL Console
+  const [sqlQuery, setSqlQuery] = useState('SELECT table_name FROM information_schema.tables WHERE table_schema = \'public\';')
+  const [sqlResult, setSqlResult] = useState<any>(null)
+  const [sqlError, setSqlError] = useState('')
+  const [isExecutingSql, setIsExecutingSql] = useState(false)
 
   // File Upload State
   const [uploadFile, setUploadFile] = useState<File | null>(null)
@@ -152,7 +239,6 @@ export default function AdminPage() {
         setLoginError(data.error || 'Authentication failed')
       }
     } catch {
-      // Fallback local verify for mock
       if (usernameInput === 'admin' && passwordInput === 'Admin@Leniva2026!') {
         setIsAuthenticated(true)
         localStorage.setItem('leniva_admin_auth', 'true')
@@ -174,53 +260,31 @@ export default function AdminPage() {
   const loadAllData = async () => {
     setIsLoading(true)
     try {
-      // 1. Health
-      const healthRes = await fetch('/api/health')
-      if (healthRes.ok) {
-        const h = await healthRes.json()
-        setDbHealth(h)
-      }
+      const [healthRes, statsRes, quotesRes, contactsRes, prodsRes, filesRes, blogsRes, usersRes, catsRes, settingsRes] =
+        await Promise.allSettled([
+          fetch('/api/health').then(r => r.json()),
+          fetch('/api/stats').then(r => r.json()),
+          fetch('/api/quotes').then(r => r.json()),
+          fetch('/api/contacts').then(r => r.json()),
+          fetch('/api/products').then(r => r.json()),
+          fetch('/api/storage/files').then(r => r.json()),
+          fetch('/api/blogs').then(r => r.json()),
+          fetch('/api/admin/users').then(r => r.json()),
+          fetch('/api/categories').then(r => r.json()),
+          fetch('/api/settings').then(r => r.json()),
+        ])
 
-      // 2. Stats
-      const statsRes = await fetch('/api/stats')
-      if (statsRes.ok) {
-        const s = await statsRes.json()
-        setStats(s)
-      }
-
-      // 3. Quotes
-      const quotesRes = await fetch('/api/quotes')
-      if (quotesRes.ok) {
-        const q = await quotesRes.json()
-        setQuotes(q)
-      }
-
-      // 4. Contacts
-      const contactsRes = await fetch('/api/contacts')
-      if (contactsRes.ok) {
-        const c = await contactsRes.json()
-        setContacts(c)
-      }
-
-      // 5. Products
-      const prodsRes = await fetch('/api/products')
-      if (prodsRes.ok) {
-        const p = await prodsRes.json()
-        setProductsList(p)
-      }
-
-      // 6. Storage
-      const filesRes = await fetch('/api/storage/files')
-      if (filesRes.ok) {
-        const f = await filesRes.json()
-        setStorageFiles(f)
-      }
-
-      // 7. Blogs
-      const blogsRes = await fetch('/api/blogs')
-      if (blogsRes.ok) {
-        const b = await blogsRes.json()
-        setBlogsList(b)
+      if (healthRes.status === 'fulfilled') setDbHealth(healthRes.value)
+      if (statsRes.status === 'fulfilled') setStats(statsRes.value)
+      if (quotesRes.status === 'fulfilled' && Array.isArray(quotesRes.value)) setQuotes(quotesRes.value)
+      if (contactsRes.status === 'fulfilled' && Array.isArray(contactsRes.value)) setContacts(contactsRes.value)
+      if (prodsRes.status === 'fulfilled' && Array.isArray(prodsRes.value)) setProductsList(prodsRes.value)
+      if (filesRes.status === 'fulfilled' && Array.isArray(filesRes.value)) setStorageFiles(filesRes.value)
+      if (blogsRes.status === 'fulfilled' && Array.isArray(blogsRes.value)) setBlogsList(blogsRes.value)
+      if (usersRes.status === 'fulfilled' && Array.isArray(usersRes.value)) setAdminUsers(usersRes.value)
+      if (catsRes.status === 'fulfilled' && Array.isArray(catsRes.value)) setCategoriesList(catsRes.value)
+      if (settingsRes.status === 'fulfilled' && settingsRes.value?.general_info) {
+        setSiteSettings(settingsRes.value.general_info)
       }
     } catch (err) {
       console.warn('Error loading dashboard data:', err)
@@ -235,18 +299,18 @@ export default function AdminPage() {
     }
   }, [isAuthenticated])
 
-  // Update Quote Status
-  const handleUpdateQuoteStatus = async (id: number, newStatus: string) => {
+  // Quote operations
+  const handleUpdateQuoteStatus = async (id: number, newStatus: string, notes?: string) => {
     try {
       const res = await fetch(`/api/quotes/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ status: newStatus, notes }),
       })
       if (res.ok) {
-        setQuotes(prev => prev.map(q => q.id === id ? { ...q, status: newStatus } : q))
+        setQuotes(prev => prev.map(q => q.id === id ? { ...q, status: newStatus, notes: notes ?? q.notes } : q))
         if (selectedQuote && selectedQuote.id === id) {
-          setSelectedQuote(prev => prev ? { ...prev, status: newStatus } : null)
+          setSelectedQuote(prev => prev ? { ...prev, status: newStatus, notes: notes ?? prev.notes } : null)
         }
       }
     } catch (err) {
@@ -254,7 +318,6 @@ export default function AdminPage() {
     }
   }
 
-  // Delete Quote
   const handleDeleteQuote = async (id: number) => {
     if (!confirm('Are you sure you want to delete this quote record from PostgreSQL?')) return
     try {
@@ -268,18 +331,14 @@ export default function AdminPage() {
     }
   }
 
-  // Create Product in PostgreSQL
+  // Product operations
   const handleCreateProduct = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       const res = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...newProd,
-          in_stock: true,
-          is_featured: true,
-        }),
+        body: JSON.stringify({ ...newProd, in_stock: true, is_featured: true }),
       })
       if (res.ok) {
         const created = await res.json()
@@ -303,9 +362,43 @@ export default function AdminPage() {
     }
   }
 
-  // Delete Product
+  const handleSaveEditProduct = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingProduct) return
+    try {
+      const res = await fetch(`/api/products/${editingProduct.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingProduct),
+      })
+      if (res.ok) {
+        const updated = await res.json()
+        setProductsList(prev => prev.map(p => p.id === updated.id ? updated : p))
+        setEditingProduct(null)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleToggleStock = async (product: ProductItem) => {
+    try {
+      const updatedStock = !product.in_stock
+      const res = await fetch(`/api/products/${product.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ in_stock: updatedStock }),
+      })
+      if (res.ok) {
+        setProductsList(prev => prev.map(p => p.id === product.id ? { ...p, in_stock: updatedStock } : p))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const handleDeleteProduct = async (id: string) => {
-    if (!confirm(`Delete product ${id} from PostgreSQL?`)) return
+    if (!confirm(`Delete product ${id} permanently from PostgreSQL?`)) return
     try {
       const res = await fetch(`/api/products/${id}`, { method: 'DELETE' })
       if (res.ok) {
@@ -316,7 +409,46 @@ export default function AdminPage() {
     }
   }
 
-  // Upload File to PostgreSQL Storage Bucket
+  // Blog operations
+  const handleCreateBlog = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      const res = await fetch('/api/blogs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...newBlog, published: true }),
+      })
+      if (res.ok) {
+        const created = await res.json()
+        setBlogsList(prev => [created, ...prev])
+        setIsNewBlogOpen(false)
+        setNewBlog({
+          title: '',
+          category: '3D Printing Innovations',
+          read_time: '5 min read',
+          excerpt: '',
+          content: '',
+          image: '/images/showcase/pratham-showcase.png',
+        })
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteBlog = async (id: string) => {
+    if (!confirm(`Delete article ${id} from PostgreSQL?`)) return
+    try {
+      const res = await fetch(`/api/blogs/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setBlogsList(prev => prev.filter(b => b.id !== id))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Storage operations
   const handleUploadFile = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!uploadFile) return
@@ -336,10 +468,9 @@ export default function AdminPage() {
 
       if (res.ok) {
         const data = await res.json()
-        setUploadSuccessMsg(`Stored file in PostgreSQL bucket '${uploadBucket}'! Public link: ${data.url}`)
+        setUploadSuccessMsg(`Stored file in PostgreSQL bucket '${uploadBucket}'! URL: ${data.url}`)
         setUploadFile(null)
         setUploadDescription('')
-        // Refresh files list
         const filesRes = await fetch('/api/storage/files')
         if (filesRes.ok) setStorageFiles(await filesRes.json())
       }
@@ -350,7 +481,6 @@ export default function AdminPage() {
     }
   }
 
-  // Delete File from PostgreSQL Storage
   const handleDeleteStorageFile = async (id: number) => {
     if (!confirm('Delete file from PostgreSQL storage table?')) return
     try {
@@ -360,6 +490,105 @@ export default function AdminPage() {
       }
     } catch (err) {
       console.error(err)
+    }
+  }
+
+  // Save Site Settings
+  const handleSaveSettings = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSettingsSavedMsg('')
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: 'general_info', value: siteSettings }),
+      })
+      if (res.ok) {
+        setSettingsSavedMsg('Settings saved successfully into PostgreSQL!')
+        setTimeout(() => setSettingsSavedMsg(''), 4000)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Admin User operations
+  const handleCreateUser = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setUserMsg('')
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser),
+      })
+      if (res.ok) {
+        const created = await res.json()
+        setAdminUsers(prev => [...prev, created])
+        setNewUser({ username: '', email: '', password: '', fullName: '', role: 'admin' })
+        setUserMsg('New administrator created successfully in PostgreSQL!')
+      } else {
+        const err = await res.json()
+        setUserMsg(`Error: ${err.error}`)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleChangePassword = async (id: number) => {
+    if (!newPasswordValue) return
+    try {
+      const res = await fetch(`/api/admin/users/${id}/password`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newPassword: newPasswordValue }),
+      })
+      if (res.ok) {
+        setUserMsg(`Password updated for user ID #${id}!`)
+        setPasswordChangeId(null)
+        setNewPasswordValue('')
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteUser = async (id: number) => {
+    if (!confirm(`Delete admin user ID #${id}?`)) return
+    try {
+      const res = await fetch(`/api/admin/users/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setAdminUsers(prev => prev.filter(u => u.id !== id))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Execute SQL Query Console
+  const handleExecuteSql = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsExecutingSql(true)
+    setSqlError('')
+    setSqlResult(null)
+
+    try {
+      const res = await fetch('/api/admin/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sql: sqlQuery }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setSqlResult(data)
+      } else {
+        setSqlError(data.error || 'SQL query failed')
+      }
+    } catch (err: any) {
+      setSqlError(err.message || 'Error executing query')
+    } finally {
+      setIsExecutingSql(false)
     }
   }
 
@@ -417,7 +646,7 @@ export default function AdminPage() {
             <div className="p-3 bg-blue-50/80 border border-blue-200/80 rounded-xl text-[11px] text-blue-900 space-y-1 font-mono">
               <div><strong>Default Superadmin:</strong> <code>admin</code></div>
               <div><strong>Default Password:</strong> <code>Admin@Leniva2026!</code></div>
-              <div className="text-[10px] text-blue-700 mt-1">✓ Direct PostgreSQL Database Authentication (No Supabase)</div>
+              <div className="text-[10px] text-blue-700 mt-1">✓ Full Control Enabled — Direct Native PostgreSQL</div>
             </div>
 
             <button
@@ -425,7 +654,7 @@ export default function AdminPage() {
               disabled={isLoading}
               className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
             >
-              {isLoading ? 'Verifying PostgreSQL Credentials...' : 'Sign In to Admin Panel'}
+              {isLoading ? 'Verifying PostgreSQL Credentials...' : 'Sign In with Full Admin Control'}
             </button>
           </form>
         </div>
@@ -433,11 +662,24 @@ export default function AdminPage() {
     )
   }
 
+  // Filtered Products
+  const filteredProducts = productsList.filter(p =>
+    p.name.toLowerCase().includes(productSearch.toLowerCase()) ||
+    p.category.toLowerCase().includes(productSearch.toLowerCase()) ||
+    p.brand.toLowerCase().includes(productSearch.toLowerCase())
+  )
+
+  // Filtered Quotes
+  const filteredQuotes = quotes.filter(q => {
+    if (quoteFilter === 'all') return true
+    return q.status === quoteFilter
+  })
+
   // ----------------------------------------------------
-  // AUTHENTICATED DASHBOARD
+  // AUTHENTICATED DASHBOARD (FULL CONTROL SUITE)
   // ----------------------------------------------------
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-100 flex flex-col font-inter">
       {/* Top Admin Navbar */}
       <header className="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
@@ -448,7 +690,7 @@ export default function AdminPage() {
             <div>
               <span className="font-bold tracking-tight text-sm">Leniva CAD Solutions</span>
               <span className="ml-2 px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono">
-                PostgreSQL Live
+                Master Control Active
               </span>
             </div>
           </div>
@@ -477,8 +719,8 @@ export default function AdminPage() {
 
       {/* Main Admin Content Container */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 flex-1 flex flex-col md:flex-row gap-6">
-        {/* Sidebar Nav */}
-        <aside className="w-full md:w-64 shrink-0 space-y-1">
+        {/* Master Sidebar Navigation */}
+        <aside className="w-full md:w-64 shrink-0 space-y-3">
           <nav className="bg-white rounded-2xl p-2 border border-slate-200 shadow-sm space-y-1">
             <button
               onClick={() => setActiveTab('dashboard')}
@@ -515,7 +757,7 @@ export default function AdminPage() {
             >
               <div className="flex items-center space-x-3">
                 <MessageSquare className="w-4 h-4" />
-                <span>Contact Messages</span>
+                <span>Contact Inquiries</span>
               </div>
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
                 activeTab === 'contacts' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
@@ -532,7 +774,7 @@ export default function AdminPage() {
             >
               <div className="flex items-center space-x-3">
                 <Package className="w-4 h-4" />
-                <span>Products Catalog</span>
+                <span>Product Catalog</span>
               </div>
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
                 activeTab === 'products' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
@@ -574,6 +816,53 @@ export default function AdminPage() {
                 {blogsList.length}
               </span>
             </button>
+
+            <button
+              onClick={() => setActiveTab('categories')}
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                activeTab === 'categories' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <Package className="w-4 h-4" />
+                <span>Categories</span>
+              </div>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                activeTab === 'categories' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
+              }`}>
+                {categoriesList.length}
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                activeTab === 'settings' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              <Sliders className="w-4 h-4" />
+              <span>Site & CMS Settings</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('users')}
+              className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                activeTab === 'users' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              <Key className="w-4 h-4" />
+              <span>Admin Accounts</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('sql_console')}
+              className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                activeTab === 'sql_console' ? 'bg-slate-900 text-emerald-400 font-mono' : 'text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              <Terminal className="w-4 h-4" />
+              <span>SQL Query Console</span>
+            </button>
           </nav>
 
           {/* Database Info Card */}
@@ -589,20 +878,19 @@ export default function AdminPage() {
               User: <code>leniv698</code>
             </div>
             <div className="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
-              <span>Cloud Status:</span>
-              <span className="text-emerald-400 font-bold">100% OPERATIONAL</span>
+              <span>Authority:</span>
+              <span className="text-emerald-400 font-bold">FULL CONTROL</span>
             </div>
           </div>
         </aside>
 
-        {/* Content Area */}
+        {/* Master Content Area */}
         <main className="flex-1 space-y-6">
           {/* ====================================================
-              TAB 1: DASHBOARD OVERVIEW
+              TAB 1: OVERVIEW & DASHBOARD
              ==================================================== */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
-              {/* Stat Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                   <div>
@@ -649,7 +937,7 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              {/* Server Diagnostics & PostgreSQL Engine Details */}
+              {/* Master Control Diagnostics */}
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-base font-black text-slate-900 flex items-center space-x-2">
@@ -665,7 +953,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono bg-slate-50 p-4 rounded-xl border border-slate-200">
                   <div>
                     <span className="text-slate-500">Database Engine:</span>{' '}
-                    <strong className="text-slate-900">{dbHealth?.version || 'PostgreSQL 14.24 (Ubuntu 14.24)'}</strong>
+                    <strong className="text-slate-900">{dbHealth?.version || 'PostgreSQL 14.24 (Ubuntu)'}</strong>
                   </div>
                   <div>
                     <span className="text-slate-500">Active Database:</span>{' '}
@@ -686,8 +974,15 @@ export default function AdminPage() {
                     onClick={() => setActiveTab('quotes')}
                     className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
                   >
-                    <span>View Customer Quotes</span>
+                    <span>Manage Quotes</span>
                     <ChevronRight className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('products')}
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <span>Add New Machine</span>
+                    <Plus className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setActiveTab('storage')}
@@ -697,65 +992,12 @@ export default function AdminPage() {
                     <Upload className="w-4 h-4" />
                   </button>
                   <button
-                    onClick={() => {
-                      setActiveTab('products')
-                      setIsNewProductOpen(true)
-                    }}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                    onClick={() => setActiveTab('sql_console')}
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-emerald-400 rounded-xl text-xs font-mono font-bold transition-colors cursor-pointer"
                   >
-                    <span>Add New 3D Printer / Scanner</span>
-                    <Plus className="w-4 h-4" />
+                    <Terminal className="w-3.5 h-3.5" />
+                    <span>Run Custom SQL Query</span>
                   </button>
-                </div>
-              </div>
-
-              {/* Recent Quotes Table */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-black text-slate-900">Recent Customer Inquiries & Quotes</h3>
-                  <button
-                    onClick={() => setActiveTab('quotes')}
-                    className="text-xs font-bold text-blue-600 hover:text-blue-700"
-                  >
-                    View All ({quotes.length})
-                  </button>
-                </div>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs">
-                    <thead>
-                      <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider">
-                        <th className="py-2.5 px-3">Client</th>
-                        <th className="py-2.5 px-3">Organization</th>
-                        <th className="py-2.5 px-3">Machine / Service</th>
-                        <th className="py-2.5 px-3">Status</th>
-                        <th className="py-2.5 px-3">Date</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {quotes.slice(0, 5).map(q => (
-                        <tr key={q.id} className="hover:bg-slate-50 transition-colors">
-                          <td className="py-3 px-3 font-bold text-slate-900">{q.name}</td>
-                          <td className="py-3 px-3 text-slate-600">{q.company || '—'}</td>
-                          <td className="py-3 px-3 text-slate-700 font-medium">{q.service_or_product}</td>
-                          <td className="py-3 px-3">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${
-                              q.status === 'completed'
-                                ? 'bg-emerald-100 text-emerald-700'
-                                : q.status === 'in_review'
-                                ? 'bg-blue-100 text-blue-700'
-                                : 'bg-amber-100 text-amber-700'
-                            }`}>
-                              {q.status}
-                            </span>
-                          </td>
-                          <td className="py-3 px-3 text-slate-400 font-mono text-[11px]">
-                            {new Date(q.created_at).toLocaleDateString()}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
@@ -769,10 +1011,20 @@ export default function AdminPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="text-lg font-black text-slate-900">Customer Quote Requests & RFQs</h3>
-                  <p className="text-xs text-slate-500">Live records queried from PostgreSQL table <code>quote_requests</code></p>
+                  <p className="text-xs text-slate-500">Full control over status, pricing notes, and records</p>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
-                  Total: {quotes.length} inquiries
+                <div className="flex items-center space-x-2">
+                  <select
+                    value={quoteFilter}
+                    onChange={e => setQuoteFilter(e.target.value)}
+                    className="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 bg-white"
+                  >
+                    <option value="all">All Statuses ({quotes.length})</option>
+                    <option value="pending">Pending</option>
+                    <option value="in_review">In Review</option>
+                    <option value="quoted">Quoted</option>
+                    <option value="completed">Completed</option>
+                  </select>
                 </div>
               </div>
 
@@ -790,7 +1042,7 @@ export default function AdminPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {quotes.map(q => (
+                    {filteredQuotes.map(q => (
                       <tr key={q.id} className="hover:bg-slate-50 transition-colors">
                         <td className="py-3 px-3 font-mono font-bold text-slate-400">#{q.id}</td>
                         <td className="py-3 px-3">
@@ -822,9 +1074,12 @@ export default function AdminPage() {
                         </td>
                         <td className="py-3 px-3 text-right space-x-2">
                           <button
-                            onClick={() => setSelectedQuote(q)}
+                            onClick={() => {
+                              setSelectedQuote(q)
+                              setQuoteNotesInput(q.notes || '')
+                            }}
                             className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
-                            title="View inquiry details"
+                            title="Inspect details & notes"
                           >
                             <Eye className="w-4 h-4" />
                           </button>
@@ -844,7 +1099,7 @@ export default function AdminPage() {
             </div>
           )}
 
-          {/* Quote Details Modal */}
+          {/* Quote Modal with Internal Notes Editing */}
           {selectedQuote && (
             <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
               <div className="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-200">
@@ -876,19 +1131,36 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <div>
-                    <span className="text-slate-500 block">Requested Product / Technology:</span>
+                    <span className="text-slate-500 block">Requested Product / Service:</span>
                     <strong className="text-slate-800">{selectedQuote.service_or_product}</strong>
                   </div>
                   <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                    <span className="text-slate-500 block mb-1 font-bold">Client Requirement Message:</span>
+                    <span className="text-slate-500 block mb-1 font-bold">Client Requirement:</span>
                     <p className="text-slate-700 leading-relaxed font-normal">{selectedQuote.message || 'No additional message provided.'}</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">Admin Internal Notes / Quotation Amount</label>
+                    <textarea
+                      rows={3}
+                      value={quoteNotesInput}
+                      onChange={e => setQuoteNotesInput(e.target.value)}
+                      placeholder="e.g. Sent official pricing quote of ₹1,45,000 + GST on 28th Sep"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500"
+                    />
                   </div>
                 </div>
 
-                <div className="pt-2 flex justify-end">
+                <div className="pt-2 flex justify-between">
+                  <button
+                    onClick={() => handleUpdateQuoteStatus(selectedQuote.id, selectedQuote.status, quoteNotesInput)}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+                  >
+                    Save Notes & Status
+                  </button>
                   <button
                     onClick={() => setSelectedQuote(null)}
-                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold cursor-pointer"
+                    className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold cursor-pointer"
                   >
                     Close
                   </button>
@@ -898,12 +1170,12 @@ export default function AdminPage() {
           )}
 
           {/* ====================================================
-              TAB 3: CONTACT MESSAGES
+              TAB 3: CONTACT INQUIRIES
              ==================================================== */}
           {activeTab === 'contacts' && (
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="text-lg font-black text-slate-900">Contact Form Submissions</h3>
+                <h3 className="text-lg font-black text-slate-900">Contact Form Inquiries</h3>
                 <p className="text-xs text-slate-500">Live records from PostgreSQL table <code>contact_messages</code></p>
               </div>
 
@@ -914,6 +1186,7 @@ export default function AdminPage() {
                       <div className="flex items-center space-x-2">
                         <span className="font-bold text-slate-900 text-sm">{c.name}</span>
                         <span className="text-xs text-slate-500">({c.email})</span>
+                        {c.phone && <span className="text-xs text-slate-400 font-mono">| {c.phone}</span>}
                       </div>
                       <span className="text-[10px] font-mono text-slate-400">
                         {new Date(c.created_at).toLocaleString()}
@@ -928,33 +1201,45 @@ export default function AdminPage() {
           )}
 
           {/* ====================================================
-              TAB 4: PRODUCTS CATALOG (POSTGRESQL)
+              TAB 4: PRODUCTS CATALOG (FULL CRUD)
              ==================================================== */}
           {activeTab === 'products' && (
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-black text-slate-900">Products & Equipment Catalog</h3>
-                  <p className="text-xs text-slate-500">Querying from PostgreSQL table <code>products</code> ({productsList.length} items)</p>
+                  <h3 className="text-lg font-black text-slate-900">Equipment Catalog Management</h3>
+                  <p className="text-xs text-slate-500">Add, edit pricing, toggle stock, or delete any product</p>
                 </div>
-                <button
-                  onClick={() => setIsNewProductOpen(true)}
-                  className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition-colors"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Add New Product to PostgreSQL</span>
-                </button>
+                <div className="flex items-center space-x-3 w-full sm:w-auto">
+                  <div className="relative flex-1 sm:w-60">
+                    <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="text"
+                      placeholder="Search machines..."
+                      value={productSearch}
+                      onChange={e => setProductSearch(e.target.value)}
+                      className="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg"
+                    />
+                  </div>
+                  <button
+                    onClick={() => setIsNewProductOpen(true)}
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition-colors shrink-0"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add New Machine</span>
+                  </button>
+                </div>
               </div>
 
               {/* Add New Product Form */}
               {isNewProductOpen && (
                 <form onSubmit={handleCreateProduct} className="p-5 bg-blue-50/50 border border-blue-200 rounded-2xl space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-black text-blue-950">Add New Machine or Scanner</h4>
+                    <h4 className="text-sm font-black text-blue-950">Add New 3D Printer or Scanner</h4>
                     <button
                       type="button"
                       onClick={() => setIsNewProductOpen(false)}
-                      className="text-xs font-bold text-slate-400 hover:text-slate-600"
+                      className="text-xs font-bold text-slate-400 hover:text-slate-600 cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -1028,6 +1313,112 @@ export default function AdminPage() {
                 </form>
               )}
 
+              {/* Edit Product Modal */}
+              {editingProduct && (
+                <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+                  <form onSubmit={handleSaveEditProduct} className="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <h4 className="text-base font-black text-slate-900">
+                        Edit Machine: {editingProduct.name}
+                      </h4>
+                      <button
+                        type="button"
+                        onClick={() => setEditingProduct(null)}
+                        className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-3 text-xs">
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Product Title</label>
+                        <input
+                          type="text"
+                          value={editingProduct.name}
+                          onChange={e => setEditingProduct({ ...editingProduct, name: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Brand</label>
+                          <input
+                            type="text"
+                            value={editingProduct.brand}
+                            onChange={e => setEditingProduct({ ...editingProduct, brand: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Price (₹)</label>
+                          <input
+                            type="number"
+                            value={editingProduct.price}
+                            onChange={e => setEditingProduct({ ...editingProduct, price: Number(e.target.value) })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Hero Image URL</label>
+                        <input
+                          type="text"
+                          value={editingProduct.hero_image}
+                          onChange={e => setEditingProduct({ ...editingProduct, hero_image: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Tagline</label>
+                        <input
+                          type="text"
+                          value={editingProduct.tagline || ''}
+                          onChange={e => setEditingProduct({ ...editingProduct, tagline: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+                      <div className="flex items-center space-x-3 pt-1">
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={editingProduct.in_stock}
+                            onChange={e => setEditingProduct({ ...editingProduct, in_stock: e.target.checked })}
+                            className="w-4 h-4 text-blue-600 rounded"
+                          />
+                          <span className="font-bold text-slate-800">In Stock</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={editingProduct.is_featured}
+                            onChange={e => setEditingProduct({ ...editingProduct, is_featured: e.target.checked })}
+                            className="w-4 h-4 text-blue-600 rounded"
+                          />
+                          <span className="font-bold text-slate-800">Featured Showcase</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-200 flex justify-end space-x-2">
+                      <button
+                        type="button"
+                        onClick={() => setEditingProduct(null)}
+                        className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-xs font-bold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold cursor-pointer"
+                      >
+                        Update in PostgreSQL
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
               {/* Products Table */}
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
@@ -1037,12 +1428,12 @@ export default function AdminPage() {
                       <th className="py-3 px-3">Category</th>
                       <th className="py-3 px-3">Brand</th>
                       <th className="py-3 px-3">Price</th>
-                      <th className="py-3 px-3">Stock</th>
-                      <th className="py-3 px-3 text-right">Action</th>
+                      <th className="py-3 px-3">Stock Status</th>
+                      <th className="py-3 px-3 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {productsList.map(p => (
+                    {filteredProducts.map(p => (
                       <tr key={p.id} className="hover:bg-slate-50 transition-colors">
                         <td className="py-3 px-3">
                           <div className="font-bold text-slate-900">{p.name}</div>
@@ -1054,13 +1445,24 @@ export default function AdminPage() {
                           {p.price > 0 ? `₹${p.price.toLocaleString()}` : 'Quote Based'}
                         </td>
                         <td className="py-3 px-3">
-                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                            p.in_stock !== false ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
-                          }`}>
-                            {p.in_stock !== false ? 'In Stock' : 'Out of Stock'}
-                          </span>
+                          <button
+                            onClick={() => handleToggleStock(p)}
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold cursor-pointer transition-all ${
+                              p.in_stock !== false ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' : 'bg-red-100 text-red-700 hover:bg-red-200'
+                            }`}
+                            title="Click to toggle stock availability"
+                          >
+                            {p.in_stock !== false ? '✓ In Stock' : '✕ Out of Stock'}
+                          </button>
                         </td>
-                        <td className="py-3 px-3 text-right">
+                        <td className="py-3 px-3 text-right space-x-1.5">
+                          <button
+                            onClick={() => setEditingProduct(p)}
+                            className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
+                            title="Edit product details"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
                           <button
                             onClick={() => handleDeleteProduct(p.id)}
                             className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
@@ -1088,7 +1490,7 @@ export default function AdminPage() {
                   <span>PostgreSQL Native Storage Buckets</span>
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Media, CAD models, and documents stored directly in PostgreSQL table <code>storage_files</code> — Zero Supabase, Zero S3!
+                  Direct database storage in <code>storage_files</code> — Zero external cloud dependencies!
                 </p>
               </div>
 
@@ -1211,16 +1613,84 @@ export default function AdminPage() {
           )}
 
           {/* ====================================================
-              TAB 6: BLOG ARTICLES (POSTGRESQL)
+              TAB 6: BLOG ARTICLES (FULL CONTROL)
              ==================================================== */}
           {activeTab === 'blogs' && (
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-black text-slate-900">Engineering Articles & Blogs</h3>
-                  <p className="text-xs text-slate-500">Stored in PostgreSQL table <code>blogs</code></p>
+                  <p className="text-xs text-slate-500">Publish, edit or delete articles in PostgreSQL</p>
                 </div>
+                <button
+                  onClick={() => setIsNewBlogOpen(true)}
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Write New Article</span>
+                </button>
               </div>
+
+              {isNewBlogOpen && (
+                <form onSubmit={handleCreateBlog} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                  <h4 className="text-sm font-black text-slate-900">Publish New Engineering Post</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Article Title</label>
+                      <input
+                        type="text"
+                        required
+                        value={newBlog.title}
+                        onChange={e => setNewBlog({ ...newBlog, title: e.target.value })}
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Category</label>
+                      <input
+                        type="text"
+                        value={newBlog.category}
+                        onChange={e => setNewBlog({ ...newBlog, category: e.target.value })}
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Short Excerpt</label>
+                    <input
+                      type="text"
+                      value={newBlog.excerpt}
+                      onChange={e => setNewBlog({ ...newBlog, excerpt: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Content (Markdown Supported)</label>
+                    <textarea
+                      rows={5}
+                      required
+                      value={newBlog.content}
+                      onChange={e => setNewBlog({ ...newBlog, content: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-mono"
+                    />
+                  </div>
+                  <div className="flex justify-end space-x-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setIsNewBlogOpen(false)}
+                      className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg text-xs font-bold cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold cursor-pointer"
+                    >
+                      Publish Article
+                    </button>
+                  </div>
+                </form>
+              )}
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
@@ -1228,9 +1698,9 @@ export default function AdminPage() {
                     <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider bg-slate-50/50">
                       <th className="py-3 px-3">Title</th>
                       <th className="py-3 px-3">Category</th>
-                      <th className="py-3 px-3">Read Time</th>
                       <th className="py-3 px-3">Date</th>
                       <th className="py-3 px-3">Status</th>
+                      <th className="py-3 px-3 text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -1241,18 +1711,437 @@ export default function AdminPage() {
                           <div className="text-[11px] text-slate-400 font-mono">/blog/{b.slug}</div>
                         </td>
                         <td className="py-3 px-3 text-slate-600">{b.category}</td>
-                        <td className="py-3 px-3 text-slate-500 font-mono">{b.read_time}</td>
                         <td className="py-3 px-3 text-slate-500">{b.date}</td>
                         <td className="py-3 px-3">
                           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
                             Published
                           </span>
                         </td>
+                        <td className="py-3 px-3 text-right">
+                          <button
+                            onClick={() => handleDeleteBlog(b.id)}
+                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
+                            title="Delete article"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+
+          {/* ====================================================
+              TAB 7: CATEGORIES (FULL CONTROL)
+             ==================================================== */}
+          {activeTab === 'categories' && (
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-black text-slate-900">Equipment Categories</h3>
+                  <p className="text-xs text-slate-500">Manage catalog taxonomy in PostgreSQL</p>
+                </div>
+                <button
+                  onClick={() => setIsNewCategoryOpen(true)}
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add Category</span>
+                </button>
+              </div>
+
+              {isNewCategoryOpen && (
+                <form
+                  onSubmit={async e => {
+                    e.preventDefault()
+                    const res = await fetch('/api/categories', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(newCategory),
+                    })
+                    if (res.ok) {
+                      const created = await res.json()
+                      setCategoriesList(prev => [...prev, created])
+                      setIsNewCategoryOpen(false)
+                      setNewCategory({ title: '', slug: '', description: '', image: '' })
+                    }
+                  }}
+                  className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 text-xs"
+                >
+                  <h4 className="font-bold text-slate-900">Create New Category</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Category Title"
+                      required
+                      value={newCategory.title}
+                      onChange={e => setNewCategory({ ...newCategory, title: e.target.value })}
+                      className="px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Slug (e.g. metal-3d-printers)"
+                      value={newCategory.slug}
+                      onChange={e => setNewCategory({ ...newCategory, slug: e.target.value })}
+                      className="px-3 py-2 bg-white border border-slate-200 rounded-lg font-mono"
+                    />
+                  </div>
+                  <div className="flex justify-end space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsNewCategoryOpen(false)}
+                      className="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg font-bold"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-1.5 bg-blue-600 text-white rounded-lg font-bold"
+                    >
+                      Save Category
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {categoriesList.map(cat => (
+                  <div key={cat.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex items-start justify-between">
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-sm">{cat.title}</h4>
+                      <div className="text-[11px] font-mono text-slate-400">slug: {cat.slug}</div>
+                      <p className="text-xs text-slate-600 mt-1 line-clamp-2">{cat.description}</p>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        if (!confirm(`Delete category ${cat.title}?`)) return
+                        await fetch(`/api/categories/${cat.id}`, { method: 'DELETE' })
+                        setCategoriesList(prev => prev.filter(c => c.id !== cat.id))
+                      }}
+                      className="p-1.5 text-red-500 hover:bg-red-50 rounded-md"
+                      title="Delete category"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ====================================================
+              TAB 8: SITE SETTINGS & CMS
+             ==================================================== */}
+          {activeTab === 'settings' && (
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-black text-slate-900">Site Contact & Global Settings</h3>
+                <p className="text-xs text-slate-500">Stored directly in PostgreSQL table <code>site_settings</code></p>
+              </div>
+
+              {settingsSavedMsg && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-bold flex items-center space-x-2">
+                  <Check className="w-4 h-4" />
+                  <span>{settingsSavedMsg}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleSaveSettings} className="space-y-4 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Company Display Name</label>
+                    <input
+                      type="text"
+                      value={siteSettings.companyName || ''}
+                      onChange={e => setSiteSettings({ ...siteSettings, companyName: e.target.value })}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Phone Number</label>
+                    <input
+                      type="text"
+                      value={siteSettings.phone || ''}
+                      onChange={e => setSiteSettings({ ...siteSettings, phone: e.target.value })}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Support Email</label>
+                    <input
+                      type="email"
+                      value={siteSettings.email || ''}
+                      onChange={e => setSiteSettings({ ...siteSettings, email: e.target.value })}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">WhatsApp Number</label>
+                    <input
+                      type="text"
+                      value={siteSettings.whatsapp || ''}
+                      onChange={e => setSiteSettings({ ...siteSettings, whatsapp: e.target.value })}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">Office / Showroom Physical Address</label>
+                  <input
+                    type="text"
+                    value={siteSettings.address || ''}
+                    onChange={e => setSiteSettings({ ...siteSettings, address: e.target.value })}
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">Working Hours</label>
+                  <input
+                    type="text"
+                    value={siteSettings.workingHours || ''}
+                    onChange={e => setSiteSettings({ ...siteSettings, workingHours: e.target.value })}
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">Top Announcement Notice</label>
+                  <input
+                    type="text"
+                    value={siteSettings.bannerNotice || ''}
+                    onChange={e => setSiteSettings({ ...siteSettings, bannerNotice: e.target.value })}
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl"
+                  />
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <button
+                    type="submit"
+                    className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold flex items-center space-x-2 cursor-pointer shadow-md"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>Save Settings to PostgreSQL</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* ====================================================
+              TAB 9: ADMIN USERS & PASSWORDS
+             ==================================================== */}
+          {activeTab === 'users' && (
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-black text-slate-900">Administrator Accounts & Credentials</h3>
+                <p className="text-xs text-slate-500">Manage console logins stored in PostgreSQL table <code>admin_users</code></p>
+              </div>
+
+              {userMsg && (
+                <div className="p-3 bg-blue-50 border border-blue-200 text-blue-900 rounded-xl text-xs font-semibold">
+                  {userMsg}
+                </div>
+              )}
+
+              {/* Password Change Sub-modal */}
+              {passwordChangeId && (
+                <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-3 text-xs">
+                  <h4 className="font-bold text-amber-950">Update Password for User ID #{passwordChangeId}</h4>
+                  <div className="flex gap-2">
+                    <input
+                      type="password"
+                      placeholder="Enter new strong password"
+                      value={newPasswordValue}
+                      onChange={e => setNewPasswordValue(e.target.value)}
+                      className="flex-1 px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleChangePassword(passwordChangeId)}
+                      className="px-4 py-2 bg-amber-600 text-white rounded-lg font-bold cursor-pointer"
+                    >
+                      Update Password
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPasswordChangeId(null)
+                        setNewPasswordValue('')
+                      }}
+                      className="px-3 py-2 bg-slate-200 text-slate-700 rounded-lg font-bold"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Create User Form */}
+              <form onSubmit={handleCreateUser} className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 text-xs">
+                <h4 className="font-bold text-slate-900">Add New Administrator</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    required
+                    value={newUser.username}
+                    onChange={e => setNewUser({ ...newUser, username: e.target.value })}
+                    className="px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                    value={newUser.email}
+                    onChange={e => setNewUser({ ...newUser, email: e.target.value })}
+                    className="px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={newUser.password}
+                    onChange={e => setNewUser({ ...newUser, password: e.target.value })}
+                    className="px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold cursor-pointer"
+                  >
+                    Create User in PostgreSQL
+                  </button>
+                </div>
+              </form>
+
+              {/* Users Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider bg-slate-50/50">
+                      <th className="py-3 px-3">ID</th>
+                      <th className="py-3 px-3">Username</th>
+                      <th className="py-3 px-3">Email</th>
+                      <th className="py-3 px-3">Role</th>
+                      <th className="py-3 px-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {adminUsers.map(u => (
+                      <tr key={u.id} className="hover:bg-slate-50 transition-colors">
+                        <td className="py-3 px-3 font-mono font-bold text-slate-400">#{u.id}</td>
+                        <td className="py-3 px-3 font-bold text-slate-900">{u.username}</td>
+                        <td className="py-3 px-3 text-slate-600">{u.email}</td>
+                        <td className="py-3 px-3">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-blue-100 text-blue-700">
+                            {u.role}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3 text-right space-x-2">
+                          <button
+                            onClick={() => setPasswordChangeId(u.id)}
+                            className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 rounded-md font-bold text-[11px] cursor-pointer"
+                          >
+                            Change Password
+                          </button>
+                          {u.username !== 'admin' && (
+                            <button
+                              onClick={() => handleDeleteUser(u.id)}
+                              className="p-1 text-red-500 hover:bg-red-50 rounded-md cursor-pointer"
+                              title="Delete user"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* ====================================================
+              TAB 10: INTERACTIVE SQL CONSOLE (FULL RAW DATABASE CONTROL)
+             ==================================================== */}
+          {activeTab === 'sql_console' && (
+            <div className="bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl p-6 space-y-4 font-mono">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Terminal className="w-5 h-5 text-emerald-400" />
+                  <h3 className="text-base font-bold text-emerald-400">PostgreSQL Interactive SQL Console</h3>
+                </div>
+                <span className="text-[11px] text-slate-400">leniv698 @ 127.0.0.1</span>
+              </div>
+
+              <form onSubmit={handleExecuteSql} className="space-y-3">
+                <textarea
+                  rows={4}
+                  value={sqlQuery}
+                  onChange={e => setSqlQuery(e.target.value)}
+                  className="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-emerald-300 font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-hidden"
+                  placeholder="Enter PostgreSQL SQL query (e.g. SELECT * FROM products LIMIT 5;)"
+                />
+                <div className="flex items-center justify-between">
+                  <div className="text-[11px] text-slate-500">
+                    Supports SELECT, INSERT, UPDATE, maintenance queries.
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isExecutingSql}
+                    className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    {isExecutingSql ? 'Executing...' : 'Run Query ▶'}
+                  </button>
+                </div>
+              </form>
+
+              {sqlError && (
+                <div className="p-3 bg-red-950/80 border border-red-800 text-red-300 rounded-xl text-xs">
+                  <strong>Query Error:</strong> {sqlError}
+                </div>
+              )}
+
+              {sqlResult && (
+                <div className="space-y-2 pt-2 border-t border-slate-800">
+                  <div className="flex items-center justify-between text-xs text-slate-400">
+                    <span>Command: <strong>{sqlResult.command}</strong> ({sqlResult.rowCount} rows)</span>
+                    <span>Duration: <strong>{sqlResult.durationMs}ms</strong></span>
+                  </div>
+
+                  {sqlResult.rows && sqlResult.rows.length > 0 && (
+                    <div className="overflow-x-auto max-h-96 border border-slate-800 rounded-xl bg-slate-950">
+                      <table className="w-full text-left text-[11px]">
+                        <thead>
+                          <tr className="border-b border-slate-800 text-slate-400 bg-slate-900/80">
+                            {sqlResult.fields.map((f: string) => (
+                              <th key={f} className="py-2 px-3">{f}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-800/60">
+                          {sqlResult.rows.map((row: any, idx: number) => (
+                            <tr key={idx} className="hover:bg-slate-900/50">
+                              {sqlResult.fields.map((f: string) => (
+                                <td key={f} className="py-1.5 px-3 truncate max-w-xs text-slate-200">
+                                  {typeof row[f] === 'object' ? JSON.stringify(row[f]) : String(row[f] ?? '')}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </main>

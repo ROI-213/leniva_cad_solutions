@@ -275,8 +275,8 @@ export const NewTo3DPrintingSection: React.FC = () => {
       className="relative bg-gradient-to-b from-[#f8fafc] via-[#f0f7ff]/40 to-[#e2e8f0]/40 border-y border-slate-200/80"
       style={{ height: '220vh' }}
     >
-      {/* Sticky Viewport Stage: Pinned as user scrolls down through the 320vh height */}
-      <div className="sticky top-[75px] sm:top-[90px] lg:top-[100px] h-[calc(100vh-75px)] sm:h-[calc(100vh-90px)] lg:h-[calc(100vh-100px)] max-h-[940px] flex flex-col justify-between py-3 sm:py-5 overflow-hidden z-20">
+      {/* Sticky Viewport Stage: Pinned as user scrolls down through the height */}
+      <div className="sticky top-[60px] sm:top-[70px] lg:top-[76px] h-[calc(100vh-60px)] sm:h-[calc(100vh-70px)] lg:h-[calc(100vh-76px)] min-h-[540px] max-h-[840px] flex flex-col justify-between py-2 sm:py-3 overflow-hidden z-20">
         {/* Subtle technical background grid */}
         <div
           className="absolute inset-0 opacity-[0.035] pointer-events-none"
@@ -290,16 +290,16 @@ export const NewTo3DPrintingSection: React.FC = () => {
         <div className="absolute top-10 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl 2xl:max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-between h-full">
+        <div className="max-w-7xl 2xl:max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-between h-full gap-1 sm:gap-2">
           {/* ====================================================
               SECTION HEADER
              ==================================================== */}
-          <div className="relative shrink-0 mb-2 sm:mb-4">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-6">
+          <div className="relative shrink-0 mb-1">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-4">
               {/* Left Bracket Tag: ADVANCED 3D PRINTING SOLUTIONS */}
-              <div className="hidden md:flex items-center space-x-2.5">
-                <div className="w-1.5 h-10 border-l-2 border-t-2 border-b-2 border-blue-500/70 rounded-l-xs" />
-                <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug">
+              <div className="hidden md:flex items-center space-x-2">
+                <div className="w-1 h-8 border-l-2 border-t-2 border-b-2 border-blue-500/70 rounded-l-xs" />
+                <div className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-tight">
                   <div>ADVANCED</div>
                   <div>3D PRINTING</div>
                   <div>SOLUTIONS</div>
@@ -307,45 +307,45 @@ export const NewTo3DPrintingSection: React.FC = () => {
               </div>
 
               {/* Center Header Details */}
-              <div className="text-center space-y-1 max-w-2xl mx-auto">
-                <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 uppercase">
+              <div className="text-center space-y-0.5 max-w-2xl mx-auto">
+                <div className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase">
                   EXPLORE &nbsp;|&nbsp; LEARN &nbsp;|&nbsp; CREATE
                 </div>
 
-                <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+                <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight leading-tight">
                   New to <span className="text-blue-600">3D Printing?</span> This Is the Place to Start
                 </h2>
 
-                <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-normal">
                   Discover industry-grade machines, applications and materials — all in one place.
                 </p>
               </div>
 
               {/* Right Bracket Tag: FROM IDEAS TO REAL-WORLD IMPACT */}
-              <div className="hidden md:flex items-center space-x-2.5">
-                <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug text-right">
+              <div className="hidden md:flex items-center space-x-2">
+                <div className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-tight text-right">
                   <div>FROM IDEAS</div>
                   <div>TO REAL-WORLD</div>
                   <div>IMPACT</div>
                 </div>
-                <div className="w-1.5 h-10 border-r-2 border-t-2 border-b-2 border-blue-500/70 rounded-r-xs" />
+                <div className="w-1 h-8 border-r-2 border-t-2 border-b-2 border-blue-500/70 rounded-r-xs" />
               </div>
             </div>
 
             {/* Quick Controls & Real-Time Progress Bar */}
-            <div className="flex items-center justify-center space-x-3 mt-3">
+            <div className="flex items-center justify-center space-x-3 mt-1.5">
               <button
                 onClick={() => setShowFullBannerModal(true)}
-                className="inline-flex items-center space-x-1.5 px-3 py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-lg text-xs font-bold shadow-xs transition-colors cursor-pointer"
+                className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 sm:py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-md text-[11px] sm:text-xs font-bold shadow-2xs transition-colors cursor-pointer"
                 title="View full 5-card panoramic banner"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-blue-600" />
+                <Maximize2 className="w-3 h-3 text-blue-600" />
                 <span className="hidden sm:inline">View Full Master Banner</span>
                 <span className="sm:hidden">Full Banner</span>
               </button>
 
-              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50/90 border border-blue-200/90 rounded-lg text-xs font-semibold text-blue-700">
-                <div className="w-20 sm:w-28 h-1.5 bg-blue-200/70 rounded-full overflow-hidden">
+              <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 sm:py-1 bg-blue-50/90 border border-blue-200/90 rounded-md text-[11px] sm:text-xs font-semibold text-blue-700">
+                <div className="w-16 sm:w-24 h-1.5 bg-blue-200/70 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-blue-600 rounded-full transition-all duration-75"
                     style={{ width: `${Math.round(progress * 100)}%` }}
@@ -360,29 +360,29 @@ export const NewTo3DPrintingSection: React.FC = () => {
           {/* ====================================================
               3 CARDS STYLE HORIZONTAL TRACK (TRANSLATES TO LEFT ON SCROLL DOWN)
              ==================================================== */}
-          <div className="relative flex-1 flex items-center my-auto min-h-0">
+          <div className="relative flex-1 flex items-center my-auto min-h-0 py-1">
             {/* Card Navigation Arrows */}
             <button
               onClick={prevSlide}
               aria-label="Previous Step"
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
+              className="absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" />
             </button>
 
             <button
               onClick={nextSlide}
               aria-label="Next Step"
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
+              className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
             </button>
 
             {/* Horizontal Track Wrapper */}
-            <div className="w-full overflow-hidden py-2 px-2 sm:px-4">
+            <div className="w-full overflow-hidden py-1 px-1 sm:px-3">
               <div
                 ref={trackRef}
-                className="flex items-stretch gap-5 sm:gap-7 will-change-transform"
+                className="flex items-stretch gap-4 sm:gap-6 will-change-transform"
                 style={{
                   width: 'max-content',
                   transform: 'translate3d(0, 0, 0)',
@@ -392,53 +392,53 @@ export const NewTo3DPrintingSection: React.FC = () => {
                   const HeaderIcon = card.headerIcon
 
                   const cardContent = (
-                    <div className="relative rounded-3xl bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all duration-300 p-5 sm:p-6 flex flex-col justify-between overflow-hidden group hover:-translate-y-1 h-[420px] sm:h-[450px] lg:h-[470px]">
+                    <div className="relative rounded-2xl sm:rounded-3xl bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-lg hover:shadow-xl transition-all duration-300 p-3.5 sm:p-5 flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 h-[310px] sm:h-[335px] lg:h-[350px]">
                       {/* Top Colored Accent Line */}
                       <div
-                        className="absolute top-0 inset-x-0 h-1.5 w-full"
+                        className="absolute top-0 inset-x-0 h-1 sm:h-1.5 w-full"
                         style={{ backgroundColor: card.accentColor }}
                       />
 
                       {/* Top Subtle Aura Glow Matching Theme Color */}
                       <div
-                        className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${card.glowGradient} rounded-full blur-2xl pointer-events-none -mr-16 -mt-16`}
+                        className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${card.glowGradient} rounded-full blur-2xl pointer-events-none -mr-12 -mt-12`}
                       />
 
                       {/* 1. Header: Step Number, Squircle Icon, Title, and Subtitle */}
                       <div className="relative z-10 shrink-0">
-                        <div className="flex items-center gap-3 mb-2">
+                        <div className="flex items-center gap-2 sm:gap-2.5 mb-1.5">
                           <span
-                            className={`text-xs font-mono font-black px-2.5 py-1 rounded-full border ${card.accentBg} ${card.accentText} ${card.accentBorder} shadow-2xs`}
+                            className={`text-[10px] sm:text-xs font-mono font-black px-2 py-0.5 rounded-full border ${card.accentBg} ${card.accentText} ${card.accentBorder} shadow-2xs`}
                           >
                             {card.step}
                           </span>
 
                           <div
-                            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center border shadow-xs ${card.accentBg} ${card.accentText} ${card.accentBorder}`}
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center border shadow-2xs ${card.accentBg} ${card.accentText} ${card.accentBorder}`}
                           >
-                            <HeaderIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <HeaderIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
 
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-sm sm:text-base font-black text-slate-900 tracking-tight leading-snug group-hover:text-blue-600 transition-colors truncate">
+                            <h3 className="text-xs sm:text-sm font-black text-slate-900 tracking-tight leading-snug group-hover:text-blue-600 transition-colors truncate">
                               {card.title}
                             </h3>
                           </div>
                         </div>
 
-                        <p className="text-xs text-slate-500 font-normal leading-relaxed line-clamp-2">
+                        <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-tight line-clamp-1">
                           {card.subtitle}
                         </p>
                       </div>
 
                       {/* 2. Middle Section: Seamless Product Floor + Bullets */}
-                      <div className="relative z-10 my-2 flex items-center justify-between gap-3 flex-1 min-h-0">
-                        <div className="relative w-[54%] h-36 sm:h-44 flex items-center justify-center select-none">
+                      <div className="relative z-10 my-1 flex items-center justify-between gap-2.5 flex-1 min-h-0">
+                        <div className="relative w-[50%] h-24 sm:h-28 lg:h-32 flex items-center justify-center select-none">
                           <img
                             src={card.image}
                             alt={card.imageAlt}
                             loading="lazy"
-                            className="max-h-full max-w-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105"
+                            className="max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
                           />
 
                           <button
@@ -448,23 +448,23 @@ export const NewTo3DPrintingSection: React.FC = () => {
                               e.stopPropagation()
                               setSelectedZoomImg({ src: card.image, title: card.title })
                             }}
-                            className="absolute bottom-1 right-1 w-6 h-6 rounded-md bg-slate-900/60 hover:bg-blue-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-sm z-20"
+                            className="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-slate-900/60 hover:bg-blue-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-xs z-20"
                             title="View Full Resolution Asset"
                           >
-                            <Maximize2 className="w-3 h-3" />
+                            <Maximize2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                           </button>
                         </div>
 
-                        <div className="w-[46%] flex flex-col justify-center space-y-2 sm:space-y-2.5 pl-1">
+                        <div className="w-[50%] flex flex-col justify-center space-y-1.5 sm:space-y-2 pl-0.5">
                           {card.bullets.map(bullet => {
                             const BulletIcon = bullet.icon
                             return (
                               <div
                                 key={bullet.label}
-                                className="flex items-center space-x-1.5 sm:space-x-2 text-slate-700 group/bullet"
+                                className="flex items-center space-x-1.5 text-slate-700 group/bullet"
                               >
-                                <BulletIcon className="w-3.5 h-3.5 text-slate-500 group-hover/bullet:text-blue-600 shrink-0 transition-colors" />
-                                <span className="text-[11px] sm:text-xs font-semibold text-slate-800 leading-tight truncate">
+                                <BulletIcon className="w-3 h-3 text-slate-500 group-hover/bullet:text-blue-600 shrink-0 transition-colors" />
+                                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 leading-tight truncate">
                                   {bullet.label}
                                 </span>
                               </div>
@@ -474,13 +474,13 @@ export const NewTo3DPrintingSection: React.FC = () => {
                       </div>
 
                       {/* 3. Bottom: Full-Width Vibrant Pill Button */}
-                      <div className="relative z-10 w-full pt-2 shrink-0">
+                      <div className="relative z-10 w-full pt-1 shrink-0">
                         <button
-                          className="w-full py-2.5 sm:py-3 px-4 rounded-full text-white font-bold text-xs sm:text-sm tracking-wide shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2 group-hover:scale-[1.01] cursor-pointer"
+                          className="w-full py-1.5 sm:py-2 px-3 rounded-full text-white font-bold text-[11px] sm:text-xs tracking-wide shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center space-x-1.5 group-hover:scale-[1.01] cursor-pointer"
                           style={{ backgroundColor: card.accentColor }}
                         >
                           <span>{card.ctaText}</span>
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                         </button>
                       </div>
                     </div>
@@ -488,7 +488,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
 
                   if (card.linkTo) {
                     return (
-                      <div key={card.id} className="w-[320px] sm:w-[370px] lg:w-[400px] shrink-0 h-full">
+                      <div key={card.id} className="w-[280px] sm:w-[320px] lg:w-[345px] shrink-0 h-full">
                         <Link
                           to={card.linkTo}
                           className="block cursor-pointer focus:outline-hidden h-full"
@@ -500,7 +500,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                   }
 
                   return (
-                    <div key={card.id} className="w-[320px] sm:w-[370px] lg:w-[400px] shrink-0 h-full">
+                    <div key={card.id} className="w-[280px] sm:w-[320px] lg:w-[345px] shrink-0 h-full">
                       <div
                         onClick={() => openQuoteModal(card.quoteInquiry || card.title)}
                         className="cursor-pointer focus:outline-hidden h-full"
@@ -515,22 +515,22 @@ export const NewTo3DPrintingSection: React.FC = () => {
           </div>
 
           {/* Interactive 5-Step Indicators (Click to Jump Directly to Any Step) */}
-          <div className="shrink-0 pt-2 pb-1 space-y-2">
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
+          <div className="shrink-0 pt-1 pb-1 space-y-1">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
               {guideCards.map((card, idx) => {
                 const isCurrent = idx === activeStep
                 return (
                   <button
                     key={card.id}
                     onClick={() => jumpToCard(idx)}
-                    className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center space-x-1.5 border shadow-xs ${
+                    className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center space-x-1.5 border shadow-2xs ${
                       isCurrent
-                        ? `${card.accentBg} ${card.accentText} ${card.accentBorder} ring-2 ring-blue-400/40 shadow-sm scale-105`
+                        ? `${card.accentBg} ${card.accentText} ${card.accentBorder} ring-2 ring-blue-400/40 shadow-xs scale-102`
                         : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
                     }`}
                   >
                     <span
-                      className="w-2 h-2 rounded-full shrink-0"
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: card.accentColor }}
                     />
                     <span>Step {card.step}</span>
@@ -543,10 +543,10 @@ export const NewTo3DPrintingSection: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-center">
-              <div className="flex items-center space-x-3 text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 uppercase">
-                <span className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-blue-400" />
+              <div className="flex items-center space-x-2 text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase">
+                <span className="h-px w-6 sm:w-12 bg-gradient-to-r from-transparent to-blue-400" />
                 <span>INNOVATION TODAY &nbsp;|&nbsp; A BRIGHTER TOMORROW</span>
-                <span className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-blue-400" />
+                <span className="h-px w-6 sm:w-12 bg-gradient-to-l from-transparent to-blue-400" />
               </div>
             </div>
           </div>

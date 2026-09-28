@@ -215,27 +215,31 @@ app.put('/api/products/:id', async (req, res) => {
     const result = await pool.query(`
       UPDATE products SET
         name = COALESCE($1, name),
-        brand = COALESCE($2, brand),
-        category = COALESCE($3, category),
-        category_slug = COALESCE($4, category_slug),
-        technology = COALESCE($5, technology),
-        tagline = COALESCE($6, tagline),
-        short_description = COALESCE($7, short_description),
-        description = COALESCE($8, description),
-        hero_image = COALESCE($9, hero_image),
-        images = COALESCE($10, images),
-        price = COALESCE($11, price),
-        in_stock = COALESCE($12, in_stock),
-        is_featured = COALESCE($13, is_featured),
-        key_specs = COALESCE($14, key_specs),
-        specifications = COALESCE($15, specifications),
-        features = COALESCE($16, features),
-        applications = COALESCE($17, applications),
+        slug = COALESCE($2, slug),
+        brand = COALESCE($3, brand),
+        category = COALESCE($4, category),
+        category_slug = COALESCE($5, category_slug),
+        technology = COALESCE($6, technology),
+        tagline = COALESCE($7, tagline),
+        short_description = COALESCE($8, short_description),
+        description = COALESCE($9, description),
+        hero_image = COALESCE($10, hero_image),
+        images = COALESCE($11, images),
+        price = COALESCE($12, price),
+        original_price = COALESCE($13, original_price),
+        in_stock = COALESCE($14, in_stock),
+        is_featured = COALESCE($15, is_featured),
+        is_quote_based = COALESCE($16, is_quote_based),
+        key_specs = COALESCE($17, key_specs),
+        specifications = COALESCE($18, specifications),
+        features = COALESCE($19, features),
+        applications = COALESCE($20, applications),
         updated_at = CURRENT_TIMESTAMP
-      WHERE id = $18
+      WHERE id = $21
       RETURNING *;
     `, [
       p.name,
+      p.slug,
       p.brand,
       p.category,
       p.category_slug || p.categorySlug,
@@ -246,8 +250,10 @@ app.put('/api/products/:id', async (req, res) => {
       p.hero_image || p.heroImage,
       p.images ? JSON.stringify(p.images) : null,
       p.price,
+      p.original_price || p.originalPrice,
       p.in_stock,
       p.is_featured,
+      p.is_quote_based !== undefined ? p.is_quote_based : null,
       p.key_specs ? JSON.stringify(p.key_specs) : null,
       p.specifications ? JSON.stringify(p.specifications) : null,
       p.features ? JSON.stringify(p.features) : null,
@@ -652,6 +658,29 @@ app.post('/api/categories', async (req, res) => {
   }
 })
 
+app.put('/api/categories/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { slug, title, subtitle, description, image, hero_banner, icon } = req.body
+    const result = await pool.query(`
+      UPDATE categories SET
+        slug = COALESCE($1, slug),
+        title = COALESCE($2, title),
+        subtitle = COALESCE($3, subtitle),
+        description = COALESCE($4, description),
+        image = COALESCE($5, image),
+        hero_banner = COALESCE($6, hero_banner),
+        icon = COALESCE($7, icon)
+      WHERE id = $8
+      RETURNING *;
+    `, [slug, title, subtitle, description, image, hero_banner, icon, id])
+    if (result.rows.length === 0) return res.status(404).json({ error: 'Category not found' })
+    res.json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
 app.delete('/api/categories/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -688,6 +717,42 @@ app.post('/api/services', async (req, res) => {
       JSON.stringify(workflow || []),
     ])
     res.status(201).json(result.rows[0])
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+app.put('/api/services/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const s = req.body
+    const result = await pool.query(`
+      UPDATE services SET
+        title = COALESCE($1, title),
+        slug = COALESCE($2, slug),
+        short_description = COALESCE($3, short_description),
+        description = COALESCE($4, description),
+        image = COALESCE($5, image),
+        badge = COALESCE($6, badge),
+        applications = COALESCE($7, applications),
+        advantages = COALESCE($8, advantages),
+        workflow = COALESCE($9, workflow)
+      WHERE id = $10
+      RETURNING *;
+    `, [
+      s.title,
+      s.slug,
+      s.short_description || s.shortDescription,
+      s.description,
+      s.image,
+      s.badge,
+      s.applications ? JSON.stringify(s.applications) : null,
+      s.advantages ? JSON.stringify(s.advantages) : null,
+      s.workflow ? JSON.stringify(s.workflow) : null,
+      id,
+    ])
+    if (result.rows.length === 0) return res.status(404).json({ error: 'Service not found' })
+    res.json(result.rows[0])
   } catch (err) {
     res.status(500).json({ error: err.message })
   }

@@ -24,6 +24,7 @@ import {
   Save,
   Check,
   Search,
+  Briefcase,
 } from 'lucide-react'
 
 interface Stats {
@@ -124,6 +125,7 @@ export default function AdminPage() {
     | 'quotes'
     | 'contacts'
     | 'products'
+    | 'services'
     | 'blogs'
     | 'storage'
     | 'categories'
@@ -153,7 +155,21 @@ export default function AdminPage() {
   const [selectedQuote, setSelectedQuote] = useState<QuoteRequest | null>(null)
   const [quoteNotesInput, setQuoteNotesInput] = useState('')
   const [isNewProductOpen, setIsNewProductOpen] = useState(false)
-  const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null)
+  const [editingProduct, setEditingProduct] = useState<any>(null)
+  const [editingBlog, setEditingBlog] = useState<BlogPostItem | null>(null)
+  const [editingCategory, setEditingCategory] = useState<any>(null)
+  const [servicesList, setServicesList] = useState<any[]>([])
+  const [editingService, setEditingService] = useState<any>(null)
+  const [isNewServiceOpen, setIsNewServiceOpen] = useState(false)
+  const [newService, setNewService] = useState({
+    title: '',
+    slug: '',
+    badge: 'Industrial Grade',
+    short_description: '',
+    description: '',
+    image: '/images/services/scanning.jpg',
+  })
+  const [uploadingField, setUploadingField] = useState<string | null>(null)
 
   const [newProd, setNewProd] = useState({
     name: '',
@@ -163,7 +179,9 @@ export default function AdminPage() {
     technology: 'Industrial FDM',
     tagline: 'High Speed Precision System',
     description: '',
+    short_description: '',
     price: 95000,
+    original_price: 110000,
     heroImage: '/images/products/pratham-mini.png',
   })
 
@@ -260,7 +278,7 @@ export default function AdminPage() {
   const loadAllData = async () => {
     setIsLoading(true)
     try {
-      const [healthRes, statsRes, quotesRes, contactsRes, prodsRes, filesRes, blogsRes, usersRes, catsRes, settingsRes] =
+      const [healthRes, statsRes, quotesRes, contactsRes, prodsRes, filesRes, blogsRes, usersRes, catsRes, settingsRes, servicesRes] =
         await Promise.allSettled([
           fetch('/api/health').then(r => r.json()),
           fetch('/api/stats').then(r => r.json()),
@@ -272,6 +290,7 @@ export default function AdminPage() {
           fetch('/api/admin/users').then(r => r.json()),
           fetch('/api/categories').then(r => r.json()),
           fetch('/api/settings').then(r => r.json()),
+          fetch('/api/services').then(r => r.json()),
         ])
 
       if (healthRes.status === 'fulfilled') setDbHealth(healthRes.value)
@@ -283,6 +302,7 @@ export default function AdminPage() {
       if (blogsRes.status === 'fulfilled' && Array.isArray(blogsRes.value)) setBlogsList(blogsRes.value)
       if (usersRes.status === 'fulfilled' && Array.isArray(usersRes.value)) setAdminUsers(usersRes.value)
       if (catsRes.status === 'fulfilled' && Array.isArray(catsRes.value)) setCategoriesList(catsRes.value)
+      if (servicesRes.status === 'fulfilled' && Array.isArray(servicesRes.value)) setServicesList(servicesRes.value)
       if (settingsRes.status === 'fulfilled' && settingsRes.value?.general_info) {
         setSiteSettings(settingsRes.value.general_info)
       }
@@ -352,7 +372,9 @@ export default function AdminPage() {
           technology: 'Industrial FDM',
           tagline: 'High Speed Precision System',
           description: '',
+          short_description: '',
           price: 95000,
+          original_price: 110000,
           heroImage: '/images/products/pratham-mini.png',
         })
         loadAllData()
@@ -445,6 +467,131 @@ export default function AdminPage() {
       }
     } catch (err) {
       console.error(err)
+    }
+  }
+
+  const handleSaveEditBlog = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingBlog) return
+    try {
+      const res = await fetch(`/api/blogs/${editingBlog.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingBlog),
+      })
+      if (res.ok) {
+        const updated = await res.json()
+        setBlogsList(prev => prev.map(b => b.id === updated.id ? updated : b))
+        setEditingBlog(null)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Category Edit Operation
+  const handleSaveEditCategory = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingCategory) return
+    try {
+      const res = await fetch(`/api/categories/${editingCategory.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingCategory),
+      })
+      if (res.ok) {
+        const updated = await res.json()
+        setCategoriesList(prev => prev.map(c => c.id === updated.id ? updated : c))
+        setEditingCategory(null)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Service Operations
+  const handleCreateService = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      const res = await fetch('/api/services', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newService),
+      })
+      if (res.ok) {
+        const created = await res.json()
+        setServicesList(prev => [...prev, created])
+        setIsNewServiceOpen(false)
+        setNewService({
+          title: '',
+          slug: '',
+          badge: 'Industrial Grade',
+          short_description: '',
+          description: '',
+          image: '/images/services/scanning.jpg',
+        })
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleSaveEditService = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingService) return
+    try {
+      const res = await fetch(`/api/services/${editingService.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingService),
+      })
+      if (res.ok) {
+        const updated = await res.json()
+        setServicesList(prev => prev.map(s => s.id === updated.id ? updated : s))
+        setEditingService(null)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteService = async (id: string) => {
+    if (!confirm(`Delete engineering service ${id} from PostgreSQL?`)) return
+    try {
+      const res = await fetch(`/api/services/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setServicesList(prev => prev.filter(s => s.id !== id))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Direct image upload helper for all edit modals
+  const handleDirectImageUpload = async (file: File, callback: (url: string) => void) => {
+    try {
+      setUploadingField(file.name)
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('bucket', 'media')
+      formData.append('description', file.name)
+      const res = await fetch('/api/storage/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      if (res.ok) {
+        const data = await res.json()
+        callback(data.url)
+        fetch('/api/storage/files').then(r => r.json()).then(files => {
+          if (Array.isArray(files)) setStorageFiles(files)
+        }).catch(() => {})
+      } else {
+        alert('Failed to upload image to PostgreSQL storage')
+      }
+    } catch (err: any) {
+      alert('Error uploading image: ' + err.message)
+    } finally {
+      setUploadingField(null)
     }
   }
 
@@ -780,6 +927,23 @@ export default function AdminPage() {
                 activeTab === 'products' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
               }`}>
                 {productsList.length}
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('services')}
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                activeTab === 'services' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <Briefcase className="w-4 h-4" />
+                <span>Services</span>
+              </div>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                activeTab === 'services' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
+              }`}>
+                {servicesList.length}
               </span>
             </button>
 
@@ -1316,11 +1480,14 @@ export default function AdminPage() {
               {/* Edit Product Modal */}
               {editingProduct && (
                 <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-                  <form onSubmit={handleSaveEditProduct} className="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+                  <form onSubmit={handleSaveEditProduct} className="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
                     <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                      <h4 className="text-base font-black text-slate-900">
-                        Edit Machine: {editingProduct.name}
-                      </h4>
+                      <div>
+                        <h4 className="text-base font-black text-slate-900">
+                          Edit Machine: {editingProduct.name}
+                        </h4>
+                        <div className="text-[11px] font-mono text-slate-400">ID: {editingProduct.id}</div>
+                      </div>
                       <button
                         type="button"
                         onClick={() => setEditingProduct(null)}
@@ -1331,16 +1498,29 @@ export default function AdminPage() {
                     </div>
 
                     <div className="space-y-3 text-xs">
-                      <div>
-                        <label className="block font-bold text-slate-700 mb-1">Product Title</label>
-                        <input
-                          type="text"
-                          value={editingProduct.name}
-                          onChange={e => setEditingProduct({ ...editingProduct, name: e.target.value })}
-                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
-                        />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Product Title</label>
+                          <input
+                            type="text"
+                            required
+                            value={editingProduct.name}
+                            onChange={e => setEditingProduct({ ...editingProduct, name: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Slug (URL)</label>
+                          <input
+                            type="text"
+                            value={editingProduct.slug || ''}
+                            onChange={e => setEditingProduct({ ...editingProduct, slug: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                        </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                           <label className="block font-bold text-slate-700 mb-1">Brand</label>
                           <input
@@ -1351,24 +1531,55 @@ export default function AdminPage() {
                           />
                         </div>
                         <div>
-                          <label className="block font-bold text-slate-700 mb-1">Price (₹)</label>
+                          <label className="block font-bold text-slate-700 mb-1">Category</label>
                           <input
-                            type="number"
-                            value={editingProduct.price}
-                            onChange={e => setEditingProduct({ ...editingProduct, price: Number(e.target.value) })}
+                            type="text"
+                            value={editingProduct.category}
+                            onChange={e => setEditingProduct({ ...editingProduct, category: e.target.value })}
                             className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
                           />
                         </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Category Slug</label>
+                          <input
+                            type="text"
+                            value={editingProduct.category_slug || ''}
+                            onChange={e => setEditingProduct({ ...editingProduct, category_slug: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <label className="block font-bold text-slate-700 mb-1">Hero Image URL</label>
-                        <input
-                          type="text"
-                          value={editingProduct.hero_image}
-                          onChange={e => setEditingProduct({ ...editingProduct, hero_image: e.target.value })}
-                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
-                        />
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Technology</label>
+                          <input
+                            type="text"
+                            value={editingProduct.technology || ''}
+                            onChange={e => setEditingProduct({ ...editingProduct, technology: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Selling Price (₹)</label>
+                          <input
+                            type="number"
+                            value={editingProduct.price ?? 0}
+                            onChange={e => setEditingProduct({ ...editingProduct, price: Number(e.target.value) })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Original / MRP Price (₹)</label>
+                          <input
+                            type="number"
+                            value={editingProduct.original_price ?? 0}
+                            onChange={e => setEditingProduct({ ...editingProduct, original_price: Number(e.target.value) })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono"
+                          />
+                        </div>
                       </div>
+
                       <div>
                         <label className="block font-bold text-slate-700 mb-1">Tagline</label>
                         <input
@@ -1378,24 +1589,96 @@ export default function AdminPage() {
                           className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
                         />
                       </div>
-                      <div className="flex items-center space-x-3 pt-1">
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Hero Image (PostgreSQL Storage or URL)</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={editingProduct.hero_image || ''}
+                            onChange={e => setEditingProduct({ ...editingProduct, hero_image: e.target.value })}
+                            className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                          <label className="inline-flex items-center space-x-1.5 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg cursor-pointer transition-colors shrink-0">
+                            <Upload className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">
+                              {uploadingField ? 'Uploading...' : 'Upload Image'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={e => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                  handleDirectImageUpload(file, url => {
+                                    setEditingProduct((prev: any) => ({ ...prev, hero_image: url }))
+                                  })
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
+                        {editingProduct.hero_image && (
+                          <div className="mt-2 flex items-center space-x-3 p-2 bg-slate-50 rounded-xl border border-slate-200 w-fit">
+                            <img
+                              src={editingProduct.hero_image}
+                              alt="Hero preview"
+                              className="w-12 h-12 object-contain bg-white rounded-lg border border-slate-200"
+                              onError={e => { (e.target as HTMLElement).style.display = 'none' }}
+                            />
+                            <span className="text-[11px] text-slate-500 font-mono truncate max-w-xs">{editingProduct.hero_image}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Short Description</label>
+                        <textarea
+                          rows={2}
+                          value={editingProduct.short_description || ''}
+                          onChange={e => setEditingProduct({ ...editingProduct, short_description: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Full Detailed Description</label>
+                        <textarea
+                          rows={4}
+                          value={editingProduct.description || ''}
+                          onChange={e => setEditingProduct({ ...editingProduct, description: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-4 pt-1 bg-slate-50 p-3 rounded-xl border border-slate-200">
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input
                             type="checkbox"
-                            checked={editingProduct.in_stock}
+                            checked={editingProduct.in_stock !== false}
                             onChange={e => setEditingProduct({ ...editingProduct, in_stock: e.target.checked })}
                             className="w-4 h-4 text-blue-600 rounded"
                           />
-                          <span className="font-bold text-slate-800">In Stock</span>
+                          <span className="font-bold text-slate-800">In Stock (Available for Delivery)</span>
                         </label>
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input
                             type="checkbox"
-                            checked={editingProduct.is_featured}
+                            checked={!!editingProduct.is_featured}
                             onChange={e => setEditingProduct({ ...editingProduct, is_featured: e.target.checked })}
                             className="w-4 h-4 text-blue-600 rounded"
                           />
                           <span className="font-bold text-slate-800">Featured Showcase</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={!!editingProduct.is_quote_based}
+                            onChange={e => setEditingProduct({ ...editingProduct, is_quote_based: e.target.checked })}
+                            className="w-4 h-4 text-blue-600 rounded"
+                          />
+                          <span className="font-bold text-slate-800">Quote Based (Contact for Price)</span>
                         </label>
                       </div>
                     </div>
@@ -1410,9 +1693,9 @@ export default function AdminPage() {
                       </button>
                       <button
                         type="submit"
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold cursor-pointer"
+                        className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-md cursor-pointer"
                       >
-                        Update in PostgreSQL
+                        Save Changes to PostgreSQL
                       </button>
                     </div>
                   </form>
@@ -1467,6 +1750,298 @@ export default function AdminPage() {
                             onClick={() => handleDeleteProduct(p.id)}
                             className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
                             title="Delete product"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* ====================================================
+              TAB: ENGINEERING SERVICES (FULL CRUD & FULL EDIT)
+             ==================================================== */}
+          {activeTab === 'services' && (
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-black text-slate-900">Engineering & 3D Printing Services</h3>
+                  <p className="text-xs text-slate-500">Manage industrial manufacturing and scanning services in PostgreSQL</p>
+                </div>
+                <button
+                  onClick={() => setIsNewServiceOpen(true)}
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add New Service</span>
+                </button>
+              </div>
+
+              {/* Add New Service Form */}
+              {isNewServiceOpen && (
+                <form onSubmit={handleCreateService} className="p-5 bg-blue-50/50 border border-blue-200 rounded-2xl space-y-4 text-xs">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-black text-blue-950">Add Engineering Service</h4>
+                    <button
+                      type="button"
+                      onClick={() => setIsNewServiceOpen(false)}
+                      className="text-slate-400 hover:text-slate-600 font-bold"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Service Title</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. 3D Scanning & Inspection"
+                        value={newService.title}
+                        onChange={e => setNewService({ ...newService, title: e.target.value })}
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Slug</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 3d-scanning-inspection"
+                        value={newService.slug}
+                        onChange={e => setNewService({ ...newService, slug: e.target.value })}
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg font-mono text-[11px]"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Badge</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Industrial Precision"
+                        value={newService.badge}
+                        onChange={e => setNewService({ ...newService, badge: e.target.value })}
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Short Description</label>
+                    <textarea
+                      rows={2}
+                      value={newService.short_description}
+                      onChange={e => setNewService({ ...newService, short_description: e.target.value })}
+                      placeholder="Brief overview displayed on cards..."
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Detailed Description</label>
+                    <textarea
+                      rows={3}
+                      value={newService.description}
+                      onChange={e => setNewService({ ...newService, description: e.target.value })}
+                      placeholder="Comprehensive technical details..."
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
+                    />
+                  </div>
+
+                  <div className="flex justify-end space-x-2 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsNewServiceOpen(false)}
+                      className="px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg font-bold"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold"
+                    >
+                      Save Service to PostgreSQL
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {/* Edit Service Modal */}
+              {editingService && (
+                <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+                  <form onSubmit={handleSaveEditService} className="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto text-xs">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <div>
+                        <h4 className="text-base font-black text-slate-900">
+                          Edit Service: {editingService.title}
+                        </h4>
+                        <div className="text-[11px] font-mono text-slate-400">ID: {editingService.id}</div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditingService(null)}
+                        className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="sm:col-span-2">
+                          <label className="block font-bold text-slate-700 mb-1">Service Title</label>
+                          <input
+                            type="text"
+                            required
+                            value={editingService.title}
+                            onChange={e => setEditingService({ ...editingService, title: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Badge</label>
+                          <input
+                            type="text"
+                            value={editingService.badge || ''}
+                            onChange={e => setEditingService({ ...editingService, badge: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Slug (URL)</label>
+                        <input
+                          type="text"
+                          value={editingService.slug || ''}
+                          onChange={e => setEditingService({ ...editingService, slug: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Service Image (PostgreSQL Storage or URL)</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={editingService.image || ''}
+                            onChange={e => setEditingService({ ...editingService, image: e.target.value })}
+                            className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                          <label className="inline-flex items-center space-x-1.5 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg cursor-pointer transition-colors shrink-0">
+                            <Upload className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">
+                              {uploadingField ? 'Uploading...' : 'Upload Image'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={e => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                  handleDirectImageUpload(file, url => {
+                                    setEditingService((prev: any) => ({ ...prev, image: url }))
+                                  })
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
+                        {editingService.image && (
+                          <div className="mt-2 flex items-center space-x-3 p-2 bg-slate-50 rounded-xl border border-slate-200 w-fit">
+                            <img
+                              src={editingService.image}
+                              alt="Service preview"
+                              className="w-12 h-12 object-cover bg-white rounded-lg border border-slate-200"
+                              onError={e => { (e.target as HTMLElement).style.display = 'none' }}
+                            />
+                            <span className="text-[11px] text-slate-500 font-mono truncate max-w-xs">{editingService.image}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Short Description</label>
+                        <textarea
+                          rows={2}
+                          value={editingService.short_description || ''}
+                          onChange={e => setEditingService({ ...editingService, short_description: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Full Detailed Description</label>
+                        <textarea
+                          rows={4}
+                          value={editingService.description || ''}
+                          onChange={e => setEditingService({ ...editingService, description: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-200 flex justify-end space-x-2">
+                      <button
+                        type="button"
+                        onClick={() => setEditingService(null)}
+                        className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-md cursor-pointer"
+                      >
+                        Save Service to PostgreSQL
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
+              {/* Services List Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider bg-slate-50/50">
+                      <th className="py-3 px-3">Service</th>
+                      <th className="py-3 px-3">Badge</th>
+                      <th className="py-3 px-3">Description</th>
+                      <th className="py-3 px-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {servicesList.map(s => (
+                      <tr key={s.id} className="hover:bg-slate-50 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="font-bold text-slate-900">{s.title}</div>
+                          <div className="text-[11px] text-slate-400 font-mono">/services#{s.slug}</div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700">
+                            {s.badge || 'Industrial'}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3 text-slate-600 max-w-sm">
+                          <p className="line-clamp-2">{s.short_description || s.description}</p>
+                        </td>
+                        <td className="py-3 px-3 text-right space-x-1.5">
+                          <button
+                            onClick={() => setEditingService(s)}
+                            className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
+                            title="Edit service details"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteService(s.id)}
+                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
+                            title="Delete service"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -1692,6 +2267,173 @@ export default function AdminPage() {
                 </form>
               )}
 
+              {/* Edit Blog Modal */}
+              {editingBlog && (
+                <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+                  <form onSubmit={handleSaveEditBlog} className="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto text-xs">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <div>
+                        <h4 className="text-base font-black text-slate-900">
+                          Edit Blog Post: {editingBlog.title}
+                        </h4>
+                        <div className="text-[11px] font-mono text-slate-400">ID: {editingBlog.id}</div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditingBlog(null)}
+                        className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Article Title</label>
+                          <input
+                            type="text"
+                            required
+                            value={editingBlog.title}
+                            onChange={e => setEditingBlog({ ...editingBlog, title: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Slug</label>
+                          <input
+                            type="text"
+                            value={editingBlog.slug}
+                            onChange={e => setEditingBlog({ ...editingBlog, slug: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Category</label>
+                          <input
+                            type="text"
+                            value={editingBlog.category}
+                            onChange={e => setEditingBlog({ ...editingBlog, category: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Read Time</label>
+                          <input
+                            type="text"
+                            value={editingBlog.read_time || '5 min read'}
+                            onChange={e => setEditingBlog({ ...editingBlog, read_time: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Date Published</label>
+                          <input
+                            type="text"
+                            value={editingBlog.date || ''}
+                            onChange={e => setEditingBlog({ ...editingBlog, date: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Featured Cover Image (PostgreSQL Storage or URL)</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={editingBlog.image || ''}
+                            onChange={e => setEditingBlog({ ...editingBlog, image: e.target.value })}
+                            className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                          <label className="inline-flex items-center space-x-1.5 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg cursor-pointer transition-colors shrink-0">
+                            <Upload className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">
+                              {uploadingField ? 'Uploading...' : 'Upload Image'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={e => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                  handleDirectImageUpload(file, url => {
+                                    setEditingBlog((prev: any) => ({ ...prev, image: url }))
+                                  })
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
+                        {editingBlog.image && (
+                          <div className="mt-2 flex items-center space-x-3 p-2 bg-slate-50 rounded-xl border border-slate-200 w-fit">
+                            <img
+                              src={editingBlog.image}
+                              alt="Blog preview"
+                              className="w-12 h-12 object-cover bg-white rounded-lg border border-slate-200"
+                              onError={e => { (e.target as HTMLElement).style.display = 'none' }}
+                            />
+                            <span className="text-[11px] text-slate-500 font-mono truncate max-w-xs">{editingBlog.image}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Short Excerpt</label>
+                        <textarea
+                          rows={2}
+                          value={editingBlog.excerpt || ''}
+                          onChange={e => setEditingBlog({ ...editingBlog, excerpt: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Full Article Content (Markdown Supported)</label>
+                        <textarea
+                          rows={8}
+                          value={editingBlog.content || ''}
+                          onChange={e => setEditingBlog({ ...editingBlog, content: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                        />
+                      </div>
+
+                      <div className="pt-1">
+                        <label className="flex items-center space-x-2 cursor-pointer bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                          <input
+                            type="checkbox"
+                            checked={editingBlog.published !== false}
+                            onChange={e => setEditingBlog({ ...editingBlog, published: e.target.checked })}
+                            className="w-4 h-4 text-blue-600 rounded"
+                          />
+                          <span className="font-bold text-slate-800">Article Published & Live</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-200 flex justify-end space-x-2">
+                      <button
+                        type="button"
+                        onClick={() => setEditingBlog(null)}
+                        className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-md cursor-pointer"
+                      >
+                        Save Blog Post to PostgreSQL
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead>
@@ -1717,7 +2459,14 @@ export default function AdminPage() {
                             Published
                           </span>
                         </td>
-                        <td className="py-3 px-3 text-right">
+                        <td className="py-3 px-3 text-right space-x-1.5">
+                          <button
+                            onClick={() => setEditingBlog(b)}
+                            className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
+                            title="Edit article"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
                           <button
                             onClick={() => handleDeleteBlog(b.id)}
                             className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
@@ -1807,6 +2556,152 @@ export default function AdminPage() {
                 </form>
               )}
 
+              {/* Edit Category Modal */}
+              {editingCategory && (
+                <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+                  <form onSubmit={handleSaveEditCategory} className="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto text-xs">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <div>
+                        <h4 className="text-base font-black text-slate-900">
+                          Edit Category: {editingCategory.title}
+                        </h4>
+                        <div className="text-[11px] font-mono text-slate-400">ID: {editingCategory.id}</div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditingCategory(null)}
+                        className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Category Title</label>
+                          <input
+                            type="text"
+                            required
+                            value={editingCategory.title}
+                            onChange={e => setEditingCategory({ ...editingCategory, title: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Slug</label>
+                          <input
+                            type="text"
+                            value={editingCategory.slug}
+                            onChange={e => setEditingCategory({ ...editingCategory, slug: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Subtitle</label>
+                          <input
+                            type="text"
+                            value={editingCategory.subtitle || ''}
+                            onChange={e => setEditingCategory({ ...editingCategory, subtitle: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-bold text-slate-700 mb-1">Icon Name</label>
+                          <input
+                            type="text"
+                            value={editingCategory.icon || 'Box'}
+                            onChange={e => setEditingCategory({ ...editingCategory, icon: e.target.value })}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Category Image (PostgreSQL Storage or URL)</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={editingCategory.image || ''}
+                            onChange={e => setEditingCategory({ ...editingCategory, image: e.target.value })}
+                            className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                          />
+                          <label className="inline-flex items-center space-x-1.5 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg cursor-pointer transition-colors shrink-0">
+                            <Upload className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">
+                              {uploadingField ? 'Uploading...' : 'Upload'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={e => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                  handleDirectImageUpload(file, url => {
+                                    setEditingCategory((prev: any) => ({ ...prev, image: url }))
+                                  })
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
+                        {editingCategory.image && (
+                          <div className="mt-2 flex items-center space-x-3 p-2 bg-slate-50 rounded-xl border border-slate-200 w-fit">
+                            <img
+                              src={editingCategory.image}
+                              alt="Category preview"
+                              className="w-12 h-12 object-cover bg-white rounded-lg border border-slate-200"
+                              onError={e => { (e.target as HTMLElement).style.display = 'none' }}
+                            />
+                            <span className="text-[11px] text-slate-500 font-mono truncate max-w-xs">{editingCategory.image}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Hero Banner URL</label>
+                        <input
+                          type="text"
+                          value={editingCategory.hero_banner || ''}
+                          onChange={e => setEditingCategory({ ...editingCategory, hero_banner: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-mono text-[11px]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 mb-1">Description</label>
+                        <textarea
+                          rows={3}
+                          value={editingCategory.description || ''}
+                          onChange={e => setEditingCategory({ ...editingCategory, description: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-200 flex justify-end space-x-2">
+                      <button
+                        type="button"
+                        onClick={() => setEditingCategory(null)}
+                        className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-md cursor-pointer"
+                      >
+                        Save Category to PostgreSQL
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {categoriesList.map(cat => (
                   <div key={cat.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex items-start justify-between">
@@ -1815,17 +2710,26 @@ export default function AdminPage() {
                       <div className="text-[11px] font-mono text-slate-400">slug: {cat.slug}</div>
                       <p className="text-xs text-slate-600 mt-1 line-clamp-2">{cat.description}</p>
                     </div>
-                    <button
-                      onClick={async () => {
-                        if (!confirm(`Delete category ${cat.title}?`)) return
-                        await fetch(`/api/categories/${cat.id}`, { method: 'DELETE' })
-                        setCategoriesList(prev => prev.filter(c => c.id !== cat.id))
-                      }}
-                      className="p-1.5 text-red-500 hover:bg-red-50 rounded-md"
-                      title="Delete category"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center space-x-1 shrink-0">
+                      <button
+                        onClick={() => setEditingCategory(cat)}
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors cursor-pointer"
+                        title="Edit category"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={async () => {
+                          if (!confirm(`Delete category ${cat.title}?`)) return
+                          await fetch(`/api/categories/${cat.id}`, { method: 'DELETE' })
+                          setCategoriesList(prev => prev.filter(c => c.id !== cat.id))
+                        }}
+                        className="p-1.5 text-red-500 hover:bg-red-50 rounded-md cursor-pointer"
+                        title="Delete category"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -643,7 +643,7 @@ app.listen(PORT, () => {
   console.log(`=======================================================`)
   console.log(`Leniva CAD Solutions PostgreSQL API Server`)
   console.log(`Listening on http://localhost:${PORT}`)
-  console.log(`Connected to PostgreSQL: 168.119.64.101:5432/leniv698`)
+  console.log(`Connected to PostgreSQL: 127.0.0.1:5432/leniv698 (localhost)`)
   console.log(`Zero Supabase - 100% Native PostgreSQL Backend & Storage`)
   console.log(`=======================================================`)
 })

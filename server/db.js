@@ -6,7 +6,7 @@ dotenv.config()
 const { Pool } = pg
 
 export const pool = new Pool({
-  host: process.env.PGHOST || '168.119.64.101',
+  host: process.env.PGHOST || '127.0.0.1',
   port: Number(process.env.PGPORT) || 5432,
   user: process.env.PGUSER || 'leniv698',
   password: process.env.PGPASSWORD || 'hhvu1A8IrRupKLdfEDhnsx9LQ',

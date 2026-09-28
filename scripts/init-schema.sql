@@ -1,6 +1,6 @@
 -- ====================================================================
 -- LENIVA CAD SOLUTIONS - PostgreSQL Schema Definition
--- Database: leniv698 | User: leniv698 | Host: 168.119.64.101:5432
+-- Database: leniv698 | User: leniv698 | Host: 127.0.0.1:5432 (localhost)
 -- Production Domain: lenivacad.roiclients.co.in
 -- ====================================================================
 

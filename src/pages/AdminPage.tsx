@@ -376,7 +376,7 @@ export default function AdminPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900 tracking-tight">Leniva CAD Admin Console</h2>
             <p className="text-xs text-slate-500 font-mono">
-              Database: PostgreSQL (leniv698 @ 168.119.64.101)
+              Database: PostgreSQL (leniv698 @ 127.0.0.1 / localhost)
             </p>
           </div>
 
@@ -583,7 +583,7 @@ export default function AdminPage() {
               <span>POSTGRESQL 14.24</span>
             </div>
             <div className="text-[11px] text-slate-400">
-              Host: <code>168.119.64.101</code><br />
+              Host: <code>127.0.0.1</code><br />
               Port: <code>5432</code><br />
               DB: <code>leniv698</code><br />
               User: <code>leniv698</code>
@@ -673,7 +673,7 @@ export default function AdminPage() {
                   </div>
                   <div>
                     <span className="text-slate-500">Connection Host & Port:</span>{' '}
-                    <strong className="text-slate-900">168.119.64.101:5432</strong>
+                    <strong className="text-slate-900">127.0.0.1:5432 (localhost)</strong>
                   </div>
                   <div>
                     <span className="text-slate-500">Supabase Isolation:</span>{' '}

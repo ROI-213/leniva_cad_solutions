@@ -3,11 +3,11 @@ import pg from 'pg'
 const { Client } = pg
 
 const client = new Client({
-  host: '168.119.64.101',
-  port: 5432,
-  user: 'leniv698',
-  password: 'hhvu1A8IrRupKLdfEDhnsx9LQ',
-  database: 'leniv698',
+  host: process.env.PGHOST || '127.0.0.1',
+  port: Number(process.env.PGPORT) || 5432,
+  user: process.env.PGUSER || 'leniv698',
+  password: process.env.PGPASSWORD || 'hhvu1A8IrRupKLdfEDhnsx9LQ',
+  database: process.env.PGDATABASE || 'leniv698',
   ssl: false,
 })
 

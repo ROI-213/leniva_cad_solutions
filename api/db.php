@@ -1,7 +1,7 @@
 <?php
 /**
  * Leniva CAD Solutions - PostgreSQL PDO Database Connection
- * Target Host: 168.119.64.101:5432 | Database: leniv698
+ * Target Host: 127.0.0.1:5432 (Localhost) | Database: leniv698
  * Domain: lenivacad.roiclients.co.in
  */
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 function getDbConnection() {
-    $host = '168.119.64.101';
+    $host = '127.0.0.1';
     $port = '5432';
     $dbname = 'leniv698';
     $user = 'leniv698';

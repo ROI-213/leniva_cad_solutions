@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ChevronLeft,
@@ -18,6 +18,8 @@ import {
   Clock,
   Sparkles,
   ArrowRight,
+  Play,
+  Pause,
   LucideIcon,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
@@ -390,27 +392,63 @@ export const ShowroomSolutionsSection: React.FC = () => {
     lcd: 0,
   })
   const [zoomItem, setZoomItem] = useState<ShowcaseProductItem | null>(null)
+  const [isAutoPlay, setIsAutoPlay] = useState(true)
+  const [hoveredCatId, setHoveredCatId] = useState<string | null>(null)
+  const [timerProgress, setTimerProgress] = useState(0)
 
-  const handlePrev = (catId: string, totalCount: number) => {
+  // Auto-slide carousel rotation effect with smooth progress timer
+  useEffect(() => {
+    if (!isAutoPlay || zoomItem) return
+
+    const tickInterval = 50 // ms per tick
+    const totalDuration = 4500 // 4.5 seconds per slide
+    const progressStep = (tickInterval / totalDuration) * 100
+
+    const timer = setInterval(() => {
+      setTimerProgress(prev => {
+        if (prev >= 100) {
+          // Advance category (unless hovered)
+          setActiveIndices(curr => {
+            const next = { ...curr }
+            showcaseCategories.forEach(cat => {
+              if (hoveredCatId !== cat.id) {
+                next[cat.id] = (curr[cat.id] + 1) % cat.products.length
+              }
+            })
+            return next
+          })
+          return 0
+        }
+        return prev + progressStep
+      })
+    }, tickInterval)
+
+    return () => clearInterval(timer)
+  }, [isAutoPlay, hoveredCatId, zoomItem])
+
+  const handlePrev = useCallback((catId: string, totalCount: number) => {
     setActiveIndices(prev => ({
       ...prev,
       [catId]: (prev[catId] - 1 + totalCount) % totalCount,
     }))
-  }
+    setTimerProgress(0)
+  }, [])
 
-  const handleNext = (catId: string, totalCount: number) => {
+  const handleNext = useCallback((catId: string, totalCount: number) => {
     setActiveIndices(prev => ({
       ...prev,
       [catId]: (prev[catId] + 1) % totalCount,
     }))
-  }
+    setTimerProgress(0)
+  }, [])
 
-  const handleSetIndex = (catId: string, index: number) => {
+  const handleSetIndex = useCallback((catId: string, index: number) => {
     setActiveIndices(prev => ({
       ...prev,
       [catId]: index,
     }))
-  }
+    setTimerProgress(0)
+  }, [])
 
   return (
     <>
@@ -518,6 +556,62 @@ export const ShowroomSolutionsSection: React.FC = () => {
                                 )
                               })}
                             </div>
+
+                            {/* Auto-Slide Carousel Controls & Interactive 3D Printer Jump Dots */}
+                            <div className="flex flex-wrap items-center justify-center gap-2 pt-2.5">
+                              <button
+                                type="button"
+                                onClick={() => setIsAutoPlay(p => !p)}
+                                className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900/85 hover:bg-slate-900 text-white text-[11px] font-mono font-semibold shadow-xs transition-colors cursor-pointer select-none"
+                                title={isAutoPlay ? 'Pause Auto-Rotation' : 'Resume Auto-Rotation'}
+                              >
+                                {isAutoPlay ? (
+                                  <>
+                                    <Pause className="w-3 h-3 text-cyan-400" />
+                                    <span>AUTOPLAY ON</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping ml-0.5" />
+                                  </>
+                                ) : (
+                                  <>
+                                    <Play className="w-3 h-3 text-emerald-400" />
+                                    <span>PAUSED</span>
+                                  </>
+                                )}
+                              </button>
+
+                              {/* Progress bar line */}
+                              {isAutoPlay && (
+                                <div className="w-20 sm:w-28 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-cyan-500 rounded-full transition-all duration-75"
+                                    style={{ width: `${Math.round(timerProgress)}%` }}
+                                  />
+                                </div>
+                              )}
+
+                              {/* 5 Product Jump Dots with Model Names */}
+                              <div className="flex items-center space-x-1 sm:space-x-1.5 bg-white/90 border border-slate-200/90 rounded-full px-2 py-0.5 shadow-2xs">
+                                {section.products.map((p, pIdx) => {
+                                  const isActive = pIdx === currentIndex
+                                  return (
+                                    <button
+                                      key={p.id}
+                                      onClick={() => handleSetIndex(section.id, pIdx)}
+                                      className={`flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all cursor-pointer ${
+                                        isActive
+                                          ? 'bg-red-600 text-white shadow-xs scale-105'
+                                          : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                                      }`}
+                                      title={`Jump to ${p.name} ${p.nameAccent || ''}`}
+                                    >
+                                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white' : 'bg-slate-400'}`} />
+                                      <span>0{pIdx + 1}</span>
+                                      <span className="hidden md:inline font-sans font-medium text-[10px]">{p.name}</span>
+                                    </button>
+                                  )
+                                })}
+                              </div>
+                            </div>
                           </div>
 
                           {/* Right Decorative Side Tag & Catalog Link Button */}
@@ -563,7 +657,11 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     {/* ====================================================
                         2. SHOWROOM STAGE: PRODUCTS DISPLAYED SIMULTANEOUSLY
                        ==================================================== */}
-                    <div className="relative z-10 w-full">
+                    <div
+                      className="relative z-10 w-full"
+                      onMouseEnter={() => setHoveredCatId(section.id)}
+                      onMouseLeave={() => setHoveredCatId(null)}
+                    >
                       {/* Left / Right Navigation Chevrons */}
                       <button
                         onClick={() => handlePrev(section.id, totalProducts)}
@@ -638,7 +736,10 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     )}
 
                     {/* Card 1: Main Left Full Card */}
-                    <div className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-300 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative">
+                    <div
+                      key={`card1-${firstProduct.id}`}
+                      className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-500 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative"
+                    >
                       {/* Top Red Glow Gradient */}
                       <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-red-500/10 via-red-500/5 to-transparent rounded-full blur-2xl pointer-events-none -mr-20 -mt-20" />
 
@@ -710,11 +811,35 @@ export const ShowroomSolutionsSection: React.FC = () => {
                         </div>
 
                         {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
-                        <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
+                        <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4 overflow-hidden rounded-2xl">
                           {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
                           <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-cyan-400/35 via-blue-500/25 to-transparent rounded-[100%] blur-md pointer-events-none" />
                           <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-sky-100 rounded-[100%] border border-cyan-200/90 shadow-[0_12px_28px_rgba(56,189,248,0.3)] pointer-events-none" />
                           <div className="absolute bottom-5 inset-x-8 h-5 bg-white/95 rounded-[100%] border border-white shadow-xs pointer-events-none" />
+
+                          {/* Rotating Holographic Build Ring */}
+                          <div className="absolute bottom-3 inset-x-4 h-8 rounded-[100%] border border-cyan-400/50 animate-holographic-pedestal pointer-events-none shadow-[0_0_15px_rgba(56,189,248,0.35)]" />
+
+                          {/* 3D Printing Active Status Pill */}
+                          <div className="absolute top-2 right-2 z-20 flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 text-cyan-300 shadow-md pointer-events-none">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+                            </span>
+                            <span className="text-[9px] font-mono font-bold tracking-wider">PRINTING ACTIVE</span>
+                          </div>
+
+                          {/* Sweeping Laser Scan Line & Extruder Nozzle Head Indicator */}
+                          <div className="absolute inset-x-3 sm:inset-x-6 top-3 bottom-12 pointer-events-none overflow-hidden z-20">
+                            <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_14px_#38bdf8] animate-printing-scan relative">
+                              <div className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center animate-nozzle-travel">
+                                <span className="w-3 h-3 rounded-full bg-cyan-300 shadow-[0_0_12px_#22d3ee] animate-ping opacity-75" />
+                                <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#38bdf8]" />
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-3.5 bg-gradient-to-b from-cyan-300 to-transparent blur-[0.5px]" />
+                              </div>
+                              <div className="absolute top-0 inset-x-0 h-5 bg-gradient-to-b from-cyan-400/20 to-transparent blur-xs pointer-events-none" />
+                            </div>
+                          </div>
 
                           {/* Transparent Product Image sitting directly on the pedestal */}
                           <img
@@ -728,7 +853,10 @@ export const ShowroomSolutionsSection: React.FC = () => {
 
                     {/* Card 2: Main Right Full Card */}
                     {secondProduct && (
-                      <div className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-300 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative">
+                      <div
+                        key={`card2-${secondProduct.id}`}
+                        className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-500 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative"
+                      >
                         {/* Top Glow Gradient */}
                         <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-red-500/10 via-rose-500/5 to-transparent rounded-full blur-2xl pointer-events-none -mr-20 -mt-20" />
 
@@ -800,11 +928,35 @@ export const ShowroomSolutionsSection: React.FC = () => {
                           </div>
 
                           {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
-                          <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
+                          <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4 overflow-hidden rounded-2xl">
                             {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
                             <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-red-500/25 via-rose-400/20 to-transparent rounded-[100%] blur-md pointer-events-none" />
                             <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-rose-50 rounded-[100%] border border-red-200/80 shadow-[0_12px_28px_rgba(244,63,94,0.25)] pointer-events-none" />
                             <div className="absolute bottom-5 inset-x-8 h-5 bg-white/95 rounded-[100%] border border-white shadow-xs pointer-events-none" />
+
+                            {/* Rotating Holographic Build Ring */}
+                            <div className="absolute bottom-3 inset-x-4 h-8 rounded-[100%] border border-red-400/50 animate-holographic-pedestal pointer-events-none shadow-[0_0_15px_rgba(244,63,94,0.35)]" />
+
+                            {/* 3D Printing Active Status Pill */}
+                            <div className="absolute top-2 right-2 z-20 flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-red-500/40 text-red-300 shadow-md pointer-events-none">
+                              <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-400"></span>
+                              </span>
+                              <span className="text-[9px] font-mono font-bold tracking-wider">PRINTING ACTIVE</span>
+                            </div>
+
+                            {/* Sweeping Laser Scan Line & Extruder Nozzle Head Indicator */}
+                            <div className="absolute inset-x-3 sm:inset-x-6 top-3 bottom-12 pointer-events-none overflow-hidden z-20">
+                              <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent shadow-[0_0_14px_#f43f5e] animate-printing-scan relative">
+                                <div className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center animate-nozzle-travel">
+                                  <span className="w-3 h-3 rounded-full bg-rose-300 shadow-[0_0_12px_#fb7185] animate-ping opacity-75" />
+                                  <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#f43f5e]" />
+                                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-3.5 bg-gradient-to-b from-rose-300 to-transparent blur-[0.5px]" />
+                                </div>
+                                <div className="absolute top-0 inset-x-0 h-5 bg-gradient-to-b from-red-400/20 to-transparent blur-xs pointer-events-none" />
+                              </div>
+                            </div>
 
                             {/* Transparent Product Image sitting directly on the pedestal */}
                             <img

@@ -123,44 +123,67 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
           {/* RIGHT: Product Information & Quotation CTA */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-red-600">
-                  {product.brand}
-                </span>
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={handleShare}
-                    className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors relative"
-                    title="Share link"
-                  >
-                    <Share2 className="w-4 h-4" />
-                    {copiedLink && (
-                      <span className="absolute -top-7 right-0 text-[10px] font-bold bg-slate-900 text-white px-2 py-0.5 rounded shadow">
-                        Copied!
+              {/* Brand Logo / Label */}
+              {(() => {
+                const brandLogoMap: Record<string, string> = {
+                  'Gräbert': '/images/brands/grabert.png',
+                  'Trimble': '/images/brands/sketchup.png',
+                  'SketchUp': '/images/brands/sketchup.png',
+                  'Chaos': '/images/brands/chaos.jpg',
+                  'ARES': '/images/brands/ares-cad.png',
+                  'Makerverse': '/images/brands/makerverse.png',
+                }
+                const logoSrc = brandLogoMap[product.brand]
+                return (
+                  <div className="flex items-center justify-between">
+                    {logoSrc ? (
+                      <img
+                        src={logoSrc}
+                        alt={product.brand}
+                        className="h-8 w-auto object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+                        {product.brand}
                       </span>
                     )}
-                  </button>
-                  <button
-                    onClick={() =>
-                      toggleWishlist({
-                        id: product.id,
-                        type: 'product',
-                        name: product.name,
-                        slug: product.slug,
-                        image: product.heroImage,
-                        category: product.category,
-                        isQuoteRequired: true,
-                      })
-                    }
-                    className={`p-2 rounded-lg transition-colors ${
-                      inWishlist ? 'text-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-100'
-                    }`}
-                    title="Save to wishlist"
-                  >
-                    <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
-                  </button>
-                </div>
-              </div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={handleShare}
+                        className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors relative"
+                        title="Share link"
+                      >
+                        <Share2 className="w-4 h-4" />
+                        {copiedLink && (
+                          <span className="absolute -top-7 right-0 text-[10px] font-bold bg-slate-900 text-white px-2 py-0.5 rounded shadow">
+                            Copied!
+                          </span>
+                        )}
+                      </button>
+                      <button
+                        onClick={() =>
+                          toggleWishlist({
+                            id: product.id,
+                            type: 'product',
+                            name: product.name,
+                            slug: product.slug,
+                            image: product.heroImage,
+                            category: product.category,
+                            isQuoteRequired: true,
+                          })
+                        }
+                        className={`p-2 rounded-lg transition-colors ${
+                          inWishlist ? 'text-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-100'
+                        }`}
+                        title="Save to wishlist"
+                      >
+                        <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
+                      </button>
+                    </div>
+                  </div>
+                )
+              })()}
 
               <div>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">

@@ -433,14 +433,34 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3. Right Column: Pratham 6.0 3D Printer & Precision Parts (lg:col-span-3 xl:col-span-3) */}
-            <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
+            {/* 3. Right Column: Pratham 6.0 3D Printer + Brand Logos */}
+            <div className="lg:col-span-3 xl:col-span-3 flex flex-col items-center justify-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl">
                 <img
                   src="/images/showcase/pratham-showcase.png?v=pratham6"
                   alt="Pratham 6.0 Industrial 3D Printer - From Concept to Creation"
                   className="w-full h-auto max-h-[270px] object-contain drop-shadow-lg hover:scale-102 transition-transform duration-500"
                 />
+              </div>
+
+              {/* Brand Partner Logos — compact pill row */}
+              <div className="w-full bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl px-3 py-2.5 shadow-sm">
+                <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-slate-400 text-center mb-2">
+                  Authorized Reseller
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {[
+                    { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp' },
+                    { src: '/images/brands/chaos.jpg', alt: 'Chaos' },
+                    { src: '/images/brands/grabert.png', alt: 'Gräbert' },
+                    { src: '/images/brands/ares-cad.png', alt: 'ARES CAD' },
+                    { src: '/images/brands/makerverse.png', alt: 'Makerverse' },
+                  ].map((b) => (
+                    <div key={b.alt} className="flex items-center justify-center w-14 h-8 rounded-lg bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors p-1">
+                      <img src={b.src} alt={b.alt} className="max-h-full max-w-full object-contain" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -232,7 +232,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center shrink-0 mr-2 xl:mr-4">
             <Link to="/" className="flex items-center group">
               <img
-                src="/logo.png?v=3"
+                src="/logo.png?v=4"
                 alt="LENIVA CAD SOLUTIONS"
                 className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />

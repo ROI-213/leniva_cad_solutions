@@ -211,11 +211,11 @@ export const HomePage: React.FC = () => {
               { src: '/images/brands/ares-cad.png', alt: 'ARES Trinity of CAD Authorized Reseller', h: 60 },
               { src: '/images/brands/makerverse.png', alt: 'Makerverse Technology Partner', h: 44 },
             ].map((logo, idx) => (
-              <div key={idx} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+              <div key={idx} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-75 hover:opacity-100 transition-all duration-300">
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  style={{ height: `${logo.h}px`, maxWidth: '170px', objectFit: 'contain' }}
+                  style={{ height: `${logo.h}px`, maxWidth: '170px', objectFit: 'contain', mixBlendMode: 'multiply' }}
                   loading="lazy"
                 />
               </div>
@@ -456,8 +456,14 @@ export const HomePage: React.FC = () => {
                     { src: '/images/brands/ares-cad.png', alt: 'ARES CAD' },
                     { src: '/images/brands/makerverse.png', alt: 'Makerverse' },
                   ].map((b) => (
-                    <div key={b.alt} className="flex items-center justify-center w-14 h-8 rounded-lg bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors p-1">
-                      <img src={b.src} alt={b.alt} className="max-h-full max-w-full object-contain" loading="lazy" />
+                    <div key={b.alt} className="flex items-center justify-center w-14 h-8 p-1">
+                      <img
+                        src={b.src}
+                        alt={b.alt}
+                        className="max-h-full max-w-full object-contain"
+                        style={{ mixBlendMode: 'multiply' }}
+                        loading="lazy"
+                      />
                     </div>
                   ))}
                 </div>

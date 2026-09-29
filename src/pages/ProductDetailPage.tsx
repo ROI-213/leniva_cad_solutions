@@ -141,6 +141,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
                         src={logoSrc}
                         alt={product.brand}
                         className="h-8 w-auto object-contain"
+                        style={{ mixBlendMode: 'multiply' }}
                         loading="lazy"
                       />
                     ) : (

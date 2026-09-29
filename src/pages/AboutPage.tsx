@@ -105,7 +105,8 @@ export const AboutPage: React.FC = () => {
                 <img
                   src={brand.src}
                   alt={brand.alt}
-                  className="h-12 w-auto max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="h-12 w-auto max-w-full object-contain transition-all duration-300"
+                  style={{ mixBlendMode: 'multiply' }}
                   loading="lazy"
                 />
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">

@@ -210,29 +210,28 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
                 </button>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1 flex-wrap gap-2">
-                <div className="flex items-center space-x-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <div className="flex items-center justify-between text-xs text-slate-600 pt-1 flex-wrap gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <div className="flex items-center space-x-1.5 text-[11px] text-slate-500">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
                   <span>1-Year Official Warranty & PAN-India Field Support</span>
                 </div>
-                <div className="flex items-center space-x-2 text-xs font-semibold">
+                <div className="flex items-center space-x-2 font-semibold">
                   <a
                     href={product.brochureUrl || `/brochures/${product.slug}.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-700 hover:text-red-600 flex items-center space-x-1 transition-colors"
+                    className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 hover:text-red-600 hover:border-red-300 flex items-center space-x-1.5 transition-all shadow-xs cursor-pointer"
                   >
-                    <Eye className="w-3.5 h-3.5 text-slate-500" />
+                    <Eye className="w-3.5 h-3.5 text-blue-600" />
                     <span>View Brochure</span>
                   </a>
-                  <span className="text-slate-300">|</span>
                   <a
                     href={product.brochureUrl || `/brochures/${product.slug}.pdf`}
                     download={`${product.slug}-brochure.pdf`}
-                    className="text-red-600 hover:underline flex items-center space-x-1 transition-colors"
+                    className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center space-x-1.5 transition-all shadow-xs cursor-pointer"
                   >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>Download</span>
+                    <Download className="w-3.5 h-3.5 text-white" />
+                    <span>Download PDF</span>
                   </a>
                 </div>
               </div>

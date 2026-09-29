@@ -148,21 +148,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ forcedSlug
           </div>
         )}
 
-        {/* Bottom CTA Banner */}
-        <div className="bg-slate-950 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-xl font-bold">Have a Project with Tight Tolerances or Deadlines?</h3>
-            <p className="text-xs text-slate-400">
-              Send us your 3D CAD models (STEP/STL/IGES). We sign mutual Non-Disclosure Agreements (NDAs).
-            </p>
-          </div>
-          <button
-            onClick={() => openQuoteModal(`${service.title} Project Submission`)}
-            className="px-6 py-3 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-xl shrink-0 transition-colors"
-          >
-            Upload CAD & Request Quote
-          </button>
-        </div>
+
       </div>
     </div>
   )

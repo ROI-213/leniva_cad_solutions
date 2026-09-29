@@ -112,13 +112,14 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
+                  <div className="flex items-start space-x-3">
                   <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
                     <strong className="block text-slate-900 font-semibold mb-0.5">Operational Hours</strong>
-                    <p className="text-slate-600">{liveSiteSettings.workingHours}</p>
+                    <p className="text-slate-600">Monday – Friday: 9:30 AM – 6:00 PM</p>
+                    <p className="text-slate-600">Saturday: 9:30 AM – 1:30 PM</p>
                   </div>
                 </div>
               </div>
@@ -256,12 +257,10 @@ export const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none focus:ring-2 focus:ring-red-500 bg-white"
                   >
-                    <option value="3D Printers & Hardware">3D Printers (FDM, DLP, LCD, SLA)</option>
-                    <option value="3D Scanners & Metrology">3D Scanners & Optical Metrology</option>
-                    <option value="CAD Software Licenses">CAD Software (SketchUp, Enscape, V-Ray, QuickSurface)</option>
+                    <option value="3D Printers & Hardware">3D Printers (FDM, DLP, LCD)</option>
+                    <option value="3D Scanners">3D Scanners</option>
+                    <option value="CAD Software Licenses">CAD Software (SketchUp, ARES, Enscape, V-Ray, Corona)</option>
                     <option value="Contract 3D Printing Service">Contract 3D Printing Service</option>
-                    <option value="Reverse Engineering Service">Reverse Engineering & Scan-to-CAD Service</option>
-                    <option value="Corporate CAD Training">Corporate CAD Training</option>
                     <option value="Materials & Consumables">Materials, Resins & Spare Parts</option>
                     <option value="Other Technical Query">Other Technical Query</option>
                   </select>

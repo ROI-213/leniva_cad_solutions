@@ -7,6 +7,7 @@ import {
   Share2,
   Heart,
   Download,
+  Eye,
   ShieldCheck,
   CheckCircle2,
   Info,
@@ -209,18 +210,31 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
                 </button>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1 flex-wrap gap-2">
                 <div className="flex items-center space-x-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-500" />
                   <span>1-Year Official Warranty & PAN-India Field Support</span>
                 </div>
-                <button
-                  onClick={() => openQuoteModal(`${product.name} Brochure Request`)}
-                  className="text-red-600 font-semibold hover:underline flex items-center space-x-1"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download Brochure</span>
-                </button>
+                <div className="flex items-center space-x-2 text-xs font-semibold">
+                  <a
+                    href={product.brochureUrl || `/brochures/${product.slug}.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-700 hover:text-red-600 flex items-center space-x-1 transition-colors"
+                  >
+                    <Eye className="w-3.5 h-3.5 text-slate-500" />
+                    <span>View Brochure</span>
+                  </a>
+                  <span className="text-slate-300">|</span>
+                  <a
+                    href={product.brochureUrl || `/brochures/${product.slug}.pdf`}
+                    download={`${product.slug}-brochure.pdf`}
+                    className="text-red-600 hover:underline flex items-center space-x-1 transition-colors"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

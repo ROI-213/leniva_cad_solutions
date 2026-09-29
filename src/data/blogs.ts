@@ -40,19 +40,19 @@ Using specialized reverse engineering software like QuickSurface, cross-sectiona
   },
   {
     id: 'blog-2',
-    slug: 'fdm-vs-sla-vs-dlp',
-    title: 'FDM vs SLA vs DLP: A Technical Guide to Selecting the Right 3D Printing Technology',
+    slug: 'fdm-vs-lcd-vs-dlp',
+    title: 'FDM vs LCD vs DLP: A Technical Guide to Selecting the Right 3D Printing Technology',
     category: '3D Printing',
     readTime: '8 min read',
     date: 'February 28, 2026',
     author: { name: 'Arun Kulkarni', role: 'Additive Applications Specialist' },
     image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-    excerpt: 'A comprehensive engineering comparison of FDM, SLA, and DLP additive technologies across surface finish, mechanical strength, build speed, and cost.',
-    tags: ['FDM', 'SLA', 'DLP', 'Additive Manufacturing', 'Materials'],
+    excerpt: 'A comprehensive engineering comparison of FDM, LCD, and DLP additive technologies across surface finish, mechanical strength, build speed, and cost.',
+    tags: ['FDM', 'LCD', 'DLP', 'Additive Manufacturing', 'Materials'],
     content: `
 ### Selecting the Optimum Additive Technology
 
-Selecting the correct additive manufacturing process is essential for achieving the required dimensional tolerances, surface finish, and mechanical properties. While FDM, SLA, and DLP all build components layer-by-layer, their physical mechanisms and photochemistry differ fundamentally.
+Selecting the correct additive manufacturing process is essential for achieving the required dimensional tolerances, surface finish, and mechanical properties. While FDM, LCD, and DLP all build components layer-by-layer, their physical mechanisms and photochemistry differ fundamentally.
 
 ### 1. FDM (Fused Deposition Modeling)
 - **Mechanism:** A thermoplastic filament is melted in a heated hotend and extruded along programmed toolpaths onto a build bed.
@@ -60,16 +60,16 @@ Selecting the correct additive manufacturing process is essential for achieving 
 - **Limitations:** Visible layer lines; anisotropic mechanical properties (Z-axis tensile strength typically 30-50% lower than X-Y); challenges with micro-filigree.
 - **Best Suited For:** Functional mechanical prototypes, shop-floor jigs, tooling fixtures, structural brackets, and large architectural massing models.
 
-### 2. SLA (Stereolithography)
-- **Mechanism:** A solid-state ultraviolet laser scans across the surface of a vat containing liquid photopolymer resin, selectively curing cross-sections.
-- **Strengths:** Isotropic material behavior; mirror-smooth surface quality comparable to injection molded parts; tight tolerances ($\\pm 0.05\\text{ mm}$); massive industrial single-piece envelopes up to 1100 mm (e.g. ZRapid iSLA 1100).
-- **Limitations:** Requires post-print chemical solvent washing and UV curing chambers; photopolymers can experience UV aging if left uncoated in direct sunlight.
-- **Best Suited For:** High-detail visual prototypes, wind tunnel models, silicone molding patterns, clear fluid-sight components, and full automotive housings.
+### 2. LCD / MSLA (Masked Stereolithography)
+- **Mechanism:** A high-resolution monochrome LCD panel acts as a mask for a UV light source, curing an entire layer of resin simultaneously.
+- **Strengths:** High resolution with fine surface detail; fast layer cure time independent of part count; cost-effective for batch production; ideal for engineering and jewellery applications (EKA GT MAX, EKA F1 16K).
+- **Limitations:** Build area limited by LCD panel size; LCD panels require periodic replacement.
+- **Best Suited For:** Engineering prototypes, jewellery masters, dental models, and production-grade batch resin parts.
 
 ### 3. DLP (Digital Light Processing)
 - **Mechanism:** An industrial digital optical projector flashes entire layer slices simultaneously using micro-mirror arrays (DMD chips).
 - **Strengths:** Consistent cure speed regardless of how many parts are packed onto the plate; micro-precision down to 35 microns; specialty zero-ash castable wax resins for jewellery.
-- **Limitations:** Smaller build envelope compared to large SLA systems.
+- **Limitations:** Smaller build envelope compared to large LCD systems.
 - **Best Suited For:** Direct gold and silver investment casting patterns, dental aligner models, surgical guides, and micro-mechanical precision parts.
     `,
   },

@@ -154,7 +154,7 @@ export const HomePage: React.FC = () => {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-                Industrial FDM, DLP, LCD & SLA 3D printing systems, high-precision metrology scanning, reverse engineering, and Trimble / Chaos certified software across India.
+                Industrial FDM, DLP & LCD 3D printing systems, high-precision 3D scanning, and Trimble / Chaos certified software across India.
               </p>
             </div>
 
@@ -247,7 +247,7 @@ export const HomePage: React.FC = () => {
                         <span className="text-[11px] font-mono font-bold text-slate-400">01</span>
                       </div>
                       <h3 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors mt-2.5 leading-snug">Professional Technology</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, SLA, DLP additive platforms and Trimble / Chaos software.</p>
+                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
                     </div>
                     <div>
                       <div className="w-6 h-0.5 bg-red-500 rounded-full mt-3 mb-2" />
@@ -325,7 +325,7 @@ export const HomePage: React.FC = () => {
                         <span className="text-[11px] font-mono font-bold text-slate-400">01</span>
                       </div>
                       <h3 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors mt-2.5 leading-snug">Professional Technology</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, SLA, DLP additive platforms and Trimble / Chaos software.</p>
+                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
                     </div>
                     <div>
                       <div className="w-6 h-0.5 bg-red-500 rounded-full mt-3 mb-2" />

@@ -34,6 +34,7 @@ export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null)
   const [activeMegaCategory, setActiveMegaCategory] = useState<'fdm' | 'dlp' | 'lcd' | 'scanners'>('fdm')
+  const [activeCADCategory, setActiveCADCategory] = useState<'ares' | 'sketchup' | 'chaos'>('ares')
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null)
 
   const location = useLocation()
@@ -82,7 +83,8 @@ export const Header: React.FC = () => {
         { name: 'Pratham 3.0', slug: 'pratham-3', spec: '300 × 300 × 300 mm' },
         { name: 'Pratham 5.0', slug: 'pratham-5', spec: '500 × 500 × 500 mm' },
         { name: 'Pratham 6.0', slug: 'pratham-6', spec: '600 × 600 × 600 mm' },
-        { name: 'Pratham X', slug: 'pratham-x', spec: '1000 × 1000 × 1000 mm (1 m³)' },
+        { name: 'Pratham X (600)', slug: 'pratham-x-600', spec: '1000 × 1000 × 600 mm' },
+        { name: 'Pratham X (1000)', slug: 'pratham-x', spec: '1000 × 1000 × 1000 mm (1 m³)' },
         { name: 'Pratham 3 Rapid', slug: 'pratham-3-rapid', spec: '500 mm/s High Speed', badge: 'Featured' },
       ],
     },
@@ -114,16 +116,49 @@ export const Header: React.FC = () => {
       label: '3D Scanners',
       icon: Scan,
       route: '/products/3d-scanners',
-      description: 'Metrology-grade optical and laser scanners for reverse engineering and inspection.',
+      description: 'Professional optical and laser scanners for reverse engineering and inspection.',
       products: [
-        { name: '3DeVOK MQ Color Scanner', slug: '3devok-mq', spec: '0.08 mm • 24-Bit Color • Wireless Ready', badge: 'Color 3D' },
-        { name: '3DeVOK MT Metrology Scanner', slug: '3devok-mt', spec: '0.04 mm • 34 Blue + 22 IR Lasers', badge: 'Flagship' },
-        { name: 'EINSCAN 3D Scanner', slug: 'einscan', spec: 'SPV2, TranScan C, Einstar, H2, HX, Pro HD', badge: '7 Models' },
+        { name: '3DeVOK MT', slug: '3devok-mt', spec: '0.04 mm • 34 Blue + 22 IR Lasers', badge: 'Flagship' },
+        { name: '3DeVOK MQ', slug: '3devok-mq', spec: '0.08 mm • 24-Bit Color • Wireless Ready', badge: 'Color 3D' },
+        { name: 'EINSTAR', slug: 'einscan', spec: 'Handheld Structured Light Scanner', badge: 'Portable' },
       ],
     },
   ]
 
 
+
+  const cadSoftwareCategories = [
+    {
+      id: 'ares' as const,
+      label: 'ARES – Graebert',
+      products: [
+        { name: 'ARES Standard', slug: 'ares-standard', spec: 'Affordable 2D/3D CAD' },
+        { name: 'ARES Commander', slug: 'ares-commander', spec: 'Professional DWG-Native CAD' },
+        { name: 'ARES Trinity', slug: 'ares-trinity', spec: 'ARES Kudo + ARES Touch' },
+        { name: 'ARES Mechanical', slug: 'ares-mechanical', spec: 'Mechanical Design CAD' },
+        { name: 'ARES Electrical', slug: 'ares-electrical', spec: 'Electrical Schematics CAD' },
+      ],
+    },
+    {
+      id: 'sketchup' as const,
+      label: 'SketchUp – Trimble',
+      products: [
+        { name: 'SketchUp Pro', slug: 'sketchup', spec: 'Professional 3D Modeling' },
+        { name: 'SketchUp Pro Scan', slug: 'sketchup-scan', spec: 'Scan-to-BIM Workflows' },
+        { name: 'SketchUp Pro Advanced Workflows', slug: 'sketchup-advanced', spec: 'BIM & Advanced Integration' },
+        { name: 'SketchUp Studio', slug: 'sketchup-studio', spec: 'Full Professional Suite' },
+      ],
+    },
+    {
+      id: 'chaos' as const,
+      label: 'Chaos',
+      products: [
+        { name: 'Enscape', slug: 'enscape', spec: 'Real-Time Rendering & VR' },
+        { name: 'V-Ray', slug: 'vray', spec: 'Photorealistic Rendering Engine' },
+        { name: 'Corona', slug: 'corona', spec: 'ArchViz CPU Rendering' },
+      ],
+    },
+  ]
 
   const shopLinks = [
     { name: 'Shop All Products', route: '/shop' },
@@ -353,6 +388,91 @@ export const Header: React.FC = () => {
 
 
 
+            {/* 3. CAD Software Mega Menu */}
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => setActiveMegaMenu('cad-software')}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <Link
+                to="/products/cad-software"
+                className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative"
+              >
+                <Layers className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products/cad-software') || location.pathname.includes('ares') || location.pathname.includes('sketchup') || location.pathname.includes('enscape') || location.pathname.includes('vray') || location.pathname.includes('corona') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                <div className="flex items-center space-x-0.5 mt-1">
+                  <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products/cad-software') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                    CAD Software
+                  </span>
+                  <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
+                </div>
+              </Link>
+
+              {/* CAD Software Mega Menu Flyout */}
+              {activeMegaMenu === 'cad-software' && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50 animate-fade-in w-[820px] max-w-[90vw]">
+                  <div className="w-full bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden grid grid-cols-12">
+                    {/* Left categories column */}
+                    <div className="col-span-4 bg-slate-50 p-4 border-r border-slate-200 space-y-1">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
+                        Software Brands
+                      </div>
+                      {cadSoftwareCategories.map(cat => {
+                        const isSelected = activeCADCategory === cat.id
+                        return (
+                          <div
+                            key={cat.id}
+                            onMouseEnter={() => setActiveCADCategory(cat.id)}
+                            className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
+                              isSelected
+                                ? 'bg-white text-red-600 shadow-sm font-bold border border-slate-200'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
+                            }`}
+                          >
+                            <span className="text-xs">{cat.label}</span>
+                            <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
+                          </div>
+                        )
+                      })}
+                      <div className="pt-3 px-3">
+                        <Link
+                          to="/products/cad-software"
+                          className="block text-center py-2 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                        >
+                          View All Software →
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Right products panel */}
+                    <div className="col-span-8 p-6">
+                      {(() => {
+                        const currentCat = cadSoftwareCategories.find(c => c.id === activeCADCategory)!
+                        return (
+                          <>
+                            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                              <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                              {currentCat.products.map(prod => (
+                                <Link
+                                  key={prod.slug}
+                                  to={`/products/${prod.slug}`}
+                                  className="p-2.5 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50/40 transition-all group"
+                                >
+                                  <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 block">{prod.name}</span>
+                                  <p className="text-[11px] text-slate-500 mt-0.5">{prod.spec}</p>
+                                </Link>
+                              ))}
+                            </div>
+                          </>
+                        )
+                      })()}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* 4. Shop — plain link, no dropdown */}
             <Link
               to="/shop"
@@ -536,6 +656,44 @@ export const Header: React.FC = () => {
               </div>
 
 
+
+              {/* CAD Software Accordion */}
+              <div>
+                <button
+                  onClick={() => toggleMobileSection('cad-software')}
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
+                >
+                  <span>CAD Software</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      expandedMobileSection === 'cad-software' ? 'rotate-180 text-red-600' : ''
+                    }`}
+                  />
+                </button>
+                {expandedMobileSection === 'cad-software' && (
+                  <div className="pl-4 py-1 space-y-2 border-l-2 border-red-100 ml-3">
+                    <Link to="/products/cad-software" className="block text-xs font-bold text-red-600 py-1">
+                      View All CAD Software →
+                    </Link>
+                    {cadSoftwareCategories.map(cat => (
+                      <div key={cat.id} className="pt-1">
+                        <span className="block text-xs font-bold text-slate-800">{cat.label}</span>
+                        <div className="pl-2 pt-1 space-y-1">
+                          {cat.products.map(p => (
+                            <Link
+                              key={p.slug}
+                              to={`/products/${p.slug}`}
+                              className="block text-[11px] text-slate-500 hover:text-slate-900"
+                            >
+                              • {p.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Shop Accordion */}
               <div>

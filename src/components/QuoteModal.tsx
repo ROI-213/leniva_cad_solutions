@@ -187,15 +187,63 @@ export const QuoteModal: React.FC = () => {
                   Product / Service Requirement <span className="text-rose-500">*</span>
                 </label>
                 <div className="relative">
-                  <input
-                    type="text"
+                  <select
                     name="productOrService"
                     required
                     value={formData.productOrService}
                     onChange={handleChange}
-                    placeholder="e.g. Pratham 3 Rapid, 3DeVOK Scanner, or SLA Service"
-                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
-                  />
+                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none bg-white"
+                  >
+                    <option value="">Select product or service...</option>
+                    <optgroup label="FDM 3D Printers">
+                      <option value="Pratham Mini">Pratham Mini</option>
+                      <option value="Pratham Desktop">Pratham Desktop</option>
+                      <option value="Pratham 3.0">Pratham 3.0</option>
+                      <option value="Pratham 5.0">Pratham 5.0</option>
+                      <option value="Pratham 6.0">Pratham 6.0</option>
+                      <option value="Pratham X – 1000 × 1000 × 600 mm">Pratham X – 1000 × 1000 × 600 mm</option>
+                      <option value="Pratham X – 1000 × 1000 × 1000 mm">Pratham X – 1000 × 1000 × 1000 mm</option>
+                      <option value="Pratham 3 Rapid">Pratham 3 Rapid</option>
+                    </optgroup>
+                    <optgroup label="Resin-Based 3D Printers – Engineering">
+                      <option value="EKA XLE">EKA XLE</option>
+                      <option value="EKA GT MAX">EKA GT MAX</option>
+                    </optgroup>
+                    <optgroup label="Resin-Based 3D Printers – Jewellery">
+                      <option value="EKA HT">EKA HT</option>
+                      <option value="EKA XL">EKA XL</option>
+                      <option value="EKA F1 16K">EKA F1 16K</option>
+                    </optgroup>
+                    <optgroup label="3D Scanners">
+                      <option value="3DeVOK MT">3DeVOK MT</option>
+                      <option value="3DeVOK MQ">3DeVOK MQ</option>
+                      <option value="EINSTAR">EINSTAR</option>
+                    </optgroup>
+                    <optgroup label="CAD Software – ARES (Graebert)">
+                      <option value="ARES Standard">ARES Standard</option>
+                      <option value="ARES Commander">ARES Commander</option>
+                      <option value="ARES Trinity">ARES Trinity</option>
+                      <option value="ARES Mechanical">ARES Mechanical</option>
+                      <option value="ARES Electrical">ARES Electrical</option>
+                    </optgroup>
+                    <optgroup label="CAD Software – SketchUp (Trimble)">
+                      <option value="SketchUp Pro">SketchUp Pro</option>
+                      <option value="SketchUp Pro Scan">SketchUp Pro Scan</option>
+                      <option value="SketchUp Pro Advanced Workflows">SketchUp Pro Advanced Workflows</option>
+                      <option value="SketchUp Studio">SketchUp Studio</option>
+                    </optgroup>
+                    <optgroup label="CAD Software – Chaos">
+                      <option value="Enscape">Enscape</option>
+                      <option value="V-Ray">V-Ray</option>
+                      <option value="Corona">Corona</option>
+                    </optgroup>
+                    <optgroup label="Services">
+                      <option value="Contract 3D Printing Service">Contract 3D Printing Service</option>
+                      <option value="Request a Demo">Request a Demo</option>
+                      <option value="Request a Quote">Request a Quote</option>
+                      <option value="Other Enquiry">Other Enquiry</option>
+                    </optgroup>
+                  </select>
                   <Package className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
                 </div>
               </div>

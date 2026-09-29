@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/products/fdm-3d-printers" className="hover:text-red-400 transition-colors">FDM 3D Printers</Link></li>
               <li><Link to="/products/dlp-3d-printers" className="hover:text-red-400 transition-colors">DLP 3D Printers</Link></li>
               <li><Link to="/products/industrial-lcd-3d-printers" className="hover:text-red-400 transition-colors">Industrial LCD Systems</Link></li>
-              <li><Link to="/products/3d-scanners" className="hover:text-red-400 transition-colors">3D Scanners & Metrology</Link></li>
+              <li><Link to="/products/3d-scanners" className="hover:text-red-400 transition-colors">3D Scanners</Link></li>
               <li><Link to="/products/pratham-3-rapid" className="hover:text-red-400 transition-colors">Pratham 3 Rapid (500 mm/s)</Link></li>
               <li><Link to="/products" className="hover:text-red-400 font-semibold text-red-400">View Full Catalog →</Link></li>
             </ul>
@@ -102,10 +102,9 @@ export const Footer: React.FC = () => {
             <h4 className="font-bold text-white uppercase tracking-wider text-xs">CAD Software</h4>
             <ul className="space-y-2 text-slate-400">
               <li><Link to="/products/sketchup" className="hover:text-red-400 transition-colors">SketchUp Pro</Link></li>
-              <li><Link to="/products/enscape" className="hover:text-red-400 transition-colors">Enscape Real-Time VR</Link></li>
-              <li><Link to="/products/vray" className="hover:text-red-400 transition-colors">Chaos V-Ray Engine</Link></li>
-              <li><Link to="/products/corona" className="hover:text-red-400 transition-colors">Chaos Corona ArchViz</Link></li>
-              <li><Link to="/products/quicksurface" className="hover:text-red-400 transition-colors">QuickSurface Scan-to-CAD</Link></li>
+              <li><Link to="/products/enscape" className="hover:text-red-400 transition-colors">Enscape</Link></li>
+              <li><Link to="/products/vray" className="hover:text-red-400 transition-colors">V-Ray</Link></li>
+              <li><Link to="/products/corona" className="hover:text-red-400 transition-colors">Corona</Link></li>
               <li><Link to="/products/cad-software" className="hover:text-red-400 font-semibold text-red-400">Software Suite →</Link></li>
             </ul>
           </div>
@@ -116,11 +115,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-slate-400">
               <li><Link to="/services/3d-printing" className="hover:text-red-400 transition-colors">Contract 3D Printing</Link></li>
               <li><Link to="/services/fdm-3d-printing" className="hover:text-red-400 transition-colors">FDM Tooling & Jigs</Link></li>
-              <li><Link to="/services/sla-3d-printing" className="hover:text-red-400 transition-colors">SLA Mirror Prototypes</Link></li>
-              <li><Link to="/services/3d-scanning" className="hover:text-red-400 transition-colors">On-Site 3D Scanning</Link></li>
-              <li><Link to="/services/reverse-engineering" className="hover:text-red-400 transition-colors">Reverse Engineering</Link></li>
-              <li><Link to="/services/cad-training" className="hover:text-red-400 transition-colors">Corporate CAD Training</Link></li>
-              <li><Link to="/services/3d-visualization" className="hover:text-red-400 transition-colors">3D Rendering Studio</Link></li>
+              <li><Link to="/services" className="hover:text-red-400 font-semibold text-red-400">View All Services →</Link></li>
             </ul>
           </div>
 
@@ -144,7 +139,6 @@ export const Footer: React.FC = () => {
               <li><Link to="/about" className="hover:text-red-400 transition-colors">About Leniva</Link></li>
               <li><Link to="/blog" className="hover:text-red-400 transition-colors">Engineering Blogs</Link></li>
               <li><Link to="/careers" className="hover:text-red-400 transition-colors">Careers at Leniva</Link></li>
-              <li><Link to="/become-a-reseller" className="hover:text-red-400 transition-colors">Become a Partner</Link></li>
               <li><Link to="/contact" className="hover:text-red-400 transition-colors">Contact Us</Link></li>
               <li><Link to="/my-account" className="hover:text-red-400 transition-colors">Client Portal</Link></li>
               <li><Link to="/admin" className="hover:text-blue-400 transition-colors font-semibold">Admin Console</Link></li>

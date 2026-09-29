@@ -221,7 +221,7 @@ export const services: Service[] = [
       { step: 4, title: 'Capstone Project Evaluation', description: 'Review participants’ completed models against industry best practices and standards.' },
       { step: 5, title: 'Certification & Post-Training Support', description: 'Award certification and provide 30-day dedicated Q&A support for live project implementation.' },
     ],
-    technologiesUsed: ['Trimble SketchUp Pro', 'Chaos Enscape & V-Ray', 'QuickSurface Reverse Engineering'],
+    technologiesUsed: ['ARES Graebert CAD', 'Trimble SketchUp Pro', 'Chaos Enscape & V-Ray'],
   },
   {
     id: 'cad-consulting',

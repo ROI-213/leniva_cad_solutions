@@ -106,7 +106,7 @@ export const materialsData: MaterialCategory[] = [
   },
   {
     id: 'resins',
-    title: '3D Printer Resins (SLA / DLP / LCD)',
+    title: '3D Printer Resins (DLP / LCD)',
     category: 'resins',
     description: 'Formulated for high photopolymerization reactivity, low shrinkage, razor-sharp detail reproduction, and specialized industrial requirements.',
     items: [

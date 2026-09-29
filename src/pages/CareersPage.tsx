@@ -8,30 +8,35 @@ export const CareersPage: React.FC = () => {
   const openings = [
     {
       id: 'job-1',
-      title: 'Additive Manufacturing Field Application Engineer',
+      title: 'Technical Support Engineer',
       department: 'Technical Operations',
-      location: 'Bengaluru / Karnataka (On-Site Client Visits)',
+      location: 'Bengaluru / Karnataka (On-Site)',
       type: 'Full-Time',
-      experience: '2–4 Years',
-      description: 'Oversee installation, leveling, calibration, and customer training for industrial FDM and SLA 3D printers. Troubleshoot slicing and material settings.',
+      description: 'Provide installation, calibration, and customer training support for FDM and resin-based 3D printers. Troubleshoot printer settings and material workflows. Freshers and BE students are welcome to apply.',
     },
     {
       id: 'job-2',
-      title: '3D Metrology & Scanning Specialist',
-      department: 'Metrology & Reverse Engineering',
-      location: 'Bengaluru (Hennur Main Road)',
+      title: 'Techno-Commercial Role',
+      department: 'Sales & Business Development',
+      location: 'Bengaluru / Remote India',
       type: 'Full-Time',
-      experience: '1–3 Years',
-      description: 'Operate optical blue-light and handheld scanners. Clean scan data, generate deviation color-maps in Geomagic, and rebuild CAD in QuickSurface.',
+      description: 'Support sales and technical demonstrations for 3D printers, 3D scanners, and CAD software. Assist in client interactions, proposal preparation, and product showcases. Freshers and BE students are welcome to apply.',
     },
     {
       id: 'job-3',
+      title: 'Additive Manufacturing Application Engineer',
+      department: 'Technical Operations',
+      location: 'Bengaluru / Karnataka (On-Site Client Visits)',
+      type: 'Full-Time',
+      description: 'Oversee installation, leveling, calibration, and customer training for industrial FDM and resin 3D printers. Troubleshoot slicing software and material settings for engineering applications.',
+    },
+    {
+      id: 'job-4',
       title: 'CAD Software Technical Sales Specialist',
       department: 'Software Solutions',
       location: 'Bengaluru / Remote India',
       type: 'Full-Time',
-      experience: '2–5 Years',
-      description: 'Consult with architecture firms, interior studios, and engineering teams to demonstrate Trimble SketchUp Pro, Enscape VR, and Chaos V-Ray solutions.',
+      description: 'Consult with architecture firms, interior studios, and engineering teams to demonstrate Trimble SketchUp Pro, ARES, Enscape, and Chaos V-Ray/Corona solutions.',
     },
   ]
 
@@ -45,15 +50,15 @@ export const CareersPage: React.FC = () => {
             Careers at Leniva CAD Solutions
           </h1>
           <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
-            Work at the forefront of digital design, additive manufacturing, and metrology. Join a high-caliber team of engineers empowering India's manufacturing renaissance.
+            Work at the forefront of digital design, additive manufacturing, and CAD software. Join a high-caliber team empowering India's manufacturing renaissance. Freshers and candidates with up to 1 year of experience are welcome to apply.
           </p>
         </div>
 
         {/* Current Job Openings */}
         <div className="space-y-6">
-          <h2 className="text-xl font-bold text-slate-950">Current Engineering Openings</h2>
+          <h2 className="text-xl font-bold text-slate-950">Current Openings</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {openings.map(job => (
               <div
                 key={job.id}
@@ -73,7 +78,7 @@ export const CareersPage: React.FC = () => {
                     </div>
                     <div className="flex items-center space-x-1.5">
                       <Briefcase className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{job.type} • Experience: {job.experience}</span>
+                      <span>{job.type}</span>
                     </div>
                   </div>
                 </div>
@@ -82,7 +87,7 @@ export const CareersPage: React.FC = () => {
                   onClick={() => setSelectedJob(job.title)}
                   className="w-full py-2.5 bg-slate-900 hover:bg-red-600 text-white text-xs font-bold rounded-xl transition-colors text-center"
                 >
-                  Apply for this Role
+                  Apply
                 </button>
               </div>
             ))}

@@ -23,15 +23,15 @@ export const HomePage: React.FC = () => {
     {
       id: 1,
       image: '/hero-banner-1.png',
-      alt: '3D Printing Technology — Leniva CAD Solutions',
-      title: '3D Printing Technology',
+      alt: 'Next Generation 3D Printing Technology — Leniva CAD Solutions',
+      title: 'Next Generation 3D Printing Technology',
       subtitle: 'Powering Creativity, Enabling Industry',
       tag: 'Design • Prototype • Manufacture',
       badge: 'Full Additive Ecosystem',
       primaryBtnText: 'Explore 3D Printers',
       primaryBtnLink: '/products',
       secondaryBtnText: 'Request Quote',
-      quoteSubject: '3D Printing Technology Consultation',
+      quoteSubject: 'Next Generation 3D Printing Technology Consultation',
     },
     {
       id: 2,
@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
                     }`}
                   >
                     <img
-                      src={`${slide.image}?v=tech_print_v2`}
+                      src={`${slide.image}?v=next_gen_v1`}
                       alt={slide.alt}
                       className="w-full h-full object-contain bg-white select-none"
                       loading="eager"

@@ -20,6 +20,7 @@ import {
   Compass,
   Flame,
   MapPin,
+  Clock,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
@@ -71,39 +72,43 @@ export const PrathamMiniPage: React.FC = () => {
     },
   ]
 
-  // Gallery Items
+  // Gallery Items matching real print results
   const galleryPrints = [
     {
-      title: 'Helical Spur Gear Assembly',
-      category: 'Mechanical Engineering',
-      material: 'PETG',
-      layer: '0.15 mm',
-      printTime: '4 hrs 20 min',
-      desc: 'High-tolerance functional teeth with zero backlash for student robotics.',
-    },
-    {
-      title: 'Architectural Column Facade',
-      category: 'Architecture Mockup',
-      material: 'PLA White',
+      title: 'HUMAN HEART MODEL',
+      category: 'EDUCATIONAL MODEL',
+      material: 'PLA',
       layer: '0.1 mm',
-      printTime: '6 hrs 15 min',
-      desc: 'Crisp micro-fluting and sharp perimeter details without stringing.',
+      printTime: '6h 30m',
+      desc: 'A detailed anatomical model printed for educational and learning purposes.',
+      image: '/images/products/pratham-mini-heart.png',
     },
     {
-      title: 'DNA Double Helix STEM Model',
-      category: 'Education Lab',
-      material: 'PLA Multi-color',
+      title: 'FUNCTIONAL GEAR ASSEMBLY',
+      category: 'ENGINEERING PART',
+      material: 'PETG',
       layer: '0.2 mm',
-      printTime: '3 hrs 40 min',
-      desc: 'Hands-on teaching aid for university biology and chemistry demonstrations.',
+      printTime: '4h 15m',
+      desc: 'Strong and precise gear assembly printed for mechanical testing and prototyping.',
+      image: '/images/products/pratham-mini-gear.png',
     },
     {
-      title: 'Drone Arm Motor Mount',
-      category: 'Robotics & Startups',
-      material: 'PLA+ Tough',
+      title: 'ARCHITECTURAL HOUSE MODEL',
+      category: 'DESIGN MODEL',
+      material: 'PLA',
+      layer: '0.1 mm',
+      printTime: '8h 20m',
+      desc: 'A detailed architectural model with clean finish and accurate dimensions.',
+      image: '/images/products/pratham-mini-house.png',
+    },
+    {
+      title: 'PHONE STAND HOLDER',
+      category: 'PROTOTYPE',
+      material: 'PLA',
       layer: '0.2 mm',
-      printTime: '2 hrs 50 min',
-      desc: 'Lightweight vibration-absorbing motor housing with recessed M3 nut pockets.',
+      printTime: '2h 10m',
+      desc: 'A lightweight and durable phone stand printed for everyday use and functional testing.',
+      image: '/images/products/pratham-mini-stand.png',
     },
   ]
 
@@ -695,40 +700,90 @@ export const PrathamMiniPage: React.FC = () => {
       {/* ====================================================
           7. REAL-WORLD PRINTING & EDUCATIONAL GALLERY
          ==================================================== */}
-      <section ref={galleryRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+      {/* ====================================================
+          7. REAL-WORLD PRINTING & EDUCATIONAL GALLERY
+         ==================================================== */}
+      <section ref={galleryRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
-            — Real Print Results —
+            — REAL PRINT RESULTS —
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
             See What Pratham Mini Can Create
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500">
-            From precision engineering gears to student educational models and architectural mockups.
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            From prototypes to learning projects, Pratham Mini brings ideas to life with precision and reliability.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {galleryPrints.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-3"
+              className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
-              <div className="aspect-video bg-slate-100 rounded-xl flex items-center justify-center border border-slate-200/80">
-                <Box className="w-8 h-8 text-slate-400" />
+              <div className="space-y-3.5">
+                {/* Real 3D Printed Photo */}
+                <div className="aspect-16/10 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Classification & Headings */}
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                    {item.category}
+                  </span>
+                  <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <span className="text-[10px] font-mono font-bold uppercase text-red-600 block">
-                  {item.category}
-                </span>
-                <h3 className="text-sm font-bold text-slate-950 mt-0.5">{item.title}</h3>
-                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{item.desc}</p>
-              </div>
+              {/* Bottom 3 metrics matching 2nd reference image */}
+              <div className="pt-3.5 mt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-left">
+                <div className="flex items-center space-x-1.5">
+                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                    <Layers className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
+                      {item.material}
+                    </span>
+                    <span className="text-[9px] text-slate-400 block font-medium">Material</span>
+                  </div>
+                </div>
 
-              <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-1 text-[10px] font-mono text-slate-600">
-                <div>Material: <span className="font-bold text-slate-900">{item.material}</span></div>
-                <div>Layer: <span className="font-bold text-slate-900">{item.layer}</span></div>
+                <div className="flex items-center space-x-1.5">
+                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                    <Clock className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
+                      {item.printTime}
+                    </span>
+                    <span className="text-[9px] text-slate-400 block font-medium">Print Time</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-1.5">
+                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                    <Layers className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
+                      {item.layer}
+                    </span>
+                    <span className="text-[9px] text-slate-400 block font-medium">Layer Height</span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

@@ -20,7 +20,6 @@ import {
   Compass,
   Flame,
   MapPin,
-  Clock,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
@@ -744,45 +743,6 @@ export const PrathamMiniPage: React.FC = () => {
                   <p className="text-xs text-slate-500 leading-relaxed mt-1">
                     {item.desc}
                   </p>
-                </div>
-              </div>
-
-              {/* Bottom 3 metrics matching 2nd reference image */}
-              <div className="pt-3.5 mt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-left">
-                <div className="flex items-center space-x-1.5">
-                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
-                    <Layers className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
-                      {item.material}
-                    </span>
-                    <span className="text-[9px] text-slate-400 block font-medium">Material</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-1.5">
-                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
-                    <Clock className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
-                      {item.printTime}
-                    </span>
-                    <span className="text-[9px] text-slate-400 block font-medium">Print Time</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-1.5">
-                  <div className="w-6 h-6 rounded-md bg-red-50 text-red-600 flex items-center justify-center shrink-0">
-                    <Layers className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] font-bold text-slate-900 block leading-tight font-mono">
-                      {item.layer}
-                    </span>
-                    <span className="text-[9px] text-slate-400 block font-medium">Layer Height</span>
-                  </div>
                 </div>
               </div>
             </div>

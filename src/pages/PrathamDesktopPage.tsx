@@ -42,7 +42,6 @@ export const PrathamDesktopPage: React.FC = () => {
   const introRef = useRef<HTMLDivElement>(null)
   const performanceRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
@@ -374,9 +373,6 @@ export const PrathamDesktopPage: React.FC = () => {
             </button>
             <button onClick={() => scrollTo(featuresRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Features
-            </button>
-            <button onClick={() => scrollTo(videoRef)} className="hover:text-red-600 transition-colors cursor-pointer">
-              Videos
             </button>
             <button onClick={() => scrollTo(galleryRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Gallery
@@ -1225,53 +1221,7 @@ export const PrathamDesktopPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          6. VIDEO SECTION: VIDEOS OF PRATHAM DESKTOP 3D PRINTER
-         ==================================================== */}
-      <section ref={videoRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Live Demonstration
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            VIDEOS OF PRATHAM DESKTOP 3D PRINTER
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Watch the Pratham Desktop in action across precision calibration, continuous long-duration printing, and
-            finished prototype extraction.
-          </p>
-        </div>
-
-        <div className="relative bg-slate-950 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl aspect-video max-h-[500px] flex items-center justify-center group">
-          <img
-            src="/images/banners/promo-banner-1-hd.png"
-            alt="Pratham Desktop Video Demo Poster"
-            className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-
-          {/* Interactive Play Button */}
-          <div className="relative z-10 text-center space-y-4">
-            <button
-              onClick={() => setVideoModalOpen(true)}
-              className="w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center mx-auto shadow-2xl hover:scale-110 hover:bg-red-500 transition-all cursor-pointer"
-              aria-label="Play Pratham Desktop Video Demonstration"
-            >
-              <Play className="w-8 h-8 fill-current ml-1" />
-            </button>
-            <div className="space-y-1">
-              <span className="text-lg font-bold text-white block">
-                PRATHAM DESKTOP: INDUSTRIAL FDM WORKFLOW & DEMO
-              </span>
-              <span className="text-xs font-mono text-slate-400 block">
-                Full Machine Walkthrough · Calibrations · Multi-Material Prints (3:45)
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================
-          7. WORK / PRINT SHOWCASE: WORK FROM PRATHAM DESKTOP 3D PRINTER
+          6. WORK / PRINT SHOWCASE: WORK FROM PRATHAM DESKTOP 3D PRINTER
          ==================================================== */}
       <section ref={galleryRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">

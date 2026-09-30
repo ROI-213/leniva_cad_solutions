@@ -435,11 +435,11 @@ export const HomePage: React.FC = () => {
 
             {/* 3. Right Column: Pratham 6.0 3D Printer */}
             <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
-              <div className="relative w-full overflow-hidden rounded-2xl">
+              <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: '270px' }}>
                 <img
                   src="/images/showcase/pratham-showcase.png?v=pratham6"
                   alt="Pratham 6.0 Industrial 3D Printer - From Concept to Creation"
-                  className="w-full h-auto max-h-[270px] object-contain drop-shadow-lg hover:scale-102 transition-transform duration-500"
+                  className="w-full h-full object-cover object-right drop-shadow-lg hover:scale-102 transition-transform duration-500"
                 />
               </div>
             </div>

@@ -28,7 +28,6 @@ export const PrathamMiniPage: React.FC = () => {
 
   // Interactive State
   const [activeSpecTab, setActiveSpecTab] = useState<'print' | 'motion' | 'hardware' | 'software'>('print')
-  const [layerSlider, setLayerSlider] = useState<number>(0.1) // 0.1 to 0.3 mm
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   // Section Refs for Sticky Nav
@@ -492,7 +491,7 @@ export const PrathamMiniPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Feature 03: Layer Resolution (Interactive Slider) */}
+          {/* Feature 03: Layer Resolution (Static Display) */}
           <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono font-bold text-red-600">Feature 03</span>
@@ -503,21 +502,13 @@ export const PrathamMiniPage: React.FC = () => {
               <p className="text-xs text-slate-500 font-semibold mt-0.5">Precision at Every Layer</p>
             </div>
 
-            <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
-              <div className="flex justify-between items-center text-xs font-mono font-bold">
-                <span className="text-slate-500">Selected Height:</span>
-                <span className="text-blue-600 text-sm">{layerSlider.toFixed(2)} mm</span>
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2 font-mono text-center">
+              <div className="text-2xl font-black text-blue-600">0.1 – 0.3 mm</div>
+              <div className="text-[10px] font-bold text-slate-600">100 – 300 Microns Layer Precision</div>
+              <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-blue-600 h-full w-full rounded-full" />
               </div>
-              <input
-                type="range"
-                min="0.1"
-                max="0.3"
-                step="0.05"
-                value={layerSlider}
-                onChange={(e) => setLayerSlider(parseFloat(e.target.value))}
-                className="w-full accent-blue-600 cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-slate-400 font-mono">
+              <div className="flex justify-between text-[10px] text-slate-400 font-sans">
                 <span>0.1 mm (Ultra Detail)</span>
                 <span>0.3 mm (Fast Draft)</span>
               </div>

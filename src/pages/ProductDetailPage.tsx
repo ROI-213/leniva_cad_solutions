@@ -15,6 +15,8 @@ import {
 import { products } from '../data/products'
 import { ProductCard } from '../components/ProductCard'
 import { useApp } from '../context/AppContext'
+import PrathamDesktopPage from './PrathamDesktopPage'
+import PrathamMiniPage from './PrathamMiniPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -37,6 +39,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
     'pratham-3.0': 'pratham-3',
   }
   const resolvedSlug = slug ? (slugAliases[slug.toLowerCase()] || slug.toLowerCase()) : ''
+
+  // Delegate dedicated product pages if accessed through this generic component
+  if (resolvedSlug === 'pratham-desktop') {
+    return <PrathamDesktopPage />
+  }
+  if (resolvedSlug === 'pratham-mini') {
+    return <PrathamMiniPage />
+  }
 
   // Find product by slug or id or alias
   const product = products.find(

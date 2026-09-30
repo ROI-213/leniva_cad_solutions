@@ -96,12 +96,15 @@ export default function App() {
 
             {/* Dedicated Product Pages */}
             <Route path="/products/pratham-mini" element={<PrathamMiniPage />} />
+            <Route path="/product/pratham-mini" element={<PrathamMiniPage />} />
             <Route path="/pratham-mini" element={<PrathamMiniPage />} />
             <Route path="/products/pratham-desktop" element={<PrathamDesktopPage />} />
+            <Route path="/product/pratham-desktop" element={<PrathamDesktopPage />} />
             <Route path="/pratham-desktop" element={<PrathamDesktopPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />
+            <Route path="/product/:slug" element={<ProductDetailPage />} />
 
             {/* 3. Services */}
             <Route path="/services" element={<ServicesPage />} />

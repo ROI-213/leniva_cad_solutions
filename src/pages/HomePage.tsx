@@ -211,11 +211,11 @@ export const HomePage: React.FC = () => {
               { src: '/images/brands/ares-cad.png', alt: 'ARES Trinity of CAD Authorized Reseller', h: 60 },
               { src: '/images/brands/makerverse.png', alt: 'Makerverse Technology Partner', h: 44 },
             ].map((logo, idx) => (
-              <div key={idx} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-75 hover:opacity-100 transition-all duration-300">
+              <div key={idx} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  style={{ height: `${logo.h}px`, maxWidth: '170px', objectFit: 'contain', mixBlendMode: 'multiply' }}
+                  style={{ height: `${logo.h}px`, maxWidth: '170px', objectFit: 'contain' }}
                   loading="lazy"
                 />
               </div>
@@ -433,40 +433,14 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3. Right Column: Pratham 6.0 3D Printer + Brand Logos */}
-            <div className="lg:col-span-3 xl:col-span-3 flex flex-col items-center justify-center gap-3">
+            {/* 3. Right Column: Pratham 6.0 3D Printer */}
+            <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
               <div className="relative w-full overflow-hidden rounded-2xl">
                 <img
                   src="/images/showcase/pratham-showcase.png?v=pratham6"
                   alt="Pratham 6.0 Industrial 3D Printer - From Concept to Creation"
                   className="w-full h-auto max-h-[270px] object-contain drop-shadow-lg hover:scale-102 transition-transform duration-500"
                 />
-              </div>
-
-              {/* Brand Partner Logos — compact pill row */}
-              <div className="w-full bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl px-3 py-2.5 shadow-sm">
-                <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-slate-400 text-center mb-2">
-                  Authorized Reseller
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  {[
-                    { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp' },
-                    { src: '/images/brands/chaos.jpg', alt: 'Chaos' },
-                    { src: '/images/brands/grabert.png', alt: 'Gräbert' },
-                    { src: '/images/brands/ares-cad.png', alt: 'ARES CAD' },
-                    { src: '/images/brands/makerverse.png', alt: 'Makerverse' },
-                  ].map((b) => (
-                    <div key={b.alt} className="flex items-center justify-center w-14 h-8 p-1">
-                      <img
-                        src={b.src}
-                        alt={b.alt}
-                        className="max-h-full max-w-full object-contain"
-                        style={{ mixBlendMode: 'multiply' }}
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

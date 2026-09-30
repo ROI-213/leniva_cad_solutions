@@ -32,6 +32,7 @@ import DevokMQPage from './pages/DevokMQPage'
 import DevokMTPage from './pages/DevokMTPage'
 import EinscanPage from './pages/EinscanPage'
 import PrathamMiniPage from './pages/PrathamMiniPage'
+import PrathamDesktopPage from './pages/PrathamDesktopPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -96,6 +97,8 @@ export default function App() {
             {/* Dedicated Product Pages */}
             <Route path="/products/pratham-mini" element={<PrathamMiniPage />} />
             <Route path="/pratham-mini" element={<PrathamMiniPage />} />
+            <Route path="/products/pratham-desktop" element={<PrathamDesktopPage />} />
+            <Route path="/pratham-desktop" element={<PrathamDesktopPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

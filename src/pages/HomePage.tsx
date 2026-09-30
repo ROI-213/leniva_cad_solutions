@@ -494,10 +494,6 @@ export const HomePage: React.FC = () => {
                 className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-slate-200 hidden sm:block">
-              <div className="text-xl font-black text-slate-950">PAN-India</div>
-              <div className="text-[11px] text-slate-500 font-medium">Installation & Field Network</div>
-            </div>
           </div>
         </div>
       </section>

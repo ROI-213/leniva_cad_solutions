@@ -31,6 +31,7 @@ import ScannersCategoryPage from './pages/ScannersCategoryPage'
 import DevokMQPage from './pages/DevokMQPage'
 import DevokMTPage from './pages/DevokMTPage'
 import EinscanPage from './pages/EinscanPage'
+import PrathamMiniPage from './pages/PrathamMiniPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -92,7 +93,11 @@ export default function App() {
               element={<MaterialsPage forcedCategory="accessories" />}
             />
 
-            {/* Universal Product Detail (handles pratham-mini, pratham-3-rapid, eka-ht, einscan, sketchup, etc.) */}
+            {/* Dedicated Product Pages */}
+            <Route path="/products/pratham-mini" element={<PrathamMiniPage />} />
+            <Route path="/pratham-mini" element={<PrathamMiniPage />} />
+
+            {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />
 
             {/* 3. Services */}

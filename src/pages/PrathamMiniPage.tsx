@@ -19,7 +19,6 @@ import {
   Usb,
   Compass,
   Flame,
-  MapPin,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
@@ -742,35 +741,6 @@ export const PrathamMiniPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          8. INSTALLATIONS ACROSS INDIA
-         ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl space-y-6">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-500 font-mono">
-              — Trusted Nationwide —
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Pratham Mini Across India
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Installed in leading universities, technical colleges, STEM schools, innovation labs, and industrial research facilities across India.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 pt-2 text-center text-xs font-mono">
-            {['Bengaluru', 'Mumbai', 'Pune', 'Chennai', 'Delhi-NCR', 'Ahmedabad', 'Hyderabad'].map((city) => (
-              <div key={city} className="bg-white/5 p-3 rounded-xl border border-white/10 space-y-1">
-                <MapPin className="w-3.5 h-3.5 text-red-500 mx-auto" />
-                <span className="font-bold text-white block">{city}</span>
-                <span className="text-[9px] text-slate-400 block">Verified Active Labs</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================
           9. SERVICE, TRAINING & SUPPORT
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -896,45 +866,6 @@ export const PrathamMiniPage: React.FC = () => {
               </div>
             )
           })}
-        </div>
-      </section>
-
-      {/* ====================================================
-          12. FINAL CONVERSION SECTION
-         ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-3 max-w-2xl">
-            <span className="px-3 py-1 bg-red-500/20 text-red-400 text-xs font-mono font-bold uppercase tracking-wider rounded-md border border-red-500/30">
-              Ready to Upgrade Your Prototyping?
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
-              Ready to Bring 3D Printing Into Your Lab?
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Get expert engineering guidance, institutional quotation discounts, and live sample prints for your school, college, startup, or design office.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
-            <button
-              onClick={() => openQuoteModal('Pratham Mini Final Purchase Quote')}
-              className="px-6 py-3.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-xl shadow-lg transition-colors flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              <span>Request a Quote</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <a
-              href="/brochures/pratham-mini.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl border border-white/20 transition-colors flex items-center justify-center space-x-2"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download Brochure</span>
-            </a>
-          </div>
         </div>
       </section>
     </div>

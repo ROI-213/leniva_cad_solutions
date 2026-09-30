@@ -344,7 +344,7 @@ export const AdvancedScanningTechCinematic: React.FC = () => {
       {/* ====================================================
           STICKY VIEWPORT CONTAINER (PINS IN PLACE DURING SCROLL)
          ==================================================== */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="sticky top-[72px] h-[calc(100vh-72px)] w-full flex flex-col justify-between overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Subtle Ambient Industrial Lighting */}
         <div
           className="absolute inset-0 opacity-[0.045] pointer-events-none"

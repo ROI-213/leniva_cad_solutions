@@ -9,6 +9,14 @@ import {
   Settings,
   Layers,
   Headphones,
+  GraduationCap,
+  BookOpen,
+  School,
+  Lightbulb,
+  Palette,
+  Building2,
+  Wrench,
+  Bot,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { industriesServed } from '../data/siteConfig'
@@ -546,6 +554,233 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================
+          KEY APPLICATIONS: SEE WHAT PRATHAM MINI CAN CREATE
+         ==================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
+            — KEY APPLICATIONS —
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+            See What Pratham Mini Can Create
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            From prototypes to learning projects, Pratham Mini helps students explore real-world ideas with hands-on 3D printing.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Card 1: Educational Models */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                <img
+                  src="/images/showcase/app-stem-models.png"
+                  alt="Educational Models — Pratham Mini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  EDUCATIONAL MODELS
+                </span>
+                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                  MAKE LEARNING VISUAL & ENGAGING
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                  3D printed models help students understand complex concepts in science, math and engineering.
+                </p>
+              </div>
+
+              {/* Tag row */}
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+                <span className="inline-flex items-center space-x-1">
+                  <GraduationCap className="w-3.5 h-3.5 text-slate-500" />
+                  <span>STEM Education</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <BookOpen className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Hands-on Learning</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <School className="w-3.5 h-3.5 text-slate-500" />
+                  <span>School Projects</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-4 mt-3 border-t border-slate-100">
+              <Link
+                to="/products/pratham-mini"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+              >
+                <span>LEARN MORE</span>
+                <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 2: Prototyping Projects */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                <img
+                  src="/images/showcase/app-prototyping-projects.png"
+                  alt="Prototyping Projects — Pratham Mini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  PROTOTYPING PROJECTS
+                </span>
+                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                  TURN IDEAS INTO TANGIBLE MODELS
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                  Students and innovators can quickly create prototypes to test ideas and improve designs.
+                </p>
+              </div>
+
+              {/* Tag row */}
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+                <span className="inline-flex items-center space-x-1">
+                  <Lightbulb className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Idea Validation</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Settings className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Design Iteration</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Box className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Prototyping</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-4 mt-3 border-t border-slate-100">
+              <Link
+                to="/products/pratham-mini"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+              >
+                <span>LEARN MORE</span>
+                <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 3: Creative Art */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                <img
+                  src="/images/showcase/app-creative-art.png"
+                  alt="Creative Art — Pratham Mini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  CREATIVE ART
+                </span>
+                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                  BRING IDEAS TO LIFE WITH 3D PRINTING
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                  From architectural models to artistic creations, explore creativity without limits.
+                </p>
+              </div>
+
+              {/* Tag row */}
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+                <span className="inline-flex items-center space-x-1">
+                  <Palette className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Art & Design</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Building2 className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Architecture</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Box className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Creative Projects</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-4 mt-3 border-t border-slate-100">
+              <Link
+                to="/products/pratham-mini"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+              >
+                <span>LEARN MORE</span>
+                <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 4: Functional Components */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                <img
+                  src="/images/showcase/app-functional-components.png"
+                  alt="Functional Components — Pratham Mini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  FUNCTIONAL COMPONENTS
+                </span>
+                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                  BUILD REAL-WORLD PROJECTS
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                  Create functional parts, tools and mechanical components for engineering and robotics projects.
+                </p>
+              </div>
+
+              {/* Tag row */}
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+                <span className="inline-flex items-center space-x-1">
+                  <Wrench className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Functional Parts</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Settings className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Mechanical Components</span>
+                </span>
+                <span className="inline-flex items-center space-x-1">
+                  <Bot className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Robotics Projects</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-4 mt-3 border-t border-slate-100">
+              <Link
+                to="/products/pratham-mini"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+              >
+                <span>LEARN MORE</span>
+                <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

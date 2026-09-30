@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
                     }`}
                   >
                     <img
-                      src={`${slide.image}?v=tech_master_1`}
+                      src={`${slide.image}?v=tech_print_v2`}
                       alt={slide.alt}
                       className="w-full h-full object-contain bg-white select-none"
                       loading="eager"
@@ -102,27 +102,6 @@ export const HomePage: React.FC = () => {
                         transform: 'translateZ(0)',
                       }}
                     />
-
-                    {/* Precise Vector Typography for Slide 1 (3D TECHNOLOGY) */}
-                    {slide.id === 1 && (
-                      <svg
-                        viewBox="0 0 1024 341"
-                        className="absolute inset-0 w-full h-full pointer-events-none select-none z-10"
-                        style={{ overflow: 'visible' }}
-                      >
-                        <text
-                          x="114"
-                          y="159"
-                          fill="#0c1e3d"
-                          fontFamily="'Montserrat', 'Inter', system-ui, -apple-system, sans-serif"
-                          fontWeight="900"
-                          fontSize="43"
-                          letterSpacing="0.5"
-                        >
-                          TECHNOLOGY
-                        </text>
-                      </svg>
-                    )}
                   </div>
                 )
               })}

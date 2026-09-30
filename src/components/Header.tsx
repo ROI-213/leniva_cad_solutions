@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   Phone,
@@ -38,6 +38,20 @@ export const Header: React.FC = () => {
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null)
 
   const location = useLocation()
+  const headerRef = useRef<HTMLElement>(null)
+
+  // Dynamically publish exact header height to CSS variable --site-header-height
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight
+        document.documentElement.style.setProperty('--site-header-height', `${height}px`)
+      }
+    }
+    updateHeaderHeight()
+    window.addEventListener('resize', updateHeaderHeight)
+    return () => window.removeEventListener('resize', updateHeaderHeight)
+  }, [])
 
   // Track scroll for sticky shadow
   useEffect(() => {
@@ -174,7 +188,7 @@ export const Header: React.FC = () => {
   }
 
   return (
-    <header className="w-full bg-slate-50/95 backdrop-blur-md z-40 sticky top-0 transition-all">
+    <header ref={headerRef} className="w-full bg-slate-50/95 backdrop-blur-md z-50 sticky top-0 transition-all">
       {/* 1. TOP UTILITY STRIP (Light matching user mockup) */}
       <div className="border-b border-slate-200/70 text-xs text-slate-600 py-1.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">

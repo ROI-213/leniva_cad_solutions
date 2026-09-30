@@ -317,7 +317,7 @@ export const ScannersCategoryPage: React.FC = () => {
       {/* ====================================================
           CATEGORY SUB-NAVBAR & BREADCRUMBS
          ==================================================== */}
-      <div className="bg-white border-b border-slate-200/80 sticky top-[73px] z-30 shadow-xs">
+      <div className="bg-white border-b border-slate-200/80 sticky top-[var(--site-header-height,118px)] z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between text-xs">
           {/* Breadcrumb Navigation */}
           <nav className="flex items-center space-x-2 text-slate-500">

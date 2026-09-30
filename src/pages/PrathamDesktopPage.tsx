@@ -351,7 +351,7 @@ export const PrathamDesktopPage: React.FC = () => {
       {/* ====================================================
           1. STICKY PRODUCT NAVIGATION BAR
          ==================================================== */}
-      <div className="sticky top-[72px] z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all">
+      <div className="sticky top-[var(--site-header-height,118px)] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-sm font-black text-slate-950 tracking-tight">PRATHAM DESKTOP</span>

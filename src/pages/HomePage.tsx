@@ -433,7 +433,7 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3. Right Column: Pratham 6.0 3D Printer */}
+            {/* 3. Right Column: Pratham 6.0 3D Printer with Brand Logos Overlay */}
             <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
               <div className="relative w-full overflow-hidden rounded-2xl">
                 <img
@@ -441,6 +441,25 @@ export const HomePage: React.FC = () => {
                   alt="Pratham 6.0 Industrial 3D Printer - From Concept to Creation"
                   className="w-full h-auto max-h-[270px] object-contain drop-shadow-lg hover:scale-102 transition-transform duration-500"
                 />
+                {/* Brand Logos Overlay — bottom of image */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white/85 backdrop-blur-sm px-2.5 py-2 rounded-b-2xl border-t border-slate-200/60">
+                  <p className="text-[8px] font-bold uppercase tracking-[0.18em] text-slate-400 text-center mb-1.5">
+                    Authorized Reseller
+                  </p>
+                  <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                    {[
+                      { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp' },
+                      { src: '/images/brands/chaos.jpg', alt: 'Chaos' },
+                      { src: '/images/brands/grabert.png', alt: 'Gräbert' },
+                      { src: '/images/brands/ares-cad.png', alt: 'ARES CAD' },
+                      { src: '/images/brands/makerverse.png', alt: 'Makerverse' },
+                    ].map((b) => (
+                      <div key={b.alt} className="flex items-center justify-center w-12 h-7 rounded-md bg-white border border-slate-100 p-0.5">
+                        <img src={b.src} alt={b.alt} className="max-h-full max-w-full object-contain" loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

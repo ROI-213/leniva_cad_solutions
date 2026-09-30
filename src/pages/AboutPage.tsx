@@ -78,43 +78,6 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Authorized Brand Partners ── */}
-        <div className="space-y-6">
-          <div className="text-center space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">Official Authorizations</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Authorized Reseller &amp; Technology Partners
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto">
-              Leniva CAD Solutions holds official authorized reseller and technology partner status from leading global engineering software and hardware brands.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {[
-              { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp Authorized Reseller', name: 'Trimble SketchUp' },
-              { src: '/images/brands/chaos.jpg', alt: 'Chaos Authorized Reseller', name: 'Chaos (V-Ray / Enscape)' },
-              { src: '/images/brands/grabert.png', alt: 'Gräbert Authorized Reseller', name: 'Gräbert' },
-              { src: '/images/brands/ares-cad.png', alt: 'ARES Trinity of CAD Authorized Reseller', name: 'ARES CAD' },
-              { src: '/images/brands/makerverse.png', alt: 'Makerverse Technology Partner', name: 'Makerverse' },
-            ].map((brand) => (
-              <div
-                key={brand.name}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-5 group"
-              >
-                <img
-                  src={brand.src}
-                  alt={brand.alt}
-                  className="h-12 w-auto max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                  loading="lazy"
-                />
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">
-                  {brand.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Technology Portfolio & Solutions Grid */}
         <div className="space-y-6">

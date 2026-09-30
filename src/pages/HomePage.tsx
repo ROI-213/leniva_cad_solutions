@@ -207,45 +207,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          AUTHORIZED BRAND PARTNERS LOGO STRIP
-         ==================================================== */}
-      <section className="w-full py-5 border-y border-slate-100 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-4 text-center">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-            Authorized Reseller &amp; Technology Partner
-          </span>
-        </div>
-        <div className="relative w-full overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
-          <div className="flex w-max animate-marquee-cards items-center gap-14 px-8 py-2">
-            {[
-              { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp Authorized Reseller', h: 44 },
-              { src: '/images/brands/chaos.jpg', alt: 'Chaos Authorized Reseller', h: 44 },
-              { src: '/images/brands/grabert.png', alt: 'Gräbert Authorized Reseller', h: 44 },
-              { src: '/images/brands/ares-cad.png', alt: 'ARES Trinity of CAD Authorized Reseller', h: 60 },
-              { src: '/images/brands/makerverse.png', alt: 'Makerverse Technology Partner', h: 44 },
-              { src: '/images/brands/sketchup.png', alt: 'Trimble SketchUp Authorized Reseller', h: 44 },
-              { src: '/images/brands/chaos.jpg', alt: 'Chaos Authorized Reseller', h: 44 },
-              { src: '/images/brands/grabert.png', alt: 'Gräbert Authorized Reseller', h: 44 },
-              { src: '/images/brands/ares-cad.png', alt: 'ARES Trinity of CAD Authorized Reseller', h: 60 },
-              { src: '/images/brands/makerverse.png', alt: 'Makerverse Technology Partner', h: 44 },
-            ].map((logo, idx) => (
-              <div key={idx} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  style={{ height: `${logo.h}px`, maxWidth: '170px', objectFit: 'contain' }}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ====================================================
       {/* ====================================================
           SECTION 2: IDEAS TODAY / REAL SOLUTIONS TOMORROW
           EXACT REPLICA OF USER DESIGN MOCKUP

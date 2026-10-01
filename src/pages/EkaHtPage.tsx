@@ -474,7 +474,7 @@ export const EkaHtPage: React.FC = () => {
           >
             <div className="aspect-16/9 bg-slate-900 relative overflow-hidden">
               <img
-                src="/images/showcase/showcase-1.png"
+                src="/images/jewelry/jewelry-filigree-ring.jpg"
                 alt="EKA HT Jewelry 3D Printing Demo"
                 className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
               />
@@ -503,7 +503,7 @@ export const EkaHtPage: React.FC = () => {
           >
             <div className="aspect-16/9 bg-slate-900 relative overflow-hidden">
               <img
-                src="/images/showcase/showcase-2.png"
+                src="/images/jewelry/jewelry-casting-tree.jpg"
                 alt="EKA HT Filter and Heater Operation"
                 className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
               />

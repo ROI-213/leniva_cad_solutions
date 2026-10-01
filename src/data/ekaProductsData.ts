@@ -446,7 +446,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'Filigree Diamond Solitaire Ring Pattern',
     category: 'rings',
     material: 'Direct Castable Wax Resin',
-    image: '/images/showcase/showcase-1.png',
+    image: '/images/jewelry/jewelry-filigree-ring.jpg',
     notes: 'Micro-prong setting claws printed with zero ash residue burn-out.',
   },
   {
@@ -454,7 +454,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'Intricate Traditional Indian Bangle',
     category: 'bangles',
     material: 'High-Precision Castable Wax',
-    image: '/images/showcase/showcase-2.png',
+    image: '/images/jewelry/jewelry-indian-bangle.jpg',
     notes: 'Complex floral lattice pattern spanning 65 mm inner diameter.',
   },
   {
@@ -462,7 +462,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'Micro-Pave Halo Pendant',
     category: 'ornamental',
     material: 'Direct Castable Wax Resin',
-    image: '/images/showcase/showcase-3.png',
+    image: '/images/jewelry/jewelry-micro-pave-pendant.jpg',
     notes: 'Over 120 stone seatings rendered with razor-sharp 25-micron edges.',
   },
   {
@@ -470,7 +470,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'High-Density Casting Tree Cluster',
     category: 'casting',
     material: 'Wax Polymer Blend',
-    image: '/images/showcase/showcase-4.png',
+    image: '/images/jewelry/jewelry-casting-tree.jpg',
     notes: 'Batch of 32 ring patterns arrayed on a single build plate in 1.5 hours.',
   },
   {
@@ -478,7 +478,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'Modern Geometric Signet Ring',
     category: 'rings',
     material: 'Direct Castable Wax Resin',
-    image: '/images/showcase/pratham-showcase.png',
+    image: '/images/jewelry/jewelry-signet-ring.jpg',
     notes: 'Mirror-flat top facet with zero visible layer stepping under 10x loupe.',
   },
   {
@@ -486,7 +486,7 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
     title: 'Temple Jewelry Peacock Brooch',
     category: 'ornamental',
     material: 'Jewelry Wax Polymer',
-    image: '/images/showcase/app-creative-art.png',
+    image: '/images/jewelry/jewelry-peacock-brooch.jpg',
     notes: 'Delicate feather textures and hollow undercuts for gold casting.',
   },
 ]

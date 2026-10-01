@@ -276,7 +276,7 @@ export const ekaF116kData = {
       title: 'Micro-Pavé Diamond Halo Ring Wax Pattern',
       category: 'Jewelry Masters',
       material: 'Direct Castable Wax Resin',
-      image: '/images/showcase/showcase-1.png',
+      image: '/images/jewelry/jewelry-filigree-ring.jpg',
       notes: 'Razor-sharp 14-micron stone prongs with zero hand clean-up needed.',
     },
     {
@@ -284,7 +284,7 @@ export const ekaF116kData = {
       title: 'Intricate Royal Filigree Choker Section',
       category: 'Fine Ornaments',
       material: 'High-Definition Castable Wax',
-      image: '/images/showcase/showcase-2.png',
+      image: '/images/jewelry/jewelry-indian-bangle.jpg',
       notes: 'Sub-0.2 mm wire mesh details that burn out cleanly with zero ash.',
     },
     {
@@ -300,7 +300,7 @@ export const ekaF116kData = {
       title: 'High-Density Wax Casting Ring Tree (48 Pieces)',
       category: 'Jewelry Production',
       material: 'Direct Castable Wax Resin',
-      image: '/images/showcase/showcase-4.png',
+      image: '/images/jewelry/jewelry-casting-tree.jpg',
       notes: 'Dense batch array cured simultaneously across 212 × 118 mm bed.',
     },
     {

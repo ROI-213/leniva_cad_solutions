@@ -11,6 +11,9 @@ import { productCategories } from '../data/categories'
 import { products } from '../data/products'
 import { ProductCard } from '../components/ProductCard'
 import { useApp } from '../context/AppContext'
+import DlpCategoryPage from './DlpCategoryPage'
+import IndustrialLcdCategoryPage from './IndustrialLcdCategoryPage'
+import ScannersCategoryPage from './ScannersCategoryPage'
 
 interface CategoryDetailPageProps {
   forcedSlug?: string
@@ -20,6 +23,16 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
   const { categorySlug: paramSlug } = useParams<{ categorySlug: string }>()
   const slug = forcedSlug || paramSlug
   const { openQuoteModal } = useApp()
+
+  if (slug === 'dlp-3d-printers' || slug === 'dlp') {
+    return <DlpCategoryPage />
+  }
+  if (slug === 'industrial-lcd-3d-printers' || slug === 'lcd' || slug === 'industrial-lcd') {
+    return <IndustrialLcdCategoryPage />
+  }
+  if (slug === '3d-scanners' || slug === 'scanners') {
+    return <ScannersCategoryPage />
+  }
 
   const category = productCategories.find(c => c.slug === slug)
 

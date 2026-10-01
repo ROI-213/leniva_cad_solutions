@@ -653,7 +653,7 @@ export const Header: React.FC = () => {
                           {cat.label}
                         </Link>
                         <div className="pl-2 pt-1 space-y-1">
-                          {cat.products.slice(0, 3).map(p => (
+                          {cat.products.map(p => (
                             <Link
                               key={p.slug}
                               to={`/products/${p.slug}`}

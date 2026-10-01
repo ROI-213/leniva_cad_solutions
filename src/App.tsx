@@ -49,6 +49,7 @@ import EkaF116kPage from './pages/EkaF116kPage'
 import EnscapePage from './pages/EnscapePage'
 import VRayPage from './pages/VRayPage'
 import SketchUpStudioPage from './pages/SketchUpStudioPage'
+import SketchUpProScanPage from './pages/SketchUpProScanPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -219,6 +220,14 @@ export default function App() {
             <Route path="/product/sketchup-studio" element={<SketchUpStudioPage />} />
             <Route path="/sketchup-studio" element={<SketchUpStudioPage />} />
             <Route path="/products/sketchupstudio" element={<SketchUpStudioPage />} />
+
+            {/* Dedicated SketchUp Pro Scan Product Page */}
+            <Route path="/products/sketchup-scan" element={<SketchUpProScanPage />} />
+            <Route path="/product/sketchup-scan" element={<SketchUpProScanPage />} />
+            <Route path="/sketchup-scan" element={<SketchUpProScanPage />} />
+            <Route path="/products/sketchup-pro-scan" element={<SketchUpProScanPage />} />
+            <Route path="/product/sketchup-pro-scan" element={<SketchUpProScanPage />} />
+            <Route path="/sketchup-pro-scan" element={<SketchUpProScanPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

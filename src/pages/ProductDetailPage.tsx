@@ -17,6 +17,7 @@ import { ProductCard } from '../components/ProductCard'
 import { useApp } from '../context/AppContext'
 import PrathamDesktopPage from './PrathamDesktopPage'
 import PrathamMiniPage from './PrathamMiniPage'
+import Pratham3Page from './Pratham3Page'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -34,6 +35,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
     'pratham6': 'pratham-6',
     'pratham5': 'pratham-5',
     'pratham3': 'pratham-3',
+    'pratham-3-0-3d-printer': 'pratham-3',
     'pratham-6.0': 'pratham-6',
     'pratham-5.0': 'pratham-5',
     'pratham-3.0': 'pratham-3',
@@ -46,6 +48,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'pratham-mini') {
     return <PrathamMiniPage />
+  }
+  if (resolvedSlug === 'pratham-3' || resolvedSlug === 'pratham-3-0') {
+    return <Pratham3Page />
   }
 
   // Find product by slug or id or alias

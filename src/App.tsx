@@ -34,6 +34,10 @@ import EinscanPage from './pages/EinscanPage'
 import PrathamMiniPage from './pages/PrathamMiniPage'
 import PrathamDesktopPage from './pages/PrathamDesktopPage'
 import Pratham3Page from './pages/Pratham3Page'
+import EkaHtPage from './pages/EkaHtPage'
+import EkaXlPage from './pages/EkaXlPage'
+import EkaXlePage from './pages/EkaXlePage'
+import DlpCategoryPage from './pages/DlpCategoryPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -69,7 +73,11 @@ export default function App() {
             />
             <Route
               path="/products/dlp-3d-printers"
-              element={<CategoryDetailPage forcedSlug="dlp-3d-printers" />}
+              element={<DlpCategoryPage />}
+            />
+            <Route
+              path="/dlp-3d-printers"
+              element={<DlpCategoryPage />}
             />
             <Route
               path="/products/industrial-lcd-3d-printers"
@@ -108,6 +116,18 @@ export default function App() {
             <Route path="/products/pratham-3-0" element={<Pratham3Page />} />
             <Route path="/product/pratham-3-0" element={<Pratham3Page />} />
             <Route path="/pratham-3-0" element={<Pratham3Page />} />
+
+            {/* Dedicated EKA Series DLP 3D Printers */}
+            <Route path="/products/eka-ht" element={<EkaHtPage />} />
+            <Route path="/product/eka-ht" element={<EkaHtPage />} />
+            <Route path="/eka-ht" element={<EkaHtPage />} />
+            <Route path="/products/eka-xl" element={<EkaXlPage />} />
+            <Route path="/product/eka-xl" element={<EkaXlPage />} />
+            <Route path="/eka-xl" element={<EkaXlPage />} />
+            <Route path="/eka-xl-2" element={<EkaXlPage />} />
+            <Route path="/products/eka-xle" element={<EkaXlePage />} />
+            <Route path="/product/eka-xle" element={<EkaXlePage />} />
+            <Route path="/eka-xle" element={<EkaXlePage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

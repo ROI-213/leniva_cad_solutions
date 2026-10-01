@@ -18,6 +18,9 @@ import { useApp } from '../context/AppContext'
 import PrathamDesktopPage from './PrathamDesktopPage'
 import PrathamMiniPage from './PrathamMiniPage'
 import Pratham3Page from './Pratham3Page'
+import EkaHtPage from './EkaHtPage'
+import EkaXlPage from './EkaXlPage'
+import EkaXlePage from './EkaXlePage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -39,6 +42,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
     'pratham-6.0': 'pratham-6',
     'pratham-5.0': 'pratham-5',
     'pratham-3.0': 'pratham-3',
+    'eka-xl-2': 'eka-xl',
   }
   const resolvedSlug = slug ? (slugAliases[slug.toLowerCase()] || slug.toLowerCase()) : ''
 
@@ -51,6 +55,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'pratham-3' || resolvedSlug === 'pratham-3-0') {
     return <Pratham3Page />
+  }
+  if (resolvedSlug === 'eka-ht') {
+    return <EkaHtPage />
+  }
+  if (resolvedSlug === 'eka-xl' || resolvedSlug === 'eka-xl-2') {
+    return <EkaXlPage />
+  }
+  if (resolvedSlug === 'eka-xle') {
+    return <EkaXlePage />
   }
 
   // Find product by slug or id or alias

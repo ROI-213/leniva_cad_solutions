@@ -136,9 +136,9 @@ export const EkaXlPage: React.FC = () => {
       {/* ====================================================
           1. HERO SECTION
          ==================================================== */}
-      <section ref={overviewRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 scroll-mt-24">
+      <section ref={overviewRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 !mt-2 sm:!mt-3 pt-0 scroll-mt-24">
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-xs text-slate-500 mb-6">
+        <nav className="flex items-center space-x-2 text-xs text-slate-500 mb-3 sm:mb-4">
           <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
           <Link to="/products" className="hover:text-slate-900 transition-colors">Products</Link>

@@ -32,6 +32,9 @@ import EnscapePage from './EnscapePage'
 import VRayPage from './VRayPage'
 import SketchUpStudioPage from './SketchUpStudioPage'
 import SketchUpProScanPage from './SketchUpProScanPage'
+import AresMechanicalPage from './AresMechanicalPage'
+import AresElectricalPage from './AresElectricalPage'
+import AresStandardPage from './AresStandardPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -100,6 +103,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'sketchup-scan' || resolvedSlug === 'sketchup-pro-scan' || resolvedSlug === 'sketchupproscan') {
     return <SketchUpProScanPage />
+  }
+  if (resolvedSlug === 'ares-mechanical' || resolvedSlug === 'aresmechanical' || resolvedSlug === 'ares_mechanical') {
+    return <AresMechanicalPage />
+  }
+  if (resolvedSlug === 'ares-electrical' || resolvedSlug === 'areselectrical' || resolvedSlug === 'ares_electrical') {
+    return <AresElectricalPage />
+  }
+  if (resolvedSlug === 'ares-standard' || resolvedSlug === 'aresstandard' || resolvedSlug === 'ares_standard') {
+    return <AresStandardPage />
   }
   if (resolvedSlug === 'eka-ht') {
     return <EkaHtPage />

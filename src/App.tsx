@@ -50,6 +50,9 @@ import EnscapePage from './pages/EnscapePage'
 import VRayPage from './pages/VRayPage'
 import SketchUpStudioPage from './pages/SketchUpStudioPage'
 import SketchUpProScanPage from './pages/SketchUpProScanPage'
+import AresMechanicalPage from './pages/AresMechanicalPage'
+import AresElectricalPage from './pages/AresElectricalPage'
+import AresStandardPage from './pages/AresStandardPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -228,6 +231,32 @@ export default function App() {
             <Route path="/products/sketchup-pro-scan" element={<SketchUpProScanPage />} />
             <Route path="/product/sketchup-pro-scan" element={<SketchUpProScanPage />} />
             <Route path="/sketchup-pro-scan" element={<SketchUpProScanPage />} />
+
+            {/* Dedicated ARES Mechanical Product Page */}
+            <Route path="/products/ares-mechanical" element={<AresMechanicalPage />} />
+            <Route path="/product/ares-mechanical" element={<AresMechanicalPage />} />
+            <Route path="/ares-mechanical" element={<AresMechanicalPage />} />
+            <Route path="/products/aresmechanical" element={<AresMechanicalPage />} />
+            <Route path="/product/aresmechanical" element={<AresMechanicalPage />} />
+            <Route path="/aresmechanical" element={<AresMechanicalPage />} />
+
+            {/* Dedicated ARES Electrical Product Page */}
+            <Route path="/products/ares-electrical" element={<AresElectricalPage />} />
+            <Route path="/product/ares-electrical" element={<AresElectricalPage />} />
+            <Route path="/ares-electrical" element={<AresElectricalPage />} />
+            <Route path="/products/areselectrical" element={<AresElectricalPage />} />
+            <Route path="/product/areselectrical" element={<AresElectricalPage />} />
+            <Route path="/areselectrical" element={<AresElectricalPage />} />
+
+            {/* Dedicated ARES Standard Product Page */}
+            <Route path="/products/ares-standard" element={<AresStandardPage />} />
+            <Route path="/product/ares-standard" element={<AresStandardPage />} />
+            <Route path="/ares-standard" element={<AresStandardPage />} />
+            <Route path="/software/ares-standard" element={<AresStandardPage />} />
+            <Route path="/software/ares-standard/" element={<AresStandardPage />} />
+            <Route path="/products/aresstandard" element={<AresStandardPage />} />
+            <Route path="/product/aresstandard" element={<AresStandardPage />} />
+            <Route path="/aresstandard" element={<AresStandardPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

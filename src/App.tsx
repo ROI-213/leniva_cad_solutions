@@ -38,6 +38,9 @@ import EkaHtPage from './pages/EkaHtPage'
 import EkaXlPage from './pages/EkaXlPage'
 import EkaXlePage from './pages/EkaXlePage'
 import DlpCategoryPage from './pages/DlpCategoryPage'
+import IndustrialLcdCategoryPage from './pages/IndustrialLcdCategoryPage'
+import EkaGtMaxPage from './pages/EkaGtMaxPage'
+import EkaF116kPage from './pages/EkaF116kPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -81,7 +84,19 @@ export default function App() {
             />
             <Route
               path="/products/industrial-lcd-3d-printers"
-              element={<CategoryDetailPage forcedSlug="industrial-lcd-3d-printers" />}
+              element={<IndustrialLcdCategoryPage />}
+            />
+            <Route
+              path="/industrial-lcd-3d-printers"
+              element={<IndustrialLcdCategoryPage />}
+            />
+            <Route
+              path="/industrial-lcd-resin-3d-printers-for-jewelry-engineering"
+              element={<IndustrialLcdCategoryPage />}
+            />
+            <Route
+              path="/industrial-lcd-resin-3d-printers-for-jewelry-engineering/"
+              element={<IndustrialLcdCategoryPage />}
             />
             <Route
               path="/products/cad-software"
@@ -128,6 +143,19 @@ export default function App() {
             <Route path="/products/eka-xle" element={<EkaXlePage />} />
             <Route path="/product/eka-xle" element={<EkaXlePage />} />
             <Route path="/eka-xle" element={<EkaXlePage />} />
+
+            {/* Dedicated Industrial LCD 3D Printers */}
+            <Route path="/products/eka-gt-max" element={<EkaGtMaxPage />} />
+            <Route path="/product/eka-gt-max" element={<EkaGtMaxPage />} />
+            <Route path="/eka-gt-max" element={<EkaGtMaxPage />} />
+            <Route path="/industrial-lcd-3d-printers-eka-gt-max" element={<EkaGtMaxPage />} />
+            <Route path="/industrial-lcd-3d-printers-eka-gt-max/" element={<EkaGtMaxPage />} />
+
+            <Route path="/products/eka-f1-16k" element={<EkaF116kPage />} />
+            <Route path="/product/eka-f1-16k" element={<EkaF116kPage />} />
+            <Route path="/eka-f1-16k" element={<EkaF116kPage />} />
+            <Route path="/eka-f1-16k-industrial-lcd-jewelry-3d-printer" element={<EkaF116kPage />} />
+            <Route path="/eka-f1-16k-industrial-lcd-jewelry-3d-printer/" element={<EkaF116kPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

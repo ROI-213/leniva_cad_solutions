@@ -21,6 +21,8 @@ import Pratham3Page from './Pratham3Page'
 import EkaHtPage from './EkaHtPage'
 import EkaXlPage from './EkaXlPage'
 import EkaXlePage from './EkaXlePage'
+import EkaGtMaxPage from './EkaGtMaxPage'
+import EkaF116kPage from './EkaF116kPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -43,6 +45,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
     'pratham-5.0': 'pratham-5',
     'pratham-3.0': 'pratham-3',
     'eka-xl-2': 'eka-xl',
+    'industrial-lcd-3d-printers-eka-gt-max': 'eka-gt-max',
+    'gt-max': 'eka-gt-max',
+    'eka-f1-16k-industrial-lcd-jewelry-3d-printer': 'eka-f1-16k',
+    'f1-16k': 'eka-f1-16k',
   }
   const resolvedSlug = slug ? (slugAliases[slug.toLowerCase()] || slug.toLowerCase()) : ''
 
@@ -64,6 +70,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'eka-xle') {
     return <EkaXlePage />
+  }
+  if (resolvedSlug === 'eka-gt-max' || resolvedSlug === 'industrial-lcd-3d-printers-eka-gt-max') {
+    return <EkaGtMaxPage />
+  }
+  if (resolvedSlug === 'eka-f1-16k' || resolvedSlug === 'eka-f1-16k-industrial-lcd-jewelry-3d-printer') {
+    return <EkaF116kPage />
   }
 
   // Find product by slug or id or alias

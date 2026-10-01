@@ -100,17 +100,17 @@ export const EkaF116kPage: React.FC = () => {
 
   const galleryCategories = [
     { id: 'all', label: 'All Samples' },
-    { id: 'Jewelry Masters', label: 'Rings & Stones' },
-    { id: 'Fine Ornaments', label: 'Filigree & Necklaces' },
-    { id: 'Dental Precision', label: 'Dental Models' },
-    { id: 'Miniatures', label: 'Miniatures' },
-    { id: 'Engineering Prototypes', label: 'Micro Parts' },
+    { id: 'rings', label: 'Rings & Stones' },
+    { id: 'filigree', label: 'Filigree & Necklaces' },
+    { id: 'dental', label: 'Dental Models' },
+    { id: 'miniatures', label: 'Miniatures' },
+    { id: 'micro', label: 'Micro Parts' },
   ]
 
   const filteredGallery =
     activeCategory === 'all'
       ? ekaF116kData.gallery
-      : ekaF116kData.gallery.filter((item) => item.category === activeCategory)
+      : ekaF116kData.gallery.filter((item) => item.filterCategory === activeCategory)
 
   return (
     <div className="bg-slate-50 min-h-screen text-slate-900 pb-20 space-y-16 selection:bg-amber-600 selection:text-white">
@@ -457,51 +457,38 @@ export const EkaF116kPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Gallery Grid - 4 Columns Matching Reference Exactly */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {filteredGallery.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedGalleryItem(item)}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-4/3 bg-slate-100 overflow-hidden">
+                <div className="relative aspect-[16/10] bg-slate-950 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-lg shadow-md flex items-center space-x-1.5">
-                      <Maximize2 className="w-3.5 h-3.5" />
+                  <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span className="px-2.5 py-1 bg-white/95 backdrop-blur-xs text-slate-900 text-[11px] font-bold rounded-lg shadow-md flex items-center space-x-1.5">
+                      <Maximize2 className="w-3 h-3 text-amber-700" />
                       <span>Inspect Details</span>
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-amber-950/80 backdrop-blur-xs text-amber-200 text-[10px] font-mono font-semibold">
-                    {item.category}
+                  <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2.5 sm:px-3 py-1 rounded-md sm:rounded-lg bg-[#b45309] text-white text-[10px] sm:text-[11px] font-bold font-sans shadow-md tracking-tight">
+                    {item.badge || item.category}
                   </span>
                 </div>
 
-                <div className="p-5 space-y-2">
-                  <h4 className="text-sm font-bold text-slate-950 group-hover:text-amber-800 transition-colors">
+                <div className="p-3.5 sm:p-4">
+                  <h4 className="text-xs sm:text-[13px] lg:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-700 transition-colors">
                     {item.title}
                   </h4>
-                  <div className="flex items-center space-x-1 text-xs text-slate-500">
-                    <span className="font-semibold text-slate-700">Material:</span>
-                    <span>{item.material}</span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
-                    {item.notes}
-                  </p>
                 </div>
-              </div>
-
-              <div className="px-5 pb-4 pt-2 border-t border-slate-100 text-right">
-                <span className="text-[11px] font-bold text-amber-700 group-hover:underline">
-                  Click to inspect →
-                </span>
               </div>
             </div>
           ))}

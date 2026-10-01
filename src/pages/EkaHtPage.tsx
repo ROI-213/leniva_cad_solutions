@@ -518,38 +518,7 @@ export const EkaHtPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          9. USERS OF EKA HT FROM JEWELRY INDUSTRY
-         ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 space-y-6">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">
-              — Industry Endorsement —
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Users of EKA HT from Jewelry Industry
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Trusted by leading jewelry hubs across Mumbai Zaveri Bazaar, Surat SEZ, Rajkot, Coimbatore, and Jaipur.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs font-mono">
-            {[
-              { metric: '500,000+', label: 'Gold Rings Cast' },
-              { metric: '99.8%', label: 'Casting Yield' },
-              { metric: '0% Ash', label: 'Clean Burnout' },
-              { metric: '30,000 Hrs', label: 'UV Projector Life' },
-            ].map((stat, i) => (
-              <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                <div className="text-2xl sm:text-3xl font-black text-amber-400">{stat.metric}</div>
-                <div className="text-slate-400 text-[11px] uppercase tracking-wider font-bold">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================
           10. RECENT INSTALLATIONS & TRUSTED USERS

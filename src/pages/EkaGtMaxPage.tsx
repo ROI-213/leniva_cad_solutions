@@ -100,17 +100,17 @@ export const EkaGtMaxPage: React.FC = () => {
 
   const galleryCategories = [
     { id: 'all', label: 'All Projects' },
-    { id: 'Drones & Aerospace', label: 'Drones & Aerospace' },
-    { id: 'Automotive Prototyping', label: 'Automotive' },
-    { id: 'Dental Batch Production', label: 'Dental Models' },
-    { id: 'Mechanical Engineering', label: 'Mechanical Parts' },
-    { id: 'Product Design', label: 'Product Housings' },
+    { id: 'drones', label: 'Drones & Aerospace' },
+    { id: 'automotive', label: 'Automotive' },
+    { id: 'mechanical', label: 'Mechanical Parts' },
+    { id: 'housings', label: 'Product Housings' },
+    { id: 'engineering', label: 'Engineering Prototypes' },
   ]
 
   const filteredGallery =
     activeCategory === 'all'
       ? ekaGtMaxData.gallery
-      : ekaGtMaxData.gallery.filter((item) => item.category === activeCategory)
+      : ekaGtMaxData.gallery.filter((item) => item.filterCategory === activeCategory)
 
   return (
     <div className="bg-slate-50 min-h-screen text-slate-900 pb-20 space-y-16 selection:bg-blue-600 selection:text-white">
@@ -440,51 +440,38 @@ export const EkaGtMaxPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid - Matching Reference Image 2 Exactly */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredGallery.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedGalleryItem(item)}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-4/3 bg-slate-100 overflow-hidden">
+                <div className="relative aspect-[16/11] bg-slate-950 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-lg shadow-md flex items-center space-x-1.5">
-                      <Maximize2 className="w-3.5 h-3.5" />
+                  <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span className="px-3 py-1.5 bg-white/95 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-lg shadow-md flex items-center space-x-1.5">
+                      <Maximize2 className="w-3.5 h-3.5 text-blue-600" />
                       <span>Inspect Part</span>
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-semibold">
-                    {item.category}
+                  <span className="absolute top-3 left-3 px-3 py-1 rounded-md sm:rounded-lg bg-slate-900/90 text-white text-[11px] sm:text-xs font-bold font-sans shadow-md tracking-tight">
+                    {item.badge || item.category}
                   </span>
                 </div>
 
-                <div className="p-5 space-y-2">
-                  <h4 className="text-sm font-bold text-slate-950 group-hover:text-blue-600 transition-colors">
+                <div className="p-4 sm:p-5">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-950 leading-snug group-hover:text-blue-600 transition-colors">
                     {item.title}
                   </h4>
-                  <div className="flex items-center space-x-1 text-xs text-slate-500">
-                    <span className="font-semibold text-slate-700">Material:</span>
-                    <span>{item.material}</span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
-                    {item.notes}
-                  </p>
                 </div>
-              </div>
-
-              <div className="px-5 pb-4 pt-2 border-t border-slate-100 text-right">
-                <span className="text-[11px] font-bold text-blue-600 group-hover:underline">
-                  Click to inspect →
-                </span>
               </div>
             </div>
           ))}

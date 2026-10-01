@@ -48,6 +48,7 @@ import EkaGtMaxPage from './pages/EkaGtMaxPage'
 import EkaF116kPage from './pages/EkaF116kPage'
 import EnscapePage from './pages/EnscapePage'
 import VRayPage from './pages/VRayPage'
+import SketchUpStudioPage from './pages/SketchUpStudioPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -212,6 +213,12 @@ export default function App() {
             <Route path="/products/v-ray" element={<VRayPage />} />
             <Route path="/products/chaos-vray" element={<VRayPage />} />
             <Route path="/products/chaos-v-ray" element={<VRayPage />} />
+
+            {/* Dedicated SketchUp Studio Product Page */}
+            <Route path="/products/sketchup-studio" element={<SketchUpStudioPage />} />
+            <Route path="/product/sketchup-studio" element={<SketchUpStudioPage />} />
+            <Route path="/sketchup-studio" element={<SketchUpStudioPage />} />
+            <Route path="/products/sketchupstudio" element={<SketchUpStudioPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

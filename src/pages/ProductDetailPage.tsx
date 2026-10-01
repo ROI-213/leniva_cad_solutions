@@ -30,6 +30,7 @@ import PrathamX1000Page from './PrathamX1000Page'
 import Pratham3RapidPage from './Pratham3RapidPage'
 import EnscapePage from './EnscapePage'
 import VRayPage from './VRayPage'
+import SketchUpStudioPage from './SketchUpStudioPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -92,6 +93,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'vray' || resolvedSlug === 'v-ray' || resolvedSlug === 'chaos-vray' || resolvedSlug === 'chaos-v-ray') {
     return <VRayPage />
+  }
+  if (resolvedSlug === 'sketchup-studio' || resolvedSlug === 'sketchup_studio' || resolvedSlug === 'sketchupstudio') {
+    return <SketchUpStudioPage />
   }
   if (resolvedSlug === 'eka-ht') {
     return <EkaHtPage />

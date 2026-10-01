@@ -249,75 +249,75 @@ export const Pratham3Page: React.FC = () => {
   const galleryItems = [
     {
       id: 'print-1',
-      title: 'Automotive Intake Manifold',
-      category: 'automotive',
-      material: 'Carbon-Fiber PETG',
-      application: 'Functional Engine Test',
-      image: '/images/showcase/app-functional-components.png',
-      notes: 'High heat deflection and structural rigidity under vacuum pulses.',
+      title: 'Real Functional Parts',
+      category: 'all-parts',
+      tag: 'ALL PARTS',
+      application: 'FUNCTIONAL PARTS',
+      image: '/images/pratham3-work/01-real-functional-parts.jpg',
+      notes: 'Strong, precise and production-ready parts printed with Pratham 3.0 across various industries.',
     },
     {
       id: 'print-2',
-      title: 'Industrial Heavy-Duty Gear Assembly',
-      category: 'engineering',
-      material: 'Nylon / PETG',
-      application: 'Machine Drive Mockup',
-      image: '/images/products/pratham-mini-gear.png',
-      notes: 'Tough gear teeth profile with minimal tooth backlash tolerance.',
+      title: 'Automotive Scale Mockups',
+      category: 'automotive',
+      tag: 'AUTOMOTIVE',
+      application: 'AUTOMOTIVE APPLICATIONS',
+      image: '/images/pratham3-work/02-automotive-scale-mockups.jpg',
+      notes: 'Intake manifolds, brackets, ducts and prototypes for automotive testing and validation.',
     },
     {
       id: 'print-3',
-      title: 'Electronic Enclosure with Brass Inserts',
-      category: 'prototypes',
-      material: 'ABS',
-      application: 'Pre-production Fitment',
-      image: '/images/showcase/app-prototyping-projects.png',
-      notes: 'Dimensional stability for direct ultrasonic threaded brass insert seating.',
+      title: 'Complex Engineering Parts',
+      category: 'engineering',
+      tag: 'ENGINEERING',
+      application: 'ENGINEERING PROTOTYPES',
+      image: '/images/pratham3-work/03-complex-engineering-parts.jpg',
+      notes: 'High dimensional accuracy for engineering prototypes and industrial applications.',
     },
     {
       id: 'print-4',
-      title: 'Impact-Absorbing Robot Bumper Guard',
-      category: 'flexible',
-      material: 'TPU (95A)',
-      application: 'AGV Collision Protection',
-      image: '/images/products/pratham-mini-stand.png',
-      notes: 'Full elastomer recovery under repeated industrial impact cycles.',
+      title: 'Product Prototypes',
+      category: 'prototypes',
+      tag: 'PROTOTYPES',
+      application: 'PROTOTYPE DEVELOPMENT',
+      image: '/images/pratham3-work/04-product-prototypes.jpg',
+      notes: 'Design validation models with excellent strength and surface finish.',
     },
     {
       id: 'print-5',
-      title: 'Anatomical Complex Organ Study Model',
-      category: 'educational',
-      material: 'Medical-Grade PLA',
-      application: 'Surgical Planning',
-      image: '/images/products/pratham-mini-heart.png',
-      notes: 'Multi-chamber organic cavities printed with dissolvable support structures.',
+      title: 'Flexible TPU Components',
+      category: 'flexible',
+      tag: 'FLEXIBLE TPU',
+      application: 'FLEXIBLE MATERIALS',
+      image: '/images/pratham3-work/05-flexible-tpu-components.jpg',
+      notes: 'Durable, impact-resistant and flexible parts for real-world applications.',
     },
     {
       id: 'print-6',
-      title: 'Monolithic Architectural Scale Pavilion',
-      category: 'artistic',
-      material: 'Matte White PLA',
-      application: 'Design Master Review',
-      image: '/images/products/pratham-mini-house.png',
-      notes: 'Thin cantilevers and razor-sharp facade corners across 280 mm envelope.',
+      title: 'Functional End-Use Parts',
+      category: 'functional',
+      tag: 'FUNCTIONAL',
+      application: 'END-USE APPLICATIONS',
+      image: '/images/pratham3-work/06-functional-end-use-parts.jpg',
+      notes: 'Enclosures, jigs, fixtures and end-use tools with high strength and durability.',
     },
     {
       id: 'print-7',
-      title: 'End-of-Arm Vacuum Gripper Fixture',
+      title: 'Jigs, Fixtures & Industrial Tools',
       category: 'industrial',
-      material: 'PETG / TPU Seal',
-      application: 'Automated Pick-and-Place',
-      image: '/images/showcase/showcase-4.png',
-      notes: 'Integrated internal air channels for pneumatically sealed vacuum suction.',
+      tag: 'INDUSTRIAL TOOLS',
+      application: 'PRODUCTION TOOLING',
+      image: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg',
+      notes: 'Custom tooling for faster and cost-effective manufacturing workflows.',
     },
     {
       id: 'print-8',
-      title: 'Precision Drone Chassis Frame',
-      category: 'functional',
-      material: 'Carbon-Fiber Composite',
-      application: 'Aerospace Flight Test',
-      image: '/images/showcase/showcase-2.png',
-      notes: 'Lightweight honeycomb infill achieving high stiffness-to-weight ratio.',
+      title: 'Impact Guards & Robot Bumpers',
+      category: 'agv',
+      tag: 'AGV / ROBOTICS',
+      application: 'AGV & ROBOTICS',
+      image: '/images/pratham3-work/08-impact-guards-robot-bumpers.jpg',
+      notes: 'Lightweight, high-strength components for AGV and robotics applications.',
     },
   ]
 
@@ -1580,6 +1580,8 @@ export const Pratham3Page: React.FC = () => {
               { id: 'prototypes', label: 'Prototypes' },
               { id: 'flexible', label: 'Flexible TPU' },
               { id: 'functional', label: 'Functional' },
+              { id: 'industrial', label: 'Industrial Tools' },
+              { id: 'agv', label: 'AGV / Robotics' },
             ].map((cat) => (
               <button
                 key={cat.id}
@@ -1596,34 +1598,34 @@ export const Pratham3Page: React.FC = () => {
           </div>
         </div>
 
-        {/* Gallery Cards Grid */}
+        {/* Gallery Cards Grid - 2 rows x 4 cols on large screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {filteredGallery.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group space-y-3"
+              className="bg-white rounded-2xl p-3 sm:p-3.5 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group space-y-3"
             >
               <div className="space-y-3">
-                <div className="aspect-16/11 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+                <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-white font-mono text-[9px] font-bold uppercase">
-                    {item.material}
+                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-md bg-red-600 text-white font-mono text-[9px] font-bold uppercase tracking-wider shadow-sm">
+                    {item.tag}
                   </div>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-1.5 px-1 pb-1">
                   <span className="text-[10px] font-mono font-bold text-red-600 uppercase block tracking-wider">
                     {item.application}
                   </span>
-                  <h3 className="text-xs font-black text-slate-950 uppercase tracking-tight leading-snug">
+                  <h3 className="text-sm font-black text-slate-950 tracking-tight leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-[11px] text-slate-500 leading-relaxed mt-1">{item.notes}</p>
+                  <p className="text-xs text-slate-500 leading-relaxed pt-0.5">{item.notes}</p>
                 </div>
               </div>
             </div>

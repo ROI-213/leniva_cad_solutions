@@ -12,8 +12,6 @@ import {
   Monitor,
   Compass,
   Flame,
-  Play,
-  X,
   Wifi,
   ArrowRight,
   Cpu,
@@ -37,7 +35,6 @@ export const Pratham3Page: React.FC = () => {
   const [speedGauge, setSpeedGauge] = useState<number>(150)
   const [layerSlider, setLayerSlider] = useState<number>(100) // 80 to 600 microns
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [activeVideoModal, setActiveVideoModal] = useState<{ id: string; title: string } | null>(null)
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0)
 
   // Section Refs for Sticky Nav
@@ -48,7 +45,6 @@ export const Pratham3Page: React.FC = () => {
   const industrialRef = useRef<HTMLDivElement>(null)
   const keyPointsRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
-  const videosRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const installationsRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
@@ -247,45 +243,7 @@ export const Pratham3Page: React.FC = () => {
     },
   ]
 
-  // Videos List (Section 20)
-  const videos = [
-    {
-      id: 'video-1',
-      title: 'Pratham 3.0 FDM 3D Printer | Small Batch Production Made Easy',
-      duration: '1:32',
-      category: 'PRODUCTION WORKFLOW',
-      thumbnail: '/images/showcase/showcase-1.png',
-      youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-      desc: 'See how Pratham 3.0 streamlines low-volume industrial manufacturing runs with quick turnaround and minimal downtime.',
-    },
-    {
-      id: 'video-2',
-      title: 'Magic CAR - 3D Printed / Pratham 3.0 3D Printer',
-      duration: '2:13',
-      category: 'FULL-SCALE SCALE MODEL',
-      thumbnail: '/images/showcase/showcase-3.png',
-      youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-      desc: 'High-detail automotive scale prototype printed with tight dimensional accuracy and flawless interlocking components.',
-    },
-    {
-      id: 'video-3',
-      title: 'TPU Flexible 3D Printed Parts | Hammer Test',
-      duration: '0:36',
-      category: 'MATERIAL DURABILITY',
-      thumbnail: '/images/showcase/app-functional-components.png',
-      youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-      desc: 'Severe impact and rebound resistance stress test on 95A flexible TPU parts fabricated directly on Pratham 3.0.',
-    },
-    {
-      id: 'video-4',
-      title: '3D Printed Statue of Monk | Pratham 3.0 | Make3D',
-      duration: '1:09',
-      category: 'SURFACE DETAIL',
-      thumbnail: '/images/showcase/app-creative-art.png',
-      youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-      desc: 'Intricate aesthetic sculpture showcasing micro-detail resolution, smooth curved drapery, and overhang support separation.',
-    },
-  ]
+
 
   // Work from Pratham 3.0 Gallery (Section 21)
   const galleryItems = [
@@ -551,9 +509,6 @@ export const Pratham3Page: React.FC = () => {
             <button onClick={() => scrollTo(specsRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Specs
             </button>
-            <button onClick={() => scrollTo(videosRef)} className="hover:text-red-600 transition-colors cursor-pointer">
-              Videos
-            </button>
             <button onClick={() => scrollTo(galleryRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Gallery
             </button>
@@ -679,19 +634,6 @@ export const Pratham3Page: React.FC = () => {
                 <Download className="w-4 h-4" />
                 <span>GET PRODUCT BROCHURE</span>
               </a>
-
-              <button
-                onClick={() => {
-                  setActiveVideoModal({
-                    id: 'video-1',
-                    title: 'Pratham 3.0 Industrial 3D Printer | Overview & Demonstration',
-                  })
-                }}
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-900 border border-slate-300 hover:border-slate-400 text-xs font-bold transition-all flex items-center space-x-2 cursor-pointer"
-              >
-                <Play className="w-4 h-4 text-red-600 fill-red-600" />
-                <span>VIEW DEMO</span>
-              </button>
 
               <button
                 onClick={() => openQuoteModal('Pratham 3.0 Hero Quick Quote')}
@@ -1609,58 +1551,7 @@ export const Pratham3Page: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          9. VIDEOS OF PRATHAM 3.0 (4-VIDEO GRID)
-         ==================================================== */}
-      <section ref={videosRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
-            — Operational Demonstrations —
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            VIDEOS OF PRATHAM 3.0
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500">
-            Watch real workshop applications, scale automotive mockups, and flexible TPU impact resistance testing.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {videos.map((vid) => (
-            <div
-              key={vid.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between"
-            >
-              <div className="relative aspect-16/9 bg-slate-900 overflow-hidden cursor-pointer" onClick={() => setActiveVideoModal(vid)}>
-                <img
-                  src={vid.thumbnail}
-                  alt={vid.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-6 h-6 fill-white ml-1" />
-                  </div>
-                </div>
-                <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-black/80 text-white font-mono text-[10px] font-bold">
-                  {vid.duration}
-                </div>
-                <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/70 text-red-400 font-mono text-[9px] font-bold uppercase tracking-wider">
-                  {vid.category}
-                </div>
-              </div>
-
-              <div className="p-5 space-y-2">
-                <h3 className="text-sm font-black text-slate-950 group-hover:text-red-600 transition-colors leading-snug">
-                  {vid.title}
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{vid.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ====================================================
           10. WORK FROM PRATHAM 3.0 (REAL PRINT GALLERY)
@@ -2001,33 +1892,6 @@ export const Pratham3Page: React.FC = () => {
         </div>
       </section>
 
-      {/* Video Modal Player */}
-      {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl relative">
-            <div className="flex items-center justify-between p-4 border-b border-slate-800 text-white">
-              <span className="text-xs font-mono font-bold text-red-400 uppercase tracking-wider">
-                {activeVideoModal.title}
-              </span>
-              <button
-                onClick={() => setActiveVideoModal(null)}
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="aspect-16/9 bg-black">
-              <iframe
-                src={videos.find((v) => v.id === activeVideoModal.id)?.youtubeUrl || ''}
-                title={activeVideoModal.title}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

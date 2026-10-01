@@ -7,8 +7,6 @@ import {
   PhoneCall,
   ArrowRight,
   CheckCircle2,
-  Play,
-  X,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import {
@@ -21,11 +19,9 @@ export const EkaXlePage: React.FC = () => {
 
   // Interactive State
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [activeVideoModal, setActiveVideoModal] = useState<boolean>(false)
 
   // Section Refs
   const overviewRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLDivElement>(null)
   const dlpRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
   const resinsRef = useRef<HTMLDivElement>(null)
@@ -92,9 +88,6 @@ export const EkaXlePage: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-6 text-xs font-semibold text-slate-600">
             <button onClick={() => scrollTo(overviewRef)} className="hover:text-blue-700 transition-colors cursor-pointer">
               Overview
-            </button>
-            <button onClick={() => scrollTo(videoRef)} className="hover:text-blue-700 transition-colors cursor-pointer">
-              Working Video
             </button>
             <button onClick={() => scrollTo(dlpRef)} className="hover:text-blue-700 transition-colors cursor-pointer">
               DLP Engine
@@ -250,40 +243,6 @@ export const EkaXlePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          2. WORKING VIDEO OF EKA - XLE (PROMINENTLY UNDER HERO)
-         ==================================================== */}
-      <section ref={videoRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-700 font-mono">
-            — Operational Footage —
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            {ekaXleData.workingVideo.title}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500">
-            {ekaXleData.workingVideo.desc}
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative group">
-          <div className="aspect-16/9 relative overflow-hidden cursor-pointer" onClick={() => setActiveVideoModal(true)}>
-            <img
-              src={ekaXleData.workingVideo.thumbnail}
-              alt="EKA XLE Working Video"
-              className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                <Play className="w-8 h-8 fill-white ml-1" />
-              </div>
-            </div>
-            <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/80 text-white font-mono text-xs font-bold">
-              Watch EKA XLE Industrial Resin Curing Demo
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================
           3. ENGINEERING PRODUCT DESCRIPTION
@@ -586,33 +545,6 @@ export const EkaXlePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Video Modal Player */}
-      {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl relative">
-            <div className="flex items-center justify-between p-4 border-b border-slate-800 text-white">
-              <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider">
-                {ekaXleData.workingVideo.title}
-              </span>
-              <button
-                onClick={() => setActiveVideoModal(false)}
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="aspect-16/9 bg-black">
-              <iframe
-                src={ekaXleData.workingVideo.youtubeUrl}
-                title="EKA XLE Working Video"
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

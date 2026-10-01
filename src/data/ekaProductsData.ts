@@ -241,13 +241,6 @@ export const ekaXleData = {
   heroImage: '/images/products/eka-xle.png',
   brochureUrl: '/brochures/eka-xle.pdf',
 
-  workingVideo: {
-    title: 'Working Video of EKA - XLE',
-    desc: 'Watch the high-definition DLP projector engine curing engineering photopolymer resin layer-by-layer with micron accuracy.',
-    thumbnail: '/images/showcase/showcase-1.png',
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-  },
-
   engineeringDescription: {
     paragraph1:
       'The EKA XLE is a resin 3D printer for engineering that delivers industrial-grade precision and reliability for professionals. Designed as a Made in India resin 3D printer, it is ideal for prototyping mechanical parts and product design workflows. With advanced DLP technology, the EKA XLE stands out as a high-precision resin 3D printer built for demanding applications.',

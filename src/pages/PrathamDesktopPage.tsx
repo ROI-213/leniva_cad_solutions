@@ -16,8 +16,6 @@ import {
   Compass,
   Flame,
   MapPin,
-  Play,
-  X,
   Wifi,
   CheckCircle,
   PhoneCall,
@@ -35,7 +33,6 @@ export const PrathamDesktopPage: React.FC = () => {
   const [layerSlider, setLayerSlider] = useState<number>(150) // 80 to 400 microns
   const [selectedMaterial, setSelectedMaterial] = useState<string>('PLA')
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false)
 
   // Section Refs for Sticky Nav
   const overviewRef = useRef<HTMLDivElement>(null)
@@ -539,14 +536,6 @@ export const PrathamDesktopPage: React.FC = () => {
                   <Download className="w-4 h-4 text-slate-600" />
                   <span>Download Brochure</span>
                 </a>
-
-                <button
-                  onClick={() => setVideoModalOpen(true)}
-                  className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors flex items-center space-x-2 cursor-pointer shadow-xs"
-                >
-                  <Play className="w-3.5 h-3.5 text-red-400 fill-red-400" />
-                  <span>View Demo</span>
-                </button>
               </div>
             </div>
 
@@ -1844,59 +1833,7 @@ export const PrathamDesktopPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          14. VIDEO MODAL (Interactive Demo Player)
-         ==================================================== */}
-      {videoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-4xl bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-800">
-              <div className="flex items-center space-x-2">
-                <Play className="w-4 h-4 text-red-500 fill-current" />
-                <span className="text-sm font-bold text-white">
-                  Pratham Desktop 3D Printer Demonstration
-                </span>
-              </div>
-              <button
-                onClick={() => setVideoModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
 
-            {/* Video Viewport / Responsive Embed */}
-            <div className="relative aspect-video w-full bg-black">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0"
-                title="Pratham Desktop 3D Printer Walkthrough"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-
-            {/* Modal Footer */}
-            <div className="p-4 sm:p-5 bg-slate-950 flex flex-wrap items-center justify-between gap-3 text-xs">
-              <div className="text-slate-400">
-                Want a personalized live product demonstration in your lab or via video conference?
-              </div>
-              <div className="flex space-x-3">
-                <button
-                  onClick={() => {
-                    setVideoModalOpen(false)
-                    openQuoteModal('Pratham Desktop 3D Printer Live Demo Request')
-                  }}
-                  className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition-colors cursor-pointer"
-                >
-                  Schedule Live Lab Demo
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ====================================================
           15. MOBILE STICKY BOTTOM BAR

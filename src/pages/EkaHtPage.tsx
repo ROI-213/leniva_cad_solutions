@@ -5,8 +5,6 @@ import {
   Download,
   ChevronDown,
   Flame,
-  Play,
-  X,
   PhoneCall,
   ArrowRight,
   Gem,
@@ -27,7 +25,6 @@ export const EkaHtPage: React.FC = () => {
   // Interactive State
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [activeGalleryCat, setActiveGalleryCat] = useState<string>('all')
-  const [activeVideoModal, setActiveVideoModal] = useState<boolean>(false)
 
   // Section Refs for Sub-navigation / Scrolling
   const overviewRef = useRef<HTMLDivElement>(null)
@@ -454,79 +451,6 @@ export const EkaHtPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          7. VIDEOS OF EKA HT
-         ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-center max-w-2xl mx-auto space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-700 font-mono">
-            — Operational Demonstrations —
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Videos of EKA HT
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            onClick={() => setActiveVideoModal(true)}
-            className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group"
-          >
-            <div className="aspect-16/9 bg-slate-900 relative overflow-hidden">
-              <img
-                src="/images/jewelry/jewelry-filigree-ring.jpg"
-                alt="EKA HT Jewelry 3D Printing Demo"
-                className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                <div className="w-14 h-14 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Play className="w-6 h-6 fill-white ml-0.5" />
-                </div>
-              </div>
-              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-[10px] font-mono">
-                2:15
-              </div>
-            </div>
-            <div className="p-5">
-              <h3 className="font-bold text-sm text-slate-950 group-hover:text-amber-700 transition-colors">
-                EKA HT High-Precision Direct Casting Wax Ring Printing Demonstration
-              </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                Watch full build platform printing of 32 micro-detail rings with heated resin tray technology.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => setActiveVideoModal(true)}
-            className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group"
-          >
-            <div className="aspect-16/9 bg-slate-900 relative overflow-hidden">
-              <img
-                src="/images/jewelry/jewelry-casting-tree.jpg"
-                alt="EKA HT Filter and Heater Operation"
-                className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                <div className="w-14 h-14 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Play className="w-6 h-6 fill-white ml-0.5" />
-                </div>
-              </div>
-              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-[10px] font-mono">
-                1:45
-              </div>
-            </div>
-            <div className="p-5">
-              <h3 className="font-bold text-sm text-slate-950 group-hover:text-amber-700 transition-colors">
-                Chamber Filter &amp; Thermal Recoating Performance in Cold Climate
-              </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                See how heated resin tray prevents viscosity spikes and eliminates delamination failures in winter.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================
           8. WORK FROM EKA HT (JEWELRY GALLERY)
@@ -789,33 +713,6 @@ export const EkaHtPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Video Modal Player */}
-      {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl relative">
-            <div className="flex items-center justify-between p-4 border-b border-slate-800 text-white">
-              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
-                EKA HT Operational Demonstration
-              </span>
-              <button
-                onClick={() => setActiveVideoModal(false)}
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="aspect-16/9 bg-black">
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="EKA HT Video"
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

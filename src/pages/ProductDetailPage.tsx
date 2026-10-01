@@ -23,6 +23,11 @@ import EkaXlPage from './EkaXlPage'
 import EkaXlePage from './EkaXlePage'
 import EkaGtMaxPage from './EkaGtMaxPage'
 import EkaF116kPage from './EkaF116kPage'
+import Pratham5Page from './Pratham5Page'
+import Pratham6Page from './Pratham6Page'
+import PrathamX600Page from './PrathamX600Page'
+import PrathamX1000Page from './PrathamX1000Page'
+import Pratham3RapidPage from './Pratham3RapidPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -44,6 +49,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
     'pratham-6.0': 'pratham-6',
     'pratham-5.0': 'pratham-5',
     'pratham-3.0': 'pratham-3',
+    'pratham-x-1000': 'pratham-x',
+    'pratham-x-1000-mm': 'pratham-x',
+    'pratham-x-600-mm': 'pratham-x-600',
     'eka-xl-2': 'eka-xl',
     'industrial-lcd-3d-printers-eka-gt-max': 'eka-gt-max',
     'gt-max': 'eka-gt-max',
@@ -61,6 +69,21 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'pratham-3' || resolvedSlug === 'pratham-3-0') {
     return <Pratham3Page />
+  }
+  if (resolvedSlug === 'pratham-5' || resolvedSlug === 'pratham-5-0') {
+    return <Pratham5Page />
+  }
+  if (resolvedSlug === 'pratham-6' || resolvedSlug === 'pratham-6-0') {
+    return <Pratham6Page />
+  }
+  if (resolvedSlug === 'pratham-x-600') {
+    return <PrathamX600Page />
+  }
+  if (resolvedSlug === 'pratham-x' || resolvedSlug === 'pratham-x-1000') {
+    return <PrathamX1000Page />
+  }
+  if (resolvedSlug === 'pratham-3-rapid') {
+    return <Pratham3RapidPage />
   }
   if (resolvedSlug === 'eka-ht') {
     return <EkaHtPage />

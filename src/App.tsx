@@ -34,6 +34,11 @@ import EinscanPage from './pages/EinscanPage'
 import PrathamMiniPage from './pages/PrathamMiniPage'
 import PrathamDesktopPage from './pages/PrathamDesktopPage'
 import Pratham3Page from './pages/Pratham3Page'
+import Pratham5Page from './pages/Pratham5Page'
+import Pratham6Page from './pages/Pratham6Page'
+import PrathamX600Page from './pages/PrathamX600Page'
+import PrathamX1000Page from './pages/PrathamX1000Page'
+import Pratham3RapidPage from './pages/Pratham3RapidPage'
 import EkaHtPage from './pages/EkaHtPage'
 import EkaXlPage from './pages/EkaXlPage'
 import EkaXlePage from './pages/EkaXlePage'
@@ -131,6 +136,40 @@ export default function App() {
             <Route path="/products/pratham-3-0" element={<Pratham3Page />} />
             <Route path="/product/pratham-3-0" element={<Pratham3Page />} />
             <Route path="/pratham-3-0" element={<Pratham3Page />} />
+
+            {/* Dedicated Pratham 5.0 Large-Format Industrial FDM */}
+            <Route path="/products/pratham-5" element={<Pratham5Page />} />
+            <Route path="/product/pratham-5" element={<Pratham5Page />} />
+            <Route path="/pratham-5" element={<Pratham5Page />} />
+            <Route path="/products/pratham-5-0" element={<Pratham5Page />} />
+            <Route path="/product/pratham-5-0" element={<Pratham5Page />} />
+            <Route path="/pratham-5-0" element={<Pratham5Page />} />
+
+            {/* Dedicated Pratham 6.0 Closed-Loop Servo FDM */}
+            <Route path="/products/pratham-6" element={<Pratham6Page />} />
+            <Route path="/product/pratham-6" element={<Pratham6Page />} />
+            <Route path="/pratham-6" element={<Pratham6Page />} />
+            <Route path="/products/pratham-6-0" element={<Pratham6Page />} />
+            <Route path="/product/pratham-6-0" element={<Pratham6Page />} />
+            <Route path="/pratham-6-0" element={<Pratham6Page />} />
+
+            {/* Dedicated Pratham X (600) Jumbo FDM */}
+            <Route path="/products/pratham-x-600" element={<PrathamX600Page />} />
+            <Route path="/product/pratham-x-600" element={<PrathamX600Page />} />
+            <Route path="/pratham-x-600" element={<PrathamX600Page />} />
+
+            {/* Dedicated Pratham X (1000) 1 m³ Giant FDM */}
+            <Route path="/products/pratham-x" element={<PrathamX1000Page />} />
+            <Route path="/product/pratham-x" element={<PrathamX1000Page />} />
+            <Route path="/pratham-x" element={<PrathamX1000Page />} />
+            <Route path="/products/pratham-x-1000" element={<PrathamX1000Page />} />
+            <Route path="/product/pratham-x-1000" element={<PrathamX1000Page />} />
+            <Route path="/pratham-x-1000" element={<PrathamX1000Page />} />
+
+            {/* Dedicated Pratham 3 Rapid 500 mm/s CoreXY FDM */}
+            <Route path="/products/pratham-3-rapid" element={<Pratham3RapidPage />} />
+            <Route path="/product/pratham-3-rapid" element={<Pratham3RapidPage />} />
+            <Route path="/pratham-3-rapid" element={<Pratham3RapidPage />} />
 
             {/* Dedicated EKA Series DLP 3D Printers */}
             <Route path="/products/eka-ht" element={<EkaHtPage />} />

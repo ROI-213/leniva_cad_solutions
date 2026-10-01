@@ -28,6 +28,7 @@ import Pratham6Page from './Pratham6Page'
 import PrathamX600Page from './PrathamX600Page'
 import PrathamX1000Page from './PrathamX1000Page'
 import Pratham3RapidPage from './Pratham3RapidPage'
+import EnscapePage from './EnscapePage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -84,6 +85,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'pratham-3-rapid') {
     return <Pratham3RapidPage />
+  }
+  if (resolvedSlug === 'enscape' || resolvedSlug === 'enscape-3d' || resolvedSlug === 'chaos-enscape') {
+    return <EnscapePage />
   }
   if (resolvedSlug === 'eka-ht') {
     return <EkaHtPage />

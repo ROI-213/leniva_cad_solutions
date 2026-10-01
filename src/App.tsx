@@ -46,6 +46,7 @@ import DlpCategoryPage from './pages/DlpCategoryPage'
 import IndustrialLcdCategoryPage from './pages/IndustrialLcdCategoryPage'
 import EkaGtMaxPage from './pages/EkaGtMaxPage'
 import EkaF116kPage from './pages/EkaF116kPage'
+import EnscapePage from './pages/EnscapePage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -195,6 +196,13 @@ export default function App() {
             <Route path="/eka-f1-16k" element={<EkaF116kPage />} />
             <Route path="/eka-f1-16k-industrial-lcd-jewelry-3d-printer" element={<EkaF116kPage />} />
             <Route path="/eka-f1-16k-industrial-lcd-jewelry-3d-printer/" element={<EkaF116kPage />} />
+
+            {/* Dedicated Chaos Enscape Product Page */}
+            <Route path="/products/enscape" element={<EnscapePage />} />
+            <Route path="/product/enscape" element={<EnscapePage />} />
+            <Route path="/enscape" element={<EnscapePage />} />
+            <Route path="/products/chaos-enscape" element={<EnscapePage />} />
+            <Route path="/products/enscape-3d" element={<EnscapePage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

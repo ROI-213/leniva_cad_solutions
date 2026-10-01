@@ -704,7 +704,7 @@ export const Pratham3Page: React.FC = () => {
 
           {/* Hero Right Visual: Large Dominant Realistic Pratham 3.0 */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl bg-linear-to-b from-slate-100/90 to-white p-6 sm:p-10 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[460px]">
+            <div className="relative rounded-3xl bg-slate-50 bg-gradient-to-b from-slate-100/90 to-white p-6 sm:p-10 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[460px]">
               {/* Engineering Grid Background */}
               <div
                 className="absolute inset-0 opacity-[0.035] pointer-events-none"
@@ -1018,7 +1018,7 @@ export const Pratham3Page: React.FC = () => {
                 <span className="text-red-500 font-bold">120°C</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-linear-to-r from-blue-500 via-amber-500 to-red-500 h-full w-full" />
+                <div className="bg-gradient-to-r from-blue-500 via-amber-500 to-red-500 h-full w-full" />
               </div>
               <div className="text-[10px] text-slate-400">ABS • HIPS • PETG • Composites Ready</div>
             </div>
@@ -1949,7 +1949,7 @@ export const Pratham3Page: React.FC = () => {
           15. FINAL CONVERSION SECTION
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-linear-to-r from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-14 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div className="bg-slate-950 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-14 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
           {/* Engineering grid accent */}
           <div
             className="absolute inset-0 opacity-5 pointer-events-none"

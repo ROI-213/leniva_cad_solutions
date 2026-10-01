@@ -508,7 +508,7 @@ export const ScannersCategoryPage: React.FC = () => {
               </div>
 
               {/* Cinematic Product Stage */}
-              <div className="relative rounded-3xl bg-radial from-slate-100/90 to-slate-200/70 border border-slate-200 p-6 sm:p-8 shadow-xl shadow-slate-200/60 overflow-hidden flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] group">
+              <div className="relative rounded-3xl bg-gradient-to-b from-slate-100/90 to-slate-200/70 border border-slate-200 p-6 sm:p-8 shadow-xl shadow-slate-200/60 overflow-hidden flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] group">
                 {/* Background Technical Grid lines */}
                 <div
                   className="absolute inset-0 opacity-[0.08] pointer-events-none"
@@ -1130,7 +1130,7 @@ export const ScannersCategoryPage: React.FC = () => {
               <div className="space-y-5">
                 {/* Visual Technical Diagram Header */}
                 <div className="aspect-[16/10] bg-slate-950 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
-                  <div className="absolute inset-0 bg-radial from-cyan-500/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent pointer-events-none" />
                   <div className="flex items-center justify-between text-[11px] text-cyan-400 font-mono z-10">
                     <span>λ = 450 nm (Blue)</span>
                     <span className="px-2 py-0.5 rounded bg-cyan-500/20 border border-cyan-500/40">34 Lines</span>
@@ -1178,7 +1178,7 @@ export const ScannersCategoryPage: React.FC = () => {
               <div className="space-y-5">
                 {/* Visual Technical Diagram Header */}
                 <div className="aspect-[16/10] bg-slate-950 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
-                  <div className="absolute inset-0 bg-radial from-orange-500/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-orange-500/20 to-transparent pointer-events-none" />
                   <div className="flex items-center justify-between text-[11px] text-orange-400 font-mono z-10">
                     <span>λ = 850 nm (Infrared)</span>
                     <span className="px-2 py-0.5 rounded bg-orange-500/20 border border-orange-500/40">22 Lines</span>
@@ -1226,7 +1226,7 @@ export const ScannersCategoryPage: React.FC = () => {
               <div className="space-y-5">
                 {/* Visual Technical Diagram Header */}
                 <div className="aspect-[16/10] bg-slate-950 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
-                  <div className="absolute inset-0 bg-radial from-emerald-500/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/20 to-transparent pointer-events-none" />
                   <div className="flex items-center justify-between text-[11px] text-emerald-400 font-mono z-10">
                     <span>VCSEL Structured Speckle</span>
                     <span className="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40">Wide FOV</span>
@@ -1572,7 +1572,7 @@ export const ScannersCategoryPage: React.FC = () => {
                 {/* Animated Object Transformation Representation */}
                 <div className="lg:col-span-5 relative">
                   <div className="relative aspect-[4/3] rounded-2xl bg-slate-950 p-6 flex flex-col justify-between overflow-hidden shadow-xl border border-slate-800">
-                    <div className="absolute inset-0 bg-radial from-orange-500/10 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-orange-500/10 to-transparent pointer-events-none" />
 
                     {/* Progress Indicator */}
                     <div className="flex items-center justify-between text-xs font-mono text-slate-400 z-10">

@@ -307,7 +307,7 @@ export const EkaGtMaxPage: React.FC = () => {
 
             {/* Right Product Visual Column */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full aspect-square max-w-[460px] rounded-2xl bg-radial from-blue-100/60 via-slate-100/50 to-slate-200/40 p-8 flex items-center justify-center border border-slate-200 shadow-inner group">
+              <div className="relative w-full aspect-square max-w-[460px] rounded-2xl bg-slate-100 bg-gradient-to-b from-blue-100/60 via-slate-100/50 to-slate-200/40 p-8 flex items-center justify-center border border-slate-200 shadow-inner group">
                 {/* Tech dimension overlays */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md text-[10px] font-mono font-bold text-slate-600 border border-slate-200/80 shadow-xs">
                   X: 353 mm

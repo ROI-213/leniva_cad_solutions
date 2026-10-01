@@ -114,7 +114,7 @@ export const IndustrialLcdCategoryPage: React.FC = () => {
                 <span className="text-xs font-mono font-bold text-slate-500">16-inch 8K Monochrome</span>
               </div>
 
-              <div className="aspect-16/10 rounded-2xl bg-linear-to-b from-blue-50/40 to-slate-100/60 p-6 flex items-center justify-center overflow-hidden border border-slate-200/80">
+              <div className="aspect-16/10 rounded-2xl bg-slate-50 bg-gradient-to-b from-blue-50/40 to-slate-100/60 p-6 flex items-center justify-center overflow-hidden border border-slate-200/80">
                 <img
                   src={ekaGtMaxData.heroImage}
                   alt={ekaGtMaxData.name}
@@ -192,7 +192,7 @@ export const IndustrialLcdCategoryPage: React.FC = () => {
                 <span className="text-xs font-mono font-bold text-amber-700">16K Ultra-High Resolution</span>
               </div>
 
-              <div className="aspect-16/10 rounded-2xl bg-linear-to-b from-amber-50/40 to-slate-100/60 p-6 flex items-center justify-center overflow-hidden border border-slate-200/80">
+              <div className="aspect-16/10 rounded-2xl bg-slate-50 bg-gradient-to-b from-amber-50/40 to-slate-100/60 p-6 flex items-center justify-center overflow-hidden border border-slate-200/80">
                 <img
                   src={ekaF116kData.heroImage}
                   alt={ekaF116kData.name}

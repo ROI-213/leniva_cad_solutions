@@ -215,7 +215,7 @@ export const EkaXlePage: React.FC = () => {
 
           {/* Right Product Image */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl bg-linear-to-b from-blue-50/60 via-slate-100/70 to-white p-6 sm:p-12 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[460px]">
+            <div className="relative rounded-3xl bg-slate-50 bg-gradient-to-b from-blue-50/60 via-slate-100/70 to-white p-6 sm:p-12 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[460px]">
               {/* Tech Grid */}
               <div
                 className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -319,7 +319,7 @@ export const EkaXlePage: React.FC = () => {
         </div>
 
         {/* 1 Year Full Warranty Banner */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-linear-to-r from-slate-950 via-slate-900 to-slate-950 text-white border border-slate-800 shadow-xl text-center space-y-2">
+        <div className="p-8 sm:p-10 rounded-3xl bg-slate-950 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white border border-slate-800 shadow-xl text-center space-y-2">
           <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
             {ekaXleData.positioningTitle}
           </h3>

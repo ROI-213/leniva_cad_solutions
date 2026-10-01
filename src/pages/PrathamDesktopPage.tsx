@@ -577,7 +577,7 @@ export const PrathamDesktopPage: React.FC = () => {
                     className="max-h-[380px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Subtle realistic ground shadow */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-5 bg-radial from-slate-400/40 via-slate-300/10 to-transparent blur-md pointer-events-none" />
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-5 bg-gradient-to-t from-slate-400/40 via-slate-300/10 to-transparent rounded-full blur-md pointer-events-none" />
                 </div>
               </div>
             </div>

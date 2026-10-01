@@ -207,7 +207,7 @@ export const EkaXlPage: React.FC = () => {
 
           {/* Right Product Image */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl bg-linear-to-b from-amber-50/60 via-slate-100/70 to-white p-6 sm:p-12 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[440px]">
+            <div className="relative rounded-3xl bg-slate-50 bg-gradient-to-b from-amber-50/60 via-slate-100/70 to-white p-6 sm:p-12 border border-slate-200/90 shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-[440px]">
               {/* Subtle Tech Grid */}
               <div
                 className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -246,7 +246,7 @@ export const EkaXlPage: React.FC = () => {
           2. EKA XL PRODUCT POSITIONING (1 YEAR WARRANTY)
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-linear-to-r from-slate-950 via-slate-900 to-slate-950 text-white border border-slate-800 shadow-2xl text-center space-y-3">
+        <div className="p-8 sm:p-12 rounded-3xl bg-slate-950 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white border border-slate-800 shadow-2xl text-center space-y-3">
           <div className="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 font-mono text-xs font-bold uppercase rounded-md border border-amber-500/30">
             Compact &amp; Economical
           </div>

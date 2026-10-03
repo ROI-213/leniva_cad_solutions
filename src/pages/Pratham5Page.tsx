@@ -1415,12 +1415,13 @@ export const Pratham5Page: React.FC = () => {
               </div>
 
               {/* Right Column: Clean Reference Image */}
-              <div className={`w-[47%] relative overflow-hidden flex items-center justify-center p-2.5 ${item.bgTint}`}>
+              <div className={`w-[47%] relative overflow-hidden ${item.bgTint}`}>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-xs"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -2306,7 +2307,7 @@ const workItems = [
     category: 'MECHANICAL PROTOTYPES',
     title: 'Large Mechanical Components',
     desc: 'Brackets, housings and structural prototypes printed within the 500 mm envelope.',
-    image: '/images/pratham5-work/01-mechanical-components-clean.png',
+    image: '/images/pratham5-work/01-mechanical-components-uhd.jpg',
     icon: Wrench,
     iconBg: 'bg-[#2563eb]',
     linkColor: 'text-[#2563eb]',
@@ -2316,7 +2317,7 @@ const workItems = [
     category: 'PRODUCT PROTOTYPES',
     title: 'Full-Size Product Enclosures',
     desc: 'Full-size consumer and industrial product housings, enclosures, and design-validation parts.',
-    image: '/images/pratham5-work/02-product-enclosures-clean.png',
+    image: '/images/pratham5-work/02-product-enclosures-uhd.jpg',
     icon: Box,
     iconBg: 'bg-[#dc2626]',
     linkColor: 'text-[#dc2626]',
@@ -2326,7 +2327,7 @@ const workItems = [
     category: 'INDUSTRIAL TOOLING',
     title: 'Shopfloor Jigs & Fixtures',
     desc: 'Jigs, manufacturing assembly fixtures, drill guides, positioning templates and custom aids.',
-    image: '/images/pratham5-work/03-jigs-fixtures-clean.png',
+    image: '/images/pratham5-work/03-jigs-fixtures-uhd.jpg',
     icon: Factory,
     iconBg: 'bg-[#0d9488]',
     linkColor: 'text-[#0d9488]',
@@ -2336,7 +2337,7 @@ const workItems = [
     category: 'AUTOMOTIVE COMPONENTS',
     title: 'Automotive Ducting & Housings',
     desc: 'Air ducts, bumper brackets, intake manifold mockups, and interior trim validation prototypes.',
-    image: '/images/pratham5-work/04-automotive-ducting-clean.png',
+    image: '/images/pratham5-work/04-automotive-ducting-uhd.jpg',
     icon: Compass,
     iconBg: 'bg-[#7c3aed]',
     linkColor: 'text-[#7c3aed]',
@@ -2346,7 +2347,7 @@ const workItems = [
     category: 'ENGINEERING MODELS',
     title: 'Industrial Turbine Impellers',
     desc: 'Large-scale engineering demonstrations, planetary gearboxes, pump casings, and impellers.',
-    image: '/images/pratham5-work/05-turbine-impellers-clean.png',
+    image: '/images/pratham5-work/05-turbine-impellers-uhd.jpg',
     icon: Cpu,
     iconBg: 'bg-[#d97706]',
     linkColor: 'text-[#d97706]',
@@ -2356,7 +2357,7 @@ const workItems = [
     category: 'EDUCATIONAL MODELS',
     title: 'STEM & Cross-Section Assemblies',
     desc: 'Detailed engineering and STEM demonstration models, cross-section engines, and anatomical replicas.',
-    image: '/images/pratham5-work/06-stem-assemblies-clean.png',
+    image: '/images/pratham5-work/06-stem-assemblies-uhd.jpg',
     icon: GraduationCap,
     iconBg: 'bg-[#2563eb]',
     linkColor: 'text-[#2563eb]',

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Database,
   Shield,
@@ -25,6 +26,7 @@ import {
   Check,
   Search,
   Briefcase,
+  Home,
 } from 'lucide-react'
 import { products as fallbackProducts } from '../data/products'
 import { services as fallbackServices } from '../data/services'
@@ -1131,6 +1133,16 @@ export default function AdminPage() {
               <CheckCircle className="w-4 h-4 text-emerald-600" />
               <span>1-Click Instant Preview (Bypass Sign-In)</span>
             </button>
+
+            <div className="pt-2 text-center">
+              <Link
+                to="/"
+                className="inline-flex items-center space-x-1.5 text-xs text-slate-500 hover:text-blue-600 transition-colors font-medium"
+              >
+                <Home className="w-3.5 h-3.5" />
+                <span>Return to Main Website</span>
+              </Link>
+            </div>
           </form>
         </div>
       </div>
@@ -1170,7 +1182,16 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
+            <Link
+              to="/"
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium cursor-pointer transition-colors"
+              title="Return to public website"
+            >
+              <Home className="w-3.5 h-3.5 text-blue-400" />
+              <span className="hidden sm:inline">Visit Website</span>
+            </Link>
+
             <button
               onClick={loadAllData}
               disabled={isLoading}

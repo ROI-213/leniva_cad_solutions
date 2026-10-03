@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AppProvider } from './context/AppContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -56,11 +56,14 @@ import AresStandardPage from './pages/AresStandardPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
+  const location = useLocation()
+  const isAdminRoute = location.pathname.startsWith('/admin')
+
   return (
     <AppProvider>
       <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-red-600 selection:text-white font-inter">
         <ScrollToTop />
-        <Header />
+        {!isAdminRoute && <Header />}
 
         <main className="flex-1">
           <Routes>
@@ -378,8 +381,8 @@ export default function App() {
           </Routes>
         </main>
 
-        <Footer />
-        <WhatsAppButton />
+        {!isAdminRoute && <Footer />}
+        {!isAdminRoute && <WhatsAppButton />}
         <QuoteModal />
         <SearchModal />
       </div>

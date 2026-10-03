@@ -37,8 +37,6 @@ export const AresStandardPage: React.FC = () => {
   const [activeWorkflowStep, setActiveWorkflowStep] = useState<number>(0)
   const [activeFaqCategory, setActiveFaqCategory] = useState<string>('all')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
-  const [selectedGalleryCategory, setSelectedGalleryCategory] = useState<string>('all')
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [comparisonFilter, setComparisonFilter] = useState<'all' | 'included' | 'platform' | 'licensing'>('all')
 
   // Enquiry form state
@@ -70,7 +68,6 @@ export const AresStandardPage: React.FC = () => {
         'platform',
         'licensing',
         'trial',
-        'gallery',
         'developer',
         'trinity',
         'faqs',
@@ -103,11 +100,6 @@ export const AresStandardPage: React.FC = () => {
     activeFaqCategory === 'all'
       ? data.faqs
       : data.faqs.filter((faq) => faq.category === activeFaqCategory)
-
-  const filteredGallery =
-    selectedGalleryCategory === 'all'
-      ? data.gallery
-      : data.gallery.filter((item) => item.category === selectedGalleryCategory)
 
   const filteredComparisonRows = data.comparison.rows.filter((row) => {
     if (comparisonFilter === 'all') return true
@@ -283,7 +275,6 @@ export const AresStandardPage: React.FC = () => {
                 { id: 'platform', label: 'Platform & Specs' },
                 { id: 'licensing', label: 'Licensing' },
                 { id: 'trial', label: 'Free Trial' },
-                { id: 'gallery', label: 'Gallery' },
                 { id: 'developer', label: 'Developer APIs' },
                 { id: 'trinity', label: 'Trinity Context' },
                 { id: 'faqs', label: 'FAQs' },
@@ -887,102 +878,7 @@ export const AresStandardPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 14. IMAGE GALLERY */}
-      <section id="gallery" className="py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <div className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
-              Visual Workspace
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Explore the 2D CAD Workspace
-            </h2>
-            <p className="mt-3 text-slate-600 text-sm leading-relaxed">
-              High-resolution previews of drawing layouts, layer properties, blocks with attributes, and dimensioning.
-            </p>
-          </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {[
-              { id: 'all', label: 'All Previews' },
-              { id: 'workspace', label: 'Workspace' },
-              { id: 'drafting', label: 'Drafting' },
-              { id: 'layers', label: 'Layers' },
-              { id: 'blocks', label: 'Blocks' },
-              { id: 'dimensions', label: 'Dimensions' },
-              { id: 'printing', label: 'Printing' },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedGalleryCategory(cat.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                  selectedGalleryCategory === cat.id
-                    ? 'bg-blue-600 text-white font-semibold shadow-sm'
-                    : 'bg-white text-slate-600 hover:bg-slate-200 border border-slate-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredGallery.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => setSelectedImage(item.image)}
-                className="group cursor-pointer rounded-xl border border-slate-200 overflow-hidden bg-white hover:shadow-lg transition-all"
-              >
-                <div className="aspect-video overflow-hidden relative">
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] text-white">
-                    {item.categoryLabel}
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h4 className="text-xs font-bold text-slate-900">{item.title}</h4>
-                  <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
-                    {item.caption}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lightbox Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <div
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img src={selectedImage} alt="Expanded visual" className="w-full h-auto max-h-[80vh] object-contain" />
-              <div className="p-4 bg-slate-900 text-right">
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* 15. DEVELOPER CAPABILITIES */}
       <section id="developer" className="py-20 bg-white border-b border-slate-200">

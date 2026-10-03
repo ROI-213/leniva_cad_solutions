@@ -34,7 +34,6 @@ import {
   Plane,
   Microscope,
   Building,
-  ShieldAlert,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
@@ -239,28 +238,6 @@ export const PrathamX1000Page: React.FC = () => {
         </div>
       </div>
 
-      {/* ====================================================
-          VARIANT SWITCHER BAR: X 1000 vs X 600
-         ==================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2">
-        <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2.5 text-amber-900 font-medium">
-            <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>
-              <strong>Configuration Notice:</strong> This section exclusively describes the <strong>Pratham X 1000 (1000 × 1000 × 1000 mm)</strong> 1-metre cubic build variant.
-            </span>
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="text-slate-500 text-[11px]">Also available in 600 mm Z-height:</span>
-            <Link
-              to="/products/pratham-x-600"
-              className="px-3 py-1 rounded-lg bg-white border border-amber-300 hover:border-amber-400 text-amber-900 font-bold font-mono text-[11px] shadow-2xs hover:bg-amber-100/50 transition-colors"
-            >
-              View Pratham X 600 (1000 × 1000 × 600 mm) →
-            </Link>
-          </div>
-        </div>
-      </div>
 
       {/* ====================================================
           2. STICKY PRODUCT NAVIGATION BAR

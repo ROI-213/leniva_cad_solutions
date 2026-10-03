@@ -48,6 +48,7 @@ import EkaGtMaxPage from './pages/EkaGtMaxPage'
 import EkaF116kPage from './pages/EkaF116kPage'
 import EnscapePage from './pages/EnscapePage'
 import VRayPage from './pages/VRayPage'
+import CoronaPage from './pages/CoronaPage'
 import SketchUpStudioPage from './pages/SketchUpStudioPage'
 import SketchUpProScanPage from './pages/SketchUpProScanPage'
 import AresMechanicalPage from './pages/AresMechanicalPage'
@@ -220,6 +221,14 @@ export default function App() {
             <Route path="/products/v-ray" element={<VRayPage />} />
             <Route path="/products/chaos-vray" element={<VRayPage />} />
             <Route path="/products/chaos-v-ray" element={<VRayPage />} />
+
+            {/* Dedicated Chaos Corona Product Page */}
+            <Route path="/products/corona" element={<CoronaPage />} />
+            <Route path="/product/corona" element={<CoronaPage />} />
+            <Route path="/corona" element={<CoronaPage />} />
+            <Route path="/products/chaos-corona" element={<CoronaPage />} />
+            <Route path="/product/chaos-corona" element={<CoronaPage />} />
+            <Route path="/chaos-corona" element={<CoronaPage />} />
 
             {/* Dedicated SketchUp Studio Product Page */}
             <Route path="/products/sketchup-studio" element={<SketchUpStudioPage />} />

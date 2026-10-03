@@ -30,6 +30,7 @@ import PrathamX1000Page from './PrathamX1000Page'
 import Pratham3RapidPage from './Pratham3RapidPage'
 import EnscapePage from './EnscapePage'
 import VRayPage from './VRayPage'
+import CoronaPage from './CoronaPage'
 import SketchUpStudioPage from './SketchUpStudioPage'
 import SketchUpProScanPage from './SketchUpProScanPage'
 import AresMechanicalPage from './AresMechanicalPage'
@@ -97,6 +98,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'vray' || resolvedSlug === 'v-ray' || resolvedSlug === 'chaos-vray' || resolvedSlug === 'chaos-v-ray') {
     return <VRayPage />
+  }
+  if (resolvedSlug === 'corona' || resolvedSlug === 'chaos-corona' || resolvedSlug === 'chaos-corona-renderer') {
+    return <CoronaPage />
   }
   if (resolvedSlug === 'sketchup-studio' || resolvedSlug === 'sketchup_studio' || resolvedSlug === 'sketchupstudio') {
     return <SketchUpStudioPage />

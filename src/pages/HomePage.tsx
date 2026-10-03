@@ -215,12 +215,12 @@ export const HomePage: React.FC = () => {
     setShowcaseSlide(prev => (prev - 1 + showcaseProducts.length) % showcaseProducts.length)
   }, [showcaseProducts.length])
 
-  // Auto-slide every 3.2 seconds, pause when hovered
+  // Auto-slide every 1.4 seconds (fast motion), pause when hovered
   useEffect(() => {
     if (isShowcaseHovered) return
     const timer = setInterval(() => {
       nextShowcaseSlide()
-    }, 3200)
+    }, 1400)
     return () => clearInterval(timer)
   }, [nextShowcaseSlide, isShowcaseHovered])
 
@@ -556,7 +556,7 @@ export const HomePage: React.FC = () => {
             {/* 3. Right Column: Dynamic All-Products Sliding Showcase Carousel */}
             <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
               <div
-                className="relative w-full h-[270px] rounded-2xl bg-white border border-slate-200/90 shadow-lg overflow-hidden group select-none"
+                className="relative w-full h-[270px] rounded-2xl bg-transparent overflow-hidden group select-none flex items-center justify-center"
                 onMouseEnter={() => setIsShowcaseHovered(true)}
                 onMouseLeave={() => setIsShowcaseHovered(false)}
               >
@@ -567,42 +567,37 @@ export const HomePage: React.FC = () => {
                     <Link
                       key={prod.id}
                       to={prod.link}
-                      className={`absolute inset-0 flex flex-col justify-between transition-all duration-700 ease-out cursor-pointer ${
+                      className={`absolute inset-0 flex flex-col justify-between transition-all duration-300 ease-out cursor-pointer ${
                         isActive
                           ? 'opacity-100 z-10 scale-100 pointer-events-auto'
-                          : 'opacity-0 z-0 scale-98 pointer-events-none'
+                          : 'opacity-0 z-0 scale-95 pointer-events-none'
                       }`}
                     >
-                      {/* Gradient Backdrop */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${prod.accentColor} pointer-events-none`} />
-
                       {/* Top Header Tag */}
-                      <div className="relative z-10 flex items-center justify-between p-3.5 pb-0">
-                        <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/80 shadow-xs">
+                      <div className="relative z-10 flex items-center justify-between p-2 pb-0">
+                        <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white shadow-xs">
                           {prod.badge}
                         </span>
-                        <span className="text-[10px] font-mono font-bold text-slate-500 bg-white/80 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-mono font-bold text-slate-500 bg-white/90 border border-slate-200/80 px-2 py-0.5 rounded-md shadow-2xs">
                           {idx + 1}/{showcaseProducts.length}
                         </span>
                       </div>
 
-                      {/* Product Visual Center */}
-                      <div className="relative flex-1 flex items-center justify-center p-2 overflow-hidden">
+                      {/* Product Visual Center — Clean No Background */}
+                      <div className="relative flex-1 flex items-center justify-center p-1 overflow-hidden">
                         <img
                           src={prod.image}
                           alt={`${prod.name} — ${prod.category}`}
-                          className={`w-full h-full drop-shadow-md group-hover:scale-105 transition-transform duration-700 ${
-                            prod.isCleanRender ? 'object-contain' : 'object-cover rounded-xl'
-                          }`}
+                          className="w-full h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                           loading={idx < 3 ? 'eager' : 'lazy'}
                         />
                       </div>
 
-                      {/* Bottom Floating Glass Card */}
-                      <div className="relative z-10 p-3 pt-0">
-                        <div className="bg-white/95 backdrop-blur-md rounded-xl p-2.5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                      {/* Bottom Floating Info Card */}
+                      <div className="relative z-10 p-2 pt-0">
+                        <div className="bg-white/95 backdrop-blur-md rounded-xl p-2 border border-slate-200/80 shadow-md flex items-center justify-between">
                           <div className="min-w-0 pr-2">
-                            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 truncate">
+                            <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400 truncate">
                               {prod.brand}
                             </div>
                             <div className="text-xs font-black text-slate-900 leading-tight truncate">
@@ -612,7 +607,7 @@ export const HomePage: React.FC = () => {
                               {prod.tagline}
                             </div>
                           </div>
-                          <div className="shrink-0 w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center group-hover:bg-red-600 transition-colors shadow-xs">
+                          <div className="shrink-0 w-6 h-6 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-xs">
                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>

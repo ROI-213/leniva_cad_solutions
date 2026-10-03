@@ -74,6 +74,184 @@ export const HomePage: React.FC = () => {
     return () => clearInterval(timer)
   }, [nextSlide])
 
+  // Section 2: Right Column - All Products Showcase Slider (Sliding one after another)
+  const showcaseProducts = [
+    {
+      id: 'pratham-6',
+      name: 'Pratham 6.0',
+      brand: 'Leniva Additive',
+      category: 'Industrial 3D Printer',
+      badge: 'Industrial FDM',
+      tagline: 'Concept to Creation',
+      image: '/images/showcase/pratham-showcase.png?v=pratham6',
+      link: '/products/pratham-mini',
+      accentColor: 'from-red-600/15 via-red-500/5 to-transparent',
+      borderColor: 'border-red-200/90',
+      textColor: 'text-red-600',
+      isCleanRender: true,
+    },
+    {
+      id: 'ares-mechanical',
+      name: 'ARES Mechanical',
+      brand: 'Graebert',
+      category: '2D Mechanical CAD',
+      badge: 'Native DWG Engine',
+      tagline: 'Mechanical Drafting Precision',
+      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      link: '/products/ares-mechanical',
+      accentColor: 'from-blue-600/15 via-blue-500/5 to-transparent',
+      borderColor: 'border-blue-200/90',
+      textColor: 'text-blue-600',
+      isCleanRender: false,
+    },
+    {
+      id: '3devok-mq',
+      name: '3DeVOK MQ Metrology',
+      brand: '3DeVOK',
+      category: 'Optical 3D Scanner',
+      badge: '0.015mm Accuracy',
+      tagline: 'Blue Light Optical Metrology',
+      image: '/images/products/3devok-mq.png',
+      link: '/products/3devok-mq',
+      accentColor: 'from-cyan-600/15 via-cyan-500/5 to-transparent',
+      borderColor: 'border-cyan-200/90',
+      textColor: 'text-cyan-700',
+      isCleanRender: true,
+    },
+    {
+      id: 'chaos-enscape',
+      name: 'Chaos Enscape',
+      brand: 'Chaos Group',
+      category: 'Real-Time Rendering & VR',
+      badge: '1-Click Virtual Reality',
+      tagline: 'Design, Visualize & Present',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      link: '/products/enscape',
+      accentColor: 'from-purple-600/15 via-purple-500/5 to-transparent',
+      borderColor: 'border-purple-200/90',
+      textColor: 'text-purple-600',
+      isCleanRender: false,
+    },
+    {
+      id: 'eka-ht',
+      name: 'EKA HT Precision',
+      brand: 'Leniva Additive',
+      category: 'High-Temp DLP Resin',
+      badge: 'Micron Precision DLP',
+      tagline: 'Direct Casting & Dental',
+      image: '/images/products/eka-ht.png',
+      link: '/products/eka-ht',
+      accentColor: 'from-amber-600/15 via-amber-500/5 to-transparent',
+      borderColor: 'border-amber-200/90',
+      textColor: 'text-amber-600',
+      isCleanRender: true,
+    },
+    {
+      id: 'ares-electrical',
+      name: 'ARES Electrical',
+      brand: 'Graebert',
+      category: 'Electrical CAD (ECAD)',
+      badge: 'Schematic Automation',
+      tagline: 'Automate Wiring in DWG',
+      image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80',
+      link: '/products/ares-electrical',
+      accentColor: 'from-yellow-600/15 via-amber-500/5 to-transparent',
+      borderColor: 'border-yellow-200/90',
+      textColor: 'text-amber-700',
+      isCleanRender: false,
+    },
+    {
+      id: 'sketchup-studio',
+      name: 'SketchUp Studio',
+      brand: 'Trimble',
+      category: '3D Design & BIM Suite',
+      badge: 'Full Trimble Suite',
+      tagline: 'Model • Render • Point Cloud',
+      image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80',
+      link: '/products/sketchup-studio',
+      accentColor: 'from-emerald-600/15 via-emerald-500/5 to-transparent',
+      borderColor: 'border-emerald-200/90',
+      textColor: 'text-emerald-700',
+      isCleanRender: false,
+    },
+    {
+      id: 'chaos-vray',
+      name: 'Chaos V-Ray',
+      brand: 'Chaos Group',
+      category: 'Photorealistic Rendering',
+      badge: 'Academy Award Winner',
+      tagline: 'Physically Based Ray Tracing',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      link: '/products/vray',
+      accentColor: 'from-orange-600/15 via-orange-500/5 to-transparent',
+      borderColor: 'border-orange-200/90',
+      textColor: 'text-orange-600',
+      isCleanRender: false,
+    },
+    {
+      id: 'sketchup-proscan',
+      name: 'SketchUp Pro + Scan',
+      brand: 'Trimble',
+      category: 'Scan-to-Model Workflows',
+      badge: 'Point Cloud Snapping',
+      tagline: 'Model Reality from Scans',
+      image: 'https://images.unsplash.com/photo-1619468129361-605ebea04b44?auto=format&fit=crop&w=800&q=80',
+      link: '/products/sketchup-proscan',
+      accentColor: 'from-teal-600/15 via-teal-500/5 to-transparent',
+      borderColor: 'border-teal-200/90',
+      textColor: 'text-teal-700',
+      isCleanRender: false,
+    },
+    {
+      id: 'ares-standard',
+      name: 'ARES Standard',
+      brand: 'Graebert',
+      category: '2D DWG CAD Software',
+      badge: 'Cost-Effective 2D CAD',
+      tagline: 'Practical Everyday Drafting',
+      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
+      link: '/products/ares-standard',
+      accentColor: 'from-slate-600/15 via-slate-500/5 to-transparent',
+      borderColor: 'border-slate-200/90',
+      textColor: 'text-slate-700',
+      isCleanRender: false,
+    },
+    {
+      id: 'pratham-x',
+      name: 'Pratham X1000',
+      brand: 'Leniva Additive',
+      category: 'Large Format Industrial',
+      badge: '1-Meter Single Build',
+      tagline: 'Full Scale Manufacturing',
+      image: '/images/products/pratham-x.png',
+      link: '/products/pratham-x1000',
+      accentColor: 'from-red-700/15 via-red-600/5 to-transparent',
+      borderColor: 'border-red-200/90',
+      textColor: 'text-red-700',
+      isCleanRender: true,
+    },
+  ]
+
+  const [showcaseSlide, setShowcaseSlide] = useState(0)
+  const [isShowcaseHovered, setIsShowcaseHovered] = useState(false)
+
+  const nextShowcaseSlide = useCallback(() => {
+    setShowcaseSlide(prev => (prev + 1) % showcaseProducts.length)
+  }, [showcaseProducts.length])
+
+  const prevShowcaseSlide = useCallback(() => {
+    setShowcaseSlide(prev => (prev - 1 + showcaseProducts.length) % showcaseProducts.length)
+  }, [showcaseProducts.length])
+
+  // Auto-slide every 3.2 seconds, pause when hovered
+  useEffect(() => {
+    if (isShowcaseHovered) return
+    const timer = setInterval(() => {
+      nextShowcaseSlide()
+    }, 3200)
+    return () => clearInterval(timer)
+  }, [nextShowcaseSlide, isShowcaseHovered])
+
   return (
     <div className="space-y-6 sm:space-y-8 pb-8 sm:pb-10">
       {/* ====================================================
@@ -403,14 +581,105 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3. Right Column: Pratham 6.0 3D Printer */}
+            {/* 3. Right Column: Dynamic All-Products Sliding Showcase Carousel */}
             <div className="lg:col-span-3 xl:col-span-3 flex items-center justify-center">
-              <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: '270px' }}>
-                <img
-                  src="/images/showcase/pratham-showcase.png?v=pratham6"
-                  alt="Pratham 6.0 Industrial 3D Printer - From Concept to Creation"
-                  className="w-full h-full object-cover object-right drop-shadow-lg hover:scale-102 transition-transform duration-500"
-                />
+              <div
+                className="relative w-full h-[270px] rounded-2xl bg-white border border-slate-200/90 shadow-lg overflow-hidden group select-none"
+                onMouseEnter={() => setIsShowcaseHovered(true)}
+                onMouseLeave={() => setIsShowcaseHovered(false)}
+              >
+                {/* Slides Track */}
+                {showcaseProducts.map((prod, idx) => {
+                  const isActive = idx === showcaseSlide
+                  return (
+                    <Link
+                      key={prod.id}
+                      to={prod.link}
+                      className={`absolute inset-0 flex flex-col justify-between transition-all duration-700 ease-out cursor-pointer ${
+                        isActive
+                          ? 'opacity-100 z-10 scale-100 pointer-events-auto'
+                          : 'opacity-0 z-0 scale-98 pointer-events-none'
+                      }`}
+                    >
+                      {/* Gradient Backdrop */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${prod.accentColor} pointer-events-none`} />
+
+                      {/* Top Header Tag */}
+                      <div className="relative z-10 flex items-center justify-between p-3.5 pb-0">
+                        <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/80 shadow-xs">
+                          {prod.badge}
+                        </span>
+                        <span className="text-[10px] font-mono font-bold text-slate-500 bg-white/80 px-2 py-0.5 rounded-md">
+                          {idx + 1}/{showcaseProducts.length}
+                        </span>
+                      </div>
+
+                      {/* Product Visual Center */}
+                      <div className="relative flex-1 flex items-center justify-center p-2 overflow-hidden">
+                        <img
+                          src={prod.image}
+                          alt={`${prod.name} — ${prod.category}`}
+                          className={`w-full h-full drop-shadow-md group-hover:scale-105 transition-transform duration-700 ${
+                            prod.isCleanRender ? 'object-contain' : 'object-cover rounded-xl'
+                          }`}
+                          loading={idx < 3 ? 'eager' : 'lazy'}
+                        />
+                      </div>
+
+                      {/* Bottom Floating Glass Card */}
+                      <div className="relative z-10 p-3 pt-0">
+                        <div className="bg-white/95 backdrop-blur-md rounded-xl p-2.5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                          <div className="min-w-0 pr-2">
+                            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 truncate">
+                              {prod.brand}
+                            </div>
+                            <div className="text-xs font-black text-slate-900 leading-tight truncate">
+                              {prod.name}
+                            </div>
+                            <div className="text-[10px] font-medium text-slate-500 truncate">
+                              {prod.tagline}
+                            </div>
+                          </div>
+                          <div className="shrink-0 w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center group-hover:bg-red-600 transition-colors shadow-xs">
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+
+                {/* Left/Right Manual Navigation Controls (visible on hover) */}
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); prevShowcaseSlide() }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 cursor-pointer"
+                  title="Previous Product"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); nextShowcaseSlide() }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 cursor-pointer"
+                  title="Next Product"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+
+                {/* Bottom Slide Progress Indicator Dots */}
+                <div className="absolute bottom-1.5 left-0 right-0 z-20 flex items-center justify-center space-x-1 pointer-events-none">
+                  {showcaseProducts.map((_, dotIdx) => (
+                    <div
+                      key={dotIdx}
+                      className={`h-1 rounded-full transition-all duration-300 ${
+                        dotIdx === showcaseSlide
+                          ? 'w-4 bg-red-600'
+                          : 'w-1 bg-slate-300/80'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

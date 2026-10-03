@@ -11,7 +11,6 @@ import {
   ChevronDown,
   Monitor,
   Flame,
-  PhoneCall,
   Activity,
   Award,
   Factory,
@@ -21,15 +20,12 @@ import {
   Compass,
   Play,
   Check,
-  ExternalLink,
   X,
   HardDrive,
   GraduationCap,
   Thermometer,
   CheckCircle2,
   RefreshCw,
-  Mail,
-  MapPin,
   Car,
   Plane,
   Microscope,
@@ -94,7 +90,6 @@ export const PrathamX1000Page: React.FC = () => {
 
   // Official URLs
   const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2025/10/M-Pratham-X.pdf'
-  const officialProductUrl = 'https://make3d.in/pratham-x/'
   const officialVideoId = 'NYvsYd-THAs' // Official Make3D Pratham X Jumbo Video (Life-Sized Chair 3D Printed)
 
   // SEO & Structured Data
@@ -1913,69 +1908,6 @@ export const PrathamX1000Page: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          24. CONTACT INFORMATION SECTION
-         ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-red-600 font-bold">
-                Manufacturing & Sales Contact
-              </span>
-              <h3 className="text-base font-extrabold text-slate-900">Make3D Official Sales & Support Desk</h3>
-            </div>
-            <span className="text-xs text-slate-500 font-mono">Surat, Gujarat, India</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
-              <div className="flex items-center gap-2 text-slate-900 font-bold">
-                <Mail className="w-4 h-4 text-red-600" />
-                <span>Email Enquiries</span>
-              </div>
-              <div className="text-slate-600 space-y-0.5">
-                <div>Sales: <a href="mailto:sales@make3d.in" className="text-red-600 hover:underline">sales@make3d.in</a></div>
-                <div>General: <a href="mailto:info@make3d.in" className="text-red-600 hover:underline">info@make3d.in</a></div>
-                <div>Support: <a href="mailto:support@make3d.in" className="text-red-600 hover:underline">support@make3d.in</a></div>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
-              <div className="flex items-center gap-2 text-slate-900 font-bold">
-                <PhoneCall className="w-4 h-4 text-red-600" />
-                <span>Phone Contacts</span>
-              </div>
-              <div className="text-slate-600 space-y-0.5 font-mono">
-                <div>+91 92278 98857 (Official Desk)</div>
-                <div>+91 93135 52112 (Sales Desk)</div>
-                <div>+91 88667 10006 (Support Desk)</div>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
-              <div className="flex items-center gap-2 text-slate-900 font-bold">
-                <MapPin className="w-4 h-4 text-red-600" />
-                <span>Manufacturing Facility</span>
-              </div>
-              <p className="text-slate-600 leading-relaxed text-[11px]">
-                Plot - 36A, Nilkanth Industry, Ved Road, Katargam, Surat - 395004, Gujarat, India.
-              </p>
-              <div className="pt-1">
-                <a
-                  href={officialProductUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-red-600 hover:text-red-700"
-                >
-                  <span>Make3D Official Product Page</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================
           LIGHTBOX MODAL
@@ -2040,11 +1972,6 @@ const galleryImages = [
   { url: '/images/products/pratham-x.png', title: 'Pratham X 1000 JUMBO Machine Front View (1000 × 1000 × 1000 mm)' },
   { url: '/images/products/pratham-x-1000-hero.png', title: 'Pratham X Jumbo 3D Printer with Large Build Volume' },
   { url: '/images/products/pratham-x-1000-detail.png', title: 'All-Axis Ball Screw Mechanism & Gantry Assembly' },
-  { url: '/images/pratham3-work/02-automotive-scale-mockups.jpg', title: 'Full-Scale Automotive Prototype Component' },
-  { url: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg', title: 'Large Industrial Tooling & Forming Molds' },
-  { url: '/images/pratham3-work/03-complex-engineering-parts.jpg', title: 'Monolithic Heavy-Duty Engineering Part' },
-  { url: '/images/pratham3-work/01-real-functional-parts.jpg', title: 'Oversized Functional Equipment Enclosure' },
-  { url: '/images/pratham3-work/08-impact-guards-robot-bumpers.jpg', title: 'Heavy Automation & Robotic Protective Covers' },
 ]
 
 // 15 Official FAQs

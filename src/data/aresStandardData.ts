@@ -457,7 +457,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Floor Plans & Elevation Detailing',
         description: 'Create and update architectural floor plans, building sections, site layouts, and technical details using standard 2D drafting tools.',
         toolTags: ['Floor Plans', 'Wall Geometry', 'Door/Window Blocks', 'Dimensions'],
-        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-arch-floorplan.jpg',
         deliverables: ['2D Floor Plans', 'Permit Drawings', 'PDF Submittals'],
       },
       {
@@ -466,7 +466,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Schematics & Structural Details',
         description: 'Prepare and modify 2D engineering drawings, piping schematics, structural connections, and technical documentation.',
         toolTags: ['Geometric Snaps', 'Ordinate Dimensions', 'Hatch Patterns', 'Detail Callouts'],
-        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-eng-schematic.jpg',
         deliverables: ['Engineering Details', 'Fabrication Drawings', 'P&ID Schematics'],
       },
       {
@@ -475,7 +475,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: '2D Machine Components & Parts',
         description: 'Work on 2D mechanical drawings, component layouts, and machine assembly views with standard dimensioning and tolerances.',
         toolTags: ['Part Outlines', 'Section Views', 'Tolerances', 'Assembly Linework'],
-        image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-mech-drafting.jpg',
         deliverables: ['Component Profiles', 'Assembly Layouts', 'Machining Drawings'],
       },
       {
@@ -484,7 +484,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'As-Built Revisions & Contractor Sheets',
         description: 'Review and update 2D plans and project drawings for contractor documentation, markups, and as-built record maintenance.',
         toolTags: ['As-Built Redlines', 'Sheet Viewports', 'BatchPrint', 'DWG Exchange'],
-        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-eng-schematic.jpg',
         deliverables: ['As-Built Drawing Sets', 'Contractor Printouts', 'Punch List Drawings'],
       },
       {
@@ -493,7 +493,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Space Planning & Furniture Layouts',
         description: 'Create and modify 2D interior layouts, furniture arrangements, partition walls, and reflected ceiling plans.',
         toolTags: ['Furniture Blocks', 'Space Planning', 'Area Dimensions', 'Layer Isolation'],
-        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-interior-space-plan.jpg',
         deliverables: ['Space Plans', 'Furniture Key Plans', 'Joinery Layouts'],
       },
       {
@@ -502,7 +502,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Foundational CAD Learning',
         description: 'Support CAD learning, engineering curricula, and foundational 2D drafting exercises in universities and technical training institutes.',
         toolTags: ['Student Exercises', 'Drafting Principles', 'LISP Basics', 'Classroom Labs'],
-        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-arch-floorplan.jpg',
         deliverables: ['Classroom Lab Drawings', 'Student Portfolios', 'CAD Exercises'],
       },
       {
@@ -511,7 +511,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Cost-Conscious CAD Operations',
         description: 'Provide a focused, affordable desktop CAD tool for small firms whose workflow centers on opening, editing, and printing DWG drawings.',
         toolTags: ['Low Overhead', 'Native DWG', 'Perpetual Option', 'No Costly Bloat'],
-        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-standard/cad-mech-drafting.jpg',
         deliverables: ['Client DWG Updates', 'Consulting Drawings', 'Print Deliverables'],
       },
     ],

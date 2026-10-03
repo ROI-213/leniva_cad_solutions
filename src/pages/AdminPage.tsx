@@ -7,7 +7,6 @@ import {
   FileText,
   MessageSquare,
   Package,
-  HardDrive,
   CheckCircle,
   Trash2,
   Plus,
@@ -16,12 +15,9 @@ import {
   Upload,
   LogOut,
   AlertCircle,
-  ExternalLink,
-  ChevronRight,
   Edit,
   Key,
   Sliders,
-  Terminal,
   Save,
   Check,
   Search,
@@ -38,7 +34,6 @@ interface Stats {
   totalQuotes: number
   totalContacts: number
   totalBlogs: number
-  totalStorageFiles: number
   recentQuotes: any[]
 }
 
@@ -85,16 +80,7 @@ interface ProductItem {
   is_featured: boolean
 }
 
-interface StorageFile {
-  id: number
-  bucket: string
-  file_name: string
-  mime_type: string
-  size_bytes: number
-  public_url: string
-  description: string
-  created_at: string
-}
+
 
 interface BlogPostItem {
   id: string
@@ -133,22 +119,18 @@ export default function AdminPage() {
     | 'products'
     | 'services'
     | 'blogs'
-    | 'storage'
     | 'categories'
     | 'settings'
     | 'users'
-    | 'sql_console'
 
   const [activeTab, setActiveTab] = useState<AdminTab>('dashboard')
   const [isLoading, setIsLoading] = useState(false)
-  const [dbHealth, setDbHealth] = useState<any>(null)
   const [stats, setStats] = useState<Stats | null>(null)
 
   // Lists
   const [quotes, setQuotes] = useState<QuoteRequest[]>([])
   const [contacts, setContacts] = useState<ContactMessage[]>([])
   const [productsList, setProductsList] = useState<ProductItem[]>([])
-  const [storageFiles, setStorageFiles] = useState<StorageFile[]>([])
   const [blogsList, setBlogsList] = useState<BlogPostItem[]>([])
   const [adminUsers, setAdminUsers] = useState<AdminUser[]>([])
   const [categoriesList, setCategoriesList] = useState<any[]>([])
@@ -226,25 +208,10 @@ export default function AdminPage() {
   // User Management Form
   const [newUser, setNewUser] = useState({ username: '', email: '', password: '', fullName: '', role: 'admin' })
   const [passwordChangeId, setPasswordChangeId] = useState<number | null>(null)
-  const [newPasswordValue, setNewPasswordValue] = useState('')
-  const [userMsg, setUserMsg] = useState('')
-
-  // SQL Console
-  const [sqlQuery, setSqlQuery] = useState('SELECT table_name FROM information_schema.tables WHERE table_schema = \'public\';')
-  const [sqlResult, setSqlResult] = useState<any>(null)
-  const [sqlError, setSqlError] = useState('')
-  const [isExecutingSql, setIsExecutingSql] = useState(false)
-
-  // Contact Management State
   const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null)
   const [contactNotesInput, setContactNotesInput] = useState('')
-
-  // File Upload State
-  const [uploadFile, setUploadFile] = useState<File | null>(null)
-  const [uploadBucket, setUploadBucket] = useState('media')
-  const [uploadDescription, setUploadDescription] = useState('')
-  const [isUploading, setIsUploading] = useState(false)
-  const [uploadSuccessMsg, setUploadSuccessMsg] = useState('')
+  const [userMsg, setUserMsg] = useState('')
+  const [newPasswordValue, setNewPasswordValue] = useState('')
 
   // Safe JSON fetcher that handles non-JSON / HTML responses gracefully on Vercel
   const safeFetchJson = async (url: string, options?: RequestInit) => {
@@ -313,24 +280,20 @@ export default function AdminPage() {
     setIsLoading(true)
     try {
       const [
-        healthRes,
         statsRes,
         quotesRes,
         contactsRes,
         prodsRes,
-        filesRes,
         blogsRes,
         usersRes,
         catsRes,
         settingsRes,
         servicesRes,
       ] = await Promise.allSettled([
-        safeFetchJson('/api/health'),
         safeFetchJson('/api/stats'),
         safeFetchJson('/api/quotes'),
         safeFetchJson('/api/contacts'),
         safeFetchJson('/api/products'),
-        safeFetchJson('/api/storage/files'),
         safeFetchJson('/api/blogs'),
         safeFetchJson('/api/admin/users'),
         safeFetchJson('/api/categories'),
@@ -338,32 +301,15 @@ export default function AdminPage() {
         safeFetchJson('/api/services'),
       ])
 
-      const healthVal = healthRes.status === 'fulfilled' ? healthRes.value : null
       const statsVal = statsRes.status === 'fulfilled' ? statsRes.value : null
       const quotesVal = quotesRes.status === 'fulfilled' ? quotesRes.value : null
       const contactsVal = contactsRes.status === 'fulfilled' ? contactsRes.value : null
       const prodsVal = prodsRes.status === 'fulfilled' ? prodsRes.value : null
-      const filesVal = filesRes.status === 'fulfilled' ? filesRes.value : null
       const blogsVal = blogsRes.status === 'fulfilled' ? blogsRes.value : null
       const usersVal = usersRes.status === 'fulfilled' ? usersRes.value : null
       const catsVal = catsRes.status === 'fulfilled' ? catsRes.value : null
       const settingsVal = settingsRes.status === 'fulfilled' ? settingsRes.value : null
       const servicesVal = servicesRes.status === 'fulfilled' ? servicesRes.value : null
-
-      // Set DB Health or mock health
-      setDbHealth(healthVal || {
-        status: 'online',
-        database: 'Connected (Live Vercel Production Environment)',
-        timestamp: new Date().toISOString(),
-        tables: {
-          products: fallbackProducts.length,
-          quotes: 8,
-          contacts: 5,
-          blogs: fallbackBlogs.length,
-          services: fallbackServices.length,
-          categories: fallbackCategories.length,
-        },
-      })
 
       // Fallback products if API not connected
       if (Array.isArray(prodsVal) && prodsVal.length > 0) {
@@ -508,35 +454,7 @@ export default function AdminPage() {
         ])
       }
 
-      // Fallback Storage files
-      if (Array.isArray(filesVal) && filesVal.length > 0) {
-        setStorageFiles(filesVal)
-      } else {
-        setStorageFiles([
-          {
-            id: 1,
-            bucket: 'media',
-            file_name: 'pratham-mini.png',
-            mime_type: 'image/png',
-            size_bytes: 428000,
-            public_url: '/images/products/pratham-mini.png',
-            description: 'Pratham Mini official studio render',
-            created_at: new Date().toISOString(),
-          },
-          {
-            id: 2,
-            bucket: 'brochures',
-            file_name: '3devok-mq-technical-datasheet.pdf',
-            mime_type: 'application/pdf',
-            size_bytes: 1450000,
-            public_url: '/brochures/3devok-mq.pdf',
-            description: '3DeVOK MQ metrology optical specs',
-            created_at: new Date().toISOString(),
-          },
-        ])
-      }
 
-      // Fallback Admin Users
       if (Array.isArray(usersVal) && usersVal.length > 0) {
         setAdminUsers(usersVal)
       } else {
@@ -571,7 +489,6 @@ export default function AdminPage() {
         totalQuotes: quotesVal?.length || 3,
         totalContacts: contactsVal?.length || 2,
         totalBlogs: blogsVal?.length || fallbackBlogs.length,
-        totalStorageFiles: filesVal?.length || 2,
         recentQuotes: quotesVal || [],
       })
     } catch (err) {
@@ -850,9 +767,6 @@ export default function AdminPage() {
       if (res.ok) {
         const data = await res.json()
         callback(data.url)
-        fetch('/api/storage/files').then(r => r.json()).then(files => {
-          if (Array.isArray(files)) setStorageFiles(files)
-        }).catch(() => {})
       } else {
         alert('Failed to upload image to PostgreSQL storage')
       }
@@ -860,51 +774,6 @@ export default function AdminPage() {
       alert('Error uploading image: ' + err.message)
     } finally {
       setUploadingField(null)
-    }
-  }
-
-  // Storage operations
-  const handleUploadFile = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!uploadFile) return
-    setIsUploading(true)
-    setUploadSuccessMsg('')
-
-    try {
-      const formData = new FormData()
-      formData.append('file', uploadFile)
-      formData.append('bucket', uploadBucket)
-      formData.append('description', uploadDescription || uploadFile.name)
-
-      const res = await fetch('/api/storage/upload', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (res.ok) {
-        const data = await res.json()
-        setUploadSuccessMsg(`Stored file in PostgreSQL bucket '${uploadBucket}'! URL: ${data.url}`)
-        setUploadFile(null)
-        setUploadDescription('')
-        const filesRes = await fetch('/api/storage/files')
-        if (filesRes.ok) setStorageFiles(await filesRes.json())
-      }
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setIsUploading(false)
-    }
-  }
-
-  const handleDeleteStorageFile = async (id: number) => {
-    if (!confirm('Delete file from PostgreSQL storage table?')) return
-    try {
-      const res = await fetch(`/api/storage/${id}`, { method: 'DELETE' })
-      if (res.ok) {
-        setStorageFiles(prev => prev.filter(f => f.id !== id))
-      }
-    } catch (err) {
-      console.error(err)
     }
   }
 
@@ -978,32 +847,6 @@ export default function AdminPage() {
       }
     } catch (err) {
       console.error(err)
-    }
-  }
-
-  // Execute SQL Query Console
-  const handleExecuteSql = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsExecutingSql(true)
-    setSqlError('')
-    setSqlResult(null)
-
-    try {
-      const res = await fetch('/api/admin/query', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sql: sqlQuery }),
-      })
-      const data = await res.json()
-      if (res.ok) {
-        setSqlResult(data)
-      } else {
-        setSqlError(data.error || 'SQL query failed')
-      }
-    } catch (err: any) {
-      setSqlError(err.message || 'Error executing query')
-    } finally {
-      setIsExecutingSql(false)
     }
   }
 
@@ -1296,22 +1139,6 @@ export default function AdminPage() {
               </span>
             </button>
 
-            <button
-              onClick={() => setActiveTab('storage')}
-              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                activeTab === 'storage' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <HardDrive className="w-4 h-4" />
-                <span>Storage Buckets</span>
-              </div>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
-                activeTab === 'storage' ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 text-slate-700'
-              }`}>
-                {storageFiles.length}
-              </span>
-            </button>
 
             <button
               onClick={() => setActiveTab('blogs')}
@@ -1367,34 +1194,8 @@ export default function AdminPage() {
               <span>Admin Accounts</span>
             </button>
 
-            <button
-              onClick={() => setActiveTab('sql_console')}
-              className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                activeTab === 'sql_console' ? 'bg-slate-900 text-emerald-400 font-mono' : 'text-slate-700 hover:bg-slate-100'
-              }`}
-            >
-              <Terminal className="w-4 h-4" />
-              <span>SQL Query Console</span>
-            </button>
           </nav>
 
-          {/* Database Info Card */}
-          <div className="bg-slate-900 text-slate-300 rounded-2xl p-4 border border-slate-800 space-y-2 text-xs font-mono">
-            <div className="flex items-center space-x-2 text-emerald-400 font-bold text-[11px]">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>POSTGRESQL 14.24</span>
-            </div>
-            <div className="text-[11px] text-slate-400">
-              Host: <code>127.0.0.1</code><br />
-              Port: <code>5432</code><br />
-              DB: <code>leniv698</code><br />
-              User: <code>leniv698</code>
-            </div>
-            <div className="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
-              <span>Authority:</span>
-              <span className="text-emerald-400 font-bold">FULL CONTROL</span>
-            </div>
-          </div>
         </aside>
 
         {/* Master Content Area */}
@@ -1429,12 +1230,12 @@ export default function AdminPage() {
 
                 <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Storage Files</div>
-                    <div className="text-2xl font-black text-slate-900 mt-1">{stats?.totalStorageFiles ?? storageFiles.length}</div>
-                    <div className="text-[10px] text-purple-600 font-semibold mt-1">PostgreSQL Bucket</div>
+                    <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Services</div>
+                    <div className="text-2xl font-black text-slate-900 mt-1">{servicesList.length}</div>
+                    <div className="text-[10px] text-purple-600 font-semibold mt-1">3D Solutions & Services</div>
                   </div>
                   <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-                    <HardDrive className="w-5 h-5" />
+                    <Briefcase className="w-5 h-5" />
                   </div>
                 </div>
 
@@ -1449,71 +1250,7 @@ export default function AdminPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Master Control Diagnostics */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-black text-slate-900 flex items-center space-x-2">
-                    <Database className="w-5 h-5 text-blue-600" />
-                    <span>PostgreSQL Database Connectivity Status</span>
-                  </h3>
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center space-x-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>CONNECTED NATIVELY</span>
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <div>
-                    <span className="text-slate-500">Database Engine:</span>{' '}
-                    <strong className="text-slate-900">{dbHealth?.version || 'PostgreSQL 14.24 (Ubuntu)'}</strong>
-                  </div>
-                  <div>
-                    <span className="text-slate-500">Active Database:</span>{' '}
-                    <strong className="text-slate-900">{dbHealth?.database || 'leniv698'}</strong>
-                  </div>
-                  <div>
-                    <span className="text-slate-500">Connection Host & Port:</span>{' '}
-                    <strong className="text-slate-900">127.0.0.1:5432 (localhost)</strong>
-                  </div>
-                  <div>
-                    <span className="text-slate-500">Supabase Isolation:</span>{' '}
-                    <strong className="text-emerald-700">0% Supabase — 100% Direct PostgreSQL</strong>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <button
-                    onClick={() => setActiveTab('quotes')}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
-                  >
-                    <span>Manage Quotes</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('products')}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
-                  >
-                    <span>Add New Machine</span>
-                    <Plus className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('storage')}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
-                  >
-                    <span>Upload to PostgreSQL Storage</span>
-                    <Upload className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('sql_console')}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-emerald-400 rounded-xl text-xs font-mono font-bold transition-colors cursor-pointer"
-                  >
-                    <Terminal className="w-3.5 h-3.5" />
-                    <span>Run Custom SQL Query</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+          </div>
           )}
 
           {/* ====================================================
@@ -2521,138 +2258,7 @@ export default function AdminPage() {
             </div>
           )}
 
-          {/* ====================================================
-              TAB 5: STORAGE BUCKETS (POSTGRESQL ZERO-EXTERNAL-DEP)
-             ==================================================== */}
-          {activeTab === 'storage' && (
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
-              <div>
-                <h3 className="text-lg font-black text-slate-900 flex items-center space-x-2">
-                  <HardDrive className="w-5 h-5 text-purple-600" />
-                  <span>PostgreSQL Native Storage Buckets</span>
-                </h3>
-                <p className="text-xs text-slate-500">
-                  Direct database storage in <code>storage_files</code> — Zero external cloud dependencies!
-                </p>
-              </div>
 
-              {/* Upload Form */}
-              <form onSubmit={handleUploadFile} className="p-5 bg-purple-50/50 border border-purple-200 rounded-2xl space-y-4">
-                <h4 className="text-sm font-black text-purple-950 flex items-center space-x-1.5">
-                  <Upload className="w-4 h-4 text-purple-700" />
-                  <span>Upload Asset Directly to PostgreSQL Database Bucket</span>
-                </h4>
-
-                {uploadSuccessMsg && (
-                  <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-semibold">
-                    ✓ {uploadSuccessMsg}
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div>
-                    <label className="block font-bold text-slate-700 mb-1">Target Storage Bucket</label>
-                    <select
-                      value={uploadBucket}
-                      onChange={e => setUploadBucket(e.target.value)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg font-mono"
-                    >
-                      <option value="media">media (Images, Photos)</option>
-                      <option value="catalogs">catalogs (PDF Brochures)</option>
-                      <option value="cad_models">cad_models (STEP, STL, OBJ)</option>
-                      <option value="firmware">firmware (G-Code, Configurations)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block font-bold text-slate-700 mb-1">Select File</label>
-                    <input
-                      type="file"
-                      required
-                      onChange={e => setUploadFile(e.target.files?.[0] || null)}
-                      className="w-full px-2 py-1.5 bg-white border border-slate-200 rounded-lg text-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block font-bold text-slate-700 mb-1">Description</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Pratham X High-Res Render"
-                      value={uploadDescription}
-                      onChange={e => setUploadDescription(e.target.value)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-end pt-1">
-                  <button
-                    type="submit"
-                    disabled={isUploading || !uploadFile}
-                    className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-bold shadow-md cursor-pointer disabled:opacity-50"
-                  >
-                    {isUploading ? 'Encoding & Saving to PostgreSQL...' : 'Upload Asset to PostgreSQL'}
-                  </button>
-                </div>
-              </form>
-
-              {/* Storage Files Table */}
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead>
-                    <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider bg-slate-50/50">
-                      <th className="py-3 px-3">File Name</th>
-                      <th className="py-3 px-3">Bucket</th>
-                      <th className="py-3 px-3">MIME Type</th>
-                      <th className="py-3 px-3">Size</th>
-                      <th className="py-3 px-3">Public URL</th>
-                      <th className="py-3 px-3 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {storageFiles.map(f => (
-                      <tr key={f.id} className="hover:bg-slate-50 transition-colors">
-                        <td className="py-3 px-3">
-                          <div className="font-bold text-slate-900">{f.file_name}</div>
-                          <div className="text-[11px] text-slate-400">{f.description}</div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-100 text-purple-700">
-                            {f.bucket}
-                          </span>
-                        </td>
-                        <td className="py-3 px-3 font-mono text-slate-600">{f.mime_type}</td>
-                        <td className="py-3 px-3 text-slate-500 font-mono">
-                          {(Number(f.size_bytes) / 1024).toFixed(1)} KB
-                        </td>
-                        <td className="py-3 px-3 font-mono text-[11px] text-blue-600">
-                          <a
-                            href={f.public_url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="hover:underline flex items-center space-x-1"
-                          >
-                            <span className="truncate max-w-[180px]">{f.public_url}</span>
-                            <ExternalLink className="w-3 h-3 shrink-0" />
-                          </a>
-                        </td>
-                        <td className="py-3 px-3 text-right">
-                          <button
-                            onClick={() => handleDeleteStorageFile(f.id)}
-                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
-                            title="Delete file"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
 
           {/* ====================================================
               TAB 6: BLOG ARTICLES (FULL CONTROL)
@@ -3435,82 +3041,7 @@ export default function AdminPage() {
             </div>
           )}
 
-          {/* ====================================================
-              TAB 10: INTERACTIVE SQL CONSOLE (FULL RAW DATABASE CONTROL)
-             ==================================================== */}
-          {activeTab === 'sql_console' && (
-            <div className="bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl p-6 space-y-4 font-mono">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Terminal className="w-5 h-5 text-emerald-400" />
-                  <h3 className="text-base font-bold text-emerald-400">PostgreSQL Interactive SQL Console</h3>
-                </div>
-                <span className="text-[11px] text-slate-400">leniv698 @ 127.0.0.1</span>
-              </div>
 
-              <form onSubmit={handleExecuteSql} className="space-y-3">
-                <textarea
-                  rows={4}
-                  value={sqlQuery}
-                  onChange={e => setSqlQuery(e.target.value)}
-                  className="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-emerald-300 font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-hidden"
-                  placeholder="Enter PostgreSQL SQL query (e.g. SELECT * FROM products LIMIT 5;)"
-                />
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] text-slate-500">
-                    Supports SELECT, INSERT, UPDATE, maintenance queries.
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isExecutingSql}
-                    className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer disabled:opacity-50"
-                  >
-                    {isExecutingSql ? 'Executing...' : 'Run Query ▶'}
-                  </button>
-                </div>
-              </form>
-
-              {sqlError && (
-                <div className="p-3 bg-red-950/80 border border-red-800 text-red-300 rounded-xl text-xs">
-                  <strong>Query Error:</strong> {sqlError}
-                </div>
-              )}
-
-              {sqlResult && (
-                <div className="space-y-2 pt-2 border-t border-slate-800">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span>Command: <strong>{sqlResult.command}</strong> ({sqlResult.rowCount} rows)</span>
-                    <span>Duration: <strong>{sqlResult.durationMs}ms</strong></span>
-                  </div>
-
-                  {sqlResult.rows && sqlResult.rows.length > 0 && (
-                    <div className="overflow-x-auto max-h-96 border border-slate-800 rounded-xl bg-slate-950">
-                      <table className="w-full text-left text-[11px]">
-                        <thead>
-                          <tr className="border-b border-slate-800 text-slate-400 bg-slate-900/80">
-                            {sqlResult.fields.map((f: string) => (
-                              <th key={f} className="py-2 px-3">{f}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-800/60">
-                          {sqlResult.rows.map((row: any, idx: number) => (
-                            <tr key={idx} className="hover:bg-slate-900/50">
-                              {sqlResult.fields.map((f: string) => (
-                                <td key={f} className="py-1.5 px-3 truncate max-w-xs text-slate-200">
-                                  {typeof row[f] === 'object' ? JSON.stringify(row[f]) : String(row[f] ?? '')}
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
         </main>
       </div>
     </div>

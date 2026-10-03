@@ -79,14 +79,11 @@ export const Pratham5Page: React.FC = () => {
   const featuresRef = useRef<HTMLDivElement>(null)
   const performanceRef = useRef<HTMLDivElement>(null)
   const monsterRef = useRef<HTMLDivElement>(null)
-  const applicationsRef = useRef<HTMLDivElement>(null)
-  const showcaseRef = useRef<HTMLDivElement>(null)
   const materialsRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
   const workflowRef = useRef<HTMLDivElement>(null)
   const reliabilityRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const videosRef = useRef<HTMLDivElement>(null)
   const workRef = useRef<HTMLDivElement>(null)
   const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
@@ -265,12 +262,9 @@ export const Pratham5Page: React.FC = () => {
               { id: 'features', label: 'Features', ref: featuresRef },
               { id: 'performance', label: 'Performance', ref: performanceRef },
               { id: 'monster', label: 'Architecture', ref: monsterRef },
-              { id: 'applications', label: 'Applications', ref: applicationsRef },
-              { id: 'showcase', label: 'Showcase', ref: showcaseRef },
               { id: 'materials', label: 'Materials', ref: materialsRef },
               { id: 'specs', label: 'Specifications', ref: specsRef },
               { id: 'gallery', label: 'Gallery', ref: galleryRef },
-              { id: 'videos', label: 'Videos', ref: videosRef },
               { id: 'installations', label: 'Installations', ref: installationsRef },
               { id: 'support', label: 'Support', ref: supportRef },
               { id: 'faqs', label: 'FAQs', ref: faqRef },
@@ -824,102 +818,7 @@ export const Pratham5Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          9. APPLICATIONS (6 Cards)
-         ==================================================== */}
-      <section ref={applicationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Target Industries
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Made for Industrial Applications
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Pratham 5.0 is positioned for industrial and engineering applications where large build capacity, structural parts and precision are important.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {applicationsList.map((app, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative aspect-16/10 overflow-hidden bg-slate-100">
-                  <img
-                    src={app.image}
-                    alt={app.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold rounded-md">
-                    {app.tag}
-                  </div>
-                </div>
-                <div className="p-5 space-y-2">
-                  <h3 className="font-extrabold text-slate-900 text-base">{app.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{app.desc}</p>
-                </div>
-              </div>
-              <div className="px-5 pb-5">
-                <span className="text-[11px] font-mono text-slate-400 block pt-3 border-t border-slate-100">
-                  Suggested visuals: {app.examples}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ====================================================
-          10. WHAT CAN YOU CREATE WITH PRATHAM 5.0? (12 Parts Showcase)
-         ==================================================== */}
-      <section ref={showcaseRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Part Portfolio
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            From Digital Models to Real-World Components
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Explore 12 representative physical models and components produced using the Pratham 5.0 large build envelope.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {showcaseParts.map((part, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-2xs hover:shadow-md transition-all group flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
-                  <img
-                    src={part.image}
-                    alt={part.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  {part.material && (
-                    <div className="absolute top-2 right-2 px-2 py-0.5 bg-slate-900/80 text-white text-[9px] font-mono rounded">
-                      {part.material}
-                    </div>
-                  )}
-                </div>
-                <div className="p-3.5 space-y-1.5">
-                  <h4 className="font-bold text-slate-900 text-xs leading-snug">{part.title}</h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed">{part.desc}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ====================================================
-          11. MATERIALS & FILAMENT COMPATIBILITY
+          9. MATERIALS & FILAMENT COMPATIBILITY
          ==================================================== */}
       <section ref={materialsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -1456,82 +1355,7 @@ export const Pratham5Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          16. OFFICIAL VIDEO SHOWCASE (All 6 Official Videos)
-         ==================================================== */}
-      <section ref={videosRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Live Action Demonstrations
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Videos of Pratham 5.0
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            All six official Make3D video demonstrations highlighting large impellers, batch engineering prototypes, Ganesha design, flexible TPU prints, and architecture models.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {officialVideos.map((vid) => (
-            <div
-              key={vid.id}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative aspect-16/9 bg-slate-900 overflow-hidden flex items-center justify-center">
-                  <img
-                    src={vid.thumbnail}
-                    alt={vid.title}
-                    className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/40"></div>
-                  <button
-                    onClick={() => {
-                      setActiveVideoId(vid.id)
-                      setVideoModalOpen(true)
-                    }}
-                    className="relative z-10 w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-transform cursor-pointer"
-                    aria-label={`Play ${vid.title}`}
-                  >
-                    <Play className="w-5 h-5 fill-white ml-0.5" />
-                  </button>
-                  <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono font-bold">
-                    {vid.duration}
-                  </span>
-                </div>
-                <div className="p-5 space-y-2">
-                  <h3 className="font-bold text-slate-900 text-sm leading-snug">{vid.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{vid.desc}</p>
-                </div>
-              </div>
-              <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-100">
-                <a
-                  href={`https://www.youtube.com/watch?v=${vid.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1"
-                >
-                  <span>Watch on YouTube</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <button
-                  onClick={() => {
-                    setActiveVideoId(vid.id)
-                    setVideoModalOpen(true)
-                  }}
-                  className="text-xs font-bold text-slate-700 hover:text-slate-900 cursor-pointer"
-                >
-                  Play In Modal →
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ====================================================
-          17. WORK FROM PRATHAM 5.0 (9 Category Grid)
+          14. WORK FROM PRATHAM 5.0 (9 Category Grid)
          ==================================================== */}
       <section ref={workRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -2345,126 +2169,6 @@ const featuresList = [
   },
 ]
 
-const applicationsList = [
-  {
-    title: 'Automotive Components',
-    tag: 'Automotive Prototyping',
-    desc: 'Support automotive prototyping and selected functional parts, housings, brackets and design-validation components.',
-    examples: 'Automotive sensor enclosure, mechanical bracket, large housing prototype, custom fixture',
-    image: '/images/gtmax/gtmax-automotive-duct.jpg',
-  },
-  {
-    title: 'Tooling and Jigs Manufacturing',
-    tag: 'Shopfloor Tooling',
-    desc: 'Produce selected assembly aids, manufacturing fixtures, positioning tools, drill guides and custom jigs.',
-    examples: 'Assembly fixture, positioning jig, manufacturing guide, custom tooling component',
-    image: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg',
-  },
-  {
-    title: 'Aerospace Prototypes',
-    tag: 'Tooling & Verification',
-    desc: 'Support selected large-format prototypes, mockups, housings and tooling applications (non-safety-critical).',
-    examples: 'Aerodynamic prototype, equipment enclosure, lightweight design mockup',
-    image: '/images/gtmax/gtmax-drone-frame.jpg',
-  },
-  {
-    title: 'Structural Engineering Parts',
-    tag: 'Engineering Demonstration',
-    desc: 'Create large-format prototypes and selected structural demonstration components in full functional scale.',
-    examples: 'Structural model, large mechanical prototype, engineering test component',
-    image: '/images/pratham3-work/03-complex-engineering-parts.jpg',
-  },
-  {
-    title: 'Product Design',
-    tag: 'Consumer & Industrial Design',
-    desc: 'Create full-size product prototypes, functional housings and design-validation models for ergonomic evaluation.',
-    examples: 'Consumer product shell, functional prototype, product enclosure',
-    image: '/images/pratham3-work/04-product-prototypes.jpg',
-  },
-  {
-    title: 'Research and Development',
-    tag: 'R&D & Academic Labs',
-    desc: 'Support engineering labs, R&D teams, technical institutes and product development workflows.',
-    examples: 'Engineering lab mockups, research prototype, mechanical test model',
-    image: '/images/desktop-work/educational-models-hd.jpg',
-  },
-]
-
-const showcaseParts = [
-  {
-    title: 'Large-Size Impeller',
-    desc: 'High-flow mechanical turbine impeller printed monolithic without bonding seams.',
-    material: 'PETG / ABS',
-    image: '/images/desktop-work/end-use-components-hd.jpg',
-  },
-  {
-    title: 'Engineering Prototypes',
-    desc: 'Complex mechanical assemblies printed to evaluate spatial clearances and kinematic fit.',
-    material: 'PLA / PETG',
-    image: '/images/gtmax/gtmax-engineering-prototype.jpg',
-  },
-  {
-    title: 'Small-Batch Functional Parts',
-    desc: 'End-use brackets, machine covers, and mounting blocks produced on demand.',
-    material: 'Carbon-Fiber Blend',
-    image: '/images/pratham3-work/06-functional-end-use-parts.jpg',
-  },
-  {
-    title: 'Mechanical Housings',
-    desc: 'Robust protective casings for motors, drive assemblies, and electrical switchgear.',
-    material: 'ABS / ASA',
-    image: '/images/pratham3-work/01-real-functional-parts.jpg',
-  },
-  {
-    title: 'Automotive Duct Components',
-    desc: 'Full-scale automotive ductwork for dimensional packaging and airflow tests.',
-    material: 'ASA / ABS',
-    image: '/images/gtmax/gtmax-automotive-duct.jpg',
-  },
-  {
-    title: 'Architecture Scale Models',
-    desc: 'Intricate building elevations and urban masterplan scale models with sharp overhangs.',
-    material: 'PLA Standard',
-    image: '/images/desktop-work/custom-complex-designs-hd.jpg',
-  },
-  {
-    title: 'Flexible TPU Parts',
-    desc: 'Shock-absorbing protective gaskets, bellows, and impact dampers.',
-    material: 'Flexible TPU',
-    image: '/images/pratham3-work/05-flexible-tpu-components.jpg',
-  },
-  {
-    title: 'Custom Jigs & Fixtures',
-    desc: 'Assembly aids, CMM inspection nests, and shopfloor drilling guides.',
-    material: 'Tough PLA / PETG',
-    image: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg',
-  },
-  {
-    title: 'Industrial Enclosures',
-    desc: 'Electronic and pneumatic control boxes with integrated mounting standoffs.',
-    material: 'PETG / ABS',
-    image: '/images/gtmax/gtmax-product-housings.jpg',
-  },
-  {
-    title: 'Educational Models',
-    desc: 'Cutaway engine gearbox models and molecular demonstrations for university labs.',
-    material: 'PLA Multicolor',
-    image: '/images/desktop-work/educational-models-hd.jpg',
-  },
-  {
-    title: 'Large-Format Design Models',
-    desc: 'Oversized monolithic mockups showcasing full 500 mm Z-height build capacity.',
-    material: 'PLA / Tough PLA',
-    image: '/images/pratham6/pratham6-printed-stool.jpg',
-  },
-  {
-    title: 'Product-Development Prototypes',
-    desc: 'Full-scale consumer appliance housings and structural packaging prototypes.',
-    material: 'ABS / PETG',
-    image: '/images/desktop-work/functional-prototypes-hd.jpg',
-  },
-]
-
 const materialsData = [
   {
     name: 'PLA',
@@ -2568,51 +2272,6 @@ const galleryImages = [
     src: '/images/pratham3-work/05-flexible-tpu-components.jpg',
     title: 'Flexible TPU Printed Objects',
     desc: 'Durable elastomeric components demonstrating flexural recovery and tear resistance.',
-  },
-]
-
-const officialVideos = [
-  {
-    id: '88qXbDi_Ckg',
-    title: 'Large Size Impeller 3D Printed with Pratham 5.0 FDM 3D Printer',
-    duration: '1:26',
-    desc: 'Large-format impeller printing demonstration.',
-    thumbnail: '/images/desktop-work/end-use-components-hd.jpg',
-  },
-  {
-    id: 'DRmtsDdFayc',
-    title: 'Pratham 5.0 3D Printer | Small Batch Engineering Prototype',
-    duration: '0:45',
-    desc: 'Small-batch engineering prototype example.',
-    thumbnail: '/images/products/pratham-5-0.png',
-  },
-  {
-    id: 'z9Z_aWielQg',
-    title: 'Unique Ganesha Design 3D Printed | Make3d.in',
-    duration: '1:25',
-    desc: 'Example of a detailed decorative print.',
-    thumbnail: '/images/desktop-work/custom-complex-designs-hd.jpg',
-  },
-  {
-    id: 'P73q2p8lAus',
-    title: 'Pratham 5.0 | 500 × 500 × 500 mm FDM 3D Printer',
-    duration: '1:27',
-    desc: 'Product-focused demonstration of the large build-volume printer.',
-    thumbnail: '/images/products/pratham-5-0.png',
-  },
-  {
-    id: '88qXbDi_Ckg', // Fallback for flexible TPU demo
-    title: 'Unbreakable 3D Prints | Flexible TPU Material | Make3d.in',
-    duration: '3:55',
-    desc: 'Flexible TPU material printing demonstration.',
-    thumbnail: '/images/pratham3-work/05-flexible-tpu-components.jpg',
-  },
-  {
-    id: 'P73q2p8lAus', // Fallback for Architecture demo
-    title: '3D Printer For Architecture - Pratham 5.0 3D Printer',
-    duration: '2:44',
-    desc: 'Architecture-related printing example.',
-    thumbnail: '/images/desktop-work/custom-complex-designs-hd.jpg',
   },
 ]
 

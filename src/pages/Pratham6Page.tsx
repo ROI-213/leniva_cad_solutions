@@ -82,7 +82,6 @@ export const Pratham6Page: React.FC = () => {
   const specsRef = useRef<HTMLDivElement>(null)
   const workflowRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const workRef = useRef<HTMLDivElement>(null)
   const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
@@ -1384,72 +1383,6 @@ export const Pratham6Page: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          13. WORK FROM PRATHAM 6.0 (Reference Mockup Layout)
-         ==================================================== */}
-      <section ref={workRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-[#dc2626] font-bold">
-            · REAL PARTS, REAL DIMENSIONS ·
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
-            WORK FROM <span className="text-[#2563eb]">PRATHAM 6.0</span> 3D PRINTER
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Explore examples of large-format prototypes, functional components, manufacturing aids, educational models and production-ready parts made using industrial 3D printing.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {workItems.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1"
-            >
-              {/* Top HD Component Image */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              {/* Card Content */}
-              <div className="relative px-5 pt-9 pb-5 flex-1 flex flex-col justify-between bg-white">
-                {/* Floating icon sitting on the image/content seam */}
-                <div
-                  className={`absolute -top-6 left-5 z-10 w-12 h-12 rounded-full ${item.iconBg} text-white flex items-center justify-center shadow-lg ring-4 ring-white`}
-                >
-                  <item.icon className="w-5 h-5" />
-                </div>
-
-                <div>
-                  <h3 className="font-extrabold text-slate-900 text-sm sm:text-base leading-snug group-hover:text-blue-600 transition-colors mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Action Link */}
-                <div className="pt-4 mt-2">
-                  <button
-                    onClick={() => openQuoteModal(`Pratham 6.0 — ${item.title}`)}
-                    className={`inline-flex items-center gap-1.5 text-xs font-bold ${item.linkColor} hover:underline cursor-pointer group-hover:translate-x-0.5 transition-transform`}
-                  >
-                    <span>Explore Parts</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ====================================================
           17. CUSTOMER INSTALLATIONS & USERS ACROSS INDIA
@@ -2345,40 +2278,6 @@ const galleryImages = [
   },
 ]
 
-const workItems = [
-  {
-    title: 'Mechanical Prototypes',
-    desc: 'Large mechanical components, brackets, housings and structural prototypes printed within the 600 mm envelope.',
-    image: '/images/pratham6-work/01-mechanical-prototypes-uhd.jpg',
-    icon: Wrench,
-    iconBg: 'bg-[#2563eb]',
-    linkColor: 'text-[#2563eb]',
-  },
-  {
-    title: 'Product Prototypes',
-    desc: 'Full-size consumer and industrial product housings, ergonomic enclosures, and design-validation parts.',
-    image: '/images/pratham6-work/02-product-prototypes-sharp.jpg',
-    icon: Box,
-    iconBg: 'bg-[#dc2626]',
-    linkColor: 'text-[#dc2626]',
-  },
-  {
-    title: 'Industrial Tooling',
-    desc: 'Jigs, manufacturing assembly fixtures, drill guides, positioning templates and custom shopfloor aids.',
-    image: '/images/pratham6-work/03-industrial-tooling-sharp.jpg',
-    icon: Factory,
-    iconBg: 'bg-[#0d9488]',
-    linkColor: 'text-[#0d9488]',
-  },
-  {
-    title: 'Automotive Applications',
-    desc: 'Under-hood ducts, bumper brackets, intake manifold mockups, and interior trim validation prototypes.',
-    image: '/images/pratham6-work/04-automotive-applications-sharp.jpg',
-    icon: Compass,
-    iconBg: 'bg-[#7c3aed]',
-    linkColor: 'text-[#7c3aed]',
-  },
-]
 
 const faqs = [
   {

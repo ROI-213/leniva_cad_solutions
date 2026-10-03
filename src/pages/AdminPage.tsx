@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Database,
@@ -206,7 +206,7 @@ export default function AdminPage() {
     phone: '+91 90234 56789',
     email: 'contact@lenivacadsolution.in',
     address: 'Bengaluru Technology Center, Karnataka, India',
-    workingHours: 'Mon – Sat: 9:00 AM – 6:30 PM IST',
+    workingHours: 'Mon â€“ Sat: 9:00 AM â€“ 6:30 PM IST',
     whatsapp: '919023456789',
     bannerNotice: 'Now Delivering Advanced 3D Scanners & Industrial Printers PAN-India',
   })
@@ -220,7 +220,7 @@ export default function AdminPage() {
   const [userMsg, setUserMsg] = useState('')
   const [newPasswordValue, setNewPasswordValue] = useState('')
 
-  // ─── CAD Software Editor ────────────────────────────────────────────────────
+  // â”€â”€â”€ CAD Software Editor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   interface CadProductItem {
     key: string
     label: string
@@ -235,6 +235,7 @@ export default function AdminPage() {
     { key: 'ares_mechanical',  label: 'ARES Mechanical',       brand: 'Graebert', route: '/products/ares-mechanical',  color: 'blue',   category: '2D Mechanical CAD' },
     { key: 'ares_electrical',  label: 'ARES Electrical',       brand: 'Graebert', route: '/products/ares-electrical',  color: 'yellow', category: 'Electrical CAD (ECAD)' },
     { key: 'ares_standard',    label: 'ARES Standard',         brand: 'Graebert', route: '/products/ares-standard',    color: 'slate',  category: '2D DWG CAD Software' },
+    { key: 'ares_commander',   label: 'ARES Commander',        brand: 'Graebert', route: '/products/ares-commander',   color: 'blue',   category: 'Professional 2D & 3D CAD' },
     { key: 'chaos_enscape',    label: 'Chaos Enscape',         brand: 'Chaos',    route: '/products/enscape',          color: 'purple', category: 'Real-Time Rendering & VR' },
     { key: 'chaos_vray',       label: 'Chaos V-Ray',           brand: 'Chaos',    route: '/products/vray',             color: 'orange', category: 'Photorealistic 3D Rendering' },
     { key: 'sketchup_studio',  label: 'SketchUp Studio',       brand: 'Trimble',  route: '/products/sketchup-studio',  color: 'green',  category: '3D Design & BIM Suite' },
@@ -442,12 +443,83 @@ export default function AdminPage() {
         { q: 'How does ARES Standard differ from ARES Commander?', a: 'ARES Standard is focused exclusively on 2D drafting and DWG editing, making it more affordable for users who do not need 3D solid modeling, Trinity cloud, or ACIS solids.', category: 'Comparison' },
       ],
     },
+    ares_commander: {
+      productName: 'ARES Commander',
+      brand: 'Graebert',
+      category: 'Professional 2D & 3D CAD',
+      headline: 'Powerful DWG-Based 2D & 3D CAD Software',
+      supportingHeadline: 'Create, edit and share professional CAD drawings across Windows, macOS and Linux.',
+      shortDescription: 'Professional DWG-based CAD solution for 2D drafting, 3D modelling, BIM-to-CAD documentation, and cloud collaboration. Runs on Windows, macOS and Linux.',
+      description: 'ARES Commander is a professional DWG-based CAD solution developed by Graebert. It enables users to create, edit, view and document 2D drawings and 3D models on desktop computers across Windows, macOS and Linux. It combines native DWG support, productivity features, BIM-to-CAD capabilities, automation and optional collaboration through the ARES Trinity ecosystem.',
+      platform: 'Windows, macOS, Linux',
+      languages: 'English, German, French, Italian, Spanish, Portuguese, Japanese, Korean, Chinese',
+      primaryFormat: 'DWG Native',
+      cadEngine: 'ARES CAD Engine',
+      officialUrl: 'https://www.graebert.com/in/cad-software/ares-commander/',
+      downloadUrl: 'https://www.graebert.com/in/cad-software/download/',
+      trialUrl: 'https://www.graebert.com/in/cad-software/download/',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Available as perpetual license and annual subscription. Trinity subscription includes desktop, cloud (ARES Kudo) and mobile (ARES Touch) access.',
+      eyebrow: 'GRAEBERT | PROFESSIONAL CAD SOFTWARE',
+      h1Highlight: 'Powerful DWG-Based CAD',
+      heroBadge: 'Native DWG 2D & 3D CAD Engine',
+      heroHeading: 'Powerful DWG-Based 2D & 3D CAD Software',
+      heroSupportingText: 'Create, edit and document professional CAD drawings with ARES Commander. Work natively in DWG, explore 2D drafting and 3D modelling, import BIM models, automate workflows and collaborate across desktop, browser and mobile.',
+      heroImage: '/images/ares-commander/ares-commander-hero.jpg',
+      secondaryImage: '/images/ares-standard/cad-mech-drafting.jpg',
+      trialCta: 'Start Free 30-Day Trial',
+      pricingCta: 'Request a Quote',
+      specStrip: [
+        { label: 'Product', value: 'ARES Commander' },
+        { label: 'Platform', value: 'Windows / macOS / Linux' },
+        { label: 'Native Format', value: 'DWG' },
+        { label: 'CAD Type', value: '2D Drafting & 3D Modelling' },
+        { label: 'Trial', value: '30-Day Free Trial' },
+      ],
+      overview: {
+        heading: 'Professional CAD That Works the Way You Do',
+        subtitle: 'DWG-Native Drafting, Modelling and Documentation',
+        description: 'ARES Commander provides the complete professional CAD toolkit â€” from 2D precision drafting and 3D solid modelling to BIM-to-CAD documentation, cloud collaboration and automation tools.',
+        cards: [
+          { title: '2D Drafting & Documentation', desc: 'Create precise 2D drawings with a full set of professional drafting tools, layer management, dimensions, annotations and PDF export.', icon: 'FileCode', image: '/images/ares-standard/cad-arch-floorplan.jpg' },
+          { title: '3D Solid Modelling', desc: 'Build, edit and visualize 3D models using solid and surface modelling tools with ACIS solid kernel and STEP/IGES import/export.', icon: 'Box', image: '/images/ares-standard/cad-mech-drafting.jpg' },
+          { title: 'BIM-to-CAD Workflows', desc: 'Import Revit and IFC BIM models and extract professional CAD documentation, floor plans, sections and elevations.', icon: 'Building', image: '/images/ares-standard/cad-eng-schematic.jpg' },
+          { title: 'ARES Trinity Ecosystem', desc: 'Work across desktop (ARES Commander), browser (ARES Kudo) and mobile (ARES Touch) with full DWG synchronization.', icon: 'Globe', image: '/images/ares-standard/cad-interior-space-plan.jpg' },
+        ],
+      },
+      highlights: [
+        'Native DWG read and write without conversion',
+        '2D precision drafting and annotation tools',
+        '3D solid and surface modelling with ACIS kernel',
+        'PDF import and export workflows',
+        'BIM model import from Revit (.rvt) and IFC files',
+        'Dynamic Blocks support',
+        'Cross-platform: Windows, macOS, Linux',
+        'Power Trim and smart geometry tools',
+        'ARES Trinity â€” desktop, cloud and mobile CAD',
+        '30-Day free trial available',
+      ],
+      requirements: {
+        os: 'Windows 11 / 10 (64-bit), macOS 12+, or supported Linux distribution',
+        cpu: 'Intel Core i5 / AMD Ryzen 5 or higher (i7 / Ryzen 7 recommended for 3D)',
+        ram: '8 GB RAM minimum (16 GB recommended for 3D modelling and BIM workflows)',
+        gpu: 'OpenGL 3.3 / DirectX 11 compatible graphics card with 2 GB VRAM',
+        disk: '4 GB available hard-disk space',
+        display: '1920 x 1080 Full HD display (HiDPI / Retina supported)',
+      },
+      faqs: [
+        { q: 'Is ARES Commander fully compatible with AutoCAD DWG files?', a: 'Yes. ARES Commander reads and writes native DWG files without conversion, preserving all drawing data including blocks, xrefs, layouts and custom entities.', category: 'Compatibility' },
+        { q: 'Can I use ARES Commander on macOS and Linux?', a: 'Yes. ARES Commander runs natively on Windows, macOS and supported Linux distributions. Contact Leniva CAD Solutions to confirm current supported OS versions.', category: 'Platform' },
+        { q: 'What is ARES Trinity?', a: 'ARES Trinity is an ecosystem that connects ARES Commander (desktop), ARES Kudo (cloud browser CAD) and ARES Touch (mobile CAD) so you can work seamlessly across all devices.', category: 'Features' },
+        { q: 'Does ARES Commander support 3D solid modelling?', a: 'Yes. ARES Commander includes 3D solid and surface modelling tools powered by the ACIS kernel, including extrude, revolve, sweep, loft and Boolean operations.', category: 'Features' },
+      ],
+    },
     chaos_enscape: {
       productName: 'Chaos Enscape',
       brand: 'Chaos',
       category: 'Real-Time Rendering & VR',
       headline: 'Real-Time Rendering That Keeps Up With Your Ideas',
-      supportingHeadline: 'Design, visualize, and present — all inside your design workflow.',
+      supportingHeadline: 'Design, visualize, and present â€” all inside your design workflow.',
       shortDescription: 'Real-time rendering and virtual reality plugin for Revit, SketchUp, Rhino, Archicad, and Vectorworks. Walk through models, see changes live, and communicate ideas instantly.',
       description: 'Enscape is a real-time visualization solution that connects directly with supported CAD and BIM applications. Explore your model in a fully rendered environment, see design changes as they happen, and communicate ideas through immersive walkthroughs, images, videos, and virtual reality.',
       platform: 'Windows (with macOS support for SketchUp/Archicad/Vectorworks)',
@@ -578,7 +650,7 @@ export default function AdminPage() {
       productName: 'SketchUp Studio',
       brand: 'Trimble',
       category: '3D Design & BIM Suite',
-      headline: 'SketchUp Studio — The Complete 3D Design Suite',
+      headline: 'SketchUp Studio â€” The Complete 3D Design Suite',
       supportingHeadline: 'Model. Render. Scan. Import. All in One Subscription.',
       shortDescription: 'Trimble SketchUp Studio bundles SketchUp Pro, LayOut, V-Ray for SketchUp, Scan Essentials, and Revit Importer in a single Windows subscription.',
       description: "Trimble's premier subscription bundle for architects and design professionals. Includes SketchUp Pro 3D modeler, LayOut 2D documentation, Chaos V-Ray photorealistic rendering, Scan Essentials point cloud tools, and native Revit BIM file import.",
@@ -644,7 +716,7 @@ export default function AdminPage() {
       productName: 'SketchUp Pro + Scan Essentials',
       brand: 'Trimble',
       category: 'Scan-to-Model Workflows',
-      headline: 'SketchUp Pro with Scan Essentials — Scan-to-Model Workflows',
+      headline: 'SketchUp Pro with Scan Essentials â€” Scan-to-Model Workflows',
       supportingHeadline: 'Import Point Clouds. Model Reality. Deliver Accurate As-Built Drawings.',
       shortDescription: 'SketchUp Pro bundled with Scan Essentials for survey, renovation, and BIM professionals working with LiDAR, photogrammetry, and 3D laser scan data.',
       description: 'SketchUp Pro paired with the Scan Essentials plugin. Designed for survey, heritage preservation, interior fit-out, and facility renovation teams who capture spaces with 3D scanners and model directly from dense point cloud data.',
@@ -702,7 +774,7 @@ export default function AdminPage() {
         display: '1920 x 1080 Full HD display',
       },
       faqs: [
-        { q: 'Which scanner brands are compatible with Scan Essentials?', a: 'Any scanner that exports industry-standard E57, RCP, RCS, LAS, or LAZ files—including FARO, Leica Geosystems, Trimble, NavVis, Matterport, and Shining 3D.', category: 'Hardware' },
+        { q: 'Which scanner brands are compatible with Scan Essentials?', a: 'Any scanner that exports industry-standard E57, RCP, RCS, LAS, or LAZ filesâ€”including FARO, Leica Geosystems, Trimble, NavVis, Matterport, and Shining 3D.', category: 'Hardware' },
         { q: 'Can I dimension point clouds in LayOut?', a: 'Yes! Scan Essentials allows you to send point cloud views into LayOut and snap dimensions directly to point cloud sections.', category: 'Documentation' },
       ],
     },
@@ -770,7 +842,7 @@ export default function AdminPage() {
   const saveCadEdits = (updatedEdits: Record<string, any>) => {
     localStorage.setItem('leniva_cad_software_edits', JSON.stringify(updatedEdits))
     setCadEdits(updatedEdits)
-    setCadSaveMsg('✓ Changes saved to browser storage.')
+    setCadSaveMsg('âœ“ Changes saved to browser storage.')
     setTimeout(() => setCadSaveMsg(''), 4000)
   }
 
@@ -858,7 +930,7 @@ export default function AdminPage() {
       const updated = { ...cadEdits, [activeCadProduct]: parsed }
       saveCadEdits(updated)
       setRawJsonError('')
-      setCadSaveMsg('✓ Full page JSON applied successfully!')
+      setCadSaveMsg('âœ“ Full page JSON applied successfully!')
     } catch (err: any) {
       setRawJsonError(err.message || 'Invalid JSON syntax. Please check brackets and quotes.')
     }
@@ -889,7 +961,7 @@ export default function AdminPage() {
       brand: newCadForm.brand,
       category: newCadForm.category,
       heroHeading: newCadForm.name,
-      headline: `${newCadForm.name} — Engineering CAD`,
+      headline: `${newCadForm.name} â€” Engineering CAD`,
       supportingHeadline: `Professional ${newCadForm.category} Solutions`,
       shortDescription: `Explore ${newCadForm.name} by ${newCadForm.brand}. Genuine software licenses, expert integration, and local training from Leniva CAD Solutions.`,
     }
@@ -904,7 +976,7 @@ export default function AdminPage() {
     setActiveCadProduct(key)
     setIsNewCadProductOpen(false)
     setNewCadForm({ name: '', brand: 'Graebert', category: '2D/3D CAD Software', route: '/products/', template: 'ares_mechanical' })
-    setCadSaveMsg(`✓ Created product "${newCadForm.name}"! You are now editing its full page.`)
+    setCadSaveMsg(`âœ“ Created product "${newCadForm.name}"! You are now editing its full page.`)
   }
 
   // Delete Custom CAD Product
@@ -1675,7 +1747,7 @@ export default function AdminPage() {
             <div className="p-3 bg-blue-50/80 border border-blue-200/80 rounded-xl text-[11px] text-blue-900 space-y-1 font-mono">
               <div><strong>Default Superadmin:</strong> <code>admin</code></div>
               <div><strong>Default Password:</strong> <code>Admin@Leniva2026!</code></div>
-              <div className="text-[10px] text-blue-700 mt-1">✓ Full Control Enabled — Direct Native PostgreSQL</div>
+              <div className="text-[10px] text-blue-700 mt-1">âœ“ Full Control Enabled â€” Direct Native PostgreSQL</div>
             </div>
 
             <button
@@ -2046,7 +2118,7 @@ export default function AdminPage() {
                         </td>
                         <td className="py-3 px-3 text-slate-600">
                           <div>{q.email}</div>
-                          <div className="text-[11px] text-slate-400">{q.phone || '—'}</div>
+                          <div className="text-[11px] text-slate-400">{q.phone || 'â€”'}</div>
                         </td>
                         <td className="py-3 px-3 font-semibold text-slate-800">
                           {q.service_or_product}
@@ -2106,7 +2178,7 @@ export default function AdminPage() {
                     onClick={() => setSelectedQuote(null)}
                     className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                   >
-                    ✕
+                    âœ•
                   </button>
                 </div>
 
@@ -2140,7 +2212,7 @@ export default function AdminPage() {
                       rows={3}
                       value={quoteNotesInput}
                       onChange={e => setQuoteNotesInput(e.target.value)}
-                      placeholder="e.g. Sent official pricing quote of ₹1,45,000 + GST on 28th Sep"
+                      placeholder="e.g. Sent official pricing quote of â‚¹1,45,000 + GST on 28th Sep"
                       className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
@@ -2257,7 +2329,7 @@ export default function AdminPage() {
                     onClick={() => setSelectedContact(null)}
                     className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                   >
-                    ✕
+                    âœ•
                   </button>
                 </div>
 
@@ -2398,7 +2470,7 @@ export default function AdminPage() {
                       />
                     </div>
                     <div>
-                      <label className="block font-bold text-slate-700 mb-1">Price (₹ INR, or 0 for Quote)</label>
+                      <label className="block font-bold text-slate-700 mb-1">Price (â‚¹ INR, or 0 for Quote)</label>
                       <input
                         type="number"
                         value={newProd.price}
@@ -2442,7 +2514,7 @@ export default function AdminPage() {
                         onClick={() => setEditingProduct(null)}
                         className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                       >
-                        ✕
+                        âœ•
                       </button>
                     </div>
 
@@ -2510,7 +2582,7 @@ export default function AdminPage() {
                           />
                         </div>
                         <div>
-                          <label className="block font-bold text-slate-700 mb-1">Selling Price (₹)</label>
+                          <label className="block font-bold text-slate-700 mb-1">Selling Price (â‚¹)</label>
                           <input
                             type="number"
                             value={editingProduct.price ?? 0}
@@ -2519,7 +2591,7 @@ export default function AdminPage() {
                           />
                         </div>
                         <div>
-                          <label className="block font-bold text-slate-700 mb-1">Original / MRP Price (₹)</label>
+                          <label className="block font-bold text-slate-700 mb-1">Original / MRP Price (â‚¹)</label>
                           <input
                             type="number"
                             value={editingProduct.original_price ?? 0}
@@ -2674,7 +2746,7 @@ export default function AdminPage() {
                         <td className="py-3 px-3 text-slate-600">{p.category}</td>
                         <td className="py-3 px-3 text-slate-700">{p.brand}</td>
                         <td className="py-3 px-3 font-semibold text-slate-900">
-                          {p.price > 0 ? `₹${p.price.toLocaleString()}` : 'Quote Based'}
+                          {p.price > 0 ? `â‚¹${p.price.toLocaleString()}` : 'Quote Based'}
                         </td>
                         <td className="py-3 px-3">
                           <button
@@ -2684,7 +2756,7 @@ export default function AdminPage() {
                             }`}
                             title="Click to toggle stock availability"
                           >
-                            {p.in_stock !== false ? '✓ In Stock' : '✕ Out of Stock'}
+                            {p.in_stock !== false ? 'âœ“ In Stock' : 'âœ• Out of Stock'}
                           </button>
                         </td>
                         <td className="py-3 px-3 text-right space-x-1.5">
@@ -2834,7 +2906,7 @@ export default function AdminPage() {
                         onClick={() => setEditingService(null)}
                         className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                       >
-                        ✕
+                        âœ•
                       </button>
                     </div>
 
@@ -3101,7 +3173,7 @@ export default function AdminPage() {
                         onClick={() => setEditingBlog(null)}
                         className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                       >
-                        ✕
+                        âœ•
                       </button>
                     </div>
 
@@ -3390,7 +3462,7 @@ export default function AdminPage() {
                         onClick={() => setEditingCategory(null)}
                         className="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer"
                       >
-                        ✕
+                        âœ•
                       </button>
                     </div>
 
@@ -4045,6 +4117,7 @@ export default function AdminPage() {
                             <option value="ares_mechanical">Clone from ARES Mechanical (2D Engineering)</option>
                             <option value="ares_electrical">Clone from ARES Electrical (ECAD & Schematics)</option>
                             <option value="ares_standard">Clone from ARES Standard (Drafting & DWG)</option>
+                            <option value="ares_commander">Clone from ARES Commander (2D & 3D CAD)</option>
                             <option value="chaos_enscape">Clone from Chaos Enscape (Real-Time 3D)</option>
                             <option value="chaos_vray">Clone from Chaos V-Ray (Photorealistic Render)</option>
                             <option value="sketchup_studio">Clone from SketchUp Studio (3D Suite)</option>
@@ -4082,7 +4155,7 @@ export default function AdminPage() {
                         <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-200">
                           {activeMeta.brand}
                         </span>
-                        <span className="text-[10px] text-indigo-300">•</span>
+                        <span className="text-[10px] text-indigo-300">â€¢</span>
                         <span className="text-[10px] text-indigo-200">{activeMeta.category}</span>
                       </div>
                       <div className="text-base font-black">{cur.productName || activeMeta.label}</div>
@@ -4132,9 +4205,9 @@ export default function AdminPage() {
                   </div>
 
                   <div className="p-6">
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 1: IDENTITY & SEO
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'identity' && (
                       <div className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -4274,9 +4347,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 2: HERO BANNER & HEADER
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'hero' && (
                       <div className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -4415,9 +4488,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 3: OVERVIEW & FEATURE CARDS
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'overview' && (
                       <div className="space-y-4">
                         <div>
@@ -4522,9 +4595,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 4: DEEP FEATURES & STANDARDS
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'features' && (
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
@@ -4566,9 +4639,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 5: SYSTEM REQUIREMENTS
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'requirements' && (
                       <div className="space-y-4">
                         <div>
@@ -4641,9 +4714,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 6: FAQS MANAGER
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'faqs' && (
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
@@ -4693,9 +4766,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 7: CTAS & LICENSING
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'licensing' && (
                       <div className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -4780,9 +4853,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 8: LIVE PAGE VISUAL PREVIEW
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'preview' && (
                       <div className="space-y-6 bg-slate-950 text-white rounded-2xl p-6 border border-slate-800">
                         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -4843,9 +4916,9 @@ export default function AdminPage() {
                       </div>
                     )}
 
-                    {/* ══════════════════════════════════════════════════════════════
+                    {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                         SECTION 9: FULL PAGE RAW JSON CODE EDITOR
-                       ══════════════════════════════════════════════════════════════ */}
+                       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                     {cadEditSection === 'json' && (
                       <div className="space-y-4">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
@@ -4857,7 +4930,7 @@ export default function AdminPage() {
                             <button
                               onClick={() => {
                                 navigator.clipboard.writeText(rawJsonInput)
-                                setCadSaveMsg('✓ JSON copied to clipboard!')
+                                setCadSaveMsg('âœ“ JSON copied to clipboard!')
                                 setTimeout(() => setCadSaveMsg(''), 3000)
                               }}
                               className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold flex items-center space-x-1 cursor-pointer"
@@ -4972,9 +5045,9 @@ export default function AdminPage() {
                     <div>
                       <p className="text-sm font-bold text-amber-900">How Full-Page Edits & New Products Work</p>
                       <p className="text-xs text-amber-700 mt-1 leading-relaxed">
-                        • <strong>Immediate Storage:</strong> Every edit you make is automatically saved in your browser storage and persists across sessions.<br />
-                        • <strong>Full-Page Control:</strong> Use the 9 tabs above to edit hero banners, feature cards, system requirements, and FAQs, or switch to <strong>"9. Full Page Raw JSON"</strong> for direct unrestricted code-level editing.<br />
-                        • <strong>Adding Products:</strong> Click <strong>"+ Add New CAD Product"</strong> to add any software product. To add hardware machines (3D printers / scanners), click <strong>"Add 3D Printer / Scanner"</strong> in the top banner to use the equipment catalog.
+                        â€¢ <strong>Immediate Storage:</strong> Every edit you make is automatically saved in your browser storage and persists across sessions.<br />
+                        â€¢ <strong>Full-Page Control:</strong> Use the 9 tabs above to edit hero banners, feature cards, system requirements, and FAQs, or switch to <strong>"9. Full Page Raw JSON"</strong> for direct unrestricted code-level editing.<br />
+                        â€¢ <strong>Adding Products:</strong> Click <strong>"+ Add New CAD Product"</strong> to add any software product. To add hardware machines (3D printers / scanners), click <strong>"Add 3D Printer / Scanner"</strong> in the top banner to use the equipment catalog.
                       </p>
                     </div>
                   </div>
@@ -4990,3 +5063,4 @@ export default function AdminPage() {
     </div>
   )
 }
+

@@ -36,6 +36,7 @@ import SketchUpProScanPage from './SketchUpProScanPage'
 import AresMechanicalPage from './AresMechanicalPage'
 import AresElectricalPage from './AresElectricalPage'
 import AresStandardPage from './AresStandardPage'
+import AresCommanderPage from './AresCommanderPage'
 
 interface ProductDetailPageProps {
   forcedSlug?: string
@@ -116,6 +117,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
   }
   if (resolvedSlug === 'ares-standard' || resolvedSlug === 'aresstandard' || resolvedSlug === 'ares_standard') {
     return <AresStandardPage />
+  }
+  if (resolvedSlug === 'ares-commander' || resolvedSlug === 'arescommander' || resolvedSlug === 'ares_commander') {
+    return <AresCommanderPage />
   }
   if (resolvedSlug === 'eka-ht') {
     return <EkaHtPage />

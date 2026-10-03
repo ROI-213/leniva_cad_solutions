@@ -54,6 +54,7 @@ import SketchUpProScanPage from './pages/SketchUpProScanPage'
 import AresMechanicalPage from './pages/AresMechanicalPage'
 import AresElectricalPage from './pages/AresElectricalPage'
 import AresStandardPage from './pages/AresStandardPage'
+import AresCommanderPage from './pages/AresCommanderPage'
 import AdminPage from './pages/AdminPage'
 
 export default function App() {
@@ -269,6 +270,15 @@ export default function App() {
             <Route path="/products/aresstandard" element={<AresStandardPage />} />
             <Route path="/product/aresstandard" element={<AresStandardPage />} />
             <Route path="/aresstandard" element={<AresStandardPage />} />
+
+            {/* Dedicated ARES Commander Product Page */}
+            <Route path="/products/ares-commander" element={<AresCommanderPage />} />
+            <Route path="/product/ares-commander" element={<AresCommanderPage />} />
+            <Route path="/ares-commander" element={<AresCommanderPage />} />
+            <Route path="/software/ares-commander" element={<AresCommanderPage />} />
+            <Route path="/products/arescommander" element={<AresCommanderPage />} />
+            <Route path="/product/arescommander" element={<AresCommanderPage />} />
+            <Route path="/arescommander" element={<AresCommanderPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

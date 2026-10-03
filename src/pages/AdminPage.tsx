@@ -120,6 +120,7 @@ export default function AdminPage() {
     | 'services'
     | 'blogs'
     | 'categories'
+    | 'cad_software'
     | 'settings'
     | 'users'
 
@@ -212,6 +213,223 @@ export default function AdminPage() {
   const [contactNotesInput, setContactNotesInput] = useState('')
   const [userMsg, setUserMsg] = useState('')
   const [newPasswordValue, setNewPasswordValue] = useState('')
+
+  // ─── CAD Software Editor ────────────────────────────────────────────────────
+  const CAD_PRODUCTS = [
+    { key: 'ares_mechanical',  label: 'ARES Mechanical',       brand: 'Graebert', route: '/products/ares-mechanical',  color: 'blue'   },
+    { key: 'ares_electrical',  label: 'ARES Electrical',       brand: 'Graebert', route: '/products/ares-electrical',  color: 'yellow' },
+    { key: 'ares_standard',    label: 'ARES Standard',         brand: 'Graebert', route: '/products/ares-standard',    color: 'slate'  },
+    { key: 'chaos_enscape',    label: 'Chaos Enscape',         brand: 'Chaos',    route: '/products/enscape',          color: 'purple' },
+    { key: 'chaos_vray',       label: 'Chaos V-Ray',           brand: 'Chaos',    route: '/products/vray',             color: 'orange' },
+    { key: 'sketchup_studio',  label: 'SketchUp Studio',       brand: 'Trimble',  route: '/products/sketchup-studio',  color: 'green'  },
+    { key: 'sketchup_proscan', label: 'SketchUp Pro + Scan',   brand: 'Trimble',  route: '/products/sketchup-proscan', color: 'teal'   },
+  ] as const
+
+  type CadProductKey = typeof CAD_PRODUCTS[number]['key']
+
+  const CAD_DEFAULTS: Record<string, any> = {
+    ares_mechanical: {
+      productName: 'ARES Mechanical', brand: 'Graebert',
+      headline: 'Professional 2D Mechanical CAD Software in DWG',
+      supportingHeadline: 'Design. Draft. Document. With Mechanical Precision.',
+      shortDescription: 'Create and modify professional 2D mechanical drawings with standards-based tools, intelligent components, mechanical annotations, and a familiar DWG-based CAD environment.',
+      description: 'ARES Mechanical is a professional DWG-based mechanical CAD solution that combines the comprehensive drafting power of ARES Commander with dedicated engineering functions.',
+      platform: 'Windows 64-bit', languages: 'English, German, Polish, Japanese, Korean, Traditional Chinese',
+      primaryFormat: 'DWG Native', cadEngine: 'ARES Commander Engine',
+      heroImage: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'Native DWG Mechanical Engine',
+      heroHeading: 'Professional 2D Mechanical CAD in DWG',
+      heroSupportingText: 'Create detailed mechanical drawings with a specialized CAD environment built for engineers and designers.',
+      highlights: ['DWG-based 2D mechanical CAD','ISO, ANSI, DIN, BSI, JIS standards','Ready-to-use parts libraries','Automated layer management','Mechanical annotations & symbols','Bills of Materials (BOM)','STEP and IGES import/export','Power Trim','Balloons & revision tables'],
+      trialCta: 'Get Free 30-Day Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.graebert.com/in/cad-software/ares-mechanical/',
+      downloadUrl: 'https://www.graebert.com/in/cad-software/download/ares-mechanical/',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Available as subscription and perpetual license. Contact us for volume and enterprise pricing.',
+    },
+    ares_electrical: {
+      productName: 'ARES Electrical', brand: 'Graebert',
+      headline: 'Modern Electrical CAD Software to Automate Electrical Schematics in DWG',
+      supportingHeadline: 'Design Smarter. Automate Repetitive Tasks. Deliver Electrical Projects with Confidence.',
+      shortDescription: 'Create and manage electrical schematics, wiring diagrams, control panels, and electrical project reports with a DWG-based ECAD solution.',
+      description: 'ARES Electrical is a DWG-compatible ECAD solution developed to simplify electrical design and automate repetitive tasks in electrical projects.',
+      platform: 'Windows 64-bit', languages: 'English, Portuguese, Spanish',
+      primaryFormat: 'DWG', cadEngine: 'ARES Commander Engine',
+      heroImage: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'DWG-Compatible ECAD',
+      heroHeading: 'Automate Electrical Schematics in DWG',
+      heroSupportingText: 'Design electrical projects with automatic wire numbering, component tagging, cross-referencing, and intelligent report generation.',
+      highlights: ['DWG-compatible electrical CAD','Automated electrical schematics','Automatic wire numbering','Automatic component tagging','Automated cross-referencing','Control panel design','Multi-page DWG projects','Project reports (PDF/DXF)','Intelligent component libraries'],
+      trialCta: 'Get Free 30-Day Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.graebert.com/in/cad-software/ares-electrical/',
+      downloadUrl: 'https://www.graebert.com/in/cad-software/download/ares-electrical/',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Available as subscription and perpetual license. Contact us for multi-seat and enterprise pricing.',
+    },
+    ares_standard: {
+      productName: 'ARES Standard', brand: 'Graebert',
+      headline: 'Powerful 2D CAD. Practical by Design.',
+      supportingHeadline: 'Create, view and modify DWG drawings with ARES Standard.',
+      shortDescription: 'Cost-effective 2D CAD software for users who need dependable 2D drafting and DWG editing without advanced features.',
+      description: 'ARES Standard is cost-effective 2D CAD software built on the ARES CAD platform. Designed for users who need dependable 2D drafting and DWG editing.',
+      platform: 'Windows 64-bit', languages: 'English',
+      primaryFormat: 'DWG', cadEngine: 'ARES Platform',
+      heroImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+      heroBadge: 'Cost-Effective 2D DWG CAD',
+      heroHeading: 'Powerful 2D CAD. Practical by Design.',
+      heroSupportingText: 'Create, view and modify DWG drawings with a familiar CAD interface at a practical price point.',
+      highlights: ['Native DWG support','Complete set of 2D drafting tools','Layers, blocks and dimensions','Familiar CAD interface','Windows 64-bit support','Print & plot with layouts','30-Day Free Trial'],
+      trialCta: 'Get Free 30-Day Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
+      downloadUrl: 'https://www.graebert.com/cad-software/download/',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Perpetual and subscription license options. Contact us to confirm current regional availability and pricing.',
+    },
+    chaos_enscape: {
+      productName: 'Chaos Enscape', brand: 'Chaos',
+      headline: 'Real-Time Rendering That Keeps Up With Your Ideas',
+      supportingHeadline: 'Design, visualize, and present — all inside your design workflow.',
+      shortDescription: 'Real-time rendering and virtual reality plugin for Revit, SketchUp, Rhino, Archicad, and Vectorworks.',
+      description: 'Enscape is a real-time visualization solution that connects directly with supported CAD and BIM applications.',
+      platform: 'Windows', languages: 'English',
+      primaryFormat: 'Plugin for Revit, SketchUp, Rhino, Archicad, Vectorworks',
+      cadEngine: 'Chaos Rendering Engine',
+      heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'Real-Time Rendering & VR',
+      heroHeading: 'Real-Time Rendering That Keeps Up With Your Ideas',
+      heroSupportingText: 'See photorealistic results instantly as you design. No switching apps, no waiting.',
+      highlights: ['Real-time rendering inside your CAD tool','Virtual Reality walkthroughs','360° panoramic exports','Standalone walkthrough EXE export','Asset library (trees, furniture, people)','Batch rendering','Revit, SketchUp, Rhino, Archicad, Vectorworks support'],
+      trialCta: 'Start Free Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.chaos.com/enscape',
+      downloadUrl: 'https://www.chaos.com/enscape/trial',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Annual subscription. Educational and multi-seat pricing available. Contact us for enterprise licensing.',
+    },
+    chaos_vray: {
+      productName: 'Chaos V-Ray', brand: 'Chaos',
+      headline: 'Create Your Most Realistic Work Yet with Chaos V-Ray',
+      supportingHeadline: 'Photorealistic rendering for design, visualization, and production.',
+      shortDescription: 'Physically based ray-tracing renderer for architecture, product design, VFX, and advertising.',
+      description: 'V-Ray is professional 3D rendering software that helps artists and designers transform complex 3D scenes into realistic images and animations.',
+      platform: 'Windows, macOS, Linux (host-dependent)', languages: 'English',
+      primaryFormat: 'Plugin for 3ds Max, SketchUp, Rhino, Revit, Cinema 4D, Maya, Unreal',
+      cadEngine: 'V-Ray Ray Tracing Engine',
+      heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'Photorealistic 3D Rendering',
+      heroHeading: 'Create Your Most Realistic Work Yet',
+      heroSupportingText: 'Physically accurate ray tracing, GPU+CPU hybrid rendering, and 18,500+ Chaos Cosmos assets.',
+      highlights: ['Physically based ray tracing','GPU + CPU hybrid rendering','V-Ray Vision real-time preview','18,500+ Chaos Cosmos assets','Chaos Scatter for environments','Multi-platform support','Academy Award winning technology'],
+      trialCta: 'Start Free Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.chaos.com/vray',
+      downloadUrl: 'https://www.chaos.com/vray/trial',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Annual subscription. Priced per host application. Enterprise and educational pricing available on request.',
+    },
+    sketchup_studio: {
+      productName: 'SketchUp Studio', brand: 'Trimble',
+      headline: 'SketchUp Studio — The Complete 3D Design Suite',
+      supportingHeadline: 'Model. Render. Scan. Import. All in One Subscription.',
+      shortDescription: 'Trimble SketchUp Studio bundles SketchUp Pro, LayOut, V-Ray, Scan Essentials, and Revit Importer in a single Windows subscription.',
+      description: "Trimble's most powerful SketchUp subscription. Includes SketchUp Pro, LayOut, V-Ray for SketchUp, Scan Essentials (point cloud), and Revit Importer.",
+      platform: 'Windows (64-bit)', languages: 'English',
+      primaryFormat: 'SKP, DWG, DXF, RVT, IFC, OBJ, FBX, STL',
+      cadEngine: 'Trimble SketchUp Engine + V-Ray',
+      heroImage: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'Trimble SketchUp Studio',
+      heroHeading: 'The Complete 3D Design Suite from Trimble',
+      heroSupportingText: 'SketchUp Pro + LayOut + V-Ray + Scan Essentials + Revit Importer in one subscription.',
+      highlights: ['SketchUp Pro (full 3D modeling)','LayOut (2D documentation)','V-Ray for SketchUp (photorealistic rendering)','Scan Essentials (point cloud / LiDAR)','Revit Importer (.rvt files)','Annual subscription (Windows only)','IFC, DWG, FBX, OBJ, STL support'],
+      trialCta: 'Start Free Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.sketchup.com/plans-and-pricing/sketchup-studio',
+      downloadUrl: 'https://www.sketchup.com/try-sketchup',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Annual subscription per seat. Educational and volume pricing available. Windows only. Contact us for Indian pricing.',
+    },
+    sketchup_proscan: {
+      productName: 'SketchUp Pro + Scan Essentials', brand: 'Trimble',
+      headline: 'SketchUp Pro with Scan Essentials — Scan-to-Model Workflows',
+      supportingHeadline: 'Import Point Clouds. Model Reality. Deliver Accurate As-Built Drawings.',
+      shortDescription: 'SketchUp Pro bundled with Scan Essentials for scan-to-model professionals working with LiDAR and photogrammetry point clouds.',
+      description: 'SketchUp Pro paired with the Scan Essentials plugin. Designed for survey, heritage, renovation, and facility management teams who capture spaces with 3D scanners.',
+      platform: 'Windows 64-bit', languages: 'English',
+      primaryFormat: 'SKP, E57, RCP, LAS, LAZ, DWG, DXF',
+      cadEngine: 'Trimble SketchUp Engine',
+      heroImage: 'https://images.unsplash.com/photo-1619468129361-605ebea04b44?auto=format&fit=crop&w=1600&q=85',
+      heroBadge: 'Scan-to-Model CAD',
+      heroHeading: 'Model Reality from Point Clouds',
+      heroSupportingText: 'Import LiDAR and photogrammetry scans directly into SketchUp and model with real-world accuracy.',
+      highlights: ['SketchUp Pro (full 3D modeling)','LayOut (2D documentation)','Scan Essentials (E57, RCP, LAS, LAZ point clouds)','Snap-to-point-cloud geometry','As-built modeling from scans','Works with FARO, Leica, Trimble scanners','IFC, DWG, FBX export'],
+      trialCta: 'Start Free Trial', pricingCta: 'Enquire About Pricing',
+      officialUrl: 'https://www.sketchup.com/products/scan-essentials',
+      downloadUrl: 'https://www.sketchup.com/try-sketchup',
+      enquiryEmail: 'contact@lenivacadsolution.in',
+      licensingNote: 'Annual subscription per seat. Contact us for Indian regional pricing and volume discounts.',
+    },
+  }
+
+  const loadCadEdits = (): Record<string, any> => {
+    try {
+      const saved = localStorage.getItem('leniva_cad_software_edits')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        // Merge: fill missing keys with defaults
+        const merged: Record<string, any> = {}
+        Object.keys(CAD_DEFAULTS).forEach(k => {
+          merged[k] = { ...CAD_DEFAULTS[k], ...(parsed[k] || {}) }
+        })
+        return merged
+      }
+    } catch { /* ignore */ }
+    return { ...CAD_DEFAULTS }
+  }
+
+  const [cadEdits, setCadEdits] = useState<Record<string, any>>(loadCadEdits)
+  const [activeCadProduct, setActiveCadProduct] = useState<CadProductKey>('ares_mechanical')
+  const [cadSaveMsg, setCadSaveMsg] = useState('')
+  const [cadEditSection, setCadEditSection] = useState<'identity' | 'hero' | 'highlights' | 'licensing'>('identity')
+
+  const saveCadEdits = (updatedEdits: Record<string, any>) => {
+    localStorage.setItem('leniva_cad_software_edits', JSON.stringify(updatedEdits))
+    setCadEdits(updatedEdits)
+    setCadSaveMsg('✓ Saved to browser storage. Export JSON to apply to the site.')
+    setTimeout(() => setCadSaveMsg(''), 4000)
+  }
+
+  const updateCadField = (field: string, value: any) => {
+    const updated = { ...cadEdits, [activeCadProduct]: { ...cadEdits[activeCadProduct], [field]: value } }
+    saveCadEdits(updated)
+  }
+
+  const updateCadHighlight = (index: number, value: string) => {
+    const arr = [...(cadEdits[activeCadProduct]?.highlights || [])]
+    arr[index] = value
+    updateCadField('highlights', arr)
+  }
+
+  const addCadHighlight = () => {
+    const arr = [...(cadEdits[activeCadProduct]?.highlights || []), 'New feature bullet']
+    updateCadField('highlights', arr)
+  }
+
+  const removeCadHighlight = (index: number) => {
+    const arr = (cadEdits[activeCadProduct]?.highlights || []).filter((_: any, i: number) => i !== index)
+    updateCadField('highlights', arr)
+  }
+
+  const exportCadJson = () => {
+    const blob = new Blob([JSON.stringify(cadEdits, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = 'leniva-cad-software-content.json'; a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const resetCadProduct = () => {
+    const label = CAD_PRODUCTS.find(p => p.key === activeCadProduct)?.label || activeCadProduct
+    if (!confirm(`Reset "${label}" to defaults? All edits for this product will be lost.`)) return
+    const updated = { ...cadEdits, [activeCadProduct]: { ...CAD_DEFAULTS[activeCadProduct] } }
+    saveCadEdits(updated)
+  }
 
   // Safe JSON fetcher that handles non-JSON / HTML responses gracefully on Vercel
   const safeFetchJson = async (url: string, options?: RequestInit) => {
@@ -1193,6 +1411,24 @@ export default function AdminPage() {
               <Key className="w-4 h-4" />
               <span>Admin Accounts</span>
             </button>
+
+            <div className="pt-2 border-t border-slate-100 mt-1">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400 px-3.5 pb-1.5">CAD Software</p>
+              <button
+                onClick={() => setActiveTab('cad_software')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                  activeTab === 'cad_software' ? 'bg-indigo-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <Shield className="w-4 h-4" />
+                  <span>CAD Software Editor</span>
+                </div>
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                  activeTab === 'cad_software' ? 'bg-indigo-800 text-indigo-100' : 'bg-slate-200 text-slate-700'
+                }`}>7</span>
+              </button>
+            </div>
 
           </nav>
 
@@ -3042,7 +3278,506 @@ export default function AdminPage() {
           )}
 
 
+          {/* ====================================================
+              TAB: CAD SOFTWARE EDITOR
+             ==================================================== */}
+          {activeTab === 'cad_software' && (() => {
+            const cur = cadEdits[activeCadProduct] || {}
+            const activeMeta = CAD_PRODUCTS.find(p => p.key === activeCadProduct)!
+            const sectionTabs = [
+              { key: 'identity',   label: 'Identity & Description' },
+              { key: 'hero',       label: 'Hero Section' },
+              { key: 'highlights', label: 'Key Features' },
+              { key: 'licensing',  label: 'CTAs & Licensing' },
+            ] as const
+
+            return (
+              <div className="space-y-5">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-lg font-black text-slate-900">CAD Software Content Editor</h3>
+                    <p className="text-xs text-slate-500 mt-0.5">Edit content for all 7 CAD software product pages. Changes saved to browser storage.</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={exportCadJson}
+                      className="inline-flex items-center space-x-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      <Save className="w-3.5 h-3.5" />
+                      <span>Export JSON</span>
+                    </button>
+                    <button
+                      onClick={resetCadProduct}
+                      className="inline-flex items-center space-x-1.5 px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>Reset Product</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Save message */}
+                {cadSaveMsg && (
+                  <div className="flex items-center space-x-2 px-4 py-2.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-semibold">
+                    <Check className="w-4 h-4" />
+                    <span>{cadSaveMsg}</span>
+                  </div>
+                )}
+
+                {/* Product Selector */}
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Select Product to Edit</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                    {CAD_PRODUCTS.map(p => (
+                      <button
+                        key={p.key}
+                        onClick={() => { setActiveCadProduct(p.key as CadProductKey); setCadEditSection('identity') }}
+                        className={`text-left px-3 py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                          activeCadProduct === p.key
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md'
+                            : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50'
+                        }`}
+                      >
+                        <div className={`text-[9px] font-semibold mb-0.5 ${activeCadProduct === p.key ? 'text-indigo-200' : 'text-slate-400'}`}>{p.brand}</div>
+                        <div className="leading-tight">{p.label}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Active Product + Section Tabs */}
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                  {/* Product Title Bar */}
+                  <div className="flex items-center justify-between px-5 py-3.5 bg-indigo-600 text-white">
+                    <div>
+                      <div className="text-[10px] font-semibold text-indigo-200">{activeMeta.brand}</div>
+                      <div className="text-sm font-black">{activeMeta.label}</div>
+                    </div>
+                    <a
+                      href={activeMeta.route}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-bold text-indigo-200 hover:text-white flex items-center space-x-1 transition-colors"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>View Page</span>
+                    </a>
+                  </div>
+
+                  {/* Section Tabs */}
+                  <div className="flex border-b border-slate-200 bg-slate-50">
+                    {sectionTabs.map(tab => (
+                      <button
+                        key={tab.key}
+                        onClick={() => setCadEditSection(tab.key as any)}
+                        className={`px-4 py-2.5 text-[11px] font-bold transition-colors cursor-pointer border-b-2 -mb-px ${
+                          cadEditSection === tab.key
+                            ? 'border-indigo-600 text-indigo-700 bg-white'
+                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="p-6 space-y-5">
+                    {/* ─── IDENTITY SECTION ─── */}
+                    {cadEditSection === 'identity' && (
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Product Name</label>
+                            <input
+                              type="text"
+                              value={cur.productName || ''}
+                              onChange={e => updateCadField('productName', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Brand</label>
+                            <input
+                              type="text"
+                              value={cur.brand || ''}
+                              onChange={e => updateCadField('brand', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Main Headline</label>
+                          <input
+                            type="text"
+                            value={cur.headline || ''}
+                            onChange={e => updateCadField('headline', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Supporting Headline</label>
+                          <input
+                            type="text"
+                            value={cur.supportingHeadline || ''}
+                            onChange={e => updateCadField('supportingHeadline', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Short Description (used in cards & meta)</label>
+                          <textarea
+                            value={cur.shortDescription || ''}
+                            onChange={e => updateCadField('shortDescription', e.target.value)}
+                            rows={2}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Full Description</label>
+                          <textarea
+                            value={cur.description || ''}
+                            onChange={e => updateCadField('description', e.target.value)}
+                            rows={4}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Platform / OS</label>
+                            <input
+                              type="text"
+                              value={cur.platform || ''}
+                              onChange={e => updateCadField('platform', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Languages</label>
+                            <input
+                              type="text"
+                              value={cur.languages || ''}
+                              onChange={e => updateCadField('languages', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Primary File Format</label>
+                            <input
+                              type="text"
+                              value={cur.primaryFormat || ''}
+                              onChange={e => updateCadField('primaryFormat', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">CAD Engine</label>
+                            <input
+                              type="text"
+                              value={cur.cadEngine || ''}
+                              onChange={e => updateCadField('cadEngine', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Official Product URL</label>
+                            <input
+                              type="url"
+                              value={cur.officialUrl || ''}
+                              onChange={e => updateCadField('officialUrl', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Download / Trial URL</label>
+                            <input
+                              type="url"
+                              value={cur.downloadUrl || ''}
+                              onChange={e => updateCadField('downloadUrl', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Enquiry Email</label>
+                          <input
+                            type="email"
+                            value={cur.enquiryEmail || ''}
+                            onChange={e => updateCadField('enquiryEmail', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ─── HERO SECTION ─── */}
+                    {cadEditSection === 'hero' && (
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Hero Heading</label>
+                          <input
+                            type="text"
+                            value={cur.heroHeading || ''}
+                            onChange={e => updateCadField('heroHeading', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Hero Supporting Text</label>
+                          <textarea
+                            value={cur.heroSupportingText || ''}
+                            onChange={e => updateCadField('heroSupportingText', e.target.value)}
+                            rows={3}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Hero Badge Text</label>
+                          <input
+                            type="text"
+                            value={cur.heroBadge || ''}
+                            onChange={e => updateCadField('heroBadge', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            placeholder="e.g. Native DWG Mechanical Engine"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Hero Image URL</label>
+                          <input
+                            type="url"
+                            value={cur.heroImage || ''}
+                            onChange={e => updateCadField('heroImage', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            placeholder="https://..."
+                          />
+                          {cur.heroImage && (
+                            <div className="mt-2 rounded-xl overflow-hidden border border-slate-200 h-32 bg-slate-100">
+                              <img src={cur.heroImage} alt="Hero preview" className="w-full h-full object-cover" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ─── KEY FEATURES / HIGHLIGHTS ─── */}
+                    {cadEditSection === 'highlights' && (
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-black text-slate-900">Key Feature Bullets</p>
+                            <p className="text-xs text-slate-500">These appear in the hero section, overview cards, and feature summaries.</p>
+                          </div>
+                          <button
+                            onClick={addCadHighlight}
+                            className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                            <span>Add Feature</span>
+                          </button>
+                        </div>
+
+                        <div className="space-y-2">
+                          {(cur.highlights || []).map((h: string, i: number) => (
+                            <div key={i} className="flex items-center space-x-2">
+                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-black">
+                                {i + 1}
+                              </div>
+                              <input
+                                type="text"
+                                value={h}
+                                onChange={e => updateCadHighlight(i, e.target.value)}
+                                className="flex-1 px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                              />
+                              <button
+                                onClick={() => removeCadHighlight(i)}
+                                className="flex-shrink-0 p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
+                                title="Remove feature"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+
+                        {(!cur.highlights || cur.highlights.length === 0) && (
+                          <div className="text-center py-8 text-slate-400 text-sm">
+                            No features added yet. Click "Add Feature" to start.
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* ─── CTAs & LICENSING ─── */}
+                    {cadEditSection === 'licensing' && (
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Primary CTA Button Text</label>
+                            <input
+                              type="text"
+                              value={cur.trialCta || ''}
+                              onChange={e => updateCadField('trialCta', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                              placeholder="e.g. Get Free 30-Day Trial"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Secondary CTA Button Text</label>
+                            <input
+                              type="text"
+                              value={cur.pricingCta || ''}
+                              onChange={e => updateCadField('pricingCta', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                              placeholder="e.g. Enquire About Pricing"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Licensing & Pricing Note</label>
+                          <textarea
+                            value={cur.licensingNote || ''}
+                            onChange={e => updateCadField('licensingNote', e.target.value)}
+                            rows={3}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                            placeholder="Describe licensing options, pricing model, trial availability..."
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Official Product URL</label>
+                            <input
+                              type="url"
+                              value={cur.officialUrl || ''}
+                              onChange={e => updateCadField('officialUrl', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Trial / Download URL</label>
+                            <input
+                              type="url"
+                              value={cur.downloadUrl || ''}
+                              onChange={e => updateCadField('downloadUrl', e.target.value)}
+                              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Enquiry Email Address</label>
+                          <input
+                            type="email"
+                            value={cur.enquiryEmail || ''}
+                            onChange={e => updateCadField('enquiryEmail', e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+
+                        {/* Live Preview Card */}
+                        <div className="bg-slate-50 rounded-xl border border-slate-200 p-4 space-y-3">
+                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">CTA Preview</p>
+                          <div className="flex flex-wrap gap-3">
+                            <div className="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold shadow-sm">
+                              {cur.trialCta || 'Primary CTA'}
+                            </div>
+                            <div className="px-5 py-2.5 bg-white border border-slate-200 text-slate-900 rounded-xl text-sm font-bold shadow-sm">
+                              {cur.pricingCta || 'Secondary CTA'}
+                            </div>
+                          </div>
+                          {cur.licensingNote && (
+                            <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-3">{cur.licensingNote}</p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* All Products Summary Table */}
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                  <h4 className="text-sm font-black text-slate-900 mb-4">All 7 Products — Quick Overview</h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider">
+                          <th className="py-2 px-3">Product</th>
+                          <th className="py-2 px-3">Brand</th>
+                          <th className="py-2 px-3">Headline</th>
+                          <th className="py-2 px-3">Platform</th>
+                          <th className="py-2 px-3">Features</th>
+                          <th className="py-2 px-3 text-right">Edit</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {CAD_PRODUCTS.map(p => {
+                          const d = cadEdits[p.key] || {}
+                          return (
+                            <tr key={p.key} className={`hover:bg-slate-50 transition-colors ${activeCadProduct === p.key ? 'bg-indigo-50/50' : ''}`}>
+                              <td className="py-3 px-3 font-bold text-slate-900">{d.productName || p.label}</td>
+                              <td className="py-3 px-3 text-slate-500">{p.brand}</td>
+                              <td className="py-3 px-3 text-slate-700 max-w-xs truncate">{d.headline || '—'}</td>
+                              <td className="py-3 px-3 text-slate-500">{d.platform || '—'}</td>
+                              <td className="py-3 px-3">
+                                <span className="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full font-mono text-[10px] font-bold">
+                                  {(d.highlights || []).length} items
+                                </span>
+                              </td>
+                              <td className="py-3 px-3 text-right">
+                                <button
+                                  onClick={() => { setActiveCadProduct(p.key as CadProductKey); setCadEditSection('identity'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                                  className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors cursor-pointer"
+                                  title={`Edit ${p.label}`}
+                                >
+                                  <Edit className="w-4 h-4" />
+                                </button>
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Export Info Box */}
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+                  <div className="flex items-start space-x-3">
+                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-bold text-amber-900">How to Apply Edits to the Live Site</p>
+                      <p className="text-xs text-amber-700 mt-1">
+                        Edits are saved to your browser's local storage and persist across sessions. 
+                        To permanently apply them to the website, click <strong>"Export JSON"</strong>, download the file, 
+                        and share it with your developer to update the corresponding <code className="bg-amber-100 px-1 rounded">src/data/</code> files 
+                        (<code className="bg-amber-100 px-1 rounded">aresMechanicalData.ts</code>, <code className="bg-amber-100 px-1 rounded">enscapeData.ts</code>, etc.).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })()}
+
+
         </main>
+
       </div>
     </div>
   )

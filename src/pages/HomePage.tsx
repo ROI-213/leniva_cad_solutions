@@ -77,20 +77,6 @@ export const HomePage: React.FC = () => {
   // Section 2: Right Column - Equipment Showcase Slider (Only 3D Printers & 3D Scanners)
   const showcaseProducts = [
     {
-      id: 'pratham-6',
-      name: 'Pratham 6.0',
-      brand: 'Leniva Additive',
-      category: 'Industrial 3D Printer',
-      badge: 'Industrial FDM',
-      tagline: 'Concept to Creation',
-      image: '/images/showcase/pratham-showcase.png?v=pratham6',
-      link: '/products/pratham-mini',
-      accentColor: 'from-red-600/15 via-red-500/5 to-transparent',
-      borderColor: 'border-red-200/90',
-      textColor: 'text-red-600',
-      isCleanRender: true,
-    },
-    {
       id: '3devok-mq',
       name: '3DeVOK MQ Metrology',
       brand: '3DeVOK',
@@ -172,20 +158,6 @@ export const HomePage: React.FC = () => {
       accentColor: 'from-rose-600/15 via-red-500/5 to-transparent',
       borderColor: 'border-rose-200/90',
       textColor: 'text-rose-600',
-      isCleanRender: true,
-    },
-    {
-      id: 'isla-660',
-      name: 'ISLA-660 Production',
-      brand: 'Leniva Additive',
-      category: 'Industrial SLA 3D Printer',
-      badge: 'Stereolithography SLA',
-      tagline: 'Ultra-Smooth Surface Finish',
-      image: '/images/products/isla-660.png',
-      link: '/products/isla-660',
-      accentColor: 'from-emerald-600/15 via-teal-500/5 to-transparent',
-      borderColor: 'border-emerald-200/90',
-      textColor: 'text-emerald-700',
       isCleanRender: true,
     },
     {

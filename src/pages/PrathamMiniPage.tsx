@@ -111,13 +111,13 @@ export const PrathamMiniPage: React.FC = () => {
 
   // Series Printers
   const prathamSeries = [
-    { name: 'Pratham Mini', vol: '170 × 170 × 170 mm', tag: 'Classroom & Lab', active: true },
-    { name: 'Pratham Desktop', vol: '200 × 200 × 250 mm', tag: 'Studio Series', link: '/products/pratham-desktop' },
-    { name: 'Pratham 3 Rapid', vol: '300 × 300 × 300 mm', tag: '500 mm/s CoreXY', link: '/products/pratham-3-rapid' },
-    { name: 'Pratham 3.0', vol: '300 × 300 × 300 mm', tag: '24/7 Factory Workhorse', link: '/products/pratham-3' },
-    { name: 'Pratham 5.0', vol: '500 × 500 × 500 mm', tag: 'Heated Chamber FDM', link: '/products/pratham-5' },
-    { name: 'Pratham 6.0', vol: '600 × 600 × 600 mm', tag: 'Large Format Industrial', link: '/products/pratham-6' },
-    { name: 'Pratham X', vol: '1000 × 1000 × 1000 mm', tag: '1 m³ Extra Large', link: '/products/pratham-x' },
+    { name: 'Pratham Mini', vol: '170 × 170 × 170 mm', tag: 'Classroom & Lab', active: true, img: '/images/products/pratham-mini.png' },
+    { name: 'Pratham Desktop', vol: '200 × 200 × 250 mm', tag: 'Studio Series', link: '/products/pratham-desktop', img: '/images/products/pratham-desktop.png' },
+    { name: 'Pratham 3 Rapid', vol: '300 × 300 × 300 mm', tag: '500 mm/s CoreXY', link: '/products/pratham-3-rapid', img: '/images/products/pratham-3-rapid.png' },
+    { name: 'Pratham 3.0', vol: '300 × 300 × 300 mm', tag: '24/7 Factory Workhorse', link: '/products/pratham-3', img: '/images/products/pratham-3-0.png' },
+    { name: 'Pratham 5.0', vol: '500 × 500 × 500 mm', tag: 'Heated Chamber FDM', link: '/products/pratham-5', img: '/images/products/pratham-5-0.png' },
+    { name: 'Pratham 6.0', vol: '600 × 600 × 600 mm', tag: 'Large Format Industrial', link: '/products/pratham-6', img: '/images/products/pratham-6-0.png' },
+    { name: 'Pratham X', vol: '1000 × 1000 × 1000 mm', tag: '1 m³ Extra Large', link: '/products/pratham-x', img: '/images/products/pratham-x.png' },
   ]
 
   return (
@@ -806,27 +806,64 @@ export const PrathamMiniPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-          {prathamSeries.map((p) => (
-            <div
-              key={p.name}
-              className={`p-3.5 rounded-2xl border transition-all text-xs flex flex-col justify-between space-y-2 ${
-                p.active
-                  ? 'bg-slate-950 text-white border-slate-950 shadow-md ring-2 ring-red-500'
-                  : 'bg-white text-slate-900 border-slate-200 hover:border-slate-400'
-              }`}
-            >
-              <div>
-                <span className="text-[10px] font-mono font-bold text-red-500 uppercase block">{p.tag}</span>
-                <h3 className="font-bold mt-0.5">{p.name}</h3>
-                <span className="text-[10px] text-slate-400 font-mono block mt-1">{p.vol}</span>
+          {prathamSeries.map((p) => {
+            const cardInner = (
+              <div
+                className={`h-full p-3.5 rounded-2xl border transition-all text-xs flex flex-col justify-between group ${
+                  p.active
+                    ? 'bg-slate-950 text-white border-slate-950 shadow-md ring-2 ring-red-500'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-red-500 hover:shadow-lg'
+                }`}
+              >
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-red-500 uppercase block tracking-wider">
+                    {p.tag}
+                  </span>
+                  <h3 className="font-extrabold text-sm mt-0.5 tracking-tight truncate">{p.name}</h3>
+                  <span className={`text-[10px] font-mono block mt-0.5 ${p.active ? 'text-slate-400' : 'text-slate-500'}`}>
+                    {p.vol}
+                  </span>
+                </div>
+
+                <div
+                  className={`my-3 h-24 sm:h-28 rounded-xl flex items-center justify-center p-2 overflow-hidden transition-all ${
+                    p.active
+                      ? 'bg-slate-900/90 border border-slate-800'
+                      : 'bg-slate-50 border border-slate-100 group-hover:bg-red-50/40 group-hover:border-red-100'
+                  }`}
+                >
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="max-h-full max-w-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+
+                {p.link ? (
+                  <span className="text-[11px] font-bold text-red-600 group-hover:text-red-700 flex items-center justify-between pt-2 border-t border-slate-100 mt-auto">
+                    <span>View Specs</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-mono font-bold text-slate-400 block pt-2 border-t border-slate-800 mt-auto flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                    Current Model
+                  </span>
+                )}
               </div>
-              {p.link && (
-                <Link to={p.link} className="text-[10px] font-bold text-red-600 hover:underline mt-2">
-                  View Specs →
-                </Link>
-              )}
-            </div>
-          ))}
+            )
+
+            return p.link ? (
+              <Link key={p.name} to={p.link} className="block focus:outline-none h-full">
+                {cardInner}
+              </Link>
+            ) : (
+              <div key={p.name} className="h-full">
+                {cardInner}
+              </div>
+            )
+          })}
         </div>
       </section>
 

@@ -21,6 +21,9 @@ import {
   PhoneCall,
   Activity,
   ExternalLink,
+  Lightbulb,
+  Cog,
+  GraduationCap,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
@@ -157,61 +160,35 @@ export const PrathamDesktopPage: React.FC = () => {
     },
   }
 
-  // Work Gallery Items
+  // Work Gallery Items (Real Parts, Real Dimensions)
   const galleryItems = [
     {
-      title: 'Mechanical Dual-Planetary Gearbox',
-      material: 'PETG Industrial Grey',
-      layerHeight: '0.15 mm',
-      printTime: '6h 40m',
-      application: 'Functional Robotics Powertrain',
-      image: '/images/showcase/pratham-showcase.png',
-      badge: 'Mechanical Prototype',
+      title: 'Functional Prototypes',
+      description: 'Turn your ideas into real, functional prototypes with accurate dimensions and strong mechanical performance.',
+      image: '/images/desktop-work/functional-prototypes.png',
+      icon: Lightbulb,
+      iconBg: 'bg-[#1e40af]',
     },
     {
-      title: 'Automotive Sensor Snap-Fit Enclosure',
-      material: 'ABS Matte Black',
-      layerHeight: '0.12 mm',
-      printTime: '4h 15m',
-      application: 'Vehicle Telematics Unit',
-      image: '/images/showcase/showcase-1.png',
-      badge: 'Product Prototype',
+      title: 'End-Use Components',
+      description: 'Produce durable, production-grade parts suitable for real-world applications.',
+      image: '/images/desktop-work/end-use-components.png',
+      icon: Cog,
+      iconBg: 'bg-[#dc2626]',
     },
     {
-      title: 'STEM Internal Combustion Engine Cross-Section',
-      material: 'PLA Multicolor',
-      layerHeight: '0.10 mm',
-      printTime: '8h 20m',
-      application: 'University Engineering Lab',
-      image: '/images/showcase/showcase-2.png',
-      badge: 'Educational Model',
+      title: 'Educational Models',
+      description: 'Create detailed and engaging models for STEM education, research and training.',
+      image: '/images/desktop-work/educational-models.png',
+      icon: GraduationCap,
+      iconBg: 'bg-[#0d9488]',
     },
     {
-      title: 'Lightweight Industrial Drone Arm Bracket',
-      material: 'PETG Carbon-Infused',
-      layerHeight: '0.20 mm',
-      printTime: '3h 10m',
-      application: 'Aerospace Verification',
-      image: '/images/showcase/showcase-3.png',
-      badge: 'Functional Component',
-    },
-    {
-      title: 'Custom Ergonomic Assembly Line Fixture',
-      material: 'Tough PLA Safety Red',
-      layerHeight: '0.25 mm',
-      printTime: '5h 50m',
-      application: 'Factory Shopfloor Jigs',
-      image: '/images/showcase/showcase-4.png',
-      badge: 'Manufacturing Tooling',
-    },
-    {
-      title: 'Parametric Architectural Lattice Pavilion',
-      material: 'PLA Architectural White',
-      layerHeight: '0.08 mm',
-      printTime: '9h 30m',
-      application: 'Design Studio Presentation',
-      image: '/images/banners/card-1-hd.png',
-      badge: 'Concept Model',
+      title: 'Custom & Complex Designs',
+      description: 'Bring intricate geometries and customized designs to life with high precision and smooth surface finishes.',
+      image: '/images/desktop-work/custom-complex-designs.png',
+      icon: Box,
+      iconBg: 'bg-[#6b21a8]',
     },
   ]
 
@@ -1218,56 +1195,47 @@ export const PrathamDesktopPage: React.FC = () => {
             Real Parts, Real Dimensions
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            WORK FROM PRATHAM DESKTOP 3D PRINTER
+            WORK FROM <span className="text-[#1e3a8a]">PRATHAM DESKTOP 3D PRINTER</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Explore genuine prototypes, educational models, and production-grade components produced on the Pratham
-            Desktop with accurate mechanical tolerances and clean surface finishes.
+            Explore what you can create with the Pratham Desktop 3D Printer – from functional prototypes to production-grade components.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold rounded-md">
-                    {item.badge}
+        {/* 4-column cards: icon+title+desc on top, large photo below */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 rounded-2xl overflow-hidden border border-slate-200 shadow-md divide-x divide-slate-200">
+          {galleryItems.map((item, idx) => {
+            const Icon = item.icon
+            return (
+              <div
+                key={idx}
+                className="bg-white group flex flex-col"
+              >
+                {/* Top info row */}
+                <div className="p-4 flex items-start gap-3 border-b border-slate-100">
+                  <div
+                    className={`w-9 h-9 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-extrabold text-slate-900 text-[13px] leading-snug">{item.title}</h3>
+                    <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">{item.description}</p>
                   </div>
                 </div>
 
-                <div className="p-5 space-y-3">
-                  <h3 className="font-extrabold text-slate-900 text-sm">{item.title}</h3>
-                  <div className="space-y-1.5 text-xs text-slate-600">
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Material:</span>
-                      <strong className="text-slate-800 font-mono">{item.material}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Layer Height:</span>
-                      <strong className="text-slate-800 font-mono">{item.layerHeight}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Print Time:</span>
-                      <strong className="text-slate-800 font-mono">{item.printTime}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Application:</span>
-                      <span className="text-slate-800 font-medium text-right">{item.application}</span>
-                    </div>
-                  </div>
+                {/* Large photo filling bottom portion */}
+                <div className="relative flex-1 overflow-hidden bg-slate-100" style={{ minHeight: '220px' }}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
 

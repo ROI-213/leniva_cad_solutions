@@ -165,28 +165,28 @@ export const PrathamDesktopPage: React.FC = () => {
     {
       title: 'Functional Prototypes',
       description: 'Turn your ideas into real, functional prototypes with accurate dimensions and strong mechanical performance.',
-      image: '/images/desktop-work/functional-prototypes.png',
+      image: '/images/desktop-work/functional-prototypes-hd.jpg',
       icon: Lightbulb,
       iconBg: 'bg-[#1e40af]',
     },
     {
       title: 'End-Use Components',
       description: 'Produce durable, production-grade parts suitable for real-world applications.',
-      image: '/images/desktop-work/end-use-components.png',
+      image: '/images/desktop-work/end-use-components-hd.jpg',
       icon: Cog,
       iconBg: 'bg-[#dc2626]',
     },
     {
       title: 'Educational Models',
       description: 'Create detailed and engaging models for STEM education, research and training.',
-      image: '/images/desktop-work/educational-models.png',
+      image: '/images/desktop-work/educational-models-hd.jpg',
       icon: GraduationCap,
       iconBg: 'bg-[#0d9488]',
     },
     {
       title: 'Custom & Complex Designs',
       description: 'Bring intricate geometries and customized designs to life with high precision and smooth surface finishes.',
-      image: '/images/desktop-work/custom-complex-designs.png',
+      image: '/images/desktop-work/custom-complex-designs-hd.jpg',
       icon: Box,
       iconBg: 'bg-[#6b21a8]',
     },
@@ -1202,34 +1202,34 @@ export const PrathamDesktopPage: React.FC = () => {
           </p>
         </div>
 
-        {/* 4-column cards: icon+title+desc on top, large photo below */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 rounded-2xl overflow-hidden border border-slate-200 shadow-md divide-x divide-slate-200">
+        {/* 4-column cards: icon+title+desc on top, large HD photo below */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {galleryItems.map((item, idx) => {
             const Icon = item.icon
             return (
               <div
                 key={idx}
-                className="bg-white group flex flex-col"
+                className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 group flex flex-col justify-between"
               >
                 {/* Top info row */}
-                <div className="p-4 flex items-start gap-3 border-b border-slate-100">
+                <div className="p-5 flex items-start gap-3.5">
                   <div
-                    className={`w-9 h-9 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5`}
+                    className={`w-10 h-10 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5`}
                   >
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-slate-900 text-[13px] leading-snug">{item.title}</h3>
-                    <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">{item.description}</p>
+                    <h3 className="font-extrabold text-slate-900 text-sm leading-snug">{item.title}</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed mt-1">{item.description}</p>
                   </div>
                 </div>
 
-                {/* Large photo filling bottom portion */}
-                <div className="relative flex-1 overflow-hidden bg-slate-100" style={{ minHeight: '220px' }}>
+                {/* Large HD photo filling bottom portion */}
+                <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>

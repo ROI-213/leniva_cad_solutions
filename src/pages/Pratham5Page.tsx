@@ -1355,45 +1355,71 @@ export const Pratham5Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          14. WORK FROM PRATHAM 5.0 (9 Category Grid)
+          14. WORK FROM PRATHAM 5.0 (6 Card Split Grid)
          ==================================================== */}
       <section ref={workRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Real Parts, Real Dimensions
+        <div className="text-center max-w-3xl mx-auto space-y-2.5">
+          <div className="flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-red-500/70 inline-block"></span>
+            <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
+              REAL PARTS, REAL DIMENSIONS
+            </span>
+            <span className="h-px w-8 bg-red-500/70 inline-block"></span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            Work From Pratham 5.0 3D Printer
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
+            WORK FROM <span className="text-[#2563eb]">PRATHAM 5.0</span> 3D PRINTER
           </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Explore examples of large-format prototypes, engineering components, tooling, decorative designs, flexible parts and architecture models produced using Pratham 5.0.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {workItems.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-row items-stretch group"
             >
-              <div className="p-5 flex items-start gap-3.5">
-                <div
-                  className={`w-10 h-10 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5`}
-                >
-                  <item.icon className="w-5 h-5" />
-                </div>
+              {/* Left Column: Icon, Category, Title, Description, Explore Link */}
+              <div className="w-[53%] p-4 sm:p-5 flex flex-col justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-slate-400 uppercase block">{item.category}</span>
-                  <h3 className="font-extrabold text-slate-900 text-sm leading-snug">{item.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed mt-1">{item.desc}</p>
+                  <div className="flex items-start gap-3">
+                    <div
+                      className={`w-9 h-9 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5`}
+                    >
+                      <item.icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                        {item.category}
+                      </span>
+                      <h3 className="font-extrabold text-slate-900 text-xs sm:text-sm leading-snug mt-0.5 group-hover:text-blue-600 transition-colors">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-relaxed mt-2.5">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <button
+                    onClick={() => openQuoteModal(`Pratham 5.0 — ${item.title}`)}
+                    className={`inline-flex items-center gap-1.5 text-xs font-bold ${item.linkColor} hover:underline cursor-pointer group-hover:translate-x-0.5 transition-transform`}
+                  >
+                    <span>Explore Parts</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
                 </div>
               </div>
 
-              <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
+              {/* Right Column: Clean Reference Image */}
+              <div className={`w-[47%] relative overflow-hidden flex items-center justify-center p-2.5 ${item.bgTint}`}>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-xs"
                   loading="lazy"
                 />
               </div>
@@ -2277,76 +2303,64 @@ const galleryImages = [
 
 const workItems = [
   {
-    category: 'Mechanical Prototypes',
+    category: 'MECHANICAL PROTOTYPES',
     title: 'Large Mechanical Components',
     desc: 'Brackets, housings and structural prototypes printed within the 500 mm envelope.',
-    image: '/images/pratham3-work/01-real-functional-parts.jpg',
+    image: '/images/pratham5-work/01-mechanical-components-clean.png',
     icon: Wrench,
-    iconBg: 'bg-[#1e40af]',
+    iconBg: 'bg-[#2563eb]',
+    linkColor: 'text-[#2563eb]',
+    bgTint: 'bg-blue-50/50',
   },
   {
-    category: 'Product Prototypes',
+    category: 'PRODUCT PROTOTYPES',
     title: 'Full-Size Product Enclosures',
     desc: 'Full-size consumer and industrial product housings, enclosures, and design-validation parts.',
-    image: '/images/desktop-work/functional-prototypes-hd.jpg',
+    image: '/images/pratham5-work/02-product-enclosures-clean.png',
     icon: Box,
     iconBg: 'bg-[#dc2626]',
+    linkColor: 'text-[#dc2626]',
+    bgTint: 'bg-rose-50/50',
   },
   {
-    category: 'Industrial Tooling',
+    category: 'INDUSTRIAL TOOLING',
     title: 'Shopfloor Jigs & Fixtures',
     desc: 'Jigs, manufacturing assembly fixtures, drill guides, positioning templates and custom aids.',
-    image: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg',
+    image: '/images/pratham5-work/03-jigs-fixtures-clean.png',
     icon: Factory,
     iconBg: 'bg-[#0d9488]',
+    linkColor: 'text-[#0d9488]',
+    bgTint: 'bg-teal-50/50',
   },
   {
-    category: 'Automotive Components',
+    category: 'AUTOMOTIVE COMPONENTS',
     title: 'Automotive Ducting & Housings',
     desc: 'Air ducts, bumper brackets, intake manifold mockups, and interior trim validation prototypes.',
-    image: '/images/gtmax/gtmax-automotive-duct.jpg',
+    image: '/images/pratham5-work/04-automotive-ducting-clean.png',
     icon: Compass,
-    iconBg: 'bg-[#6b21a8]',
+    iconBg: 'bg-[#7c3aed]',
+    linkColor: 'text-[#7c3aed]',
+    bgTint: 'bg-purple-50/50',
   },
   {
-    category: 'Engineering Models',
+    category: 'ENGINEERING MODELS',
     title: 'Industrial Turbine Impellers',
     desc: 'Large-scale engineering demonstrations, planetary gearboxes, pump casings, and impellers.',
-    image: '/images/desktop-work/end-use-components-hd.jpg',
+    image: '/images/pratham5-work/05-turbine-impellers-clean.png',
     icon: Cpu,
     iconBg: 'bg-[#d97706]',
+    linkColor: 'text-[#d97706]',
+    bgTint: 'bg-amber-50/50',
   },
   {
-    category: 'Educational Models',
+    category: 'EDUCATIONAL MODELS',
     title: 'STEM & Cross-Section Assemblies',
     desc: 'Detailed engineering and STEM demonstration models, cross-section engines, and anatomical replicas.',
-    image: '/images/desktop-work/educational-models-hd.jpg',
+    image: '/images/pratham5-work/06-stem-assemblies-clean.png',
     icon: GraduationCap,
     iconBg: 'bg-[#2563eb]',
-  },
-  {
-    category: 'Functional Components',
-    title: 'Low-Volume Production Parts',
-    desc: 'Durable end-use components, pipe manifolds, gears, nozzles, and machine covers in engineering plastics.',
-    image: '/images/pratham3-work/06-functional-end-use-parts.jpg',
-    icon: ShieldCheck,
-    iconBg: 'bg-[#059669]',
-  },
-  {
-    category: 'Architecture Models',
-    title: 'Architectural Urban Models',
-    desc: 'High-detail structural elevations, facade studies, and masterplan scale models.',
-    image: '/images/desktop-work/custom-complex-designs-hd.jpg',
-    icon: Building2,
-    iconBg: 'bg-[#0284c7]',
-  },
-  {
-    category: 'Large-Format Prints',
-    title: 'Monolithic Oversized Parts',
-    desc: 'Full-size monolithic objects printed up to 500 mm without requiring adhesive sectioning.',
-    image: '/images/pratham6/pratham6-printed-stool.jpg',
-    icon: Maximize2,
-    iconBg: 'bg-[#4f46e5]',
+    linkColor: 'text-[#2563eb]',
+    bgTint: 'bg-sky-50/50',
   },
 ]
 

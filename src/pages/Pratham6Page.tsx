@@ -16,7 +16,6 @@ import {
   Award,
   Factory,
   Wrench,
-  Cpu,
   ArrowRight,
   Maximize2,
   Compass,
@@ -1386,17 +1385,17 @@ export const Pratham6Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          13. WORK FROM PRATHAM 6.0 (8 Category Gallery)
+          13. WORK FROM PRATHAM 6.0 (Reference Mockup Layout)
          ==================================================== */}
       <section ref={workRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Real Parts, Real Dimensions
+          <div className="text-xs font-mono uppercase tracking-widest text-[#dc2626] font-bold">
+            · REAL PARTS, REAL DIMENSIONS ·
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            Work From Pratham 6.0 3D Printer
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
+            WORK FROM <span className="text-[#2563eb]">PRATHAM 6.0</span> 3D PRINTER
           </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Explore examples of large-format prototypes, functional components, manufacturing aids, educational models and production-ready parts made using industrial 3D printing.
           </p>
         </div>
@@ -1405,27 +1404,49 @@ export const Pratham6Page: React.FC = () => {
           {workItems.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1"
             >
-              <div className="p-5 flex items-start gap-3.5">
-                <div
-                  className={`w-10 h-10 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5`}
-                >
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-slate-900 text-sm leading-snug">{item.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed mt-1">{item.desc}</p>
-                </div>
-              </div>
-
-              <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
+              {/* Top HD Component Image */}
+              <div className="relative aspect-[242/104] w-full overflow-hidden bg-slate-100">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
+              </div>
+
+              {/* Card Content with Overlapping Floating Icon */}
+              <div className="px-5 pt-0 pb-5 flex-1 flex flex-col justify-between relative bg-white">
+                <div>
+                  {/* Floating Icon + Title */}
+                  <div className="flex items-center gap-3.5 -mt-6 mb-3 relative z-10">
+                    <div
+                      className={`w-12 h-12 rounded-full ${item.iconBg} text-white flex items-center justify-center shrink-0 shadow-lg border-2 border-white`}
+                    >
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-sm sm:text-base leading-snug group-hover:text-blue-600 transition-colors pt-2">
+                      {item.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs text-slate-600 leading-relaxed min-h-[44px]">
+                    {item.desc}
+                  </p>
+                </div>
+
+                {/* Action Link */}
+                <div className="pt-4 mt-2">
+                  <button
+                    onClick={() => openQuoteModal(`Pratham 6.0 — ${item.title}`)}
+                    className={`inline-flex items-center gap-1.5 text-xs font-bold ${item.linkColor} hover:underline cursor-pointer group-hover:translate-x-0.5 transition-transform`}
+                  >
+                    <span>Explore Parts</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -2330,59 +2351,34 @@ const workItems = [
   {
     title: 'Mechanical Prototypes',
     desc: 'Large mechanical components, brackets, housings and structural prototypes printed within the 600 mm envelope.',
-    image: '/images/pratham3-work/01-real-functional-parts.jpg',
+    image: '/images/pratham6-work/01-mechanical-prototypes-clean.png',
     icon: Wrench,
-    iconBg: 'bg-[#1e40af]',
+    iconBg: 'bg-[#2563eb]',
+    linkColor: 'text-[#2563eb]',
   },
   {
     title: 'Product Prototypes',
     desc: 'Full-size consumer and industrial product housings, ergonomic enclosures, and design-validation parts.',
-    image: '/images/desktop-work/functional-prototypes-hd.jpg',
+    image: '/images/pratham6-work/02-product-prototypes-clean.png',
     icon: Box,
     iconBg: 'bg-[#dc2626]',
+    linkColor: 'text-[#dc2626]',
   },
   {
     title: 'Industrial Tooling',
     desc: 'Jigs, manufacturing assembly fixtures, drill guides, positioning templates and custom shopfloor aids.',
-    image: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg',
+    image: '/images/pratham6-work/03-industrial-tooling-clean.png',
     icon: Factory,
     iconBg: 'bg-[#0d9488]',
+    linkColor: 'text-[#0d9488]',
   },
   {
     title: 'Automotive Applications',
-    tag: 'Automotive',
     desc: 'Under-hood ducts, bumper brackets, intake manifold mockups, and interior trim validation prototypes.',
-    image: '/images/gtmax/gtmax-automotive-duct.jpg',
+    image: '/images/pratham6-work/04-automotive-applications-clean.png',
     icon: Compass,
-    iconBg: 'bg-[#6b21a8]',
-  },
-  {
-    title: 'Engineering Models',
-    desc: 'Large-scale engineering demonstrations, planetary gearboxes, pump casings, and architectural mockups.',
-    image: '/images/pratham3-work/03-complex-engineering-parts.jpg',
-    icon: Cpu,
-    iconBg: 'bg-[#d97706]',
-  },
-  {
-    title: 'Educational Models',
-    desc: 'Detailed engineering and STEM demonstration models, cross-section engines, and anatomical replicas.',
-    image: '/images/desktop-work/educational-models-hd.jpg',
-    icon: GraduationCap,
-    iconBg: 'bg-[#2563eb]',
-  },
-  {
-    title: 'Functional Components',
-    desc: 'Durable end-use components, pipe manifolds, gears, nozzles, and machine covers in engineering plastics.',
-    image: '/images/desktop-work/end-use-components-hd.jpg',
-    icon: ShieldCheck,
-    iconBg: 'bg-[#059669]',
-  },
-  {
-    title: 'Large-Format Prints',
-    desc: 'Full-size monolithic objects printed up to 600 mm in height without requiring adhesive sectioning.',
-    image: '/images/pratham6/pratham6-printed-stool.jpg',
-    icon: Maximize2,
-    iconBg: 'bg-[#4f46e5]',
+    iconBg: 'bg-[#7c3aed]',
+    linkColor: 'text-[#7c3aed]',
   },
 ]
 

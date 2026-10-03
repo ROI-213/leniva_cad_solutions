@@ -551,6 +551,32 @@ export const AresStandardPage: React.FC = () => {
             </p>
           </div>
 
+          {/* Section Hero Showcase Visual */}
+          {data.useCases.image && (
+            <div className="mb-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-900 group">
+              <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
+                <img
+                  src={data.useCases.image}
+                  alt={`${data.useCases.title} - Professional 2D CAD drafting workstation`}
+                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 max-w-xl text-white">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-600/90 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-white font-bold mb-2">
+                    Native 2D DWG Workstation
+                  </span>
+                  <h3 className="text-base sm:text-xl font-bold text-white tracking-tight drop-shadow-sm">
+                    Complete 2D CAD Workspace for Engineering & Architecture
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-200/90 mt-1 line-clamp-2">
+                    Multi-layer management, coordinate precision, orthographic views, and comprehensive drafting annotation tools.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {data.useCases.items.map((uc) => (
               <div

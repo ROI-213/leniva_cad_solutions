@@ -114,6 +114,7 @@ export interface AresStandardData {
   useCases: {
     title: string
     intro: string
+    image?: string
     items: AresStandardUseCase[]
   }
   comparison: {
@@ -450,6 +451,7 @@ export const aresStandardData: AresStandardData = {
   useCases: {
     title: 'Designed for 2D Drawing Workflows',
     intro: 'ARES Standard supports users and teams whose everyday CAD tasks center on creating, viewing, modifying and printing 2D DWG drawings.',
+    image: '/images/ares-standard/designed-for-2d-drawing-workflows.jpg',
     items: [
       {
         id: 'arch-drafting',

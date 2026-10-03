@@ -371,6 +371,7 @@ export default function App() {
 
             {/* 10. Admin Console (PostgreSQL Native Management) */}
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/*" element={<AdminPage />} />
 
             {/* 11. Fallback redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -222,10 +222,6 @@ export const Header: React.FC = () => {
               <ShieldCheck className="w-3.5 h-3.5 text-slate-500" />
               <span>Warranty & Support</span>
             </Link>
-            <Link to="/admin" className="flex items-center space-x-1 text-blue-600 hover:text-blue-700 font-semibold transition-colors bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">
-              <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-              <span>Admin</span>
-            </Link>
             <div className="flex items-center space-x-2 text-slate-500">
               <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="p-0.5 hover:text-[#0077b5] transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-3.5 h-3.5 text-[#0077b5]" />
@@ -750,9 +746,6 @@ export const Header: React.FC = () => {
               </Link>
               <Link to="/contact" className="block px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50">
                 Contact
-              </Link>
-              <Link to="/admin" className="block px-3 py-2 rounded-lg text-blue-700 bg-blue-50 font-bold hover:bg-blue-100">
-                Admin Console
               </Link>
               <Link to="/wishlist" className="block px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50">
                 Wishlist ({wishlistCount})

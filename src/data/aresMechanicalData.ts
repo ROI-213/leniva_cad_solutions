@@ -238,7 +238,7 @@ export const aresMechanicalData: AresMechanicalData = {
     eyebrow: 'GRAEBERT | MECHANICAL CAD',
     heading: 'Professional 2D Mechanical CAD in DWG',
     supportingText: 'Create detailed mechanical drawings with a specialized CAD environment built for engineers and designers. ARES Mechanical combines native DWG editing with intelligent mechanical tools, standardized components, automated layers, and production-ready documentation.',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1600&q=85',
+    image: '/images/ares-mechanical/ares-hero.jpg',
     badge: 'Native DWG Mechanical Engine',
     labels: [
       'DWG-Based CAD',
@@ -263,7 +263,7 @@ export const aresMechanicalData: AresMechanicalData = {
         title: 'Professional DWG Drafting',
         desc: 'Open, edit, create, and save native DWG technical drawings with zero conversion loss using the battle-tested ARES Commander CAD engine.',
         icon: 'FileCode',
-        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-hero.jpg',
       },
       {
         title: 'Mechanical-Specific Tools',
@@ -341,7 +341,7 @@ export const aresMechanicalData: AresMechanicalData = {
       'Configurable drawing frames and ISO/ANSI title block templates',
       'Custom company standard creation: duplicate existing standards and add custom rules',
     ],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-standards.jpg',
   },
 
   partsLibraries: {
@@ -356,7 +356,7 @@ export const aresMechanicalData: AresMechanicalData = {
         description: 'Hex head bolts, socket head cap screws, countersunk screws, and set screws with predefined thread pitches and nominal lengths.',
         standardsSupported: ['ISO', 'DIN', 'ANSI', 'JIS', 'BSI'],
         iconName: 'Wrench',
-        image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-fasteners.jpg',
       },
       {
         id: 'screw-connections',
@@ -365,7 +365,7 @@ export const aresMechanicalData: AresMechanicalData = {
         description: 'Intelligent multi-part routines that calculate plate stack thickness and insert bolt, washer, and nut assemblies together.',
         standardsSupported: ['ISO', 'DIN', 'ANSI'],
         iconName: 'Layers',
-        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-hero.jpg',
       },
       {
         id: 'nuts-washers',
@@ -374,7 +374,7 @@ export const aresMechanicalData: AresMechanicalData = {
         description: 'Plain washers, spring washers, lock nuts, dowel pins, cotter pins, and split pins generated to standard nominal dimensions.',
         standardsSupported: ['ISO', 'DIN', 'ANSI', 'JIS'],
         iconName: 'Box',
-        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-fasteners.jpg',
       },
       {
         id: 'holes-tables',
@@ -383,11 +383,11 @@ export const aresMechanicalData: AresMechanicalData = {
         description: 'Through-holes, blind holes, countersinks, and counterbores with automatic coordinate hole table generation for CNC operators.',
         standardsSupported: ['ISO', 'DIN', 'ANSI', 'JIS'],
         iconName: 'Crosshair',
-        image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-drafting.jpg',
       },
     ],
     smartEntitiesNote: 'Smart Entity Recognition: Inserted components carry structured mechanical metadata that feeds dynamically into Parts Lists, Bill of Materials (BOM), and ballooning routines.',
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-fasteners.jpg',
   },
 
   workspace: {
@@ -425,7 +425,7 @@ export const aresMechanicalData: AresMechanicalData = {
         icon: 'Terminal',
       },
     ],
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-workspace.jpg',
   },
 
   draftingTools: {
@@ -438,7 +438,7 @@ export const aresMechanicalData: AresMechanicalData = {
         'Customizable layer definitions saved in company drawing templates',
         'Maintains clean drawing structures across large design teams',
       ],
-      image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-drafting.jpg',
     },
     constructionLines: {
       heading: 'Precise Construction Lines',
@@ -449,7 +449,7 @@ export const aresMechanicalData: AresMechanicalData = {
         'One-click visibility toggle for clean drawing views',
         'Combines seamlessly with Power Trim to sculpt final parts',
       ],
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-drafting.jpg',
     },
     dimensionedRectangles: {
       heading: 'Dimensioned Rectangles',
@@ -459,7 +459,7 @@ export const aresMechanicalData: AresMechanicalData = {
         'Eliminates separate dimensioning steps for mechanical plates',
         'Maintains strict alignment with standard text styles',
       ],
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-drafting.jpg',
     },
     predefinedHatches: {
       heading: 'Predefined Mechanical Hatches',
@@ -469,7 +469,7 @@ export const aresMechanicalData: AresMechanicalData = {
         'Automatic layer routing to dedicated hatch layers',
         'Dynamic scale and angle adjustments for section cuts',
       ],
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-drafting.jpg',
     },
     powerTrim: {
       heading: 'Power Trim: Mouse-Path Trimming',
@@ -479,7 +479,7 @@ export const aresMechanicalData: AresMechanicalData = {
         'Hold Shift to extend entities dynamically',
         'Dramatically accelerates cleanup after generating construction lines',
       ],
-      image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-drafting.jpg',
     },
   },
 
@@ -495,7 +495,7 @@ export const aresMechanicalData: AresMechanicalData = {
       'Preserve mechanical standard definitions across mixed CAD environments',
     ],
     legacyNotice: 'DWG Compatibility Note: ARES Mechanical maintains high fidelity with standard DWG formats and compatible AutoCAD Mechanical entities. Exact entity support varies by specific drawing content and release versions.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-dwg-compat.jpg',
   },
 
   stepIges: {
@@ -508,7 +508,7 @@ export const aresMechanicalData: AresMechanicalData = {
       'Reference small 3D vendor models alongside 2D DWG fabrication drawings',
     ],
     notice: 'Note: STEP/IGES functionality in ARES Mechanical is intended for reference and visualization of supported models within a 2D-centric workflow, and is not a substitute for high-end parametric 3D simulation or CAM software.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-drafting.jpg',
   },
 
   annotationsAndBom: {
@@ -524,7 +524,7 @@ export const aresMechanicalData: AresMechanicalData = {
       { title: 'Welding Symbols', desc: 'Comprehensive international welding notations (fillet, butt, seam, bevel) with tail notes.', icon: 'Zap' },
       { title: 'Drawing Frames & Titles', desc: 'Standardized ISO, DIN, and ANSI paper frames with intelligent title block attributes.', icon: 'Layout' },
     ],
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/ares-mechanical/ares-bom.jpg',
   },
 
   trinity: {
@@ -536,7 +536,7 @@ export const aresMechanicalData: AresMechanicalData = {
         subtitle: 'Windows 64-bit Workstation',
         desc: 'The complete desktop workstation engine with specialized mechanical parts libraries, standards, automated layers, and BOM generation.',
         platform: 'Windows Desktop',
-        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80',
+        image: '/images/ares-mechanical/ares-hero.jpg',
       },
       {
         title: 'ARES Touch (Mobile)',
@@ -574,7 +574,7 @@ export const aresMechanicalData: AresMechanicalData = {
       subtitle: 'Shafts, Gears, Brackets & Housings',
       description: 'Prepare detailed manufacturing drawings with geometric dimensioning, surface finishes, and hole coordinate tables.',
       toolTags: ['ISO/DIN Standards', 'Hole Tables', 'Power Trim', 'Surface Symbols'],
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-hero.jpg',
       deliverables: ['Detailed part drawings', 'Surface roughness callouts', 'Machining tolerance notes', 'Hole coordinate tables'],
     },
     {
@@ -672,7 +672,7 @@ export const aresMechanicalData: AresMechanicalData = {
       subtitle: 'Symbols, Balloons & Parts Lists',
       description: 'Insert surface finish symbols, welding notations, item identification balloons, and automatically generate the Bill of Materials.',
       tools: ['Welding Symbols', 'Surface Texture', 'BOM Generator', 'Balloons'],
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/ares-mechanical/ares-hero.jpg',
       badge: 'Documentation',
     },
     {
@@ -871,7 +871,7 @@ export const aresMechanicalData: AresMechanicalData = {
       brand: 'Graebert',
       description: 'Intelligent electrical engineering CAD for circuit schematics, panel enclosures, and automated wire terminal lists.',
       route: '/products/ares-electrical',
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80',
+      image: '/images/ares-mechanical/ares-hero.jpg',
     },
     {
       id: 'sketchup-studio',

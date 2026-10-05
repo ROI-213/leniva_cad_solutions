@@ -41,14 +41,6 @@ const FilamentCard: React.FC<{ product: FilamentProduct }> = ({ product }) => {
           loading="lazy"
         />
 
-        {/* Color tint overlay for non-white spools */}
-        {!(product.material === 'PLA' && product.color === 'White') && (
-          <div
-            className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-60"
-            style={{ backgroundColor: product.colorHex }}
-          />
-        )}
-
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
           <span
@@ -218,12 +210,6 @@ export const FilamentDetailPage: React.FC = () => {
                 alt={product.name}
                 className="w-full max-w-xs mx-auto object-contain"
               />
-              {!(product.material === 'PLA' && product.color === 'White') && (
-                <div
-                  className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-55"
-                  style={{ backgroundColor: product.colorHex }}
-                />
-              )}
               <div className="absolute top-4 left-4 flex flex-col gap-1 z-10">
                 <span
                   className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white rounded-md ${

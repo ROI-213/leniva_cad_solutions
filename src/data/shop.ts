@@ -1,4 +1,12 @@
 import { ShopItem } from '../types'
+import filamentWhite from '../assets/filaments/filament-white.png'
+import filamentGreySilver from '../assets/filaments/filament-grey-silver.png'
+import filamentGold from '../assets/filaments/filament-gold.png'
+import filamentOrange from '../assets/filaments/filament-orange.png'
+import filamentYellow from '../assets/filaments/filament-yellow.png'
+import filamentBlue from '../assets/filaments/filament-blue.png'
+import filamentBlack from '../assets/filaments/filament-black.png'
+import filamentRed from '../assets/filaments/filament-red.png'
 
 export const shopItems: ShopItem[] = [
   // ==========================================
@@ -433,7 +441,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 799,
     originalPrice: 999,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentWhite,
     inStock: true,
     rating: 4.8,
     reviewsCount: 214,
@@ -461,7 +469,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1099,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentGreySilver,
     inStock: true,
     rating: 4.8,
     reviewsCount: 176,
@@ -489,7 +497,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1099,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentGold,
     inStock: true,
     rating: 4.9,
     reviewsCount: 132,
@@ -517,7 +525,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1049,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentOrange,
     inStock: true,
     rating: 4.7,
     reviewsCount: 98,
@@ -544,7 +552,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1049,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentYellow,
     inStock: true,
     rating: 4.7,
     reviewsCount: 87,
@@ -571,7 +579,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1049,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentBlue,
     inStock: true,
     rating: 4.8,
     reviewsCount: 143,
@@ -599,7 +607,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1049,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentBlack,
     inStock: true,
     rating: 4.9,
     reviewsCount: 189,
@@ -627,7 +635,7 @@ export const shopItems: ShopItem[] = [
     brand: 'Make3D',
     price: 899,
     originalPrice: 1049,
-    image: '/images/filaments/filament-spool-white.jpg',
+    image: filamentRed,
     inStock: true,
     rating: 4.8,
     reviewsCount: 121,

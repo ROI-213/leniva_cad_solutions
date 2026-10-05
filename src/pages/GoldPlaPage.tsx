@@ -24,41 +24,40 @@ import {
   GraduationCap,
   Wrench,
   Smile,
-  Repeat,
   Package,
   Share2,
   Check,
   ChevronDown,
 } from 'lucide-react'
-import { initialGreySilverData, GreySilverProductData, FilamentVariant } from '../data/greySilverPlaData'
+import { initialGoldData, GoldProductData, FilamentVariant } from '../data/goldPlaData'
 import { useApp } from '../context/AppContext'
 
-interface GreySilverPageProps {
-  customData?: Partial<GreySilverProductData>
+interface GoldPageProps {
+  customData?: Partial<GoldProductData>
 }
 
-export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData }) => {
+export const GoldPlaPage: React.FC<GoldPageProps> = ({ customData }) => {
   const navigate = useNavigate()
   const { toggleWishlist, isInWishlist, openQuoteModal } = useApp()
 
   // Dynamic Product State (merges initial data + local storage admin overrides + custom props)
-  const [productData, setProductData] = useState<GreySilverProductData>(() => {
-    const adminSaved = localStorage.getItem('filament_product_grey_silver')
+  const [productData, setProductData] = useState<GoldProductData>(() => {
+    const adminSaved = localStorage.getItem('filament_product_gold')
     if (adminSaved) {
       try {
         const parsed = JSON.parse(adminSaved)
-        return { ...initialGreySilverData, ...parsed, ...customData }
+        return { ...initialGoldData, ...parsed, ...customData }
       } catch (e) {
         // fallback
       }
     }
-    return { ...initialGreySilverData, ...customData }
+    return { ...initialGoldData, ...customData }
   })
 
-  // Selected variant state (default to Grey/Silver)
+  // Selected variant state (default to Gold)
   const [activeVariant, setActiveVariant] = useState<FilamentVariant>(() => {
     return (
-      productData.variants.find(v => v.id === 'filament-plaplus-grey') ||
+      productData.variants.find(v => v.id === 'filament-plaplus-gold') ||
       productData.variants[0]
     )
   })
@@ -70,28 +69,15 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
   const [copiedLink, setCopiedLink] = useState(false)
   const [addedToast, setAddedToast] = useState(false)
 
-  // Reviews state
+  // Reviews state (Source has 0 reviews initially — users can add new ones)
   const [reviewsList, setReviewsList] = useState<{ name: string; email?: string; rating: number; comment: string; date: string }[]>(() => {
-    const saved = localStorage.getItem('filament_reviews_grey_silver')
+    const saved = localStorage.getItem('filament_reviews_gold')
     if (saved) {
       try {
         return JSON.parse(saved)
       } catch (e) {}
     }
-    return [
-      {
-        name: 'Suresh Patel',
-        rating: 5,
-        comment: 'Excellent Grey/Silver finish. Layer lines blend in beautifully and dimensional consistency is spot on.',
-        date: 'September 2026',
-      },
-      {
-        name: 'Manoj Verma',
-        rating: 5,
-        comment: 'Tougher than standard PLA. We use it for industrial prototype brackets and enclosures with zero jamming.',
-        date: 'August 2026',
-      },
-    ]
+    return [] // Initial 0 reviews per source status
   })
 
   const [revRating, setRevRating] = useState(5)
@@ -115,7 +101,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
   // Listen to admin storage changes
   useEffect(() => {
     const handleStorage = () => {
-      const adminSaved = localStorage.getItem('filament_product_grey_silver')
+      const adminSaved = localStorage.getItem('filament_product_gold')
       if (adminSaved) {
         try {
           const parsed = JSON.parse(adminSaved)
@@ -136,7 +122,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
     }
 
     // Add JSON-LD Product Schema dynamically
-    const scriptId = 'jsonld-product-grey-silver'
+    const scriptId = 'jsonld-product-gold'
     let script = document.getElementById(scriptId) as HTMLScriptElement
     if (!script) {
       script = document.createElement('script')
@@ -166,11 +152,15 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
           ? 'https://schema.org/InStock'
           : 'https://schema.org/OutOfStock',
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: productData.rating.toString(),
-        reviewCount: reviewsList.length.toString(),
-      },
+      ...(reviewsList.length > 0 && {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: (
+            reviewsList.reduce((acc, r) => acc + r.rating, 0) / reviewsList.length
+          ).toFixed(1),
+          reviewCount: reviewsList.length.toString(),
+        },
+      }),
     }
 
     script.textContent = JSON.stringify(structuredData)
@@ -207,13 +197,11 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
       navigate('/product/pla-3d-printer-filament-white')
       return
     }
-    if (variant.slug === 'pla-plus-3d-printer-filament-gold' || variant.slug === 'plaplus-gold-1kg-175mm') {
-      navigate('/product/pla-plus-3d-printer-filament-gold')
+    if (variant.slug === 'pla-plus-3d-printer-filament-grey-silver' || variant.slug === 'plaplus-grey-silver-1kg-175mm') {
+      navigate('/product/pla-plus-3d-printer-filament-grey-silver')
       return
     }
-    // Update local display state
-    if (variant.id !== 'filament-plaplus-grey') {
-      // route to the filament detail slug
+    if (variant.id !== 'filament-plaplus-gold') {
       navigate(`/shop/filaments/${variant.slug}`)
     }
   }
@@ -256,7 +244,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
     }
     const updated = [newRev, ...reviewsList]
     setReviewsList(updated)
-    localStorage.setItem('filament_reviews_grey_silver', JSON.stringify(updated))
+    localStorage.setItem('filament_reviews_gold', JSON.stringify(updated))
     setRevSubmitted(true)
     setRevName('')
     setRevEmail('')
@@ -264,7 +252,6 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
     setTimeout(() => setRevSubmitted(false), 3000)
   }
 
-  // Dynamic icon helper
   const renderIcon = (name: string, className = 'w-4 h-4') => {
     switch (name) {
       case 'Layers': return <Layers className={className} />
@@ -275,7 +262,6 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
       case 'Box': return <Box className={className} />
       case 'Sparkles': return <Sparkles className={className} />
       case 'Smile': return <Smile className={className} />
-      case 'Repeat': return <Repeat className={className} />
       case 'ShieldCheck': return <ShieldCheck className={className} />
       case 'Maximize2': return <Maximize2 className={className} />
       case 'Package': return <Package className={className} />
@@ -292,7 +278,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
   const currentDisplayImage = productData.images[activeImageIndex] || productData.images[0]
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 antialiased selection:bg-red-500 selection:text-white pb-20 md:pb-16">
+    <div className="bg-slate-50 min-h-screen text-slate-800 antialiased selection:bg-amber-500 selection:text-white pb-20 md:pb-16">
       {/* Toast Alert */}
       {addedToast && (
         <div className="fixed top-20 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 border border-slate-700 animate-slide-in">
@@ -332,14 +318,13 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 onClick={() => setIsLightboxOpen(true)}
-                className="relative aspect-square rounded-2xl bg-gradient-to-b from-slate-50 to-slate-100/70 border border-slate-200/90 overflow-hidden flex items-center justify-center p-6 cursor-zoom-in group shadow-inner"
+                className="relative aspect-square rounded-2xl bg-gradient-to-b from-amber-50/40 via-slate-50 to-slate-100/70 border border-slate-200/90 overflow-hidden flex items-center justify-center p-6 cursor-zoom-in group shadow-inner"
               >
                 <img
                   src={currentDisplayImage.src}
                   alt={currentDisplayImage.alt}
                   onError={(e) => {
-                    // Fallback handling to prevent blank card
-                    ;(e.target as HTMLImageElement).src = initialGreySilverData.images[0].src
+                    ;(e.target as HTMLImageElement).src = initialGoldData.images[0].src
                   }}
                   className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   loading="eager"
@@ -363,14 +348,14 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     e.stopPropagation()
                     setIsLightboxOpen(true)
                   }}
-                  className="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-slate-700 hover:text-red-600 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md border border-slate-200 backdrop-blur-sm flex items-center space-x-1.5 transition-all cursor-pointer"
+                  className="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-slate-700 hover:text-amber-600 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md border border-slate-200 backdrop-blur-sm flex items-center space-x-1.5 transition-all cursor-pointer"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>Inspect</span>
                 </button>
 
                 {/* Tag Pill */}
-                <div className="absolute top-3 left-3 bg-slate-900/80 text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md backdrop-blur-sm">
+                <div className="absolute top-3 left-3 bg-slate-900/85 text-amber-400 text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md backdrop-blur-sm border border-amber-400/20">
                   {currentDisplayImage.tag}
                 </div>
 
@@ -407,7 +392,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                       onClick={() => setActiveImageIndex(i)}
                       className={`relative aspect-square rounded-xl p-1 transition-all cursor-pointer flex flex-col items-center justify-center border-2 bg-slate-50 ${
                         isSelected
-                          ? 'border-red-600 shadow-md ring-2 ring-red-100 bg-white'
+                          ? 'border-amber-500 shadow-md ring-2 ring-amber-100 bg-white'
                           : 'border-slate-200 hover:border-slate-300 hover:bg-white opacity-85 hover:opacity-100'
                       }`}
                     >
@@ -415,7 +400,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                         src={img.src}
                         alt={img.alt}
                         onError={(e) => {
-                          ;(e.target as HTMLImageElement).src = initialGreySilverData.images[0].src
+                          ;(e.target as HTMLImageElement).src = initialGoldData.images[0].src
                         }}
                         className="w-full h-full object-contain rounded-md"
                       />
@@ -436,7 +421,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
               {/* Category Label & Share/Wishlist */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-wider bg-red-50 text-red-700 border border-red-200">
+                  <span className="inline-flex items-center px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">
                     {productData.category}
                   </span>
                   <div className="flex items-center space-x-2">
@@ -479,20 +464,29 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 </p>
               </div>
 
-              {/* Rating Strip */}
-              <div className="flex items-center space-x-3 pb-2 border-b border-slate-100">
+              {/* Rating / Review Status Strip */}
+              <div className="flex items-center space-x-3 pb-2 border-b border-slate-100 flex-wrap gap-y-2">
                 <div className="flex items-center space-x-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current text-amber-400" />
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        reviewsList.length > 0 ? 'fill-current text-amber-400' : 'text-slate-200'
+                      }`}
+                    />
                   ))}
                 </div>
-                <span className="text-sm font-black text-slate-900">
-                  {productData.rating.toFixed(1)} / 5.0
+                <span className="text-xs font-semibold text-slate-600">
+                  {reviewsList.length > 0 ? (
+                    <a href="#reviews" className="text-amber-700 hover:underline">
+                      {reviewsList.length} Customer {reviewsList.length === 1 ? 'Review' : 'Reviews'}
+                    </a>
+                  ) : (
+                    <a href="#reviews" className="text-slate-500 hover:text-amber-600 hover:underline">
+                      No reviews yet. Be the first to review
+                    </a>
+                  )}
                 </span>
-                <span className="text-slate-300">•</span>
-                <a href="#reviews" className="text-xs font-semibold text-red-600 hover:underline">
-                  {reviewsList.length} Customer Reviews
-                </a>
                 <span className="text-slate-300">•</span>
                 <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                   {productData.stockStatus}
@@ -500,7 +494,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
               </div>
 
               {/* Price & Savings Box */}
-              <div className="space-y-1 bg-slate-50/80 p-4 rounded-2xl border border-slate-200/90">
+              <div className="space-y-1 bg-amber-50/30 p-4 rounded-2xl border border-amber-200/60">
                 <div className="flex items-baseline space-x-3">
                   <span className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
                     ₹{productData.price.toLocaleString('en-IN')}
@@ -508,7 +502,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                   <span className="text-base text-slate-400 line-through">
                     ₹{productData.mrp.toLocaleString('en-IN')}
                   </span>
-                  <span className="px-2.5 py-0.5 bg-red-600 text-white text-xs font-black rounded-md shadow-xs">
+                  <span className="px-2.5 py-0.5 bg-amber-600 text-white text-xs font-black rounded-md shadow-xs">
                     {productData.discountText}
                   </span>
                 </div>
@@ -523,7 +517,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
               </p>
 
               {/* ======================================================== */}
-              {/* 11. DYNAMIC COLOUR / VARIANT SELECTOR                     */}
+              {/* DYNAMIC COLOUR / VARIANT SELECTOR                        */}
               {/* ======================================================== */}
               <div className="space-y-2 pt-1 border-t border-slate-100">
                 <div className="flex items-center justify-between">
@@ -543,7 +537,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                         onClick={() => handleSelectVariant(v)}
                         className={`group relative flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                           isSelected
-                            ? 'border-red-600 bg-red-50/60 text-red-700 shadow-xs ring-1 ring-red-400'
+                            ? 'border-amber-500 bg-amber-50/70 text-amber-900 shadow-xs ring-1 ring-amber-400'
                             : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
                         }`}
                       >
@@ -590,7 +584,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   <button
                     onClick={handleAddToCart}
-                    className="w-full py-3.5 px-6 bg-red-600 hover:bg-red-700 active:scale-[0.99] text-white font-black text-sm rounded-xl shadow-md shadow-red-600/20 transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                    className="w-full py-3.5 px-6 bg-amber-600 hover:bg-amber-700 active:scale-[0.99] text-white font-black text-sm rounded-xl shadow-md shadow-amber-600/20 transition-all flex items-center justify-center space-x-2 cursor-pointer"
                   >
                     <ShoppingCart className="w-4 h-4" />
                     <span>ADD TO CART</span>
@@ -615,7 +609,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     key={idx}
                     className="p-2.5 bg-slate-50/80 rounded-xl border border-slate-200/70 flex flex-col space-y-1 text-center items-center"
                   >
-                    <div className="w-6 h-6 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                    <div className="w-6 h-6 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
                       {renderIcon(tc.iconName, 'w-3 h-3')}
                     </div>
                     <span className="text-[10px] font-bold text-slate-900 leading-tight">
@@ -636,7 +630,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-5">
           <div className="flex items-center space-x-2 pb-3 border-b border-slate-100">
-            <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
               <Layers className="w-4 h-4" />
             </div>
             <div>
@@ -644,7 +638,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 Product Highlights
               </h2>
               <p className="text-xs text-slate-500">
-                Core material and dimensional verification
+                Core material, colour, and dimensional verification
               </p>
             </div>
           </div>
@@ -653,9 +647,9 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
             {productData.productHighlights.map((hl, i) => (
               <div
                 key={i}
-                className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/70 hover:border-red-200 hover:bg-red-50/20 transition-all flex flex-col justify-between space-y-2 group"
+                className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/70 hover:border-amber-300 hover:bg-amber-50/20 transition-all flex flex-col justify-between space-y-2 group"
               >
-                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 group-hover:text-red-600 flex items-center justify-center transition-colors">
+                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 group-hover:text-amber-600 flex items-center justify-center transition-colors">
                   {renderIcon(hl.iconName, 'w-3.5 h-3.5')}
                 </div>
                 <div>
@@ -675,7 +669,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         {/* 5. PRODUCT DESCRIPTION                                   */}
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+          <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
             Overview & Design Intent
           </span>
           <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
@@ -689,18 +683,18 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         </div>
 
         {/* ======================================================== */}
-        {/* 6. WHY CHOOSE PLA+ GREY/SILVER? (6 CARDS)                */}
+        {/* 6. WHY CHOOSE GOLD PLA+? (6 CARDS)                       */}
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="max-w-2xl space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
               Material Advantages
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
-              Why Choose PLA+ Grey/Silver?
+              Why Choose PLA+ Gold?
             </h2>
             <p className="text-xs text-slate-500">
-              Enhanced FDM formulation engineered for everyday production and aesthetic visual fidelity
+              Enhanced FDM formulation engineered for superior toughness, radiant finish, and high print reliability
             </p>
           </div>
 
@@ -708,10 +702,10 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
             {productData.whyChooseCards.map((card) => (
               <div
                 key={card.number}
-                className="bg-slate-50/70 rounded-2xl p-5 border border-slate-200/80 hover:border-red-300 hover:shadow-md transition-all flex flex-col space-y-3"
+                className="bg-slate-50/70 rounded-2xl p-5 border border-slate-200/80 hover:border-amber-300 hover:shadow-md transition-all flex flex-col space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 text-red-600 flex items-center justify-center shrink-0 shadow-xs">
+                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 text-amber-600 flex items-center justify-center shrink-0 shadow-xs">
                     {renderIcon(card.iconName, 'w-4 h-4')}
                   </div>
                   <span className="text-xs font-mono font-bold text-slate-300">{card.number}</span>
@@ -732,14 +726,14 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="max-w-2xl space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
               Application Scope
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
-              Where Can You Use Grey/Silver PLA+?
+              Where Can You Use Gold PLA+?
             </h2>
             <p className="text-xs text-slate-500">
-              Recommended practical areas where the clean grey-silver appearance shines
+              Recommended practical areas where the lustrous gold finish and mechanical resilience stand out
             </p>
           </div>
 
@@ -749,7 +743,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 key={idx}
                 className="bg-slate-50/70 rounded-2xl p-5 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col space-y-2.5"
               >
-                <div className="w-8 h-8 rounded-lg bg-red-100/70 text-red-600 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-amber-100/80 text-amber-700 flex items-center justify-center shrink-0">
                   {renderIcon(app.iconName, 'w-4 h-4')}
                 </div>
                 <div>
@@ -768,7 +762,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
               Technical Clarity
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
@@ -786,7 +780,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 <tr>
                   <th className="py-3 px-4 sm:px-6">Material Characteristic</th>
                   <th className="py-3 px-4 sm:px-6">Standard PLA</th>
-                  <th className="py-3 px-4 sm:px-6 bg-red-50 text-red-700">PLA+ (Enhanced PLA)</th>
+                  <th className="py-3 px-4 sm:px-6 bg-amber-50 text-amber-800">PLA+ (Enhanced PLA)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -794,7 +788,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                   <tr key={i} className="hover:bg-slate-50/50">
                     <td className="py-3 px-4 sm:px-6 font-bold text-slate-900">{row.feature}</td>
                     <td className="py-3 px-4 sm:px-6 text-slate-500">{row.standardPla}</td>
-                    <td className="py-3 px-4 sm:px-6 font-semibold text-slate-900 bg-red-50/30">
+                    <td className="py-3 px-4 sm:px-6 font-semibold text-slate-900 bg-amber-50/40">
                       {row.plaPlus}
                     </td>
                   </tr>
@@ -805,11 +799,45 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         </div>
 
         {/* ======================================================== */}
-        {/* 9. TECHNICAL SPECIFICATIONS TABLE                        */}
+        {/* 9. WHO IS THIS PRODUCT FOR?                              */}
+        {/* ======================================================== */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+          <div className="max-w-2xl space-y-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+              Target Audience
+            </span>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
+              Who Is This Product For?
+            </h2>
+            <p className="text-xs text-slate-500">
+              Tailored for users seeking professional visual finish combined with resilient print performance
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {productData.whoIsItFor.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between space-y-3"
+              >
+                <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
+                  {renderIcon(item.iconName, 'w-4 h-4')}
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900">{item.title}</h3>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* 10. TECHNICAL SPECIFICATIONS TABLE                       */}
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-5">
           <div className="flex items-center space-x-2 pb-3 border-b border-slate-100">
-            <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
               <Gauge className="w-4 h-4" />
             </div>
             <div>
@@ -817,7 +845,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 Technical Specifications
               </h2>
               <p className="text-xs text-slate-500">
-                Verified dimensional and technical specifications for Make3D Grey/Silver PLA+
+                Verified dimensional and technical specifications for Make3D Gold PLA+
               </p>
             </div>
           </div>
@@ -841,12 +869,12 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         </div>
 
         {/* ======================================================== */}
-        {/* 13. PRODUCT REVIEWS SECTION                              */}
+        {/* 11. PRODUCT REVIEWS SECTION                              */}
         {/* ======================================================== */}
         <div id="reviews" className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
                 User Feedback
               </span>
               <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
@@ -854,10 +882,19 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
               </h2>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-2xl font-black text-slate-950">{productData.rating.toFixed(1)}</span>
+              <span className="text-2xl font-black text-slate-950">
+                {reviewsList.length > 0
+                  ? (reviewsList.reduce((acc, r) => acc + r.rating, 0) / reviewsList.length).toFixed(1)
+                  : '0.0'}
+              </span>
               <div className="flex items-center space-x-1 text-amber-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current text-amber-400" />
+                  <Star
+                    key={i}
+                    className={`w-4 h-4 ${
+                      reviewsList.length > 0 ? 'fill-current text-amber-400' : 'text-slate-200'
+                    }`}
+                  />
                 ))}
               </div>
               <span className="text-xs text-slate-500">({reviewsList.length} reviews)</span>
@@ -866,8 +903,9 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
 
           {/* Reviews list */}
           {reviewsList.length === 0 ? (
-            <div className="p-8 text-center text-xs text-slate-500 bg-slate-50 rounded-2xl border border-slate-200">
-              Be the first to review this product.
+            <div className="p-8 text-center text-xs text-slate-500 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+              <p className="font-bold text-slate-800">No customer reviews yet.</p>
+              <p>Be the first to review this product and share your printing experience below.</p>
             </div>
           ) : (
             <div className="space-y-3.5">
@@ -875,7 +913,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 <div key={idx} className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-1.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 font-bold text-xs flex items-center justify-center">
+                      <span className="w-6 h-6 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center">
                         {rev.name[0]}
                       </span>
                       <strong className="text-xs font-bold text-slate-900">{rev.name}</strong>
@@ -899,7 +937,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
             {revSubmitted && (
               <div className="p-3 mb-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 font-semibold flex items-center space-x-2">
                 <Check className="w-4 h-4" />
-                <span>Thank you! Your verified review has been submitted successfully.</span>
+                <span>Thank you! Your review has been submitted successfully.</span>
               </div>
             )}
             <form onSubmit={handleSubmitReview} className="space-y-3 max-w-xl text-xs">
@@ -932,7 +970,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     value={revName}
                     onChange={e => setRevName(e.target.value)}
                     placeholder="e.g. Ramesh Kumar"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-red-500 bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                   />
                 </div>
                 <div>
@@ -942,7 +980,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     value={revEmail}
                     onChange={e => setRevEmail(e.target.value)}
                     placeholder="e.g. ramesh@example.com"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-red-500 bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                   />
                 </div>
               </div>
@@ -954,8 +992,8 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                   rows={3}
                   value={revComment}
                   onChange={e => setRevComment(e.target.value)}
-                  placeholder="Share details about print quality, finish and printer compatibility..."
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-red-500 bg-white"
+                  placeholder="Share details about gold finish, layer adhesion, and printer compatibility..."
+                  className="w-full px-3 py-2 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                 />
               </div>
 
@@ -970,11 +1008,11 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         </div>
 
         {/* ======================================================== */}
-        {/* 14. ACCORDION FAQ SECTION (7 QUESTIONS)                  */}
+        {/* 12. ACCORDION FAQ SECTION (7 QUESTIONS)                  */}
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
               Common Enquiries
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
@@ -997,7 +1035,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     <span>{faq.question}</span>
                     <ChevronDown
                       className={`w-4 h-4 text-slate-400 transition-transform ${
-                        isOpen ? 'rotate-180 text-red-600' : ''
+                        isOpen ? 'rotate-180 text-amber-600' : ''
                       }`}
                     />
                   </button>
@@ -1013,12 +1051,12 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         </div>
 
         {/* ======================================================== */}
-        {/* 12. RELATED PRODUCTS ("EXPLORE MORE FILAMENT COLOURS")   */}
+        {/* 13. RELATED PRODUCTS ("EXPLORE MORE FILAMENT COLOURS")   */}
         {/* ======================================================== */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
                 Full Color Palette
               </span>
               <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
@@ -1027,7 +1065,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
             </div>
             <Link
               to="/shop/filaments"
-              className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center space-x-1 self-start sm:self-auto"
+              className="text-xs font-bold text-amber-700 hover:text-amber-800 flex items-center space-x-1 self-start sm:self-auto"
             >
               <span>View All Filaments</span>
               <ArrowRight className="w-3 h-3" />
@@ -1036,11 +1074,11 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {productData.variants
-              .filter(v => v.id !== 'filament-plaplus-grey')
+              .filter(v => v.id !== 'filament-plaplus-gold')
               .map(rel => (
                 <div
                   key={rel.id}
-                  className="bg-slate-50/70 rounded-2xl border border-slate-200/80 hover:border-red-300 hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden group p-3.5 space-y-3"
+                  className="bg-slate-50/70 rounded-2xl border border-slate-200/80 hover:border-amber-300 hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden group p-3.5 space-y-3"
                 >
                   <div className="relative aspect-square rounded-xl bg-white flex items-center justify-center p-2 overflow-hidden">
                     <img
@@ -1061,7 +1099,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                       {rel.material} • 1 KG
                     </span>
-                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-amber-700 transition-colors line-clamp-1">
                       {rel.name}
                     </h4>
                     <div className="flex items-baseline space-x-2 pt-0.5">
@@ -1078,11 +1116,11 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                     to={
                       rel.slug === 'pla-3d-printer-filament-white'
                         ? '/product/pla-3d-printer-filament-white'
-                        : rel.slug === 'pla-plus-3d-printer-filament-gold' || rel.slug === 'plaplus-gold-1kg-175mm'
-                        ? '/product/pla-plus-3d-printer-filament-gold'
+                        : rel.slug === 'pla-plus-3d-printer-filament-grey-silver'
+                        ? '/product/pla-plus-3d-printer-filament-grey-silver'
                         : `/shop/filaments/${rel.slug}`
                     }
-                    className="w-full py-2 bg-slate-900 hover:bg-red-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center space-x-1 cursor-pointer"
+                    className="w-full py-2 bg-slate-900 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center space-x-1 cursor-pointer"
                   >
                     <span>View Details</span>
                     <ArrowRight className="w-3 h-3" />
@@ -1094,11 +1132,11 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
       </div>
 
       {/* ======================================================== */}
-      {/* 16. STICKY MOBILE BOTTOM PURCHASE BAR                    */}
+      {/* 14. STICKY MOBILE BOTTOM PURCHASE BAR                    */}
       {/* ======================================================== */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 flex items-center justify-between shadow-2xl">
         <div>
-          <span className="text-[10px] text-slate-400 uppercase font-bold block">Grey/Silver Total</span>
+          <span className="text-[10px] text-slate-400 uppercase font-bold block">Gold Total</span>
           <div className="flex items-baseline space-x-1.5">
             <span className="text-lg font-black text-slate-950">
               ₹{(productData.price * quantity).toLocaleString('en-IN')}
@@ -1111,7 +1149,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
         <div className="flex items-center space-x-2">
           <button
             onClick={handleAddToCart}
-            className="py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white text-xs font-black rounded-xl shadow-md flex items-center space-x-1 cursor-pointer"
+            className="py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white text-xs font-black rounded-xl shadow-md flex items-center space-x-1 cursor-pointer"
           >
             <ShoppingCart className="w-3.5 h-3.5" />
             <span>ADD TO CART</span>
@@ -1164,7 +1202,7 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                   key={img.id}
                   onClick={() => setActiveImageIndex(i)}
                   className={`w-12 h-12 rounded-xl border-2 p-1 bg-white cursor-pointer ${
-                    i === activeImageIndex ? 'border-red-600 ring-2 ring-red-100' : 'border-slate-200'
+                    i === activeImageIndex ? 'border-amber-500 ring-2 ring-amber-100' : 'border-slate-200'
                   }`}
                 >
                   <img src={img.src} alt="" className="w-full h-full object-contain" />
@@ -1178,4 +1216,4 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
   )
 }
 
-export default GreySilverPlaPage
+export default GoldPlaPage

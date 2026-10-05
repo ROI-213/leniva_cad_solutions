@@ -59,6 +59,7 @@ import AdminPage from './pages/AdminPage'
 import FilamentCategoryPage, { FilamentDetailPage } from './pages/FilamentCategoryPage'
 import WhitePlaDetailPage from './pages/WhitePlaDetailPage'
 import GreySilverPlaPage from './pages/GreySilverPlaPage'
+import GoldPlaPage from './pages/GoldPlaPage'
 
 export default function App() {
   const location = useLocation()
@@ -392,6 +393,18 @@ export default function App() {
             <Route
               path="/product/plaplus-grey-silver-1kg-175mm"
               element={<GreySilverPlaPage />}
+            />
+            <Route
+              path="/product/pla-plus-3d-printer-filament-gold"
+              element={<GoldPlaPage />}
+            />
+            <Route
+              path="/product/pla-plus-3d-printer-filament-gold/"
+              element={<GoldPlaPage />}
+            />
+            <Route
+              path="/product/plaplus-gold-1kg-175mm"
+              element={<GoldPlaPage />}
             />
             <Route
               path="/product/:slug"

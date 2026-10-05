@@ -24,6 +24,7 @@ import {
 import { useApp } from '../context/AppContext'
 import WhitePlaDetailPage from './WhitePlaDetailPage'
 import GreySilverPlaPage from './GreySilverPlaPage'
+import GoldPlaPage from './GoldPlaPage'
 
 
 // ─── FilamentCard Component ──────────────────────────────────────────────────
@@ -181,6 +182,15 @@ export const FilamentDetailPage: React.FC = () => {
     slug === 'pla-grey'
   ) {
     return <GreySilverPlaPage />
+  }
+
+  if (
+    slug === 'plaplus-gold-1kg-175mm' ||
+    slug === 'pla-plus-3d-printer-filament-gold' ||
+    slug === 'plaplus-gold' ||
+    slug === 'pla-gold'
+  ) {
+    return <GoldPlaPage />
   }
 
   const product = filamentProducts.find(p => p.slug === slug)

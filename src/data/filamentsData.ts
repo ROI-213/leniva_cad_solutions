@@ -1,6 +1,11 @@
 // Make3D 3D Printer Filament Product Data
 // 8 main products: PLA White + 7 PLA+ colors
 import filamentSpoolWhite from '../assets/filaments/filament-spool-white.jpg'
+import filamentGreySilver from '../assets/filaments/filament-grey-silver.png'
+import filamentGold from '../assets/filaments/filament-gold.png'
+import filamentOrange from '../assets/filaments/filament-orange.png'
+import filamentYellow from '../assets/filaments/filament-yellow.png'
+import filamentBlue from '../assets/filaments/filament-blue.png'
 
 export interface FilamentProduct {
   id: string
@@ -101,7 +106,7 @@ export const filamentProducts: FilamentProduct[] = [
     reviewsCount: 176,
     badge: 'Enhanced Toughness',
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentGreySilver,
     shortDescription: 'Enhanced PLA+ in Grey/Silver for stronger, tougher printed parts. Better impact resistance and smoother finish than standard PLA.',
     description:
       'Make3D PLA+ Grey/Silver is an enhanced-formula PLA designed for users who need more from their prints. With improved impact resistance, higher stiffness, and a clean metallic-grey appearance, PLA+ is perfect for functional prototypes, casing shells, and snap-fit components.',
@@ -152,7 +157,7 @@ export const filamentProducts: FilamentProduct[] = [
     reviewsCount: 132,
     badge: 'Premium Look',
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentGold,
     shortDescription: 'PLA+ in rich metallic Gold for decorative models and visually stunning prototypes. Better strength and smooth finish than standard PLA.',
     description:
       'Make3D PLA+ Gold delivers a striking metallic-gold appearance combined with the enhanced mechanical properties of PLA+. Perfect for decorative sculptures, award models, jewellery prototypes, and any application where aesthetics matter as much as strength.',
@@ -201,7 +206,7 @@ export const filamentProducts: FilamentProduct[] = [
     rating: 4.7,
     reviewsCount: 98,
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentOrange,
     shortDescription: 'Vibrant Orange PLA+ for colorful models and prototypes with improved strength and reliable printing performance vs standard PLA.',
     description:
       'Make3D PLA+ Orange brings vibrant energy to your 3D prints. With improved strength over standard PLA and reliable, consistent extrusion, this bright orange filament is ideal for attention-grabbing prototypes, colourful decorative parts, safety-indicator components, and creative projects.',
@@ -250,7 +255,7 @@ export const filamentProducts: FilamentProduct[] = [
     rating: 4.7,
     reviewsCount: 87,
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentYellow,
     shortDescription: 'Bright Yellow PLA+ for vibrant models and decorative prints with improved strength and consistent performance over standard PLA.',
     description:
       'Make3D PLA+ Yellow is the go-to choice for bright, eye-catching prints. Whether you are making educational models, signage prototypes, or decorative pieces, this vibrant yellow filament provides excellent color consistency, smooth surface quality, and the enhanced toughness of PLA+.',
@@ -300,7 +305,7 @@ export const filamentProducts: FilamentProduct[] = [
     reviewsCount: 143,
     badge: 'Best Seller',
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentBlue,
     shortDescription: 'Classic Blue PLA+ for decorative models and functional prototypes. Better strength, smooth finish and consistent printing performance.',
     description:
       'Make3D PLA+ Blue is a perennial bestseller—combining the enhanced mechanical properties of PLA+ with a rich, consistent blue colour. Suitable for functional prototypes, creative models, and decorative parts where both performance and appearance matter.',

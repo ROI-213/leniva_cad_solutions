@@ -544,7 +544,7 @@ export const Header: React.FC = () => {
                                     onClick={() => setActiveMegaMenu(null)}
                                     className="flex items-center gap-3 p-2 rounded-xl border border-slate-200/80 hover:border-red-300 hover:bg-red-50/30 hover:shadow-xs transition-all group bg-white relative"
                                   >
-                                    <div className="relative w-13 h-13 rounded-lg overflow-hidden border border-slate-200 bg-slate-900 shrink-0">
+                                    <div className="relative w-14 h-14 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shrink-0 aspect-square">
                                       <img
                                         src={prod.image}
                                         alt={prod.name}
@@ -1015,3 +1015,4 @@ export const Header: React.FC = () => {
   )
 }
 export default Header
+

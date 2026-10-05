@@ -157,35 +157,53 @@ export const Header: React.FC = () => {
 
 
 
-  const cadSoftwareCategories = [
+  interface CadSoftwareProduct {
+    name: string
+    slug: string
+    spec: string
+    image: string
+    badge?: string
+  }
+
+  interface CadSoftwareCategory {
+    id: 'ares' | 'sketchup' | 'chaos'
+    label: string
+    description?: string
+    products: CadSoftwareProduct[]
+  }
+
+  const cadSoftwareCategories: CadSoftwareCategory[] = [
     {
-      id: 'ares' as const,
+      id: 'ares',
       label: 'ARES – Graebert',
+      description: 'Professional DWG CAD, Trinity cloud/mobile collaboration & specialized engineering toolsets.',
       products: [
-        { name: 'ARES Standard', slug: 'ares-standard', spec: 'Affordable 2D/3D CAD' },
-        { name: 'ARES Commander', slug: 'ares-commander', spec: 'Professional DWG-Native CAD' },
-        { name: 'ARES Trinity', slug: 'ares-trinity', spec: 'ARES Kudo + ARES Touch' },
-        { name: 'ARES Mechanical', slug: 'ares-mechanical', spec: 'Mechanical Design CAD' },
-        { name: 'ARES Electrical', slug: 'ares-electrical', spec: 'Electrical Schematics CAD' },
+        { name: 'ARES Standard', slug: 'ares-standard', spec: 'Affordable 2D/3D CAD', image: '/images/software/ares-standard.jpg' },
+        { name: 'ARES Commander', slug: 'ares-commander', spec: 'Professional DWG-Native CAD', image: '/images/software/ares-commander.jpg' },
+        { name: 'ARES Trinity', slug: 'ares-trinity', spec: 'ARES Kudo + ARES Touch', image: '/images/software/ares-trinity.jpg' },
+        { name: 'ARES Mechanical', slug: 'ares-mechanical', spec: 'Mechanical Design CAD', image: '/images/software/ares-mechanical.jpg' },
+        { name: 'ARES Electrical', slug: 'ares-electrical', spec: 'Electrical Schematics CAD', image: '/images/software/ares-electrical.jpg' },
       ],
     },
     {
-      id: 'sketchup' as const,
+      id: 'sketchup',
       label: 'SketchUp – Trimble',
+      description: 'Industry-standard 3D modeling, reality capture point clouds, BIM integration & LayOut documentation.',
       products: [
-        { name: 'SketchUp Pro', slug: 'sketchup', spec: 'Professional 3D Modeling' },
-        { name: 'SketchUp Pro Scan', slug: 'sketchup-scan', spec: 'Scan-to-BIM Workflows' },
-        { name: 'SketchUp Pro Advanced Workflows', slug: 'sketchup-advanced', spec: 'BIM & Advanced Integration' },
-        { name: 'SketchUp Studio', slug: 'sketchup-studio', spec: 'Full Professional Suite' },
+        { name: 'SketchUp Pro', slug: 'sketchup', spec: 'Professional 3D Modeling', image: '/images/software/sketchup-pro.jpg' },
+        { name: 'SketchUp Pro Scan', slug: 'sketchup-scan', spec: 'Scan-to-BIM Workflows', image: '/images/software/sketchup-scan.jpg' },
+        { name: 'SketchUp Pro Advanced Workflows', slug: 'sketchup-advanced', spec: 'BIM & Advanced Integration', image: '/images/software/sketchup-advanced.jpg' },
+        { name: 'SketchUp Studio', slug: 'sketchup-studio', spec: 'Full Professional Suite', image: '/images/software/sketchup-studio.jpg' },
       ],
     },
     {
-      id: 'chaos' as const,
+      id: 'chaos',
       label: 'Chaos',
+      description: 'World-leading real-time rendering, photorealistic ray tracing & architectural visualization engines.',
       products: [
-        { name: 'Enscape', slug: 'enscape', spec: 'Real-Time Rendering & VR' },
-        { name: 'V-Ray', slug: 'vray', spec: 'Photorealistic Rendering Engine' },
-        { name: 'Corona', slug: 'corona', spec: 'ArchViz CPU Rendering' },
+        { name: 'Enscape', slug: 'enscape', spec: 'Real-Time Rendering & VR', image: '/images/software/enscape-3d.jpg' },
+        { name: 'V-Ray', slug: 'vray', spec: 'Photorealistic Rendering Engine', image: '/images/software/chaos-vray.jpg' },
+        { name: 'Corona', slug: 'corona', spec: 'ArchViz CPU Rendering', image: '/images/software/chaos-corona.jpg' },
       ],
     },
   ]
@@ -474,29 +492,72 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Right products panel */}
-                    <div className="col-span-8 p-6">
-                      {(() => {
-                        const currentCat = cadSoftwareCategories.find(c => c.id === activeCADCategory)!
-                        return (
-                          <>
-                            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                              <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              {currentCat.products.map(prod => (
+                    <div className="col-span-8 p-6 flex flex-col justify-between">
+                      <div>
+                        {(() => {
+                          const currentCat = cadSoftwareCategories.find(c => c.id === activeCADCategory)!
+                          return (
+                            <>
+                              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                                <div>
+                                  <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
+                                  {currentCat.description && (
+                                    <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{currentCat.description}</p>
+                                  )}
+                                </div>
                                 <Link
-                                  key={prod.slug}
-                                  to={`/products/${prod.slug}`}
-                                  className="p-2.5 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50/40 transition-all group"
+                                  to="/products/cad-software"
+                                  onClick={() => setActiveMegaMenu(null)}
+                                  className="text-xs font-semibold text-red-600 hover:underline flex items-center space-x-1 shrink-0"
                                 >
-                                  <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 block">{prod.name}</span>
-                                  <p className="text-[11px] text-slate-500 mt-0.5">{prod.spec}</p>
+                                  <span>View Category</span>
+                                  <ChevronRight className="w-3.5 h-3.5" />
                                 </Link>
-                              ))}
-                            </div>
-                          </>
-                        )
-                      })()}
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-3">
+                                {currentCat.products.map(prod => (
+                                  <Link
+                                    key={prod.slug}
+                                    to={`/products/${prod.slug}`}
+                                    onClick={() => setActiveMegaMenu(null)}
+                                    className="flex items-center gap-3 p-2 rounded-xl border border-slate-200/80 hover:border-red-300 hover:bg-red-50/30 hover:shadow-xs transition-all group bg-white"
+                                  >
+                                    <div className="w-13 h-13 rounded-lg overflow-hidden border border-slate-200 bg-slate-900 shrink-0">
+                                      <img
+                                        src={prod.image}
+                                        alt={prod.name}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 block truncate">
+                                        {prod.name}
+                                      </span>
+                                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">{prod.spec}</p>
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            </>
+                          )
+                        })()}
+                      </div>
+
+                      {/* Mega Menu Footer Consultation Banner */}
+                      <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Need official licensing, network deployment or CAD trial advice?</span>
+                        <button
+                          onClick={() => {
+                            setActiveMegaMenu(null)
+                            openQuoteModal('CAD Software Consultation')
+                          }}
+                          className="font-bold text-red-600 hover:text-red-800 cursor-pointer"
+                        >
+                          Request Software Quote →
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -817,16 +878,26 @@ export const Header: React.FC = () => {
                       View All CAD Software →
                     </Link>
                     {cadSoftwareCategories.map(cat => (
-                      <div key={cat.id} className="pt-1">
-                        <span className="block text-xs font-bold text-slate-800">{cat.label}</span>
-                        <div className="pl-2 pt-1 space-y-1">
+                      <div key={cat.id} className="pt-2">
+                        <span className="block text-xs font-bold text-slate-800 mb-1">{cat.label}</span>
+                        <div className="space-y-1.5">
                           {cat.products.map(p => (
                             <Link
                               key={p.slug}
                               to={`/products/${p.slug}`}
-                              className="block text-[11px] text-slate-500 hover:text-slate-900"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 text-slate-700 hover:text-red-600 transition-colors"
                             >
-                              • {p.name}
+                              <img
+                                src={p.image}
+                                alt={p.name}
+                                className="w-8 h-8 rounded-md object-cover border border-slate-200 shrink-0"
+                                loading="lazy"
+                              />
+                              <div className="min-w-0 flex-1">
+                                <span className="block text-xs font-semibold truncate">{p.name}</span>
+                                <span className="block text-[10px] text-slate-400 truncate">{p.spec}</span>
+                              </div>
                             </Link>
                           ))}
                         </div>

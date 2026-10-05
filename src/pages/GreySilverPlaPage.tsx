@@ -9,6 +9,7 @@ import {
   Lock,
   Heart,
   ShoppingCart,
+  Send,
   Maximize2,
   X,
   ChevronLeft,
@@ -500,20 +501,20 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
               </div>
 
               {/* Price & Savings Box */}
-              <div className="space-y-1 bg-slate-50/80 p-4 rounded-2xl border border-slate-200/90">
-                <div className="flex items-baseline space-x-3">
-                  <span className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-                    ₹{productData.price.toLocaleString('en-IN')}
+              <div className="space-y-1.5 bg-slate-50/90 p-4 rounded-2xl border border-slate-200">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 font-mono">
+                    Pricing & Bulk Orders
                   </span>
-                  <span className="text-base text-slate-400 line-through">
-                    ₹{productData.mrp.toLocaleString('en-IN')}
-                  </span>
-                  <span className="px-2.5 py-0.5 bg-red-600 text-white text-xs font-black rounded-md shadow-xs">
-                    {productData.discountText}
+                  <span className="px-2.5 py-0.5 bg-red-600 text-white text-[11px] font-bold rounded-md shadow-2xs">
+                    Price on Request
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-500 font-medium pt-1">
-                  Limited-time product pricing may change. All taxes included. Free shipping across India.
+                <p className="text-sm font-bold text-slate-900">
+                  Request Official Quotation & Volume Discounts
+                </p>
+                <p className="text-[11px] text-slate-600 leading-relaxed">
+                  Institutional, educational, and commercial bulk spool rates available with GST invoice and dispatch across India.
                 </p>
               </div>
 
@@ -589,20 +590,20 @@ export const GreySilverPlaPage: React.FC<GreySilverPageProps> = ({ customData })
                 {/* Primary CTA Buttons */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   <button
-                    onClick={handleAddToCart}
+                    onClick={() => openQuoteModal(`[Filament Inquiry] ${productData.name} - ${activeVariant.color} (${quantity} Spool${quantity > 1 ? 's' : ''})`)}
                     className="w-full py-3.5 px-6 bg-red-600 hover:bg-red-700 active:scale-[0.99] text-white font-black text-sm rounded-xl shadow-md shadow-red-600/20 transition-all flex items-center justify-center space-x-2 cursor-pointer"
                   >
-                    <ShoppingCart className="w-4 h-4" />
-                    <span>ADD TO CART</span>
+                    <Send className="w-4 h-4" />
+                    <span>REQUEST QUOTE</span>
                   </button>
 
-                  <button
-                    onClick={handleBuyNow}
-                    className="w-full py-3.5 px-6 bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-black text-sm rounded-xl shadow-md shadow-slate-900/10 transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                  <a
+                    href="#enquiry"
+                    className="w-full py-3.5 px-6 bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-black text-sm rounded-xl shadow-md shadow-slate-900/10 transition-all flex items-center justify-center space-x-2 cursor-pointer text-center"
                   >
-                    <span>BUY NOW</span>
+                    <span>ENQUIRE NOW</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </a>
                 </div>
               </div>
 

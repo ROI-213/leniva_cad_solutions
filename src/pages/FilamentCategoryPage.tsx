@@ -4,7 +4,6 @@ import {
   ChevronRight,
   Star,
   Heart,
-  ShoppingCart,
   CheckCircle2,
   Package,
   Zap,
@@ -184,9 +183,7 @@ export const FilamentDetailPage: React.FC = () => {
   }
 
   const { openQuoteModal } = useApp()
-  const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  )
+  // const discount calculated if needed
 
   return (
     <div className="bg-slate-50 min-h-screen py-10">
@@ -261,18 +258,18 @@ export const FilamentDetailPage: React.FC = () => {
               </div>
 
               {/* Price */}
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-black text-slate-950">
-                  ₹{product.price.toLocaleString('en-IN')}
-                </span>
-                <span className="text-sm text-slate-400 line-through">
-                  ₹{product.originalPrice.toLocaleString('en-IN')}
-                </span>
-                {discount > 0 && (
-                  <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-bold rounded">
-                    {discount}% OFF
+              <div className="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 font-mono">
+                    Pricing & Bulk Orders
                   </span>
-                )}
+                  <span className="px-2.5 py-0.5 bg-red-600 text-white text-[11px] font-bold rounded-md shadow-2xs">
+                    Price on Request
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Institutional, educational, and commercial bulk spool rates available with GST invoice and dispatch across India.
+                </p>
               </div>
 
               {/* Quick Specs */}
@@ -304,14 +301,14 @@ export const FilamentDetailPage: React.FC = () => {
                   onClick={() => openQuoteModal(product.name)}
                   className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <ShoppingCart className="w-4 h-4" />
-                  Add to Cart
+                  <Send className="w-4 h-4" />
+                  <span>Request Quote</span>
                 </button>
                 <button
-                  onClick={() => openQuoteModal(product.name)}
+                  onClick={() => openQuoteModal(`Bulk Filament Inquiry: ${product.name}`)}
                   className="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-sm transition-colors cursor-pointer"
                 >
-                  Buy Now
+                  Enquire Now
                 </button>
               </div>
             </div>

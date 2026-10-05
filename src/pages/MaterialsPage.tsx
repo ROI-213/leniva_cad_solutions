@@ -124,7 +124,7 @@ export interface MaterialsPageProps {
 }
 
 export const MaterialsPage: React.FC<MaterialsPageProps> = () => {
-  const { openQuoteModal, addToCart, toggleWishlist, isInWishlist } = useApp()
+  const { openQuoteModal, toggleWishlist, isInWishlist } = useApp()
 
   // State management
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialFamily | null>(null)
@@ -788,30 +788,12 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = () => {
                       </div>
 
                       <div className="pt-2 border-t border-slate-200 flex items-center justify-between">
-                        <div>
-                          <span className="text-base font-black text-slate-950 font-mono">₹{product.price.toLocaleString('en-IN')}</span>
-                          {product.originalPrice && (
-                            <span className="text-[11px] text-slate-400 line-through ml-1.5 font-mono">
-                              ₹{product.originalPrice.toLocaleString('en-IN')}
-                            </span>
-                          )}
-                        </div>
-
+                        <span className="text-xs font-bold text-slate-700">Price on Request</span>
                         <button
-                          onClick={() => {
-                            addToCart({
-                              shopItemId: product.id,
-                              name: `${product.productName} - ${product.colour}`,
-                              price: product.price,
-                              image: '/images/materials/filament-spool-generic.png',
-                              quantity: 1,
-                              selectedColor: product.colour,
-                            })
-                            showToast(`Added ${product.productName} to cart!`)
-                          }}
-                          className="px-3 py-1.5 bg-slate-900 hover:bg-red-600 text-white text-[11px] font-bold rounded-lg transition-colors cursor-pointer"
+                          onClick={() => openQuoteModal(`${product.productName} - ${product.colour}`)}
+                          className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold rounded-lg transition-colors cursor-pointer"
                         >
-                          Add to Cart
+                          Request Quote
                         </button>
                       </div>
                     </div>
@@ -1159,47 +1141,24 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = () => {
 
                 {/* Pricing & Add to Cart */}
                 <div className="pt-4 mt-4 border-t border-slate-100 space-y-3">
-                  <div className="flex items-baseline justify-between">
-                    <div>
-                      <span className="text-lg font-black text-slate-950 font-mono">
-                        ₹{product.price.toLocaleString('en-IN')}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="text-xs text-slate-400 line-through ml-2 font-mono">
-                          ₹{product.originalPrice.toLocaleString('en-IN')}
-                        </span>
-                      )}
-                    </div>
-
-                    {product.discountPercent && (
-                      <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold font-mono">
-                        {product.discountPercent}% OFF
-                      </span>
-                    )}
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700">Price on Request</span>
+                    <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold font-mono">
+                      Volume Discount
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
                     <button
-                      onClick={() => {
-                        addToCart({
-                          shopItemId: product.id,
-                          name: `${product.productName} (${product.colour})`,
-                          price: product.price,
-                          image: '/images/materials/filament-spool-generic.png',
-                          quantity: 1,
-                          selectedColor: product.colour,
-                        })
-                        showToast(`Added ${product.productName} to your cart!`)
-                      }}
-                      className="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center space-x-1 cursor-pointer"
+                      onClick={() => openQuoteModal(`Quote Request: ${product.productName} (${product.colour})`)}
+                      className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center space-x-1 cursor-pointer"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>Add to Cart</span>
+                      <span>Request Quote</span>
                     </button>
 
                     <button
                       onClick={() => openQuoteModal(`Bulk Order: ${product.productName} (${product.colour})`)}
-                      className="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold rounded-xl border border-red-200 transition-colors flex items-center justify-center cursor-pointer"
+                      className="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center cursor-pointer"
                     >
                       Bulk Quote
                     </button>

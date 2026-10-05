@@ -46,8 +46,7 @@ export const AresKudoPage: React.FC = () => {
   const [activeFeatureCat, setActiveFeatureCat] = useState('drawing')
   const [activeStorageFilter, setActiveStorageFilter] = useState<'all' | 'Public Cloud' | 'Enterprise Cloud' | 'BIM & Engineering' | 'Private Server'>('all')
   const [activePersona, setActivePersona] = useState(0)
-  const [pricingCurrency, setPricingCurrency] = useState<'EUR' | 'INR'>('EUR')
-  const [billingCycle, setBillingCycle] = useState<'annual' | 'monthly'>('annual')
+
   const [activeAiPromptIndex, setActiveAiPromptIndex] = useState(0)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [faqCategory, setFaqCategory] = useState<string>('all')
@@ -1486,80 +1485,18 @@ export const AresKudoPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-              Transparent Licensing
+              Licensing Plans
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Flexible Cloud CAD Plans for Individuals & Teams
+              Cloud CAD Plans for Individuals &amp; Teams
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
-              No hidden fees. Full native DWG compatibility. Choose standalone named licenses or floating shared pools.
+              Full native DWG compatibility. Choose the plan that fits your workflow — contact us for a personalised quote.
             </p>
-
-            {/* Currency & Billing Controls */}
-            <div className="flex items-center justify-center space-x-6 pt-4">
-              <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 text-xs font-bold">
-                <button
-                  onClick={() => setBillingCycle('annual')}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
-                    billingCycle === 'annual' ? 'bg-white text-blue-600 shadow-2xs' : 'text-slate-600'
-                  }`}
-                >
-                  Annual Billing (Save 30%)
-                </button>
-                <button
-                  onClick={() => setBillingCycle('monthly')}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
-                    billingCycle === 'monthly' ? 'bg-white text-blue-600 shadow-2xs' : 'text-slate-600'
-                  }`}
-                >
-                  Monthly
-                </button>
-              </div>
-
-              <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 text-xs font-bold">
-                <button
-                  onClick={() => setPricingCurrency('EUR')}
-                  className={`px-2.5 py-1 rounded-lg transition-all ${
-                    pricingCurrency === 'EUR' ? 'bg-white text-blue-600 shadow-2xs' : 'text-slate-600'
-                  }`}
-                >
-                  € EUR
-                </button>
-                <button
-                  onClick={() => setPricingCurrency('INR')}
-                  className={`px-2.5 py-1 rounded-lg transition-all ${
-                    pricingCurrency === 'INR' ? 'bg-white text-blue-600 shadow-2xs' : 'text-slate-600'
-                  }`}
-                >
-                  ₹ INR
-                </button>
-              </div>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {data.pricingPlans.map(plan => {
-              const isEur = pricingCurrency === 'EUR'
-              const priceObj = isEur ? plan.priceEur : plan.priceInr
-              const symbol = isEur ? '€' : '₹'
-
-              let displayPrice = ''
-              let billingSuffix = ''
-
-              if (priceObj.free) {
-                displayPrice = `${symbol}0`
-                billingSuffix = '/forever'
-              } else if (priceObj.custom) {
-                displayPrice = 'Custom'
-                billingSuffix = 'Quote'
-              } else if (billingCycle === 'annual') {
-                displayPrice = `${symbol}${priceObj.annual?.toLocaleString()}`
-                billingSuffix = '/user/year'
-              } else {
-                displayPrice = `${symbol}${(priceObj.monthly || Math.round((priceObj.annual || 0) / 10)).toLocaleString()}`
-                billingSuffix = '/user/month'
-              }
-
               return (
                 <div
                   key={plan.id}
@@ -1586,11 +1523,10 @@ export const AresKudoPage: React.FC = () => {
                     <p className="text-xs text-slate-500 leading-relaxed min-h-[36px]">{plan.tagline}</p>
 
                     <div className="py-2 border-y border-slate-100">
-                      <div className="flex items-baseline space-x-1">
-                        <span className="text-3xl font-black text-slate-950">{displayPrice}</span>
-                        <span className="text-xs text-slate-500 font-medium">{billingSuffix}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-400 block mt-0.5">{plan.billingNote}</span>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700">
+                        Price on Request
+                      </span>
+                      <span className="text-[10px] text-slate-400 block mt-1.5">Contact us for a personalised quote</span>
                     </div>
 
                     <div className="space-y-2.5 pt-2">
@@ -1606,20 +1542,14 @@ export const AresKudoPage: React.FC = () => {
 
                   <div className="pt-6">
                     <button
-                      onClick={() => {
-                        if (plan.ctaAction === 'trial') {
-                          openQuoteModal(`ARES Kudo Free Trial: ${plan.name}`)
-                        } else {
-                          scrollTo('consultation')
-                        }
-                      }}
+                      onClick={() => scrollTo('consultation')}
                       className={`w-full py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer ${
                         plan.popular
                           ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
                           : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
                       }`}
                     >
-                      {plan.ctaText}
+                      Request Quote
                     </button>
                   </div>
                 </div>

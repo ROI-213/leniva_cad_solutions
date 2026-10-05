@@ -59,6 +59,7 @@ const AresElectricalPage = lazy(() => import('./pages/AresElectricalPage'))
 const AresStandardPage = lazy(() => import('./pages/AresStandardPage'))
 const AresCommanderPage = lazy(() => import('./pages/AresCommanderPage'))
 const AresKudoPage = lazy(() => import('./pages/AresKudoPage'))
+const AresTouchPage = lazy(() => import('./pages/AresTouchPage'))
 const AdminPage = lazy(() => import('./pages/AdminPage'))
 const FilamentCategoryPage = lazy(() => import('./pages/FilamentCategoryPage'))
 const FilamentDetailPage = lazy(() => import('./pages/FilamentCategoryPage').then(m => ({ default: m.FilamentDetailPage })))
@@ -334,6 +335,18 @@ export default function App() {
             <Route path="/products/ares-trinity" element={<AresKudoPage />} />
             <Route path="/product/ares-trinity" element={<AresKudoPage />} />
             <Route path="/ares-trinity" element={<AresKudoPage />} />
+
+            {/* Dedicated ARES Touch Mobile CAD Product Page */}
+            <Route path="/cad-software/ares-touch" element={<AresTouchPage />} />
+            <Route path="/cad-software/ares-touch/" element={<AresTouchPage />} />
+            <Route path="/products/ares-touch" element={<AresTouchPage />} />
+            <Route path="/product/ares-touch" element={<AresTouchPage />} />
+            <Route path="/ares-touch" element={<AresTouchPage />} />
+            <Route path="/software/ares-touch" element={<AresTouchPage />} />
+            <Route path="/software/ares-touch/" element={<AresTouchPage />} />
+            <Route path="/products/arestouch" element={<AresTouchPage />} />
+            <Route path="/product/arestouch" element={<AresTouchPage />} />
+            <Route path="/arestouch" element={<AresTouchPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

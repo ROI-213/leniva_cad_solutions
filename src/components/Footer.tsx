@@ -102,6 +102,8 @@ export const Footer: React.FC = () => {
             <h4 className="font-bold text-white uppercase tracking-wider text-xs">CAD Software</h4>
             <ul className="space-y-2 text-slate-400">
               <li><Link to="/products/sketchup" className="hover:text-red-400 transition-colors">SketchUp Pro</Link></li>
+              <li><Link to="/cad-software/ares-touch" className="hover:text-red-400 transition-colors">ARES Touch (Mobile CAD)</Link></li>
+              <li><Link to="/cad-software/ares-kudo" className="hover:text-red-400 transition-colors">ARES Kudo (Cloud CAD)</Link></li>
               <li><Link to="/products/enscape" className="hover:text-red-400 transition-colors">Enscape</Link></li>
               <li><Link to="/products/vray" className="hover:text-red-400 transition-colors">V-Ray</Link></li>
               <li><Link to="/products/corona" className="hover:text-red-400 transition-colors">Corona</Link></li>

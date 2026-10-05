@@ -203,7 +203,7 @@ export const proScanData: ProScanData = {
     eyebrow: 'SKETCHUP PRO SCAN SUBSCRIPTION',
     heading: 'From Reality to 3D. With Precision.',
     description: 'Bring real-world context into your design process. Import point clouds, model directly from scan data, create professional 2D documentation, and improve project planning with SketchUp Pro Scan on Windows.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=85',
+    image: '/images/software/sketchup-pro.jpg',
     badge: 'Scan-to-3D Engineering Solution',
     chips: [
       'Point Cloud Modeling',

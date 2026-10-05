@@ -196,7 +196,7 @@ export const sketchUpStudioData: SketchUpStudioData = {
     heading: 'Design With Real-World Data. Visualize Without Limits.',
     subheading: 'SketchUp Studio for advanced 3D modeling, point-cloud workflows, Revit interoperability, and photorealistic visualization.',
     description: 'Bring your ideas to life with SketchUp Studio. Combine intuitive 3D modeling with real-world laser scan data, seamless Revit interoperability, and photorealistic V-Ray rendering to accelerate demanding architectural, engineering, and design-build workflows.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    image: '/images/software/sketchup-pro.jpg',
     badge: 'Complete Architectural Powerhouse',
     stats: [
       { label: 'Platform Architecture', value: 'Windows OS' },

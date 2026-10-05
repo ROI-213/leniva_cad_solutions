@@ -199,7 +199,7 @@ export const services: Service[] = [
     title: 'CAD & 3D Engineering Training',
     shortDescription: 'Professional corporate and individual training programs in SketchUp Pro, V-Ray, Enscape, 3D Scanning metrology, and Reverse Engineering.',
     description: 'Empower your engineering, architectural, and design teams with industry-certified training programs delivered by Leniva CAD Solutions. Our instructors combine hands-on real-world project workflows with deep software knowledge to accelerate your team’s productivity from day one.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+    image: '/images/software/sketchup-pro.jpg',
     badge: 'Skill Development',
     applications: [
       'Corporate Design Team Upskilling',
@@ -229,7 +229,7 @@ export const services: Service[] = [
     title: 'CAD & Digital Manufacturing Consulting',
     shortDescription: 'Strategic technology consulting on software licensing, hardware selection, additive manufacturing integration, and digital factory pipelines.',
     description: 'Adopting digital design and additive manufacturing technology requires careful alignment with your business goals. Leniva CAD Solutions consults with manufacturing plants, design studios, and R&D centers to audit existing workflows, select the right hardware and software licenses, and build efficient digital manufacturing pipelines.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+    image: '/images/software/ares-standard.jpg',
     badge: 'Advisory',
     applications: [
       'Software License Optimization & Compliance Audits',
@@ -256,7 +256,7 @@ export const services: Service[] = [
     title: '3D Architectural & Industrial Visualization',
     shortDescription: 'Photorealistic 3D rendering, interactive 360° virtual tours, product animation, and VR walkthroughs for real estate developers and manufacturers.',
     description: 'Transform complex CAD geometry into emotionally compelling, photorealistic visual assets. Leniva’s visualization studio crafts hyper-realistic interior/exterior architectural renderings, interactive virtual reality walkthroughs, and animated industrial product exploded views for high-impact marketing.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+    image: '/images/software/chaos-vray.jpg',
     badge: 'Visualization Studio',
     applications: [
       'Real Estate Pre-Sales Marketing & Brochures',

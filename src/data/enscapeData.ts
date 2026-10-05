@@ -214,7 +214,7 @@ export const enscapeData: EnscapeCmsData = {
     officialUrl: 'https://www.chaos.com/enscape',
     trialUrl: 'https://www.chaos.com/enscape/trial',
     pricingUrl: 'https://www.chaos.com/enscape/buy-online',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/images/software/enscape-3d.jpg',
     heroSecondaryImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
     stats: [
       { label: 'CAD & BIM Platforms', value: '5+', note: 'Revit, SketchUp, Rhino, Archicad, Vectorworks' },

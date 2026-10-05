@@ -91,8 +91,8 @@ export const productCategories: CategoryInfo[] = [
     title: 'CAD & Engineering Software',
     subtitle: 'Industry-Leading 2D/3D CAD, BIM & Photorealistic Rendering Suites',
     description: 'Official software licensing, deployment, training, and workflow consulting for ARES (Graebert), SketchUp (Trimble), and Chaos (Enscape, V-Ray, Corona).',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-    heroBanner: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80',
+    image: '/images/software/sketchup-pro.jpg',
+    heroBanner: '/images/software/sketchup-pro.jpg',
     icon: 'Laptop',
     productCount: 12,
     keyBenefits: [

@@ -309,7 +309,7 @@ export const vrayData: VRayCmsData = {
     trialUrl: 'https://www.chaos.com/vray/trial',
     pricingUrl: 'https://www.chaos.com/vray/buy-online',
     gpuRenderingUrl: 'https://www.chaos.com/vray-gpu',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/images/software/chaos-vray.jpg',
     heroSecondaryImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
     stats: [
       { label: 'Supported Host Applications', value: '9+', note: '3ds Max, SketchUp, Rhino, Revit, Cinema 4D, Maya...' },

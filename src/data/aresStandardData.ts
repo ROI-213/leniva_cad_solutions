@@ -215,7 +215,7 @@ export const aresStandardData: AresStandardData = {
       'Windows 64-bit support',
       'Perpetual licensing options, subject to current availability',
     ],
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/software/ares-standard.jpg',
     badge: 'Cost-Effective 2D DWG CAD',
     strip: [
       { label: 'Product', value: 'ARES Standard' },
@@ -873,14 +873,14 @@ export const aresStandardData: AresStandardData = {
       slug: 'sketchup',
       category: '3D Modeling',
       desc: 'Intuitive 3D design software for architecture, interior design, and construction.',
-      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80',
+      image: '/images/software/sketchup-pro.jpg',
     },
     {
       name: 'Chaos V-Ray',
       slug: 'vray',
       category: 'Rendering Engine',
       desc: 'High-end photorealistic 3D rendering for architectural and design visualization.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80',
+      image: '/images/software/chaos-vray.jpg',
     },
   ],
 }

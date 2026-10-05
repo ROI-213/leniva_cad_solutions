@@ -763,9 +763,12 @@ export default function SketchUpProAdvancedPage() {
                 ))}
 
                 <div className="pt-4 space-y-3">
-                  <button className="w-full py-3.5 rounded-xl bg-[#003865] text-white font-semibold text-sm hover:bg-[#004A8F] transition-colors">
-                    Subscribe Now
-                  </button>
+                  <Link
+                    to="/contact"
+                    className="block w-full py-3.5 rounded-xl bg-[#003865] text-white font-semibold text-sm hover:bg-[#004A8F] transition-colors text-center"
+                  >
+                    Enquire Now
+                  </Link>
                   <a
                     href="https://www.sketchup.com/try-sketchup"
                     target="_blank"

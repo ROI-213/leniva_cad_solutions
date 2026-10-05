@@ -122,7 +122,7 @@ export const initialGreySilverData: GreySilverProductData = {
   mrp: 1500,
   price: 1400,
   discountAmount: 100,
-  discountText: 'SAVE ₹100',
+  discountText: 'Available on Request',
   rating: 5.0,
   reviewsCount: 5,
   productType: '3D Printer Filament',

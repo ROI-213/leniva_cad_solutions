@@ -871,13 +871,8 @@ export const WhitePlaDetailPage: React.FC<{ customData?: Partial<WhitePlaProduct
                   <h4 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
                     {rel.name}
                   </h4>
-                  <div className="flex items-baseline space-x-2 pt-0.5">
-                    <span className="text-sm font-black text-slate-950">
-                      ₹{rel.price.toLocaleString('en-IN')}
-                    </span>
-                    <span className="text-[11px] text-slate-400 line-through">
-                      ₹{rel.originalPrice.toLocaleString('en-IN')}
-                    </span>
+                  <div className="pt-0.5">
+                    <span className="text-sm font-bold text-red-600">Price on Request</span>
                   </div>
                 </div>
 
@@ -899,14 +894,9 @@ export const WhitePlaDetailPage: React.FC<{ customData?: Partial<WhitePlaProduct
       {/* ======================================================== */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 flex items-center justify-between shadow-2xl">
         <div>
-          <span className="text-[10px] text-slate-400 uppercase font-bold block">Total Price</span>
-          <div className="flex items-baseline space-x-1.5">
-            <span className="text-lg font-black text-slate-950">
-              ₹{(product.price * quantity).toLocaleString('en-IN')}
-            </span>
-            <span className="text-[10px] text-slate-400 line-through">
-              ₹{(product.mrp * quantity).toLocaleString('en-IN')}
-            </span>
+          <div>
+            <span className="text-[10px] text-slate-400 uppercase font-bold block">White PLA</span>
+            <span className="text-sm font-bold text-red-600">Price on Request</span>
           </div>
         </div>
         <button

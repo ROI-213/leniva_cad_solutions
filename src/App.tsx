@@ -348,6 +348,14 @@ export default function App() {
               element={<ShopPage forcedCategory="scanners" />}
             />
             <Route
+              path="/shop/products"
+              element={<ShopPage forcedCategory="products" />}
+            />
+            <Route
+              path="/shop/make3d-filaments"
+              element={<ShopPage forcedCategory="make3d-filaments" />}
+            />
+            <Route
               path="/shop/filaments"
               element={<FilamentCategoryPage />}
             />

@@ -191,12 +191,12 @@ export const Header: React.FC = () => {
   ]
 
   const shopLinks = [
-    { name: 'Shop All Products', route: '/shop' },
-    { name: '3D Printer Filaments', route: '/shop/filaments' },
-    { name: 'Specialty CarbonX Materials', route: '/shop/special-filaments' },
-    { name: '3D Printer Resins', route: '/shop/resin' },
-    { name: 'Printer Accessories & Parts', route: '/shop/accessories' },
-    { name: 'Printed Models & Miniatures', route: '/shop/miniatures' },
+    { name: 'All Store Catalog', route: '/shop' },
+    { name: '3D Printers & Scanners (Products)', route: '/shop/products' },
+    { name: '3D Printer Filaments (PLA & PLA+)', route: '/shop/filaments' },
+    { name: 'FDM 3D Printers', route: '/shop/fdm' },
+    { name: 'DLP & LCD 3D Printers', route: '/shop/dlp' },
+    { name: 'Precision 3D Scanners', route: '/shop/scanners' },
   ]
 
   const toggleMobileSection = (section: string) => {
@@ -503,19 +503,130 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            {/* 4. Shop — plain link, no dropdown */}
-            <Link
-              to="/shop"
-              className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative shrink-0"
+            {/* 4. Shop with Dropdown for Products and Filaments */}
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => setActiveMegaMenu('shop')}
+              onMouseLeave={() => setActiveMegaMenu(null)}
             >
-              <ShoppingCart className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/shop') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
-              <span className={`text-xs mt-1 whitespace-nowrap transition-colors ${location.pathname.startsWith('/shop') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
-                Shop
-              </span>
-              {location.pathname.startsWith('/shop') && (
-                <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+              <Link
+                to="/shop"
+                className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative shrink-0"
+              >
+                <div className="flex items-center space-x-0.5">
+                  <ShoppingCart className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/shop') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                  <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600 transition-colors" />
+                </div>
+                <span className={`text-xs mt-1 whitespace-nowrap transition-colors ${location.pathname.startsWith('/shop') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                  Shop
+                </span>
+                {location.pathname.startsWith('/shop') && (
+                  <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+                )}
+              </Link>
+
+              {/* Shop Dropdown Menu */}
+              {activeMegaMenu === 'shop' && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 w-80 animate-fade-in">
+                  <div className="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-3 space-y-2 overflow-hidden">
+                    {/* Header */}
+                    <div className="px-2 py-1 border-b border-slate-100 flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        Shop Online
+                      </span>
+                      <Link
+                        to="/shop"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center space-x-0.5"
+                      >
+                        <span>All Store Items</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+
+                    {/* Section 1: 3D Printers & Scanners (Products) */}
+                    <Link
+                      to="/shop/products"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all group"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <Printer className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-1.5">
+                          <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                            3D Printers & Scanners
+                          </span>
+                          <span className="text-[9px] font-bold px-1.5 py-0.2 bg-slate-100 text-slate-700 rounded">
+                            Products
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                          FDM, DLP & LCD printers & metrology scanners
+                        </p>
+                      </div>
+                    </Link>
+
+                    {/* Section 2: 3D Printer Filaments */}
+                    <Link
+                      to="/shop/filaments"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-red-50/50 border border-red-100/70 hover:border-red-200 transition-all group"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-red-100/70 text-red-600 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <CircleDot className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-1.5">
+                          <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                            3D Printer Filaments
+                          </span>
+                          <span className="text-[9px] font-bold px-1.5 py-0.2 bg-red-600 text-white rounded">
+                            Make3D
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                          PLA & PLA+ in 8 vibrant colours (1 KG / 1.75 mm)
+                        </p>
+                      </div>
+                    </Link>
+
+                    {/* Quick sub-links */}
+                    <div className="pt-2 border-t border-slate-100 px-1 grid grid-cols-2 gap-1 text-[11px]">
+                      <Link
+                        to="/shop/fdm"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="px-2 py-1 rounded-md text-slate-600 hover:text-red-600 hover:bg-slate-50 truncate"
+                      >
+                        • FDM 3D Printers
+                      </Link>
+                      <Link
+                        to="/shop/scanners"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="px-2 py-1 rounded-md text-slate-600 hover:text-red-600 hover:bg-slate-50 truncate"
+                      >
+                        • 3D Scanners
+                      </Link>
+                      <Link
+                        to="/shop/dlp"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="px-2 py-1 rounded-md text-slate-600 hover:text-red-600 hover:bg-slate-50 truncate"
+                      >
+                        • DLP & LCD Printers
+                      </Link>
+                      <Link
+                        to="/shop/filaments"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="px-2 py-1 rounded-md text-red-600 font-semibold hover:bg-red-50/60 truncate"
+                      >
+                        • All 8 Filaments →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               )}
-            </Link>
+            </div>
 
 
 
@@ -731,7 +842,7 @@ export const Header: React.FC = () => {
                   onClick={() => toggleMobileSection('shop')}
                   className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
                 >
-                  <span>Shop Consumables</span>
+                  <span className="font-semibold">Shop (Products & Filaments)</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
                       expandedMobileSection === 'shop' ? 'rotate-180 text-red-600' : ''

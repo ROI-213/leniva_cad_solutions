@@ -52,6 +52,7 @@ const VRayPage = lazy(() => import('./pages/VRayPage'))
 const CoronaPage = lazy(() => import('./pages/CoronaPage'))
 const SketchUpStudioPage = lazy(() => import('./pages/SketchUpStudioPage'))
 const SketchUpProScanPage = lazy(() => import('./pages/SketchUpProScanPage'))
+const SketchUpProPage = lazy(() => import('./pages/SketchUpProPage'))
 const AresMechanicalPage = lazy(() => import('./pages/AresMechanicalPage'))
 const AresElectricalPage = lazy(() => import('./pages/AresElectricalPage'))
 const AresStandardPage = lazy(() => import('./pages/AresStandardPage'))
@@ -254,6 +255,14 @@ export default function App() {
             <Route path="/products/chaos-corona" element={<CoronaPage />} />
             <Route path="/product/chaos-corona" element={<CoronaPage />} />
             <Route path="/chaos-corona" element={<CoronaPage />} />
+
+            {/* Dedicated SketchUp Pro Product Page */}
+            <Route path="/products/sketchup-pro" element={<SketchUpProPage />} />
+            <Route path="/product/sketchup-pro" element={<SketchUpProPage />} />
+            <Route path="/sketchup-pro" element={<SketchUpProPage />} />
+            <Route path="/products/sketchup" element={<SketchUpProPage />} />
+            <Route path="/product/sketchup" element={<SketchUpProPage />} />
+            <Route path="/sketchup" element={<SketchUpProPage />} />
 
             {/* Dedicated SketchUp Studio Product Page */}
             <Route path="/products/sketchup-studio" element={<SketchUpStudioPage />} />

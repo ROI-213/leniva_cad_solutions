@@ -1,12 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import compression from 'vite-plugin-compression';
 export default defineConfig({
-    plugins: [
-        react(),
-        // Gzip compress all JS/CSS assets for faster transfer
-        compression({ algorithm: 'gzip', ext: '.gz' }),
-    ],
+    plugins: [react()],
     resolve: {
         alias: {
             '@': '/src',
@@ -22,7 +17,6 @@ export default defineConfig({
                 },
             },
         },
-        // Raise warning threshold — we're code-splitting anyway
         chunkSizeWarningLimit: 800,
     },
     server: {

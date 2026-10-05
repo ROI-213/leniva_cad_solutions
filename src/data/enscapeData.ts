@@ -333,7 +333,7 @@ export const enscapeData: EnscapeCmsData = {
         'Visualize complex BIM models with live synchronization. Walk through building phases, inspect structural relationships, and conduct lighting studies directly within the Revit environment.',
       supportedVersions: 'Revit 2021, 2022, 2023, 2024, 2025',
       keyAdvantage: 'Native BIM material translation & phase filter visualization',
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/revit-integration.jpg',
     },
     {
       id: 'sketchup',
@@ -566,7 +566,7 @@ export const enscapeData: EnscapeCmsData = {
       description: 'Support constructability reviews, MEP coordination discussions, and spatial clearance evaluations.',
       iconName: 'HardHat',
       deliverables: ['Clash visual verification', 'Site logistics planning', 'Pre-fabrication assemblies', 'Multidisciplinary reviews'],
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/aec-construction.jpg',
     },
     {
       id: 'education',

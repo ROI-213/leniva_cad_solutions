@@ -1,4 +1,4 @@
-﻿export interface ProScanPlan {
+export interface ProScanPlan {
   id: string
   name: string
   tagline: string
@@ -386,7 +386,7 @@ export const proScanData: ProScanData = {
       subtitle: 'Model-to-Scan Comparison',
       description: 'Compare the modeled design against point cloud data to inspect alignment tolerances, verify construction progress, and eliminate discrepancies.',
       tools: ['Model Comparison Tool', 'Deviation Colorizer', 'Trimble Connect'],
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/scan-verify.jpg',
       badge: 'QA / QC',
     },
   ],
@@ -462,7 +462,7 @@ export const proScanData: ProScanData = {
       subtitle: 'Access, Crane Swings & Equipment Layouts',
       description: 'Use point cloud data to analyze site logistics, equipment locations, crane radius clearances, and turning circles as part of active construction planning.',
       toolTags: ['Site Planning', 'Equipment Overlay', 'Trimble Connect'],
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/aec-construction.jpg',
       deliverables: ['Site logistics layouts', 'Access route plans', 'Equipment clearance diagrams', 'Subcontractor briefings'],
     },
     {

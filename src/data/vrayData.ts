@@ -345,7 +345,7 @@ export const vrayData: VRayCmsData = {
         description:
           'Work with detailed scenes, complex assets, and demanding visualization projects using rendering workflows that can make full use of available CPU and GPU hardware.',
         iconName: 'Cpu',
-        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80',
+        image: '/images/software/sections/revit-integration.jpg',
         linkAnchor: 'rendering-engines',
       },
       {
@@ -620,7 +620,7 @@ export const vrayData: VRayCmsData = {
       'Parallel animation rendering delivers hours of video footage in minutes',
       'Monitor render progress and preview frames from any mobile browser or tablet',
     ],
-    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/software/chaos-vray.jpg',
   },
   aiCreation: {
     eyebrow: 'AI-ASSISTED WORKFLOWS',
@@ -704,7 +704,7 @@ export const vrayData: VRayCmsData = {
       description: 'Connect BIM design models to photorealistic marketing renders. Respects Revit families, phases, sun studies, and materials.',
       supportedVersions: 'Revit 2021, 2022, 2023, 2024, 2025',
       keyAdvantage: 'BIM phase synchronization & physical lighting verification',
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/revit-integration.jpg',
     },
     {
       id: 'cinema-4d',
@@ -796,7 +796,7 @@ export const vrayData: VRayCmsData = {
       description: 'Communicate complex mechanical assemblies, offshore platforms, and heavy machinery to stakeholders.',
       iconName: 'Wrench',
       deliverables: ['Technical sales visuals', 'Operator manual illustrations', 'Cutaway machinery views', 'Offshore facility mockups'],
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/ares-mech-assembly.jpg',
     },
   ],
   showcases: {
@@ -817,7 +817,7 @@ export const vrayData: VRayCmsData = {
       items: [
         { title: 'High-End Audio Headphones', desc: 'Brushed aluminum earcups with micro-perforated leather cushions and gold-plated jack connections.', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
         { title: 'Luxury Chronograph Timepiece', desc: 'Sapphire crystal reflections with anti-reflective coating, polished steel bezel, and guilloché dial.', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80' },
-        { title: 'Ergonomic Task Chair Concept', desc: 'Textured breathable mesh fabric, die-cast aluminum frame, and molded nylon armrest ergonomics.', image: 'https://images.unsplash.com/photo-1580481077195-c328a37db729?auto=format&fit=crop&w=800&q=80' },
+        { title: 'Ergonomic Task Chair Concept', desc: 'Textured breathable mesh fabric, die-cast aluminum frame, and molded nylon armrest ergonomics.', image: '/images/software/chaos-vray.jpg' },
       ],
     },
     vfxAnimation: {

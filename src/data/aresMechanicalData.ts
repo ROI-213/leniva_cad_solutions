@@ -269,7 +269,7 @@ export const aresMechanicalData: AresMechanicalData = {
         title: 'Mechanical-Specific Tools',
         desc: 'Access ready-to-use mechanical parts libraries, screw connections, hole tables, mechanical symbols, and automatic BOM generators.',
         icon: 'Wrench',
-        image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80',
+        image: '/images/software/sections/ares-mech-tools.jpg',
       },
       {
         title: 'Standardized Documentation',
@@ -583,7 +583,7 @@ export const aresMechanicalData: AresMechanicalData = {
       subtitle: 'Complete Machine Documentation',
       description: 'Document complex mechanical machinery with standardized screw connections, item balloons, and live Bills of Materials.',
       toolTags: ['Screw Connections', 'Item Balloons', 'Live BOM', 'Parts List'],
-      image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/ares-mech-assembly.jpg',
       deliverables: ['General arrangement drawings', 'BOM schedules', 'Exploded assembly references', 'Revision history sheets'],
     },
     {
@@ -652,7 +652,7 @@ export const aresMechanicalData: AresMechanicalData = {
       subtitle: 'Parametric Fasteners & Holes',
       description: 'Select standardized bolts, nuts, pins, washers, and holes from the mechanical library with automated thread specification.',
       tools: ['Fastener Library', 'Screw Connections', 'Hole Generator'],
-      image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/ares-mech-parts.jpg',
       badge: 'Components',
     },
     {

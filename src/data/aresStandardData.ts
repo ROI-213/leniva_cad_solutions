@@ -423,7 +423,7 @@ export const aresStandardData: AresStandardData = {
         subtitle: 'Layers, Blocks & Dimensions',
         description: 'Assign entities to dedicated layers, insert reusable blocks with attributes, and add dimension strings to clarify drawing details.',
         tools: ['Layer Manager', 'Block Insertion', 'Dimension Styles', 'Text Formatting'],
-        image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+        image: '/images/software/sections/ares-std-organize.jpg',
         badge: 'Step 3: Organization',
       },
       {
@@ -743,7 +743,7 @@ export const aresStandardData: AresStandardData = {
       category: 'layers',
       categoryLabel: 'Layers',
       caption: 'Organize technical drawings into logical layers with color, linetype, and lineweight controls.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/software/sections/ares-std-layers.jpg',
       alt: 'Layer organization palette in ARES Standard',
     },
     {
@@ -859,7 +859,7 @@ export const aresStandardData: AresStandardData = {
       slug: 'ares-mechanical',
       category: 'Mechanical CAD',
       desc: '2D mechanical CAD with standards (ISO/ANSI/DIN), parts libraries, and mechanical drafting tools.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80',
+      image: '/images/software/ares-mechanical.jpg',
     },
     {
       name: 'ARES Electrical',

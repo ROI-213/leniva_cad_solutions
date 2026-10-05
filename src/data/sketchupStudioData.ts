@@ -1,4 +1,4 @@
-﻿export interface SketchUpStudioPlan {
+export interface SketchUpStudioPlan {
   id: string
   name: string
   tagline: string
@@ -585,7 +585,7 @@ export const sketchUpStudioData: SketchUpStudioData = {
       platform: 'Windows Desktop',
       features: ['Siteworks data export', 'Earthwork surface transfer', 'Field stakeout prep', 'Machine control alignment'],
       iconName: 'Truck',
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=600&q=80',
+      image: '/images/software/sections/aec-construction.jpg',
       officialDocUrl: 'https://construction.trimble.com/',
     },
     {
@@ -665,7 +665,7 @@ export const sketchUpStudioData: SketchUpStudioData = {
       subtitle: 'Field Coordination, Submittals & Earthwork',
       description: 'General contractors align design intent with field reality, resolving spatial trade clashes with Trimble Connect, generating 4D sequence snapshots, and transferring surfaces into Trimble Siteworks.',
       toolTags: ['Revit Importer', 'Trimble Connect', 'Site Contractor', 'LayOut'],
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/software/sections/scan-verify.jpg',
       deliverables: ['Subcontractor trade coordination', 'Site logistics plans', 'Earthwork grading surfaces', 'RFI 3D attachments'],
     },
     {

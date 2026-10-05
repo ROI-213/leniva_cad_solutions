@@ -1,4 +1,4 @@
-﻿export interface AresElectricalStandardItem {
+export interface AresElectricalStandardItem {
   id: string
   name: string
   fullName: string
@@ -339,7 +339,7 @@ export const aresElectricalData: AresElectricalData = {
         title: 'Standards-Based Schematics',
         desc: 'Use supported international electrical standards (ANSI, DIN, IEC, ABNT) and standardized component libraries to maintain consistent drawings.',
         icon: 'ShieldCheck',
-        image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80',
+        image: '/images/software/sections/ares-elec-schematics.jpg',
       },
       {
         title: 'Intelligent Project Documentation',
@@ -641,7 +641,7 @@ export const aresElectricalData: AresElectricalData = {
         desc: 'Maintain both schematic schematics and 2D physical layouts inside the broader project DWG container.',
       },
     ],
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/software/sections/ares-elec-documentation.jpg',
   },
   wireRouting: {
     heading: 'Calculate Project Wiring Effort More Easily',
@@ -961,7 +961,7 @@ export const aresElectricalData: AresElectricalData = {
       subtitle: 'Integrated Mechanical & Electrical',
       description: 'Develop equipment-positioning layouts and integrate them with electrical diagrams to coordinate spatial placement with electrical connections.',
       toolTags: ['Equipment Positioning', 'Wire Channels', 'Assembly Views', 'DWG Blocks'],
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80',
+      image: '/images/software/sections/ares-elec-equipment-layout.jpg',
       deliverables: ['Integrated Layout Sheet', 'Wire-Route Estimate', 'Space Clearance Verification'],
     },
     {
@@ -1128,7 +1128,7 @@ export const aresElectricalData: AresElectricalData = {
         id: 'ares-electrical-parts-symbols',
         title: 'How to Customize Parts & Symbols in ARES Electrical — Smarter DWG-Based CAD Libraries',
         desc: 'Learn how to create custom manufacturer components, define electrical connection terminals, and organize proprietary corporate symbols.',
-        thumbnail: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+        thumbnail: '/images/software/sections/ares-elec-custom-symbols.jpg',
         duration: 'Tutorial',
         badge: 'Library Customization',
       },
@@ -1168,7 +1168,7 @@ export const aresElectricalData: AresElectricalData = {
       category: 'panels',
       categoryLabel: 'Control Panels',
       caption: '2D enclosure layout drawing showing DIN rails, cable channels, and equipment placement.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/software/sections/ares-elec-panel-elevation.jpg',
       alt: 'Control panel enclosure elevation layout',
     },
     {
@@ -1431,7 +1431,7 @@ export const aresElectricalData: AresElectricalData = {
       slug: 'ares-mechanical',
       category: 'Mechanical CAD',
       desc: 'DWG mechanical engineering drafting with parts libraries and international standards.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80',
+      image: '/images/software/ares-mechanical.jpg',
     },
     {
       name: 'SketchUp Pro',

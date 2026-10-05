@@ -258,19 +258,7 @@ export const FilamentDetailPage: React.FC = () => {
               </div>
 
               {/* Price */}
-              <div className="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 font-mono">
-                    Pricing & Bulk Orders
-                  </span>
-                  <span className="px-2.5 py-0.5 bg-red-600 text-white text-[11px] font-bold rounded-md shadow-2xs">
-                    Price on Request
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Institutional, educational, and commercial bulk spool rates available with GST invoice and dispatch across India.
-                </p>
-              </div>
+              
 
               {/* Quick Specs */}
               <div className="grid grid-cols-2 gap-3">

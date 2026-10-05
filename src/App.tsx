@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AppProvider } from './context/AppContext'
 import Header from './components/Header'
@@ -7,60 +8,72 @@ import QuoteModal from './components/QuoteModal'
 import SearchModal from './components/SearchModal'
 import ScrollToTop from './components/ScrollToTop'
 
-// Pages
-import HomePage from './pages/HomePage'
-import ProductsPage from './pages/ProductsPage'
-import CategoryDetailPage from './pages/CategoryDetailPage'
-import ProductDetailPage from './pages/ProductDetailPage'
-import ServicesPage from './pages/ServicesPage'
-import ServiceDetailPage from './pages/ServiceDetailPage'
-import ShopPage from './pages/ShopPage'
-import MaterialsPage from './pages/MaterialsPage'
-import BlogPage from './pages/BlogPage'
-import BlogPostPage from './pages/BlogPostPage'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
-import CareersPage from './pages/CareersPage'
-import ResellerPage from './pages/ResellerPage'
-import LegalPage from './pages/LegalPage'
-import CartPage from './pages/CartPage'
-import CheckoutPage from './pages/CheckoutPage'
-import WishlistPage from './pages/WishlistPage'
-import MyAccountPage from './pages/MyAccountPage'
-import ScannersCategoryPage from './pages/ScannersCategoryPage'
-import DevokMQPage from './pages/DevokMQPage'
-import DevokMTPage from './pages/DevokMTPage'
-import EinscanPage from './pages/EinscanPage'
-import PrathamMiniPage from './pages/PrathamMiniPage'
-import PrathamDesktopPage from './pages/PrathamDesktopPage'
-import Pratham3Page from './pages/Pratham3Page'
-import Pratham5Page from './pages/Pratham5Page'
-import Pratham6Page from './pages/Pratham6Page'
-import PrathamX600Page from './pages/PrathamX600Page'
-import PrathamX1000Page from './pages/PrathamX1000Page'
-import Pratham3RapidPage from './pages/Pratham3RapidPage'
-import EkaHtPage from './pages/EkaHtPage'
-import EkaXlPage from './pages/EkaXlPage'
-import EkaXlePage from './pages/EkaXlePage'
-import DlpCategoryPage from './pages/DlpCategoryPage'
-import IndustrialLcdCategoryPage from './pages/IndustrialLcdCategoryPage'
-import EkaGtMaxPage from './pages/EkaGtMaxPage'
-import EkaF116kPage from './pages/EkaF116kPage'
-import EnscapePage from './pages/EnscapePage'
-import VRayPage from './pages/VRayPage'
-import CoronaPage from './pages/CoronaPage'
-import SketchUpStudioPage from './pages/SketchUpStudioPage'
-import SketchUpProScanPage from './pages/SketchUpProScanPage'
-import AresMechanicalPage from './pages/AresMechanicalPage'
-import AresElectricalPage from './pages/AresElectricalPage'
-import AresStandardPage from './pages/AresStandardPage'
-import AresCommanderPage from './pages/AresCommanderPage'
-import AresKudoPage from './pages/AresKudoPage'
-import AdminPage from './pages/AdminPage'
-import FilamentCategoryPage, { FilamentDetailPage } from './pages/FilamentCategoryPage'
-import WhitePlaDetailPage from './pages/WhitePlaDetailPage'
-import GreySilverPlaPage from './pages/GreySilverPlaPage'
-import GoldPlaPage from './pages/GoldPlaPage'
+// Lazy-loaded pages — each loads only when that route is visited
+const HomePage = lazy(() => import('./pages/HomePage'))
+const ProductsPage = lazy(() => import('./pages/ProductsPage'))
+const CategoryDetailPage = lazy(() => import('./pages/CategoryDetailPage'))
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'))
+const ServicesPage = lazy(() => import('./pages/ServicesPage'))
+const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'))
+const ShopPage = lazy(() => import('./pages/ShopPage'))
+const MaterialsPage = lazy(() => import('./pages/MaterialsPage'))
+const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const CareersPage = lazy(() => import('./pages/CareersPage'))
+const ResellerPage = lazy(() => import('./pages/ResellerPage'))
+const LegalPage = lazy(() => import('./pages/LegalPage'))
+const CartPage = lazy(() => import('./pages/CartPage'))
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'))
+const WishlistPage = lazy(() => import('./pages/WishlistPage'))
+const MyAccountPage = lazy(() => import('./pages/MyAccountPage'))
+const ScannersCategoryPage = lazy(() => import('./pages/ScannersCategoryPage'))
+const DevokMQPage = lazy(() => import('./pages/DevokMQPage'))
+const DevokMTPage = lazy(() => import('./pages/DevokMTPage'))
+const EinscanPage = lazy(() => import('./pages/EinscanPage'))
+const PrathamMiniPage = lazy(() => import('./pages/PrathamMiniPage'))
+const PrathamDesktopPage = lazy(() => import('./pages/PrathamDesktopPage'))
+const Pratham3Page = lazy(() => import('./pages/Pratham3Page'))
+const Pratham5Page = lazy(() => import('./pages/Pratham5Page'))
+const Pratham6Page = lazy(() => import('./pages/Pratham6Page'))
+const PrathamX600Page = lazy(() => import('./pages/PrathamX600Page'))
+const PrathamX1000Page = lazy(() => import('./pages/PrathamX1000Page'))
+const Pratham3RapidPage = lazy(() => import('./pages/Pratham3RapidPage'))
+const EkaHtPage = lazy(() => import('./pages/EkaHtPage'))
+const EkaXlPage = lazy(() => import('./pages/EkaXlPage'))
+const EkaXlePage = lazy(() => import('./pages/EkaXlePage'))
+const DlpCategoryPage = lazy(() => import('./pages/DlpCategoryPage'))
+const IndustrialLcdCategoryPage = lazy(() => import('./pages/IndustrialLcdCategoryPage'))
+const EkaGtMaxPage = lazy(() => import('./pages/EkaGtMaxPage'))
+const EkaF116kPage = lazy(() => import('./pages/EkaF116kPage'))
+const EnscapePage = lazy(() => import('./pages/EnscapePage'))
+const VRayPage = lazy(() => import('./pages/VRayPage'))
+const CoronaPage = lazy(() => import('./pages/CoronaPage'))
+const SketchUpStudioPage = lazy(() => import('./pages/SketchUpStudioPage'))
+const SketchUpProScanPage = lazy(() => import('./pages/SketchUpProScanPage'))
+const AresMechanicalPage = lazy(() => import('./pages/AresMechanicalPage'))
+const AresElectricalPage = lazy(() => import('./pages/AresElectricalPage'))
+const AresStandardPage = lazy(() => import('./pages/AresStandardPage'))
+const AresCommanderPage = lazy(() => import('./pages/AresCommanderPage'))
+const AresKudoPage = lazy(() => import('./pages/AresKudoPage'))
+const AdminPage = lazy(() => import('./pages/AdminPage'))
+const FilamentCategoryPage = lazy(() => import('./pages/FilamentCategoryPage'))
+const FilamentDetailPage = lazy(() => import('./pages/FilamentCategoryPage').then(m => ({ default: m.FilamentDetailPage })))
+const WhitePlaDetailPage = lazy(() => import('./pages/WhitePlaDetailPage'))
+const GreySilverPlaPage = lazy(() => import('./pages/GreySilverPlaPage'))
+const GoldPlaPage = lazy(() => import('./pages/GoldPlaPage'))
+
+// Loading fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="flex flex-col items-center space-y-3">
+      <div className="w-8 h-8 border-2 border-slate-200 border-t-red-600 rounded-full animate-spin" />
+      <span className="text-xs text-slate-400 font-medium">Loading...</span>
+    </div>
+  </div>
+)
+
 
 export default function App() {
   const location = useLocation()
@@ -73,9 +86,11 @@ export default function App() {
         {!isAdminRoute && <Header />}
 
         <main className="flex-1">
-          <Routes>
-            {/* 1. Home */}
-            <Route path="/" element={<HomePage />} />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* 1. Home */}
+              <Route path="/" element={<HomePage />} />
+
 
             {/* Dedicated 3D Scanners Category & Product Sub-pages */}
             <Route path="/3d-scanners" element={<ScannersCategoryPage />} />
@@ -475,8 +490,10 @@ export default function App() {
 
             {/* 11. Fallback redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+            </Routes>
+          </Suspense>
         </main>
+
 
         {!isAdminRoute && <Footer />}
         {!isAdminRoute && <WhatsAppButton />}

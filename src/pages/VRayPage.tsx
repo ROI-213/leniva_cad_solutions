@@ -322,11 +322,16 @@ export const VRayPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-6 space-y-6"
           >
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
-              <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-              <span className="text-xs font-bold text-blue-800 tracking-wide uppercase">
-                {vrayData.hero.eyebrow}
-              </span>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="h-8 px-2.5 py-1 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center">
+                <img src="/images/brands/chaos.jpg" alt="Chaos" className="h-full w-auto max-w-[80px] object-contain" />
+              </div>
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+                <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+                <span className="text-xs font-bold text-blue-800 tracking-wide uppercase">
+                  {vrayData.hero.eyebrow}
+                </span>
+              </div>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">

@@ -168,6 +168,8 @@ export const Header: React.FC = () => {
   interface CadSoftwareCategory {
     id: 'ares' | 'sketchup' | 'chaos'
     label: string
+    logo: string
+    secondaryLogo?: string
     description?: string
     products: CadSoftwareProduct[]
   }
@@ -176,6 +178,8 @@ export const Header: React.FC = () => {
     {
       id: 'ares',
       label: 'ARES – Graebert',
+      logo: '/images/brands/ares-cad.png',
+      secondaryLogo: '/images/brands/grabert.png',
       description: 'Professional DWG CAD, Trinity cloud/mobile collaboration & specialized engineering toolsets.',
       products: [
         { name: 'ARES Standard', slug: 'ares-standard', spec: 'Affordable 2D/3D CAD', image: '/images/software/ares-standard.jpg' },
@@ -188,6 +192,7 @@ export const Header: React.FC = () => {
     {
       id: 'sketchup',
       label: 'SketchUp – Trimble',
+      logo: '/images/brands/sketchup.png',
       description: 'Industry-standard 3D modeling, reality capture point clouds, BIM integration & LayOut documentation.',
       products: [
         { name: 'SketchUp Pro', slug: 'sketchup', spec: 'Professional 3D Modeling', image: '/images/software/sketchup-pro.jpg' },
@@ -199,6 +204,7 @@ export const Header: React.FC = () => {
     {
       id: 'chaos',
       label: 'Chaos',
+      logo: '/images/brands/chaos.jpg',
       description: 'World-leading real-time rendering, photorealistic ray tracing & architectural visualization engines.',
       products: [
         { name: 'Enscape', slug: 'enscape', spec: 'Real-Time Rendering & VR', image: '/images/software/enscape-3d.jpg' },
@@ -470,14 +476,19 @@ export const Header: React.FC = () => {
                           <div
                             key={cat.id}
                             onMouseEnter={() => setActiveCADCategory(cat.id)}
-                            className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
+                            className={`flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition-all ${
                               isSelected
                                 ? 'bg-white text-red-600 shadow-sm font-bold border border-slate-200'
                                 : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
                             }`}
                           >
-                            <span className="text-xs">{cat.label}</span>
-                            <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
+                            <div className="flex items-center space-x-2.5 min-w-0">
+                              <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0 shadow-2xs">
+                                <img src={cat.logo} alt={cat.label} className="w-full h-full object-contain" />
+                              </div>
+                              <span className="text-xs truncate">{cat.label}</span>
+                            </div>
+                            <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
                           </div>
                         )
                       })}
@@ -499,11 +510,21 @@ export const Header: React.FC = () => {
                           return (
                             <>
                               <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                                <div>
-                                  <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
-                                  {currentCat.description && (
-                                    <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{currentCat.description}</p>
+                                <div className="flex items-center gap-3">
+                                  <div className="h-10 px-2.5 py-1 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-2xs">
+                                    <img src={currentCat.logo} alt={currentCat.label} className="h-full w-auto max-w-[90px] object-contain" />
+                                  </div>
+                                  {currentCat.secondaryLogo && (
+                                    <div className="h-10 px-2.5 py-1 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-2xs">
+                                      <img src={currentCat.secondaryLogo} alt="Graebert" className="h-full w-auto max-w-[90px] object-contain" />
+                                    </div>
                                   )}
+                                  <div>
+                                    <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
+                                    {currentCat.description && (
+                                      <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{currentCat.description}</p>
+                                    )}
+                                  </div>
                                 </div>
                                 <Link
                                   to="/products/cad-software"
@@ -521,21 +542,33 @@ export const Header: React.FC = () => {
                                     key={prod.slug}
                                     to={`/products/${prod.slug}`}
                                     onClick={() => setActiveMegaMenu(null)}
-                                    className="flex items-center gap-3 p-2 rounded-xl border border-slate-200/80 hover:border-red-300 hover:bg-red-50/30 hover:shadow-xs transition-all group bg-white"
+                                    className="flex items-center gap-3 p-2 rounded-xl border border-slate-200/80 hover:border-red-300 hover:bg-red-50/30 hover:shadow-xs transition-all group bg-white relative"
                                   >
-                                    <div className="w-13 h-13 rounded-lg overflow-hidden border border-slate-200 bg-slate-900 shrink-0">
+                                    <div className="relative w-13 h-13 rounded-lg overflow-hidden border border-slate-200 bg-slate-900 shrink-0">
                                       <img
                                         src={prod.image}
                                         alt={prod.name}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                         loading="lazy"
                                       />
+                                      <div className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded bg-white/95 p-0.5 shadow-2xs flex items-center justify-center">
+                                        <img src={currentCat.logo} alt="" className="w-full h-full object-contain" />
+                                      </div>
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                      <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 block truncate">
-                                        {prod.name}
-                                      </span>
-                                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">{prod.spec}</p>
+                                      <div className="flex items-center justify-between gap-1">
+                                        <span className="text-xs font-bold text-slate-900 group-hover:text-red-600 block truncate">
+                                          {prod.name}
+                                        </span>
+                                      </div>
+                                      <div className="flex items-center justify-between gap-2 mt-0.5">
+                                        <p className="text-[11px] text-slate-500 line-clamp-1">{prod.spec}</p>
+                                        <img
+                                          src={currentCat.logo}
+                                          alt={currentCat.label}
+                                          className="h-3.5 w-auto max-w-[42px] object-contain opacity-70 group-hover:opacity-100 transition-opacity shrink-0"
+                                        />
+                                      </div>
                                     </div>
                                   </Link>
                                 ))}
@@ -879,7 +912,12 @@ export const Header: React.FC = () => {
                     </Link>
                     {cadSoftwareCategories.map(cat => (
                       <div key={cat.id} className="pt-2">
-                        <span className="block text-xs font-bold text-slate-800 mb-1">{cat.label}</span>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <div className="h-5 px-1.5 py-0.5 rounded bg-white border border-slate-200 flex items-center justify-center">
+                            <img src={cat.logo} alt={cat.label} className="h-full w-auto max-w-[48px] object-contain" />
+                          </div>
+                          <span className="block text-xs font-bold text-slate-800">{cat.label}</span>
+                        </div>
                         <div className="space-y-1.5">
                           {cat.products.map(p => (
                             <Link
@@ -888,12 +926,17 @@ export const Header: React.FC = () => {
                               onClick={() => setIsMobileMenuOpen(false)}
                               className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 text-slate-700 hover:text-red-600 transition-colors"
                             >
-                              <img
-                                src={p.image}
-                                alt={p.name}
-                                className="w-8 h-8 rounded-md object-cover border border-slate-200 shrink-0"
-                                loading="lazy"
-                              />
+                              <div className="relative w-8 h-8 rounded-md overflow-hidden border border-slate-200 shrink-0">
+                                <img
+                                  src={p.image}
+                                  alt={p.name}
+                                  className="w-full h-full object-cover"
+                                  loading="lazy"
+                                />
+                                <div className="absolute bottom-0 right-0 w-3 h-3 bg-white/95 p-0.5 rounded-xs flex items-center justify-center">
+                                  <img src={cat.logo} alt="" className="w-full h-full object-contain" />
+                                </div>
+                              </div>
                               <div className="min-w-0 flex-1">
                                 <span className="block text-xs font-semibold truncate">{p.name}</span>
                                 <span className="block text-[10px] text-slate-400 truncate">{p.spec}</span>

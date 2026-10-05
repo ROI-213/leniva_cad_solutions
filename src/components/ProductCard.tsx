@@ -8,9 +8,20 @@ interface ProductCardProps {
   product: Product
 }
 
+const brandLogoMap: Record<string, string> = {
+  'Graebert': '/images/brands/grabert.png',
+  'Gräbert': '/images/brands/grabert.png',
+  'Trimble': '/images/brands/sketchup.png',
+  'SketchUp': '/images/brands/sketchup.png',
+  'Chaos': '/images/brands/chaos.jpg',
+  'ARES': '/images/brands/ares-cad.png',
+  'Makerverse': '/images/brands/makerverse.png',
+}
+
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { openQuoteModal, toggleWishlist, isInWishlist } = useApp()
   const inWishlist = isInWishlist(product.id)
+  const brandLogo = brandLogoMap[product.brand]
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 hover:border-red-300 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
@@ -69,8 +80,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Card Content */}
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          <div className="text-[11px] font-bold text-red-600 uppercase tracking-wider">
-            {product.brand}
+          <div className="flex items-center justify-between min-h-[22px] mb-1">
+            {brandLogo ? (
+              <img
+                src={brandLogo}
+                alt={product.brand}
+                className="h-5 w-auto max-w-[95px] object-contain"
+                loading="lazy"
+              />
+            ) : (
+              <div className="text-[11px] font-bold text-red-600 uppercase tracking-wider">
+                {product.brand}
+              </div>
+            )}
+            <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+              {product.technology}
+            </span>
           </div>
           <Link to={`/products/${product.slug}`} className="block mt-0.5">
             <h3 className="text-base font-bold text-slate-950 group-hover:text-red-600 transition-colors">

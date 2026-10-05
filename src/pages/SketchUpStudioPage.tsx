@@ -214,9 +214,14 @@ export const SketchUpStudioPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
-                <Box className="w-3.5 h-3.5" />
-                <span>{sketchUpStudioData.hero.eyebrow}</span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="h-8 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 shadow-2xs flex items-center justify-center">
+                  <img src="/images/brands/sketchup.png" alt="Trimble SketchUp" className="h-full w-auto max-w-[95px] object-contain" />
+                </div>
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+                  <Box className="w-3.5 h-3.5" />
+                  <span>{sketchUpStudioData.hero.eyebrow}</span>
+                </div>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">

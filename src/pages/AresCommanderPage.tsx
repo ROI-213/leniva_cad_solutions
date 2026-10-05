@@ -282,9 +282,17 @@ export const AresCommanderPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold tracking-wide">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{data.hero.eyebrow}</span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="h-8 px-2.5 py-1 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center">
+                  <img src="/images/brands/grabert.png" alt="Graebert" className="h-full w-auto max-w-[85px] object-contain" />
+                </div>
+                <div className="h-8 px-2.5 py-1 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center">
+                  <img src="/images/brands/ares-cad.png" alt="ARES CAD" className="h-full w-auto max-w-[85px] object-contain" />
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold tracking-wide">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{data.hero.eyebrow}</span>
+                </div>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-[1.12]">

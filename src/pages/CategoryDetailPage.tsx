@@ -75,6 +75,26 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
               {category.description}
             </p>
 
+            {slug === 'cad-software' && (
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Authorized Brand Portfolio:</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                    <img src="/images/brands/ares-cad.png" alt="ARES" className="h-full w-auto max-w-[70px] object-contain" />
+                  </div>
+                  <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                    <img src="/images/brands/grabert.png" alt="Graebert" className="h-full w-auto max-w-[70px] object-contain" />
+                  </div>
+                  <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                    <img src="/images/brands/sketchup.png" alt="Trimble SketchUp" className="h-full w-auto max-w-[75px] object-contain" />
+                  </div>
+                  <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                    <img src="/images/brands/chaos.jpg" alt="Chaos" className="h-full w-auto max-w-[65px] object-contain" />
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="pt-3 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => openQuoteModal(`${category.title} Category Inquiry`)}

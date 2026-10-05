@@ -225,6 +225,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
               {/* Brand Logo / Label */}
               {(() => {
                 const brandLogoMap: Record<string, string> = {
+                  'Graebert': '/images/brands/grabert.png',
                   'Gräbert': '/images/brands/grabert.png',
                   'Trimble': '/images/brands/sketchup.png',
                   'SketchUp': '/images/brands/sketchup.png',

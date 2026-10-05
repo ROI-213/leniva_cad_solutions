@@ -182,11 +182,11 @@ export const EnscapePage: React.FC = () => {
       {/* ====================================================
           1. STICKY PRODUCT SUB-NAV BAR (COMPACT & RESPONSIVE)
          ==================================================== */}
-      <div className="sticky top-[var(--site-header-height,118px)] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all">
+      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center space-x-3 shrink-0">
             <span className="text-sm font-black text-slate-950 tracking-tight">Chaos Enscape</span>
-            <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-mono font-bold uppercase tracking-wider">
+            <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
               Real-Time Rendering
             </span>
           </div>

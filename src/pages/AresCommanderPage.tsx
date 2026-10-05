@@ -211,7 +211,7 @@ export const AresCommanderPage: React.FC = () => {
       {/* ====================================================
           2. STICKY SUB-NAVIGATION
          ==================================================== */}
-      <div className="sticky top-[var(--site-header-height,118px)] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs transition-all">
+      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-sm sm:text-base font-black text-slate-900 tracking-tight flex items-center gap-2">

@@ -249,12 +249,12 @@ export const Pratham3RapidPage: React.FC = () => {
       {/* ====================================================
           2. STICKY PRODUCT NAVIGATION BAR
          ==================================================== */}
-      <div className="sticky top-[var(--site-header-height,118px)] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all">
+      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-base font-black text-slate-900 tracking-tight flex items-center gap-1.5">
               <span>Pratham 3 Rapid</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono uppercase bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">
+              <span className="hidden sm:inline-block text-[10px] font-mono uppercase bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0">
                 500 mm/s High-Speed
               </span>
             </span>
@@ -2508,12 +2508,6 @@ export const Pratham3RapidPage: React.FC = () => {
 const galleryImages = [
   { url: '/images/products/pratham-3-rapid.png', title: 'Full Front Machine View — Pratham 3 Rapid' },
   { url: '/images/products/pratham-3-rapid-banner.png', title: 'Industrial Enclosure & High-Speed Gantry' },
-  { url: '/images/pratham3-work/01-real-functional-parts.jpg', title: 'Printed Engineering Prototypes & Assemblies' },
-  { url: '/images/pratham3-work/03-complex-engineering-parts.jpg', title: 'High-Speed Complex Production Parts' },
-  { url: '/images/pratham3-work/07-jigs-fixtures-industrial-tools.jpg', title: 'Industrial Jigs, Fixtures & Tooling' },
-  { url: '/images/pratham3-work/05-flexible-tpu-components.jpg', title: 'Flexible TPU Dampeners and Gaskets' },
-  { url: '/images/pratham3-work/02-automotive-scale-mockups.jpg', title: 'Automotive Sensor Housings & Brackets' },
-  { url: '/images/pratham3-work/08-impact-guards-robot-bumpers.jpg', title: 'Impact Guards & Robotic End-Effectors' },
 ]
 
 // 14 Official FAQs

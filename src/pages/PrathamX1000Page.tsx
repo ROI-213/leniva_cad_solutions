@@ -237,12 +237,12 @@ export const PrathamX1000Page: React.FC = () => {
       {/* ====================================================
           2. STICKY PRODUCT NAVIGATION BAR
          ==================================================== */}
-      <div className="sticky top-[var(--site-header-height,118px)] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all">
+      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-base font-black text-slate-900 tracking-tight flex items-center gap-1.5">
               <span>Pratham X 1000</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono uppercase bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">
+              <span className="hidden sm:inline-block text-[10px] font-mono uppercase bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0">
                 1 m³ JUMBO
               </span>
             </span>

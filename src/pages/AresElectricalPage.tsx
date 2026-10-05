@@ -286,7 +286,7 @@ export const AresElectricalPage: React.FC = () => {
       </section>
 
       {/* 4. STICKY SUB-NAVIGATION */}
-      <nav className="sticky top-[var(--site-header-height,68px)] z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+      <nav className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between overflow-x-auto no-scrollbar py-2.5 space-x-1 sm:space-x-2 text-xs font-medium">
             <div className="flex items-center space-x-1 sm:space-x-2 shrink-0">

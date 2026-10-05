@@ -179,7 +179,7 @@ export const CoronaPage: React.FC = () => {
       {/* ====================================================
           2. STICKY SUB-NAVIGATION BAR
          ==================================================== */}
-      <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
           <div className="flex items-center space-x-3">
             <span className="text-sm font-black tracking-tight text-slate-950 uppercase flex items-center gap-1.5">

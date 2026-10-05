@@ -53,6 +53,7 @@ const CoronaPage = lazy(() => import('./pages/CoronaPage'))
 const SketchUpStudioPage = lazy(() => import('./pages/SketchUpStudioPage'))
 const SketchUpProScanPage = lazy(() => import('./pages/SketchUpProScanPage'))
 const SketchUpProPage = lazy(() => import('./pages/SketchUpProPage'))
+const SketchUpProAdvancedPage = lazy(() => import('./pages/SketchUpProAdvancedPage'))
 const AresMechanicalPage = lazy(() => import('./pages/AresMechanicalPage'))
 const AresElectricalPage = lazy(() => import('./pages/AresElectricalPage'))
 const AresStandardPage = lazy(() => import('./pages/AresStandardPage'))
@@ -277,6 +278,14 @@ export default function App() {
             <Route path="/products/sketchup-pro-scan" element={<SketchUpProScanPage />} />
             <Route path="/product/sketchup-pro-scan" element={<SketchUpProScanPage />} />
             <Route path="/sketchup-pro-scan" element={<SketchUpProScanPage />} />
+
+            {/* Dedicated SketchUp Pro Advanced Workflows Product Page */}
+            <Route path="/products/sketchup-pro-advanced-workflows" element={<SketchUpProAdvancedPage />} />
+            <Route path="/product/sketchup-pro-advanced-workflows" element={<SketchUpProAdvancedPage />} />
+            <Route path="/sketchup-pro-advanced-workflows" element={<SketchUpProAdvancedPage />} />
+            <Route path="/products/sketchup-advanced" element={<SketchUpProAdvancedPage />} />
+            <Route path="/product/sketchup-advanced" element={<SketchUpProAdvancedPage />} />
+            <Route path="/sketchup-advanced" element={<SketchUpProAdvancedPage />} />
 
             {/* Dedicated ARES Mechanical Product Page */}
             <Route path="/products/ares-mechanical" element={<AresMechanicalPage />} />

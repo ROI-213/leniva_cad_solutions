@@ -1,4 +1,4 @@
-export interface SketchUpStudioPlan {
+﻿export interface SketchUpStudioPlan {
   id: string
   name: string
   tagline: string
@@ -196,7 +196,7 @@ export const sketchUpStudioData: SketchUpStudioData = {
     heading: 'Design With Real-World Data. Visualize Without Limits.',
     subheading: 'SketchUp Studio for advanced 3D modeling, point-cloud workflows, Revit interoperability, and photorealistic visualization.',
     description: 'Bring your ideas to life with SketchUp Studio. Combine intuitive 3D modeling with real-world laser scan data, seamless Revit interoperability, and photorealistic V-Ray rendering to accelerate demanding architectural, engineering, and design-build workflows.',
-    image: '/images/software/sketchup-pro.jpg',
+    image: '/images/software/sketchup-studio.jpg',
     badge: 'Complete Architectural Powerhouse',
     stats: [
       { label: 'Platform Architecture', value: 'Windows OS' },

@@ -166,6 +166,7 @@ export interface AresCommanderData {
   aresTrinity: {
     heading: string
     description: string
+    image?: string
     components: {
       name: string
       platformRole: string
@@ -347,7 +348,7 @@ export const aresCommanderData: AresCommanderData = {
       'BIM-to-CAD Workflows',
       'ARES Trinity Cloud & Mobile',
     ],
-    image: '/images/ares-commander/ares-commander-hero.jpg',
+    image: '/images/software/ares-commander.jpg',
     badge: 'Flagship Professional CAD',
     strip: [
       { label: 'File Format', value: 'Native DWG / DXF' },
@@ -676,6 +677,7 @@ export const aresCommanderData: AresCommanderData = {
   aresTrinity: {
     heading: 'One Connected CAD Ecosystem — Desktop, Cloud and Mobile',
     description: 'ARES Trinity brings together three components: ARES Commander (desktop CAD), ARES Kudo (cloud CAD), and ARES Touch (mobile CAD). Together, these applications provide workflows for accessing, editing, synchronizing and sharing DWG drawings across supported devices.',
+    image: '/images/software/ares-trinity.jpg',
     components: [
       {
         name: 'ARES Commander',

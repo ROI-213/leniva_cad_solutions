@@ -1,4 +1,4 @@
-export interface ProScanPlan {
+﻿export interface ProScanPlan {
   id: string
   name: string
   tagline: string
@@ -203,7 +203,7 @@ export const proScanData: ProScanData = {
     eyebrow: 'SKETCHUP PRO SCAN SUBSCRIPTION',
     heading: 'From Reality to 3D. With Precision.',
     description: 'Bring real-world context into your design process. Import point clouds, model directly from scan data, create professional 2D documentation, and improve project planning with SketchUp Pro Scan on Windows.',
-    image: '/images/software/sketchup-pro.jpg',
+    image: '/images/software/sketchup-scan.jpg',
     badge: 'Scan-to-3D Engineering Solution',
     chips: [
       'Point Cloud Modeling',

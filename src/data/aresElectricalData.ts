@@ -1,4 +1,4 @@
-export interface AresElectricalStandardItem {
+﻿export interface AresElectricalStandardItem {
   id: string
   name: string
   fullName: string
@@ -309,7 +309,7 @@ export const aresElectricalData: AresElectricalData = {
     eyebrow: 'GRAEBERT | ELECTRICAL CAD',
     heading: 'Automate Electrical Design in DWG',
     supportingText: 'Create electrical schematics, wiring diagrams, and control panel layouts with a modern DWG-compatible ECAD solution. Automate wire numbering, component tagging, cross-referencing, and project reporting while maintaining standardized electrical documentation.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/software/ares-electrical.jpg',
     badge: 'DWG-Native Electrical ECAD',
     featureChips: [
       'DWG-Compatible ECAD',

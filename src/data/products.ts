@@ -1,4 +1,4 @@
-import { Product } from '../types'
+﻿import { Product } from '../types'
 
 export const products: Product[] = [
   // --- FDM 3D PRINTERS ---
@@ -1054,8 +1054,8 @@ export const products: Product[] = [
     tagline: 'Professional Multi-Platform DWG CAD with Trinity Integration',
     shortDescription: 'Industrial-grade 2D & 3D CAD system featuring Trinity technology for synchronized desktop, cloud (Kudo), and mobile (Touch) workflows.',
     description: 'ARES Commander is Graebert’s flagship professional CAD software. Built on modern multi-core architecture, it brings lightning-fast 2D drawing generation, ACIS solid 3D modeling, BIM drawing extraction from Revit/IFC files, and seamless synchronization with cloud and mobile devices.',
-    heroImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80'],
+    heroImage: '/images/software/ares-commander.jpg',
+    images: ['/images/software/ares-commander.jpg'],
     keySpecs: [
       { label: 'Trinity Concept', value: 'Desktop + Cloud (Kudo) + Mobile (Touch)' },
       { label: '3D Solids', value: 'ACIS 3D Solid Modeling Engine' },
@@ -1091,8 +1091,8 @@ export const products: Product[] = [
     tagline: 'Cloud & Mobile Collaborative CAD Ecosystem',
     shortDescription: 'Seamless cloud CAD (ARES Kudo) and mobile CAD (ARES Touch) for real-time collaboration, field inspections, and zero-install drawing access.',
     description: 'ARES Trinity unifies desktop power with cloud agility. With ARES Kudo running in any modern web browser and ARES Touch on iOS/Android, teams can share live DWG links, markup drawings on construction sites, record voice notes, and collaborate without email attachments or version conflicts.',
-    heroImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80'],
+    heroImage: '/images/software/ares-trinity.jpg',
+    images: ['/images/software/ares-trinity.jpg'],
     keySpecs: [
       { label: 'Cloud Access', value: 'Zero-install browser CAD (Kudo)' },
       { label: 'Mobile Access', value: 'Android & iOS Full CAD (Touch)' },
@@ -1125,8 +1125,8 @@ export const products: Product[] = [
     tagline: 'Specialized 2D Mechanical CAD with Part Standards',
     shortDescription: 'Comprehensive mechanical drafting solution with international standard libraries, GD&T symbols, weld notations, and bill-of-materials generators.',
     description: 'ARES Mechanical combines the power of ARES Commander with dedicated mechanical engineering drafting tools. Includes standard hardware parts (ISO, ANSI, DIN, JIS), automated ballooning, surface finish symbols, and parametric shaft/gear generators.',
-    heroImage: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80'],
+    heroImage: '/images/software/ares-mechanical.jpg',
+    images: ['/images/software/ares-mechanical.jpg'],
     keySpecs: [
       { label: 'Standards', value: 'ISO, DIN, ANSI, JIS, GB' },
       { label: 'BOM Engine', value: 'Automated Part Lists & Callouts' },
@@ -1159,8 +1159,8 @@ export const products: Product[] = [
     tagline: 'Intelligent Electrical Schematic & Panel Layout CAD',
     shortDescription: 'Dedicated electrical engineering software for circuit schematics, harness wiring, control cabinet design, and automated wire terminal lists.',
     description: 'ARES Electrical equips automation and electrical engineers with purpose-built drafting engines for electrical documentation. Features real-time cross-referencing between schematics and physical panel layouts, automated terminal strip generation, and manufacturer component databases.',
-    heroImage: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80'],
+    heroImage: '/images/software/ares-electrical.jpg',
+    images: ['/images/software/ares-electrical.jpg'],
     keySpecs: [
       { label: 'Schematics', value: 'Intelligent 2D Circuit Diagrams' },
       { label: 'Panels', value: 'Cabinet Layout with Real Dimensions' },
@@ -1195,8 +1195,8 @@ export const products: Product[] = [
     tagline: 'Scan-to-BIM & Point Cloud Modeling for SketchUp',
     shortDescription: 'Integrated point cloud viewing and modeling extension for SketchUp Pro, allowing direct modeling over 3D laser scanner data.',
     description: 'SketchUp Pro Scan enables architects and surveyors to bring real-world laser scans directly into the SketchUp modeling space. Snap geometry to point clouds, extract floor elevations, create as-built BIM models, and streamline retrofit workflows.',
-    heroImage: '/images/software/sketchup-pro.jpg',
-    images: ['/images/software/sketchup-pro.jpg'],
+    heroImage: '/images/software/sketchup-scan.jpg',
+    images: ['/images/software/sketchup-scan.jpg'],
     keySpecs: [
       { label: 'Point Cloud Support', value: 'E57, LAS, LAZ, PTS, RCP' },
       { label: 'Integration', value: 'Native SketchUp Pro Plugin' },
@@ -1228,8 +1228,8 @@ export const products: Product[] = [
     tagline: 'Enterprise Parametric & Computational Modeling Workflows',
     shortDescription: 'Specialized enterprise bundles incorporating dynamic components, parametric extensions, IFC classification, and automated LayOut sets.',
     description: 'Designed for high-throughput design practices, SketchUp Pro Advanced Workflows packages advanced ruby script automation, parametric joinery libraries, customized construction drawing templates, and multi-user Trimble Connect cloud governance.',
-    heroImage: '/images/software/sketchup-pro.jpg',
-    images: ['/images/software/sketchup-pro.jpg'],
+    heroImage: '/images/software/sketchup-advanced.jpg',
+    images: ['/images/software/sketchup-advanced.jpg'],
     keySpecs: [
       { label: 'Automation', value: 'Custom Ruby Extension Pipelines' },
       { label: 'Templates', value: 'Parametric LayOut Drawing Sets' },
@@ -1259,8 +1259,8 @@ export const products: Product[] = [
     tagline: 'The Complete Architectural & Visualization Powerhouse',
     shortDescription: 'Trimble’s ultimate software bundle including SketchUp Pro, V-Ray photorealistic rendering, Scan Essentials point cloud tools, and Revit importer.',
     description: 'SketchUp Studio provides everything needed to create, analyze, and present exceptional architecture. From importing Revit models into SketchUp with a single click, to modeling over laser scans and creating photo-real marketing renderings in V-Ray, Studio empowers full-cycle architecture and engineering firms.',
-    heroImage: '/images/software/sketchup-pro.jpg',
-    images: ['/images/software/sketchup-pro.jpg'],
+    heroImage: '/images/software/sketchup-studio.jpg',
+    images: ['/images/software/sketchup-studio.jpg'],
     keySpecs: [
       { label: 'Includes', value: 'SketchUp Pro + V-Ray + Scan Essentials + Revit Importer' },
       { label: 'Platform', value: 'Windows (Studio Bundle)' },

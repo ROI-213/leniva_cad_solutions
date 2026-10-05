@@ -238,7 +238,7 @@ export const aresMechanicalData: AresMechanicalData = {
     eyebrow: 'GRAEBERT | MECHANICAL CAD',
     heading: 'Professional 2D Mechanical CAD in DWG',
     supportingText: 'Create detailed mechanical drawings with a specialized CAD environment built for engineers and designers. ARES Mechanical combines native DWG editing with intelligent mechanical tools, standardized components, automated layers, and production-ready documentation.',
-    image: '/images/ares-mechanical/ares-hero.jpg',
+    image: '/images/software/ares-mechanical.jpg',
     badge: 'Native DWG Mechanical Engine',
     labels: [
       'DWG-Based CAD',

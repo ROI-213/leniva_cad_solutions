@@ -892,6 +892,29 @@ export const AresCommanderPage: React.FC = () => {
             </p>
           </div>
 
+          {/* Trinity Ecosystem Showcase Banner */}
+          {data.aresTrinity.image && (
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 group">
+              <div className="relative aspect-16/9 sm:aspect-21/9 w-full overflow-hidden bg-slate-950">
+                <img
+                  src={data.aresTrinity.image}
+                  alt="ARES Trinity - Connected CAD Across Desktop, Cloud, and Mobile"
+                  className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4 sm:p-6 pointer-events-none">
+                <div>
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-blue-600/90 text-white text-[11px] font-mono uppercase tracking-wider font-bold mb-1.5 shadow-xs">
+                    Graebert ARES Trinity Ecosystem
+                  </span>
+                  <p className="text-xs sm:text-sm text-slate-200 max-w-2xl">
+                    Seamless CAD design continuity connecting ARES Commander (Desktop), ARES Kudo (Cloud Browser), and ARES Touch (Mobile).
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* 3 Devices (Desktop + Cloud + Mobile) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {data.aresTrinity.components.map((comp, idx) => (

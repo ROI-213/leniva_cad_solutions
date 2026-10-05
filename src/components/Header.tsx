@@ -22,8 +22,9 @@ import {
   Linkedin,
   Youtube,
   Instagram,
-  ArrowRight,
   Target,
+  CircleDot,
+  ArrowRight,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { siteConfig } from '../data/siteConfig'
@@ -33,7 +34,7 @@ export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null)
-  const [activeMegaCategory, setActiveMegaCategory] = useState<'fdm' | 'dlp' | 'lcd' | 'scanners'>('fdm')
+  const [activeMegaCategory, setActiveMegaCategory] = useState<'fdm' | 'dlp' | 'lcd' | 'scanners' | 'filaments'>('fdm')
   const [activeCADCategory, setActiveCADCategory] = useState<'ares' | 'sketchup' | 'chaos'>('ares')
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null)
 
@@ -76,7 +77,7 @@ export const Header: React.FC = () => {
   }
 
   interface MegaCategory {
-    id: 'fdm' | 'dlp' | 'lcd' | 'scanners'
+    id: 'fdm' | 'dlp' | 'lcd' | 'scanners' | 'filaments'
     label: string
     icon: any
     route: string
@@ -135,6 +136,21 @@ export const Header: React.FC = () => {
         { name: '3DeVOK MT', slug: '3devok-mt', spec: '0.04 mm • 34 Blue + 22 IR Lasers', badge: 'Flagship' },
         { name: '3DeVOK MQ', slug: '3devok-mq', spec: '0.08 mm • 24-Bit Color • Wireless Ready', badge: 'Color 3D' },
         { name: 'EINSTAR', slug: 'einscan', spec: 'Handheld Structured Light Scanner', badge: 'Portable' },
+      ],
+    },
+    {
+      id: 'filaments' as const,
+      label: '3D Printer Filaments',
+      icon: CircleDot,
+      route: '/products/filaments',
+      description: 'Make3D genuine 1.75 mm PLA and PLA+ filaments across 8 vivid colours.',
+      products: [
+        { name: 'PLA White (1 KG)', slug: 'filaments/pla-white-1kg-175mm', spec: '1.75 mm • Easy Print', badge: 'Popular' },
+        { name: 'PLA+ Grey / Silver', slug: 'filaments/plaplus-grey-silver-1kg-175mm', spec: '1.75 mm • High Toughness' },
+        { name: 'PLA+ Black', slug: 'filaments/plaplus-black-1kg-175mm', spec: '1.75 mm • Pro Matte', badge: 'Top Rated' },
+        { name: 'PLA+ Blue', slug: 'filaments/plaplus-blue-1kg-175mm', spec: '1.75 mm • Vibrant Finish' },
+        { name: 'PLA+ Gold', slug: 'filaments/plaplus-gold-1kg-175mm', spec: '1.75 mm • Metallic Finish' },
+        { name: 'PLA+ Red', slug: 'filaments/plaplus-red-1kg-175mm', spec: '1.75 mm • High Strength' },
       ],
     },
   ]

@@ -43,6 +43,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ forcedCategory }) => {
     { id: 'dlp', label: 'DLP 3D Printers' },
     { id: 'lcd', label: 'Industrial LCD Printers' },
     { id: 'scanners', label: '3D Scanners' },
+    { id: 'make3d-filaments', label: 'PLA & PLA+ Filaments' },
     { id: 'filaments', label: 'Standard Filaments' },
     { id: 'special-filaments', label: 'CarbonX Specialty Filaments' },
     { id: 'resin', label: '3D Printer Resins' },

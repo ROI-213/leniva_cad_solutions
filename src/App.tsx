@@ -56,6 +56,7 @@ import AresElectricalPage from './pages/AresElectricalPage'
 import AresStandardPage from './pages/AresStandardPage'
 import AresCommanderPage from './pages/AresCommanderPage'
 import AdminPage from './pages/AdminPage'
+import FilamentCategoryPage, { FilamentDetailPage } from './pages/FilamentCategoryPage'
 
 export default function App() {
   const location = useLocation()
@@ -124,7 +125,11 @@ export default function App() {
             <Route path="/products/materials" element={<MaterialsPage />} />
             <Route
               path="/products/filaments"
-              element={<MaterialsPage forcedCategory="filaments" />}
+              element={<FilamentCategoryPage />}
+            />
+            <Route
+              path="/products/filaments/:slug"
+              element={<FilamentDetailPage />}
             />
             <Route
               path="/products/resins"
@@ -344,7 +349,19 @@ export default function App() {
             />
             <Route
               path="/shop/filaments"
-              element={<ShopPage forcedCategory="filaments" />}
+              element={<FilamentCategoryPage />}
+            />
+            <Route
+              path="/shop/filaments/:slug"
+              element={<FilamentDetailPage />}
+            />
+            <Route
+              path="/3d-printer-filament"
+              element={<FilamentCategoryPage />}
+            />
+            <Route
+              path="/3d-printer-filament/:slug"
+              element={<FilamentDetailPage />}
             />
             <Route
               path="/shop/special-filaments"

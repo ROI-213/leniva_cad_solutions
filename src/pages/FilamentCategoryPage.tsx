@@ -22,6 +22,8 @@ import {
   type FilamentProduct,
 } from '../data/filamentsData'
 import { useApp } from '../context/AppContext'
+import WhitePlaDetailPage from './WhitePlaDetailPage'
+import GreySilverPlaPage from './GreySilverPlaPage'
 
 
 // ─── FilamentCard Component ──────────────────────────────────────────────────
@@ -165,7 +167,22 @@ const FilamentCard: React.FC<{ product: FilamentProduct }> = ({ product }) => {
 
 // ─── FilamentDetailPage (for individual product by slug) ─────────────────────
 export const FilamentDetailPage: React.FC = () => {
-  const slug = window.location.pathname.split('/').pop()
+  const pathParts = window.location.pathname.split('/').filter(Boolean)
+  const slug = pathParts[pathParts.length - 1]
+
+  if (slug === 'pla-white-1kg-175mm' || slug === 'pla-3d-printer-filament-white' || slug === 'pla-white') {
+    return <WhitePlaDetailPage />
+  }
+
+  if (
+    slug === 'plaplus-grey-silver-1kg-175mm' ||
+    slug === 'pla-plus-3d-printer-filament-grey-silver' ||
+    slug === 'plaplus-grey' ||
+    slug === 'pla-grey'
+  ) {
+    return <GreySilverPlaPage />
+  }
+
   const product = filamentProducts.find(p => p.slug === slug)
 
   if (!product) {

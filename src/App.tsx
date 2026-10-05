@@ -57,6 +57,8 @@ import AresStandardPage from './pages/AresStandardPage'
 import AresCommanderPage from './pages/AresCommanderPage'
 import AdminPage from './pages/AdminPage'
 import FilamentCategoryPage, { FilamentDetailPage } from './pages/FilamentCategoryPage'
+import WhitePlaDetailPage from './pages/WhitePlaDetailPage'
+import GreySilverPlaPage from './pages/GreySilverPlaPage'
 
 export default function App() {
   const location = useLocation()
@@ -369,6 +371,30 @@ export default function App() {
             />
             <Route
               path="/3d-printer-filament/:slug"
+              element={<FilamentDetailPage />}
+            />
+            <Route
+              path="/product/pla-3d-printer-filament-white"
+              element={<WhitePlaDetailPage />}
+            />
+            <Route
+              path="/product/pla-3d-printer-filament-white/"
+              element={<WhitePlaDetailPage />}
+            />
+            <Route
+              path="/product/pla-plus-3d-printer-filament-grey-silver"
+              element={<GreySilverPlaPage />}
+            />
+            <Route
+              path="/product/pla-plus-3d-printer-filament-grey-silver/"
+              element={<GreySilverPlaPage />}
+            />
+            <Route
+              path="/product/plaplus-grey-silver-1kg-175mm"
+              element={<GreySilverPlaPage />}
+            />
+            <Route
+              path="/product/:slug"
               element={<FilamentDetailPage />}
             />
             <Route

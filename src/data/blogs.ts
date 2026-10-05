@@ -1,4 +1,9 @@
 import { BlogPost } from '../types'
+import blogReverseEngineering from '../assets/blogs/blog-reverse-engineering.jpg'
+import blogFdmLcdDlp from '../assets/blogs/blog-fdm-lcd-dlp.jpg'
+import blog3dScanningInspection from '../assets/blogs/blog-3d-scanning-inspection.jpg'
+import blogCadAdditiveManufacturing from '../assets/blogs/blog-cad-additive-manufacturing.jpg'
+import blogIndustrial3dPrinting from '../assets/blogs/blog-industrial-3d-printing.jpg'
 
 export const blogPosts: BlogPost[] = [
   {
@@ -9,7 +14,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     date: 'March 14, 2026',
     author: { name: 'Rajesh Nair', role: 'Head of Metrology & CAD' },
-    image: '/images/blogs/blog-reverse-engineering.jpg',
+    image: blogReverseEngineering,
     excerpt: 'Explore how modern 3D scanning and scan-to-CAD software enable engineers to reconstruct legacy components, fix worn dies, and extract design intent.',
     tags: ['Reverse Engineering', '3D Scanning', 'CAD Modeling', 'QuickSurface'],
     content: `
@@ -46,7 +51,7 @@ Using specialized reverse engineering software like QuickSurface, cross-sectiona
     readTime: '8 min read',
     date: 'February 28, 2026',
     author: { name: 'Arun Kulkarni', role: 'Additive Applications Specialist' },
-    image: '/images/blogs/blog-fdm-lcd-dlp.jpg',
+    image: blogFdmLcdDlp,
     excerpt: 'A comprehensive engineering comparison of FDM, LCD, and DLP additive technologies across surface finish, mechanical strength, build speed, and cost.',
     tags: ['FDM', 'LCD', 'DLP', 'Additive Manufacturing', 'Materials'],
     content: `
@@ -81,7 +86,7 @@ Selecting the correct additive manufacturing process is essential for achieving 
     readTime: '5 min read',
     date: 'February 12, 2026',
     author: { name: 'Pooja Deshmukh', role: 'Metrology Specialist' },
-    image: '/images/blogs/blog-3d-scanning-inspection.jpg',
+    image: blog3dScanningInspection,
     excerpt: 'Discover how non-contact optical 3D scanning eliminates inspection bottlenecks, enables full-surface GD&T color maps, and shortens time-to-market.',
     tags: ['Quality Inspection', '3D Scanning', 'GD&T', 'Metrology'],
     content: `
@@ -109,7 +114,7 @@ By capturing ergonomics directly from physical clay mockups or human contours, 3
     readTime: '7 min read',
     date: 'January 25, 2026',
     author: { name: 'Sameer Joshi', role: 'Principal CAD Architect' },
-    image: '/images/blogs/blog-cad-additive-manufacturing.jpg',
+    image: blogCadAdditiveManufacturing,
     excerpt: 'Learn how Design for Additive Manufacturing (DfAM), topology optimization, and tools like SketchUp Pro and V-Ray streamline digital product development.',
     tags: ['CAD Software', 'SketchUp', 'Enscape', 'DfAM', 'Engineering'],
     content: `
@@ -137,7 +142,7 @@ Software like SketchUp Pro, combined with real-time renderers like Enscape and C
     readTime: '6 min read',
     date: 'January 10, 2026',
     author: { name: 'Vikram Patel', role: 'Industrial Manufacturing Consultant' },
-    image: '/images/blogs/blog-industrial-3d-printing.jpg',
+    image: blogIndustrial3dPrinting,
     excerpt: 'Explore real-world case studies of Indian manufacturers using industrial FDM and SLA to slash tooling costs and accelerate assembly line readiness.',
     tags: ['Automotive', 'Aerospace', 'Tooling', 'Case Studies'],
     content: `

@@ -1,11 +1,13 @@
 // Make3D 3D Printer Filament Product Data
 // 8 main products: PLA White + 7 PLA+ colors
-import filamentSpoolWhite from '../assets/filaments/filament-spool-white.jpg'
+import filamentWhite from '../assets/filaments/filament-white.png'
 import filamentGreySilver from '../assets/filaments/filament-grey-silver.png'
 import filamentGold from '../assets/filaments/filament-gold.png'
 import filamentOrange from '../assets/filaments/filament-orange.png'
 import filamentYellow from '../assets/filaments/filament-yellow.png'
 import filamentBlue from '../assets/filaments/filament-blue.png'
+import filamentBlack from '../assets/filaments/filament-black.png'
+import filamentRed from '../assets/filaments/filament-red.png'
 
 export interface FilamentProduct {
   id: string
@@ -50,7 +52,7 @@ export const filamentProducts: FilamentProduct[] = [
     reviewsCount: 214,
     badge: 'Most Popular',
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentWhite,
     shortDescription: 'Easy-to-print, versatile PLA filament for everyday 3D printing. Smooth surface finish and reliable extrusion for beginners and professionals.',
     description:
       'Make3D PLA (Polylactic Acid) White is the go-to filament for everyday 3D printing. Made from renewable cornstarch-based materials, PLA offers minimal warping, excellent first-layer adhesion, and a smooth, clean surface finish. Ideal for beginners and professionals alike, this 1 KG spool delivers consistent, clog-free extrusion throughout.',
@@ -355,7 +357,7 @@ export const filamentProducts: FilamentProduct[] = [
     reviewsCount: 189,
     badge: 'Top Rated',
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentBlack,
     shortDescription: 'Professional Black PLA+ for durable prototypes and functional models. Better strength and consistent performance vs standard PLA.',
     description:
       'Make3D PLA+ Black is the professional choice, delivering a deep, uniform matte-black finish with the enhanced toughness and impact resistance of PLA+. Perfect for engineering prototypes, durable functional parts, product casings, and any application where a premium, professional appearance is essential.',
@@ -404,7 +406,7 @@ export const filamentProducts: FilamentProduct[] = [
     rating: 4.8,
     reviewsCount: 121,
     inStock: true,
-    image: filamentSpoolWhite,
+    image: filamentRed,
     shortDescription: 'Vibrant Red PLA+ for striking prototypes and decorative models. Improved strength, smooth finish and reliable printing performance.',
     description:
       'Make3D PLA+ Red combines vibrant, eye-catching colour with the enhanced toughness of PLA+. Whether you are printing creative hobby models, functional prototypes, or decorative parts, this bright red filament delivers reliable, consistent results with superior strength compared to standard PLA.',

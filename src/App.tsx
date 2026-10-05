@@ -55,6 +55,7 @@ import AresMechanicalPage from './pages/AresMechanicalPage'
 import AresElectricalPage from './pages/AresElectricalPage'
 import AresStandardPage from './pages/AresStandardPage'
 import AresCommanderPage from './pages/AresCommanderPage'
+import AresKudoPage from './pages/AresKudoPage'
 import AdminPage from './pages/AdminPage'
 import FilamentCategoryPage, { FilamentDetailPage } from './pages/FilamentCategoryPage'
 import WhitePlaDetailPage from './pages/WhitePlaDetailPage'
@@ -287,6 +288,19 @@ export default function App() {
             <Route path="/products/arescommander" element={<AresCommanderPage />} />
             <Route path="/product/arescommander" element={<AresCommanderPage />} />
             <Route path="/arescommander" element={<AresCommanderPage />} />
+            {/* Dedicated ARES Kudo Product Page */}
+            <Route path="/cad-software/ares-kudo" element={<AresKudoPage />} />
+            <Route path="/cad-software/ares-kudo/" element={<AresKudoPage />} />
+            <Route path="/products/ares-kudo" element={<AresKudoPage />} />
+            <Route path="/product/ares-kudo" element={<AresKudoPage />} />
+            <Route path="/ares-kudo" element={<AresKudoPage />} />
+            <Route path="/software/ares-kudo" element={<AresKudoPage />} />
+            <Route path="/products/areskudo" element={<AresKudoPage />} />
+            <Route path="/product/areskudo" element={<AresKudoPage />} />
+            <Route path="/areskudo" element={<AresKudoPage />} />
+            <Route path="/products/ares-trinity" element={<AresKudoPage />} />
+            <Route path="/product/ares-trinity" element={<AresKudoPage />} />
+            <Route path="/ares-trinity" element={<AresKudoPage />} />
 
             {/* Universal Product Detail (handles pratham-3-rapid, eka-ht, sketchup, etc.) */}
             <Route path="/products/:slug" element={<ProductDetailPage />} />

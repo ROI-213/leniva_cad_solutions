@@ -184,7 +184,7 @@ export const Header: React.FC = () => {
       products: [
         { name: 'ARES Standard', slug: 'ares-standard', spec: 'Affordable 2D/3D CAD', image: '/images/software/ares-standard.jpg' },
         { name: 'ARES Commander', slug: 'ares-commander', spec: 'Professional DWG-Native CAD', image: '/images/software/ares-commander.jpg' },
-        { name: 'ARES Trinity', slug: 'ares-trinity', spec: 'ARES Kudo + ARES Touch', image: '/images/software/ares-trinity.jpg' },
+        { name: 'ARES Kudo', slug: 'ares-kudo', spec: 'Online DWG CAD & Cloud', image: '/images/software/ares-kudo.jpg' },
         { name: 'ARES Mechanical', slug: 'ares-mechanical', spec: 'Mechanical Design CAD', image: '/images/software/ares-mechanical.jpg' },
         { name: 'ARES Electrical', slug: 'ares-electrical', spec: 'Electrical Schematics CAD', image: '/images/software/ares-electrical.jpg' },
       ],

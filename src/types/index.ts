@@ -4,6 +4,7 @@ export type ProductTechnology =
   | 'Industrial LCD'
   | '3D Scanner'
   | 'CAD Software'
+  | 'Rendering Softwares'
   | 'Materials & Consumables'
   | 'Accessories'
 

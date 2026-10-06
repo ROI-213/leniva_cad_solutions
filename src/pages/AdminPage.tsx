@@ -392,7 +392,7 @@ export default function AdminPage() {
       primaryFormat: 'DWG',
       cadEngine: 'ARES Platform',
       officialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
-      downloadUrl: 'https://www.graebert.com/cad-software/download/',
+      downloadUrl: 'https://www.graebert.com/in/cad-software/download/ares-standard/',
       trialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
       enquiryEmail: 'contact@lenivacadsolution.in',
       licensingNote: 'Perpetual and subscription license options. Contact us to confirm current regional availability.',

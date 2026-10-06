@@ -23,6 +23,7 @@ import {
   KeyRound,
   FileEdit,
   Info,
+  Download,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../context/AppContext'
@@ -189,6 +190,16 @@ export const AresStandardPage: React.FC = () => {
                   <span>Start Free 30-Day Trial</span>
                 </a>
 
+                <a
+                  href={data.identity.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-semibold text-sm border border-slate-700 transition-all flex items-center space-x-2"
+                >
+                  <Download className="w-4 h-4 text-blue-400" />
+                  <span>Download</span>
+                </a>
+
                 <button
                   onClick={() => openQuoteModal('ARES Standard')}
                   className="px-6 py-3.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-semibold text-sm border border-slate-700 transition-all flex items-center space-x-2"
@@ -301,7 +312,16 @@ export const AresStandardPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="shrink-0 pl-3 hidden md:block">
+            <div className="shrink-0 pl-3 hidden md:flex items-center space-x-2">
+              <a
+                href={data.identity.downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-1.5"
+              >
+                <Download className="w-3.5 h-3.5 text-blue-600" />
+                <span>Download</span>
+              </a>
               <button
                 onClick={() => openQuoteModal('ARES Standard')}
                 className="px-3.5 py-1.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors"
@@ -779,6 +799,20 @@ export const AresStandardPage: React.FC = () => {
           </div>
 
           <p className="text-xs text-slate-500 italic mt-6">{data.platform.disclaimer}</p>
+
+          <div className="mt-8 p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+            <span>Notice: ARES Standard is officially supported on 64-bit Windows systems.</span>
+            <a
+              href={data.identity.downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 font-bold inline-flex items-center gap-1.5"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download ARES Standard</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -894,6 +928,15 @@ export const AresStandardPage: React.FC = () => {
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Start Free 30-Day Trial</span>
+                </a>
+                <a
+                  href={data.identity.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-colors flex items-center space-x-2"
+                >
+                  <Download className="w-4 h-4 text-blue-400" />
+                  <span>Download Free Trial</span>
                 </a>
                 <Link
                   to="/contact"
@@ -1330,6 +1373,16 @@ export const AresStandardPage: React.FC = () => {
             >
               <Sparkles className="w-4 h-4" />
               <span>Start Your Free Trial</span>
+            </a>
+
+            <a
+              href={data.identity.downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all flex items-center space-x-2"
+            >
+              <Download className="w-4 h-4 text-blue-400" />
+              <span>Download</span>
             </a>
 
             <button

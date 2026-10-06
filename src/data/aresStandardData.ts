@@ -198,7 +198,7 @@ export const aresStandardData: AresStandardData = {
     valueProposition: 'Practical 2D drafting capabilities built on the ARES CAD platform, with native DWG support and a familiar CAD interface.',
     officialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
     pricingUrl: 'https://www.graebert.com/in/cad-software/buy/',
-    downloadUrl: 'https://www.graebert.com/cad-software/download/',
+    downloadUrl: 'https://www.graebert.com/in/cad-software/download/ares-standard/',
     trialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
     lastChecked: '2026 Official Documentation',
   },

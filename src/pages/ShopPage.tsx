@@ -302,7 +302,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ forcedCategory }) => {
               3D Printers, 3D Scanners & Engineering Filaments
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-              Explore industrial Make3D additive machines, 3DeVOK metrology scanners, and official Make3D PLA & PLA+ filaments with PAN-India authorized support.
+              Explore industrial Make3D additive machines, 3DeVOK metrology scanners, and official Make3D PLA & PLA+ filaments with authorized technical support.
             </p>
           </div>
           <div className="flex items-center space-x-6 text-xs text-slate-500 border-t md:border-t-0 md:border-l border-slate-200 pt-4 md:pt-0 md:pl-6 shrink-0">
@@ -311,7 +311,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ forcedCategory }) => {
               <span>Make3D & 3DeVOK authorized</span>
             </div>
             <div>
-              <strong className="block text-slate-900 font-bold text-sm">PAN-India Service</strong>
+              <strong className="block text-slate-900 font-bold text-sm">Dedicated Technical Service</strong>
               <span>On-site onboarding & warranty</span>
             </div>
           </div>

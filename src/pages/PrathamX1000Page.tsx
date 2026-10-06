@@ -1386,7 +1386,7 @@ export const PrathamX1000Page: React.FC = () => {
             Service & Warranty
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Pan-India Service, Technical Support & 12-Month Warranty
+            Technical Support & 12-Month Official Warranty
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
             Make3D's product page describes remote and onsite support across India, complete installation, starter package and onsite onboarding.

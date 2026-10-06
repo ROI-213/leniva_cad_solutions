@@ -61,7 +61,7 @@ export const PrathamMiniPage: React.FC = () => {
     },
     {
       q: 'Is the printer designed and manufactured in India?',
-      a: 'Yes. Pratham Mini is proudly designed, engineered, and manufactured in India by Make3D, backed by Leniva CAD Solutions for nationwide sales, field installation, warranty fulfillment, and lifetime technical support.',
+      a: 'Yes. Pratham Mini is proudly designed, engineered, and manufactured in India by Make3D, backed by Leniva CAD Solutions for nationwide sales, field installation, warranty fulfillment, and dedicated technical support.',
     },
     {
       q: 'Does Leniva CAD Solutions provide installation and hands-on onboarding?',
@@ -227,7 +227,7 @@ export const PrathamMiniPage: React.FC = () => {
                 <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-1">
                   <span className="text-[10px] font-mono uppercase font-bold text-slate-400 block">ORIGIN</span>
                   <div className="text-sm sm:text-base font-black text-slate-950 font-mono">Made in India</div>
-                  <span className="text-[10px] text-emerald-600 font-semibold block">PAN-India Service</span>
+                  <span className="text-[10px] text-emerald-600 font-semibold block">Technical Support</span>
                 </div>
               </div>
 
@@ -778,7 +778,7 @@ export const PrathamMiniPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
               03
             </div>
-            <h3 className="text-base font-bold text-slate-950">PAN-India Service Network</h3>
+            <h3 className="text-base font-bold text-slate-950">Dedicated Service Network</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Dedicated technical helpdesk with direct spare parts availability, warranty fulfillment, and responsive phone and email engineering support.
             </p>

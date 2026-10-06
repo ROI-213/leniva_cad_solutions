@@ -436,7 +436,7 @@ export const ProductsPage: React.FC = () => {
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-950">PAN-India Onsite Support</h4>
+              <h4 className="text-sm font-bold text-slate-950">Dedicated Onsite Support</h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                 Direct commissioning, calibration, and engineering team onboarding at your facility across India.
               </p>

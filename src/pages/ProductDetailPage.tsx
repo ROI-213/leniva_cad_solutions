@@ -336,7 +336,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
               <div className="flex items-center justify-between text-xs text-slate-600 pt-1 flex-wrap gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
                 <div className="flex items-center space-x-1.5 text-[11px] text-slate-500">
                   <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>1-Year Official Warranty & PAN-India Field Support</span>
+                  <span>1-Year Official Warranty & Dedicated Field Support</span>
                 </div>
                 <div className="flex items-center space-x-2 font-semibold">
                   <a

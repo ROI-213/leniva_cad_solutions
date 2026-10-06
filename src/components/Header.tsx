@@ -253,7 +253,7 @@ export const Header: React.FC = () => {
               <span className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-300 flex items-center justify-center shrink-0">
                 <Target className="w-2.5 h-2.5 text-emerald-600" />
               </span>
-              <span>PAN-India Support: <strong className="text-slate-800 font-semibold">{siteConfig.supportPhone}</strong></span>
+              <span>Technical Support: <strong className="text-slate-800 font-semibold">{siteConfig.supportPhone}</strong></span>
             </div>
           </div>
 

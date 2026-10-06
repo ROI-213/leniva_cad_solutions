@@ -22,7 +22,6 @@ import {
   Compass,
   Play,
   Check,
-  ExternalLink,
   Settings,
   Send,
   X,
@@ -30,7 +29,6 @@ import {
   Sliders,
   RotateCcw,
   GraduationCap,
-  Building2,
   FileCode,
   Gauge,
   Thermometer,
@@ -85,7 +83,6 @@ export const Pratham5Page: React.FC = () => {
   const reliabilityRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const workRef = useRef<HTMLDivElement>(null)
-  const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
   const quoteRef = useRef<HTMLDivElement>(null)
@@ -98,7 +95,6 @@ export const Pratham5Page: React.FC = () => {
   // Official URLs
   const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2025/10/M-Pratham-5.0.pdf'
   const officialProductUrl = 'https://make3d.in/pratham-5-0/'
-  const officialInstallationsUrl = 'https://drive.google.com/drive/folders/124n8W1j59mQz7uP3aZ8uB7P8k'
 
   // SEO & Structured Data
   useEffect(() => {
@@ -265,7 +261,6 @@ export const Pratham5Page: React.FC = () => {
               { id: 'materials', label: 'Materials', ref: materialsRef },
               { id: 'specs', label: 'Specifications', ref: specsRef },
               { id: 'gallery', label: 'Gallery', ref: galleryRef },
-              { id: 'installations', label: 'Installations', ref: installationsRef },
               { id: 'support', label: 'Support', ref: supportRef },
               { id: 'faqs', label: 'FAQs', ref: faqRef },
             ].map((nav) => (
@@ -1430,78 +1425,7 @@ export const Pratham5Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          18. INSTALLATIONS AND USERS ACROSS INDIA
-         ==================================================== */}
-      <section ref={installationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            National Deployment
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Our Latest Installations
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Pratham 5.0 is positioned for demanding Indian manufacturing environments requiring durability, large-format printing and long-hour workflows.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              segment: 'Engineering & Manufacturing Firms',
-              title: 'Automotive & Industrial Tooling Shops',
-              desc: 'Deployed for prototyping large pump impellers, automotive duct assemblies, and factory assembly jigs across industrial clusters in Gujarat and Maharashtra.',
-              icon: Factory,
-            },
-            {
-              segment: 'Universities & Technical Institutes',
-              title: 'Engineering Colleges & Fabrication Labs',
-              desc: 'Installed in additive manufacturing centers to support student engineering thesis projects, drone frame prototyping, and architecture models.',
-              icon: GraduationCap,
-            },
-            {
-              segment: 'Defense & Government Research Labs',
-              title: 'National R&D & Innovation Facilities',
-              desc: 'Utilized for evaluating structural polymer enclosures, lightweight mockups, and functional testing fixtures across India.',
-              icon: Building2,
-            },
-          ].map((inst, idx) => {
-            const Icon = inst.icon
-            return (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-3 flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 bg-red-50 text-red-700 text-[10px] font-mono font-bold rounded-md">
-                      {inst.segment}
-                    </span>
-                    <Icon className="w-5 h-5 text-slate-400" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base">{inst.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{inst.desc}</p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="text-center pt-2">
-          <a
-            href={officialInstallationsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-sm"
-          >
-            <span>See All Installations of Our 3D Printers</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
-      </section>
-
-      {/* ====================================================
-          19. PAN-INDIA SERVICE SUPPORT (3 Cards)
+          19. TECHNICAL SERVICE & SUPPORT (3 Cards)
          ==================================================== */}
       <section ref={supportRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -1519,7 +1443,7 @@ export const Pratham5Page: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: 'Pan-India Service Support',
+              title: 'Dedicated Technical Support',
               desc: 'Make3D describes remote and onsite support for customers across India, backed by application specialists and field service engineers.',
               icon: PhoneCall,
               actionText: 'Talk to a Make3D Expert',
@@ -1530,7 +1454,7 @@ export const Pratham5Page: React.FC = () => {
               desc: 'The product page references satisfied customers across engineering, jewelry manufacturing, educational institutes and government labs.',
               icon: Award,
               actionText: 'View Customer References',
-              actionUrl: officialInstallationsUrl,
+              actionClick: () => openQuoteModal('Customer References - Pratham 5.0'),
             },
             {
               title: 'Installation and Onboarding',
@@ -1555,25 +1479,13 @@ export const Pratham5Page: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-slate-100">
-                  {card.actionClick ? (
-                    <button
-                      onClick={card.actionClick}
-                      className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1 cursor-pointer"
-                    >
-                      <span>{card.actionText}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  ) : (
-                    <a
-                      href={card.actionUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1"
-                    >
-                      <span>{card.actionText}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
+                  <button
+                    onClick={card.actionClick}
+                    className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1 cursor-pointer"
+                  >
+                    <span>{card.actionText}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
             )

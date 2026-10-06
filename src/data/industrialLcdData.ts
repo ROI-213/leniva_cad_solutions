@@ -77,7 +77,7 @@ export const ekaGtMaxData = {
       description:
         'Backed by responsive and professional after-sales service. Our expert team is ready to assist you promptly whenever you need help.',
       visualHighlight: '24×7 Engineering Desk',
-      badge: 'PAN-India Support',
+      badge: 'Dedicated Technical Support',
     },
     {
       id: 'feat-5',
@@ -210,7 +210,7 @@ export const ekaF116kData = {
     'With a 16K resolution LCD screen, this printer produces models with incredible sharpness and smooth surface finish, making it the ideal choice for jewelry design, dental models, miniatures, and engineering prototypes.',
   thirdDescription:
     'Designed and manufactured proudly in India, the EKA F1 16K combines advanced technology with user-friendly operation.',
-  supportHighlights: ['Lifetime service support', 'Free software updates'],
+  supportHighlights: ['Dedicated service support', 'Software updates'],
   buildVolume: '212 × 118 × 240 mm',
   applications: ['Jewelry Design', 'Dental Models', 'Miniatures', 'Engineering Prototypes'],
   heroImage: '/images/products/eka-f1-16k.png',
@@ -256,7 +256,7 @@ export const ekaF116kData = {
     {
       id: 'f1-6',
       title: '24×7 Online Support',
-      description: 'Lifetime service assistance for hassle-free printing.',
+      description: 'Dedicated service assistance for hassle-free printing.',
       visualHighlight: 'Dedicated Specialist Hotline',
       badge: '24×7 Assistance',
     },

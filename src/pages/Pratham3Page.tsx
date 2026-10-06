@@ -46,7 +46,6 @@ export const Pratham3Page: React.FC = () => {
   const keyPointsRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const installationsRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
 
   const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -326,52 +325,6 @@ export const Pratham3Page: React.FC = () => {
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeGalleryCat)
 
-  // Installations Across India (Section 22)
-  const installations = [
-    {
-      org: 'Premier Automotive Tier-1 Ancillary',
-      city: 'Pune, Maharashtra',
-      sector: 'Automotive Tooling & Prototyping',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Daily jig & fixture fabrication for assembly line testing',
-    },
-    {
-      org: 'Leading Autonomous Engineering College',
-      city: 'Bengaluru, Karnataka',
-      sector: 'Advanced Manufacturing COE',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Hands-on CAD/CAM student research & Formula Student fabrication',
-    },
-    {
-      org: 'Precision Defense Components Lab',
-      city: 'Hyderabad, Telangana',
-      sector: 'Defense & Aerospace Prototyping',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Rigid composite housings & wind-tunnel physical scale models',
-    },
-    {
-      org: 'Medical Device Development Incubator',
-      city: 'Chennai, Tamil Nadu',
-      sector: 'Healthcare Product Design',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Pre-clinical diagnostic enclosure fitment & validation mockups',
-    },
-    {
-      org: 'Consumer Appliances R&D Center',
-      city: 'Delhi-NCR (Gurugram)',
-      sector: 'Industrial Product Innovation',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Rapid overnight turnaround of structural internal chassis',
-    },
-    {
-      org: 'Tool & Die Manufacturing Works',
-      city: 'Ahmedabad, Gujarat',
-      sector: 'Foundry & Toolmaking',
-      model: 'Pratham 3.0 Industrial',
-      highlight: 'Direct investment casting core patterns & master mold models',
-    },
-  ]
-
   // Related Pratham Printers (Section 24)
   const prathamSeries = [
     {
@@ -448,7 +401,7 @@ export const Pratham3Page: React.FC = () => {
     },
     {
       q: 'Does it come with after-sales support?',
-      a: 'Yes. Leniva CAD Solutions provides complete PAN-India warranty coverage, remote online diagnostics, genuine spare parts dispatch, and on-site field engineering service across all major industrial clusters.',
+      a: 'Yes. Leniva CAD Solutions provides complete warranty coverage, remote online diagnostics, genuine spare parts dispatch, and on-site field engineering service across all major industrial clusters.',
     },
     {
       q: 'Is Pratham 3.0 an Indian-made 3D printer?',
@@ -1634,58 +1587,6 @@ export const Pratham3Page: React.FC = () => {
       </section>
 
       {/* ====================================================
-          11. OUR LATEST INSTALLATIONS ACROSS INDIA
-         ==================================================== */}
-      <section ref={installationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
-              — Proven Field Deployment —
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              OUR LATEST INSTALLATIONS
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
-              Pratham 3.0 is built to handle demanding Indian manufacturing environments with durability and long-term reliability.
-            </p>
-          </div>
-
-          <button
-            onClick={() => openQuoteModal('Pratham 3.0 View All Installations')}
-            className="px-5 py-2.5 rounded-xl border border-slate-300 hover:border-slate-400 bg-white text-slate-800 text-xs font-bold shadow-2xs hover:shadow-xs transition-all flex items-center space-x-2 self-start md:self-auto cursor-pointer"
-          >
-            <span>SEE ALL INSTALLATIONS OF OUR 3D PRINTERS</span>
-            <ArrowRight className="w-3.5 h-3.5 text-red-600" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {installations.map((inst, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-mono font-bold text-red-600 uppercase tracking-wider">{inst.city}</span>
-                  <span className="text-[10px] font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">
-                    Active Deployment
-                  </span>
-                </div>
-                <h3 className="text-sm font-bold text-slate-950 leading-snug">{inst.org}</h3>
-                <div className="text-[11px] font-mono text-slate-500 font-semibold">{inst.sector}</div>
-                <p className="text-xs text-slate-600 leading-relaxed pt-1">{inst.highlight}</p>
-              </div>
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>Model: {inst.model}</span>
-                <span className="text-slate-900 font-bold">24/7 Verified</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ====================================================
           12. SUPPORT / TRUST SECTION (3 CARDS)
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -1695,10 +1596,10 @@ export const Pratham3Page: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center">
               <Building2 className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">LATEST INSTALLATIONS</h3>
+            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">ENGINEERING-GRADE RELIABILITY</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Explore recent 3D printer installations at engineering firms, universities, and R&amp;D laboratories
-              across India with verified operational track records.
+              Built with precision CNC aluminum frame, linear motion guides, and industrial-grade electronics
+              engineered for continuous 24/7 manufacturing cycles.
             </p>
           </div>
 
@@ -1707,7 +1608,7 @@ export const Pratham3Page: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
               <PhoneCall className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">PAN-INDIA SERVICE SUPPORT</h3>
+            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">DEDICATED SERVICE &amp; SUPPORT</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               24×7 remote and on-site engineering support with direct spare parts distribution hubs in major industrial
               corridors for minimum machine downtime.

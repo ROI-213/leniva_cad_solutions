@@ -43,7 +43,6 @@ export const PrathamDesktopPage: React.FC = () => {
   const performanceRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
   const seriesRef = useRef<HTMLDivElement>(null)
@@ -192,52 +191,6 @@ export const PrathamDesktopPage: React.FC = () => {
     },
   ]
 
-  // Installations data
-  const installations = [
-    {
-      institution: 'Savitribai Phule Pune University',
-      location: 'Pune, Maharashtra',
-      segment: 'Educational Institute',
-      printer: 'Pratham Desktop',
-      application: 'Department of Technology Maker Hub & Student Incubation',
-    },
-    {
-      institution: 'Tata Elxsi Industrial Design Center',
-      location: 'Bengaluru, Karnataka',
-      segment: 'Automotive & Consumer Tech',
-      printer: 'Pratham Desktop',
-      application: 'Rapid Concept Verification & Physical Ergonomics Validation',
-    },
-    {
-      institution: 'Anna University College of Engineering',
-      location: 'Chennai, Tamil Nadu',
-      segment: 'Engineering Institute',
-      printer: 'Pratham Desktop',
-      application: 'Mechanical & Mechatronics Additive Manufacturing Onboarding',
-    },
-    {
-      institution: 'Government Engineering College (GEC)',
-      location: 'Ahmedabad, Gujarat',
-      segment: 'Government Higher Education',
-      printer: 'Pratham Desktop',
-      application: 'Atal Incubation & Student Prototyping Laboratory',
-    },
-    {
-      institution: 'Precision Robotics & Automation Labs',
-      location: 'Hyderabad, Telangana',
-      segment: 'High-Tech Startup',
-      printer: 'Pratham Desktop',
-      application: 'Custom End-Effector & Sensor Casing Prototyping',
-    },
-    {
-      institution: 'Bharat Forge R&D Tech Center',
-      location: 'Pune, Maharashtra',
-      segment: 'Industrial Manufacturing',
-      printer: 'Pratham Desktop',
-      application: 'Assembly Verification Jigs & Component Spatial Checkers',
-    },
-  ]
-
   // FAQ Items
   const faqItems = [
     {
@@ -351,9 +304,7 @@ export const PrathamDesktopPage: React.FC = () => {
             <button onClick={() => scrollTo(galleryRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Gallery
             </button>
-            <button onClick={() => scrollTo(installationsRef)} className="hover:text-red-600 transition-colors cursor-pointer">
-              Installations
-            </button>
+            
             <button onClick={() => scrollTo(specsRef)} className="hover:text-red-600 transition-colors cursor-pointer">
               Specs
             </button>
@@ -1240,53 +1191,7 @@ export const PrathamDesktopPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          8. OUR LATEST INSTALLATIONS: RECENT 3D PRINTER INSTALLATIONS ACROSS INDIA
-         ==================================================== */}
-      <section ref={installationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Trusted Nationwide
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            OUR LATEST INSTALLATIONS
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Delivering high-precision 3D printers to industries, educational institutes and government sectors.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {installations.map((inst, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:border-slate-300 transition-all space-y-4"
-            >
-              <div className="flex items-start justify-between">
-                <span className="px-2.5 py-1 bg-red-50 text-red-700 text-[10px] font-mono font-bold rounded-md">
-                  {inst.segment}
-                </span>
-                <span className="text-xs text-slate-500 font-mono flex items-center space-x-1">
-                  <MapPin className="w-3.5 h-3.5 text-red-600" />
-                  <span>{inst.location}</span>
-                </span>
-              </div>
-
-              <div>
-                <h3 className="font-extrabold text-slate-900 text-sm">{inst.institution}</h3>
-                <div className="text-xs text-red-600 font-mono font-bold mt-0.5">Model: {inst.printer}</div>
-              </div>
-
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                <span className="text-slate-400 font-semibold block text-[10px] uppercase">Application:</span>
-                {inst.application}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ====================================================
-          9. PAN-INDIA SUPPORT SECTION (3 TRUST CARDS)
+          9. TECHNICAL SERVICE & SUPPORT SECTION (3 TRUST CARDS)
          ==================================================== */}
       <section ref={supportRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -1294,7 +1199,7 @@ export const PrathamDesktopPage: React.FC = () => {
             Service & Reliability
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight uppercase">
-            PAN-INDIA SERVICE & SUPPORT
+            COMPREHENSIVE TECHNICAL SERVICE & SUPPORT
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
             Comprehensive on-ground engineering support and continuous spares availability nationwide.
@@ -1307,9 +1212,9 @@ export const PrathamDesktopPage: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
               <Box className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-extrabold text-slate-900 uppercase">LATEST INSTALLATIONS</h3>
+            <h3 className="text-base font-extrabold text-slate-900 uppercase">INDUSTRIAL RELIABILITY</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Explore recent printer installations at engineering firms, universities and R&D labs across India.
+              Built for continuous prototyping, student labs, and small-batch production with enclosed thermal stability.
             </p>
           </div>
 
@@ -1318,7 +1223,7 @@ export const PrathamDesktopPage: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
               <PhoneCall className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-extrabold text-slate-900 uppercase">PAN-INDIA SERVICE SUPPORT</h3>
+            <h3 className="text-base font-extrabold text-slate-900 uppercase">DEDICATED TECHNICAL SERVICE</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               24×7 remote and onsite support with certified technical engineers and rapid spares dispatch.
             </p>
@@ -1344,7 +1249,7 @@ export const PrathamDesktopPage: React.FC = () => {
                 Direct Engineering Support
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white">
-                PAN-INDIA SERVICE & SUPPORT NETWORK
+                TECHNICAL SERVICE & SUPPORT NETWORK
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Leniva CAD Solutions provides end-to-end installation, operator onboarding, preventive maintenance, and

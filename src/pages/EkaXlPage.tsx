@@ -5,14 +5,12 @@ import {
   Download,
   Gem,
   ChevronDown,
-  ArrowRight,
   CheckCircle2,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import {
   ekaXlData,
   jewelryWorkGallery,
-  ekaInstallations,
 } from '../data/ekaProductsData'
 
 export const EkaXlPage: React.FC = () => {
@@ -27,7 +25,6 @@ export const EkaXlPage: React.FC = () => {
   const usersRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const specsRef = useRef<HTMLDivElement>(null)
-  const installationsRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
 
   const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -105,9 +102,7 @@ export const EkaXlPage: React.FC = () => {
             <button onClick={() => scrollTo(specsRef)} className="hover:text-amber-700 transition-colors cursor-pointer">
               Verified Specs
             </button>
-            <button onClick={() => scrollTo(installationsRef)} className="hover:text-amber-700 transition-colors cursor-pointer">
-              Installations
-            </button>
+            
             <button onClick={() => scrollTo(faqRef)} className="hover:text-amber-700 transition-colors cursor-pointer">
               FAQ
             </button>
@@ -435,55 +430,22 @@ export const EkaXlPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          8. RECENT INSTALLATIONS & TRUSTED USERS
+          8. TRUSTED USERS & TECHNICAL SUPPORT
          ==================================================== */}
-      <section ref={installationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-700 font-mono">
-            — Deployments —
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Recent Installations
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500">
-            Check here some of our recent installation of 3D Printers.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {ekaInstallations.slice(0, 3).map((inst, i) => (
-            <div key={i} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
-              <div className="flex justify-between items-center text-xs font-mono">
-                <span className="font-bold text-amber-700">{inst.city}</span>
-                <span className="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Verified</span>
-              </div>
-              <h3 className="font-bold text-sm text-slate-950">{inst.org}</h3>
-              <p className="text-xs text-slate-500">{inst.highlight}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Trusted & Happy Users Blocks (Preserving reference content) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-3">
             <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">Trusted by Industrial Users</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              24X7 Dedicated Support made us most popular Brand of 3D Printer in India.
+              Dedicated technical support and comprehensive onboarding engineered for high-precision resin manufacturing.
             </p>
           </div>
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-3">
-            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">Happy Users of EKA HT</h3>
+            <h3 className="text-lg font-black text-slate-950 uppercase tracking-tight">Verified User Base</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              We have a satisfied customer base from Engineers, Educational Organizations, Industrial as well as Individuals.
+              Serving industrial engineers, educational institutes, research labs, and independent jewelry artisans.
             </p>
-            <button
-              onClick={() => openQuoteModal('See all India Installation of EKA XL')}
-              className="text-xs font-bold text-amber-700 hover:underline flex items-center space-x-1 cursor-pointer pt-1"
-            >
-              <span>See all India Installation of our 3D Printers</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
           </div>
         </div>
       </section>

@@ -105,7 +105,7 @@ export const ekaHtData = {
   targetUsers: ['Designer', 'Casting Provider', 'Manufacturer', 'Individuals'],
 
   serviceBenefits: [
-    { title: 'Lifetime Service Support', desc: 'Direct factory engineering support for as long as you operate the machine.' },
+    { title: 'Dedicated Service Support', desc: 'Direct factory engineering support for your additive operations.' },
     { title: 'Lifetime Free Software Update', desc: 'Continuous slicer enhancements, material resin profiles, and firmware patches.' },
     { title: '24×7 Online Service Support', desc: 'Dedicated WhatsApp and hotline assistance for instant troubleshooting.' },
     { title: 'Proudly Made in India', desc: '100% indigenous design, local assembly, and immediate spare parts dispatch.' },
@@ -180,7 +180,7 @@ export const ekaXlData = {
   targetUsers: ['Designer', 'Casting Provider', 'Manufacturer', 'Individuals'],
 
   serviceBenefits: [
-    { title: 'Lifetime Service Support', desc: 'Direct factory engineering support for as long as you operate the machine.' },
+    { title: 'Dedicated Service Support', desc: 'Direct factory engineering support for your additive operations.' },
     { title: 'Lifetime Free Software Update', desc: 'Continuous slicer enhancements, material resin profiles, and firmware patches.' },
     { title: '24×7 Online Service Support', desc: 'Dedicated WhatsApp and hotline assistance for instant troubleshooting.' },
     { title: 'Proudly Made in India', desc: '100% indigenous design, local assembly, and immediate spare parts dispatch.' },
@@ -193,7 +193,7 @@ export const ekaXlData = {
     { property: 'Technology', value: 'DLP / LED Projector' },
     { property: 'Platform Size', value: '125 × 70 × 140 mm' },
     { property: 'Warranty', value: '1 Year of Full Warranty' },
-    { property: 'Service Support', value: 'Lifetime Service Support' },
+    { property: 'Service Support', value: 'Dedicated Service Support' },
     { property: 'Software Updates', value: 'Lifetime Free Software Update' },
     { property: 'Online Support', value: '24×7 Online Service Support' },
     { property: 'Origin', value: 'Proudly Made in India' },
@@ -260,7 +260,7 @@ export const ekaXleData = {
   },
 
   serviceBenefits: [
-    { title: 'Lifetime Service Support', desc: 'Direct factory engineering support for as long as you operate the machine.' },
+    { title: 'Dedicated Service Support', desc: 'Direct factory engineering support for your additive operations.' },
     { title: 'Lifetime Free Software Update', desc: 'Continuous slicer enhancements, material resin profiles, and firmware patches.' },
     { title: '24×7 Online Service Support', desc: 'Dedicated WhatsApp and hotline assistance for instant troubleshooting.' },
     { title: 'Proudly Made in India', desc: '100% indigenous design, local assembly, and immediate spare parts dispatch.' },

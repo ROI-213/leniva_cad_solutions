@@ -21,7 +21,6 @@ import {
   Compass,
   Play,
   Check,
-  ExternalLink,
   Settings,
   Send,
   X,
@@ -82,7 +81,6 @@ export const Pratham6Page: React.FC = () => {
   const specsRef = useRef<HTMLDivElement>(null)
   const workflowRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const installationsRef = useRef<HTMLDivElement>(null)
   const supportRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
   const quoteRef = useRef<HTMLDivElement>(null)
@@ -95,7 +93,6 @@ export const Pratham6Page: React.FC = () => {
   // Official URLs
   const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2025/10/M-Pratham-6.0.pdf'
   const officialProductUrl = 'https://make3d.in/pratham-6-0/'
-  const officialInstallationsUrl = 'https://drive.google.com/drive/folders/124n8W1j59mQz7uP3aZ8uB7P8k'
 
   // SEO & Structured Data
   useEffect(() => {
@@ -1385,78 +1382,7 @@ export const Pratham6Page: React.FC = () => {
 
 
       {/* ====================================================
-          17. CUSTOMER INSTALLATIONS & USERS ACROSS INDIA
-         ==================================================== */}
-      <section ref={installationsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-            Trusted Nationwide
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Look Who Are Already Using Pratham 6.0
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            Pratham 6.0 is designed for demanding Indian manufacturing environments that require durability, large-format printing and long-term reliability.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              segment: 'Industrial Manufacturing & Foundries',
-              title: 'Heavy Machinery & Foundry Pattern Shops',
-              desc: 'Deployed for direct investment casting patterns, oversized core boxes, and assembly check fixtures across Gujarat and Maharashtra.',
-              icon: Factory,
-            },
-            {
-              segment: 'Higher Education & Research Institutes',
-              title: 'Engineering Colleges & IIT/NIT Innovation Hubs',
-              desc: 'Installed in advanced manufacturing and additive manufacturing research laboratories for student incubation and thesis projects.',
-              icon: GraduationCap,
-            },
-            {
-              segment: 'Automotive & Aerospace R&D',
-              title: 'Automotive Tier-1 & Defense Prototyping Facilities',
-              desc: 'Utilized for full-scale vehicle interior mockups, intake manifold prototypes, and custom assembly tooling across South & North India.',
-              icon: Building2,
-            },
-          ].map((inst, idx) => {
-            const Icon = inst.icon
-            return (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-3 flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 bg-red-50 text-red-700 text-[10px] font-mono font-bold rounded-md">
-                      {inst.segment}
-                    </span>
-                    <Icon className="w-5 h-5 text-slate-400" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base">{inst.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{inst.desc}</p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="text-center pt-2">
-          <a
-            href={officialInstallationsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-sm"
-          >
-            <span>See All Installations of Our 3D Printers</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
-      </section>
-
-      {/* ====================================================
-          18. PAN-INDIA SERVICE & SUPPORT (3 Cards)
+          18. TECHNICAL SERVICE & SUPPORT (3 Cards)
          ==================================================== */}
       <section ref={supportRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -1474,14 +1400,14 @@ export const Pratham6Page: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: 'Latest Installations',
-              desc: 'Explore recent printer installations at engineering firms, universities and R&D labs across India with verified references.',
+              title: 'Industrial Manufacturing Track Record',
+              desc: 'Engineered for demanding production environments at leading tooling facilities, automotive suppliers, and research laboratories.',
               icon: Building2,
-              actionText: 'Explore Installations',
-              actionUrl: officialInstallationsUrl,
+              actionText: 'Request Customer Case Studies',
+              actionClick: () => openQuoteModal('Customer References - Pratham 6.0'),
             },
             {
-              title: 'Pan-India Service Support',
+              title: 'Dedicated Technical Support',
               desc: 'Make3D describes 24×7 remote and onsite support for customers across India, backed by local application and service engineers.',
               icon: PhoneCall,
               actionText: 'Contact Service Team',
@@ -1510,25 +1436,13 @@ export const Pratham6Page: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-slate-100">
-                  {card.actionClick ? (
-                    <button
-                      onClick={card.actionClick}
-                      className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1 cursor-pointer"
-                    >
-                      <span>{card.actionText}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  ) : (
-                    <a
-                      href={card.actionUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1"
-                    >
-                      <span>{card.actionText}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
+                  <button
+                    onClick={card.actionClick}
+                    className="text-xs font-bold text-red-600 hover:underline flex items-center space-x-1 cursor-pointer"
+                  >
+                    <span>{card.actionText}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
             )

@@ -336,7 +336,7 @@ export const DlpCategoryPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
               <Factory className="w-5 h-5" />
             </div>
-            <h3 className="font-bold text-sm text-slate-950">PAN-India Onboarding &amp; Support</h3>
+            <h3 className="font-bold text-sm text-slate-950">Technical Onboarding &amp; Support</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Full on-site operator onboarding on CAD orientation, slicing software, and machine operation across all major jewelry and engineering hubs.
             </p>

@@ -349,7 +349,7 @@ export const EkaF116kPage: React.FC = () => {
               <div className="mt-4 flex items-center justify-between w-full max-w-[460px] px-2 text-xs text-slate-500 font-medium">
                 <span className="flex items-center space-x-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Lifetime Service Assistance</span>
+                  <span>Dedicated Technical Support</span>
                 </span>
                 <span className="flex items-center space-x-1.5">
                   <Award className="w-4 h-4 text-amber-700" />
@@ -603,7 +603,7 @@ export const EkaF116kPage: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-xs text-slate-300">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Lifetime service support &amp; continuous firmware upgrades</span>
+                  <span>Dedicated service support &amp; continuous firmware upgrades</span>
                 </div>
               </div>
 

@@ -303,7 +303,7 @@ export const IndustrialLcdCategoryPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
               <Award className="w-5 h-5" />
             </div>
-            <h3 className="font-bold text-sm text-slate-950">PAN-India Service &amp; Consumables</h3>
+            <h3 className="font-bold text-sm text-slate-950">Technical Service &amp; Consumables</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Complete support ecosystem with genuine Chitubox profiles, replacement release films, LCD panels, and casting resins.
             </p>

@@ -70,7 +70,7 @@ export const LegalPage: React.FC = () => {
           },
           {
             heading: '3. On-Site Service & Preventive Maintenance',
-            body: 'Our PAN-India field engineering network provides on-site warranty repair and preventive maintenance calibration visits. Customers also have access to our technical hotline, WhatsApp engineering support, and remote screen-sharing diagnostics.',
+            body: 'Our nationwide field engineering network provides on-site warranty repair and preventive maintenance calibration visits. Customers also have access to our technical hotline, WhatsApp engineering support, and remote screen-sharing diagnostics.',
           },
         ],
       }

@@ -668,7 +668,7 @@ export const aresCommanderData: AresCommanderData = {
       { step: 1, title: 'Import Revit or IFC', desc: 'Load the 3D BIM model into ARES Commander alongside your CAD files.' },
       { step: 2, title: 'Filter & Browse Data', desc: 'Isolate specific storeys, structural elements, or building components.' },
       { step: 3, title: 'Generate 2D Drawings', desc: 'Extract clean 2D vector plans and sections with intelligent CAD geometry.' },
-      { step: 4, title: 'Detail & Synchronize', desc: 'Add CAD annotations, title blocks, and update automatically on model revision.' },
+      { step: 4, title: 'Detail & Synchronize', desc: 'Add CAD annotations, title blocks, and refresh drawings when the BIM model is updated' },
     ],
     officialBimUrl: 'https://www.graebert.com/in/cad-software/ares-commander/',
     image: '/images/ares-standard/cad-eng-schematic.jpg',

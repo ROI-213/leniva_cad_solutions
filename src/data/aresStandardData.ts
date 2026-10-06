@@ -867,19 +867,5 @@ export const aresStandardData: AresStandardData = {
       desc: 'DWG-based electrical schematic design, wire numbering automation, and project reporting.',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80',
     },
-    {
-      name: 'SketchUp Pro',
-      slug: 'sketchup',
-      category: '3D Modeling',
-      desc: 'Intuitive 3D design software for architecture, interior design, and construction.',
-      image: '/images/software/sketchup-pro.jpg',
-    },
-    {
-      name: 'Chaos V-Ray',
-      slug: 'vray',
-      category: 'Rendering Engine',
-      desc: 'High-end photorealistic 3D rendering for architectural and design visualization.',
-      image: '/images/software/chaos-vray.jpg',
-    },
   ],
 }

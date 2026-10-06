@@ -1086,11 +1086,11 @@ export const AresStandardPage: React.FC = () => {
               Explore More from Graebert
             </h2>
             <p className="mt-3 text-slate-600 text-sm">
-              Discover dedicated 2D/3D CAD, mechanical engineering, and rendering tools in our catalog.
+              Discover dedicated 2D/3D CAD, mechanical engineering, and electrical schematic tools in the Graebert ecosystem.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {data.relatedProducts.map((prod, idx) => (
               <div
                 key={idx}

@@ -371,7 +371,7 @@ export const EkaXlePage: React.FC = () => {
             Select Perfect Resin according to your application
           </p>
           <p className="text-xs text-slate-500">
-            Supported Resins in EKA XLE. All resins available in 500g and 1000g packages (GST 18% extra).
+            Supported Resins in EKA XLE. All resins available in 500g and 1000g packages.
           </p>
         </div>
 
@@ -387,9 +387,6 @@ export const EkaXlePage: React.FC = () => {
                   {resin.tag}
                 </span>
                 <h3 className="font-black text-sm text-slate-950 leading-snug">{resin.name}</h3>
-                <div className="text-xs font-mono font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded inline-block">
-                  ₹{resin.pricePerKg.toLocaleString('en-IN')}/kg
-                </div>
                 <p className="text-[11px] text-slate-500 leading-relaxed">{resin.description}</p>
                 <div className="pt-2 border-t border-slate-100 text-[10px] text-slate-400">
                   Packs: {resin.packSizes}

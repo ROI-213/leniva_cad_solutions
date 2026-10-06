@@ -316,7 +316,7 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* Products Mega Menu Trigger */}
+            {/* 3D Printers Mega Menu Trigger */}
             <div
               className="relative shrink-0"
               onMouseEnter={() => setActiveMegaMenu('products')}
@@ -326,10 +326,10 @@ export const Header: React.FC = () => {
                 to="/products"
                 className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative"
               >
-                <Box className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                <Printer className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
                 <div className="flex items-center space-x-0.5 mt-1">
                   <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
-                    Products
+                    3D Printers
                   </span>
                   <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
                 </div>
@@ -848,13 +848,13 @@ export const Header: React.FC = () => {
                 Home
               </Link>
 
-              {/* Products Accordion */}
+              {/* 3D Printers Accordion */}
               <div>
                 <button
                   onClick={() => toggleMobileSection('products')}
                   className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
                 >
-                  <span>Products</span>
+                  <span>3D Printers</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
                       expandedMobileSection === 'products' ? 'rotate-180 text-red-600' : ''
@@ -864,7 +864,7 @@ export const Header: React.FC = () => {
                 {expandedMobileSection === 'products' && (
                   <div className="pl-4 py-1 space-y-2 border-l-2 border-red-100 ml-3">
                     <Link to="/products" className="block text-xs font-bold text-red-600 py-1">
-                      View All Products Catalog →
+                      View All 3D Printers Catalog →
                     </Link>
                     {megaCategories.map(cat => (
                       <div key={cat.id} className="pt-1">

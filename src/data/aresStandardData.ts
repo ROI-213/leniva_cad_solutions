@@ -199,7 +199,7 @@ export const aresStandardData: AresStandardData = {
     officialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
     pricingUrl: 'https://www.graebert.com/in/cad-software/buy/',
     downloadUrl: 'https://www.graebert.com/cad-software/download/',
-    trialUrl: 'https://www.graebert.com/cad-software/download/',
+    trialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
     lastChecked: '2026 Official Documentation',
   },
   hero: {
@@ -644,7 +644,7 @@ export const aresStandardData: AresStandardData = {
   freeTrial: {
     title: 'Explore ARES Standard Before You Decide',
     description: 'Experience ARES Standard through the 30-day free trial option advertised on the official product page. Evaluate its drafting tools, interface, and DWG compatibility on your own technical drawings.',
-    trialUrl: 'https://www.graebert.com/cad-software/download/',
+    trialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
     duration: '30 Days',
     termsNote: 'Confirm the current trial terms, eligibility and activation process on Graebert’s official website.',
   },

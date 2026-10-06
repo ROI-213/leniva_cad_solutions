@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Database,
@@ -393,7 +393,7 @@ export default function AdminPage() {
       cadEngine: 'ARES Platform',
       officialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
       downloadUrl: 'https://www.graebert.com/cad-software/download/',
-      trialUrl: 'https://www.graebert.com/cad-software/download/',
+      trialUrl: 'https://www.graebert.com/in/cad-software/ares-standard/',
       enquiryEmail: 'contact@lenivacadsolution.in',
       licensingNote: 'Perpetual and subscription license options. Contact us to confirm current regional availability.',
       eyebrow: 'GRAEBERT | 2D DWG CAD SOFTWARE',

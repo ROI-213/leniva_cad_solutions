@@ -230,11 +230,11 @@ export const HomePage: React.FC = () => {
           SECTION 1: HERO SHOWCASE CAROUSEL BANNER (WHITE BACKGROUND)
          ==================================================== */}
       <section 
-        className="relative bg-white text-slate-900 pt-1 pb-2 lg:pb-3 overflow-hidden"
+        className="relative bg-white text-slate-900 pt-4 pb-8 lg:pb-12 overflow-hidden"
       >
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Main Panoramic Hero Showcase Carousel with Curved Edges */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-200/90 bg-white group">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/90 bg-white group">
             {/* Slides container with exact 3:1 HD banner aspect ratio */}
             <div className="relative w-full aspect-[1024/341] bg-white">
               {slides.map((slide, index) => {
@@ -299,19 +299,19 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Dynamic Headline & Quick CTAs below the banner based on active slide */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
-            <div className="lg:col-span-8 space-y-2">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
+            <div className="lg:col-span-8 space-y-3">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-600 text-xs font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                 <span>{slides[currentSlide].tag}</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-snug">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
                 {slides[currentSlide].title}{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-slate-700">
+                <span className="text-slate-600 font-extrabold">
                   — {slides[currentSlide].subtitle}
                 </span>
               </h1>
-              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-3xl">
                 Industrial FDM, DLP & LCD 3D printing systems, high-precision 3D scanning, and Trimble / Chaos certified software across India.
               </p>
             </div>
@@ -319,21 +319,21 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
               <Link
                 to={slides[currentSlide].primaryBtnLink}
-                className="w-full px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-red-600/20 transition-all flex items-center justify-center space-x-2 group"
+                className="w-full px-7 py-4 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl shadow-md shadow-red-600/20 transition-all flex items-center justify-center space-x-2 group"
               >
                 <span>{slides[currentSlide].primaryBtnText}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <div className="flex gap-2">
+              <div className="flex gap-2.5">
                 <button
                   onClick={() => openQuoteModal(slides[currentSlide].quoteSubject)}
-                  className="flex-1 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shadow-md transition-all text-center cursor-pointer"
+                  className="flex-1 px-4 py-3 bg-slate-950 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold rounded-xl shadow-sm transition-all text-center cursor-pointer"
                 >
                   {slides[currentSlide].secondaryBtnText}
                 </button>
                 <button
                   onClick={() => openQuoteModal('Talk to an Expert')}
-                  className="flex-1 px-4 py-3 border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 bg-white text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center space-x-1.5 cursor-pointer"
+                  className="flex-1 px-4 py-3 border border-slate-200 hover:border-slate-300 text-slate-800 hover:text-slate-950 bg-white text-xs sm:text-sm font-bold rounded-xl shadow-2xs transition-all flex items-center justify-center space-x-1.5 cursor-pointer"
                 >
                   <Phone className="w-3.5 h-3.5 text-red-600" />
                   <span>Talk to Expert</span>
@@ -396,156 +396,156 @@ export const HomePage: React.FC = () => {
                 <div className="flex gap-3 animate-marquee-cards" style={{ width: 'max-content' }}>
                   {/* ── Set A ── */}
                   {/* Card 01 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-red-50 border border-red-200/70 flex items-center justify-center text-red-600">
-                          <Box className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Box className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">01</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">01</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors mt-2.5 leading-snug">Professional Technology</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Professional Technology</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-red-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Professional Technology Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Professional Technology Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 02 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-blue-600">
-                          <Settings className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Settings className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">02</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">02</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors mt-2.5 leading-snug">Engineering Expertise</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Application engineers guiding material choice, DfAM, and parametric reconstruction.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Engineering Expertise</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Application engineers guiding material choice, DfAM, and parametric reconstruction.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-blue-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Engineering Expertise Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-blue-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Engineering Expertise Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 03 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200/70 flex items-center justify-center text-emerald-600">
-                          <Layers className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Layers className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">03</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">03</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mt-2.5 leading-snug">End-to-End Solutions</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">From optical 3D scanning and CAD modeling to contract batch manufacturing and QC.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">End-to-End Solutions</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">From optical 3D scanning and CAD modeling to contract batch manufacturing and QC.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-emerald-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('End-to-End Solutions Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-emerald-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('End-to-End Solutions Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 04 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200/70 flex items-center justify-center text-amber-600">
-                          <Headphones className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Headphones className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">04</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">04</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors mt-2.5 leading-snug">Technical Support</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Technical Support</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-amber-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Technical Support Inquiry')} className="text-[11px] font-bold text-slate-800 hover:text-amber-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Technical Support Inquiry')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
 
                   {/* ── Set B (duplicate for seamless loop) ── */}
                   {/* Card 01 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-red-50 border border-red-200/70 flex items-center justify-center text-red-600">
-                          <Box className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Box className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">01</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">01</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors mt-2.5 leading-snug">Professional Technology</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Professional Technology</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Industrial-grade FDM, DLP, LCD additive platforms and Trimble / Chaos software.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-red-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Professional Technology Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Professional Technology Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 02 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-blue-600">
-                          <Settings className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Settings className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">02</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">02</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors mt-2.5 leading-snug">Engineering Expertise</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Application engineers guiding material choice, DfAM, and parametric reconstruction.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Engineering Expertise</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Application engineers guiding material choice, DfAM, and parametric reconstruction.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-blue-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Engineering Expertise Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-blue-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Engineering Expertise Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 03 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200/70 flex items-center justify-center text-emerald-600">
-                          <Layers className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Layers className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">03</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">03</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mt-2.5 leading-snug">End-to-End Solutions</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">From optical 3D scanning and CAD modeling to contract batch manufacturing and QC.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">End-to-End Solutions</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">From optical 3D scanning and CAD modeling to contract batch manufacturing and QC.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-emerald-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('End-to-End Solutions Consultation')} className="text-[11px] font-bold text-slate-800 hover:text-emerald-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('End-to-End Solutions Consultation')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   {/* Card 04 */}
-                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '210px', maxWidth: '210px' }}>
+                  <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group" style={{ minWidth: '225px', maxWidth: '225px' }}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200/70 flex items-center justify-center text-amber-600">
-                          <Headphones className="w-4 h-4" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center text-slate-900 group-hover:text-red-600 group-hover:bg-red-50 transition-colors">
+                          <Headphones className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-mono font-bold text-slate-400">04</span>
+                        <span className="text-xs font-mono font-bold text-slate-400">04</span>
                       </div>
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors mt-2.5 leading-snug">Technical Support</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
+                      <h3 className="text-sm font-bold text-slate-950 group-hover:text-red-600 transition-colors mt-3 leading-snug">Technical Support</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1.5 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
                     </div>
                     <div>
-                      <div className="w-6 h-0.5 bg-amber-500 rounded-full mt-3 mb-2" />
-                      <button onClick={() => openQuoteModal('Technical Support Inquiry')} className="text-[11px] font-bold text-slate-800 hover:text-amber-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
-                        <span>Learn More</span><ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="w-6 h-0.5 bg-red-600 rounded-full mt-3.5 mb-2" />
+                      <button onClick={() => openQuoteModal('Technical Support Inquiry')} className="text-xs font-bold text-slate-900 hover:text-red-600 inline-flex items-center space-x-1 group/btn cursor-pointer">
+                        <span>Learn More</span><ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
@@ -658,51 +658,51 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           SECTION 6: COMPANY INTRODUCTION
          ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 pt-1">
-        <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+        <div className="bg-slate-50/80 rounded-3xl p-8 sm:p-12 lg:p-14 border border-slate-200/80 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-6">
             <div className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
               — ABOUT US —
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black text-slate-950 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
               Your Partner for <br />
               <span className="text-red-600">Advanced 3D Solutions</span>
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
               Leniva CAD Solutions is a trusted supplier and solutions provider of 3D printers, 3D scanners, CAD software and related accessories. We bring global technologies to help industries, businesses and educational institutions adopt advanced 3D solutions for design, prototyping and production.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-slate-800 pt-1">
-              <div className="flex items-center space-x-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm font-semibold text-slate-800 pt-1">
+              <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
                 <span>3D Printers (Global Brands)</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>3D Scanners (Professional)</span>
+                <span>3D Scanners (Professional Metrology)</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>Licensed CAD Software</span>
+                <span>Licensed CAD & Rendering Software</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>Accessories & Consumables</span>
+                <span>Accessories & Specialized Materials</span>
               </div>
-              <div className="flex items-center space-x-2 sm:col-span-2">
+              <div className="flex items-center space-x-2.5 sm:col-span-2">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>Expert Guidance & Field Support</span>
+                <span>Expert Engineering Guidance & Field Support</span>
               </div>
             </div>
-            <div className="pt-4 flex items-center space-x-4">
+            <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link
                 to="/services"
-                className="px-6 py-3 bg-slate-950 hover:bg-red-600 text-white text-xs font-bold rounded-xl transition-colors"
+                className="px-7 py-3.5 bg-slate-950 hover:bg-red-600 text-white text-sm font-bold rounded-xl transition-all shadow-sm"
               >
                 Explore Solutions
               </Link>
               <Link
                 to="/contact"
-                className="px-6 py-3 border border-slate-300 hover:border-slate-800 text-slate-800 text-xs font-bold rounded-xl transition-colors"
+                className="px-7 py-3.5 border border-slate-300 hover:border-slate-800 text-slate-900 text-sm font-bold rounded-xl transition-all bg-white shadow-2xs"
               >
                 Contact Us
               </Link>
@@ -710,7 +710,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-5 relative">
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-white group">
+            <div className="aspect-square rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 bg-white group p-3">
               <img
                 src="/images/about/about-leniva-poster.jpg"
                 alt="Leniva CAD Solutions — Your Partner for Advanced 3D Solutions"
@@ -743,15 +743,15 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           INDUSTRIES WE EMPOWER (CONTINUOUS SLIDING MARQUEE)
          ==================================================== */}
-      <section className="w-full overflow-hidden py-4 sm:py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-5 text-center">
+      <section className="w-full overflow-hidden py-10 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-8 text-center">
           <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
             Cross-Sector Precision
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight mt-1">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight mt-1.5">
             Industries We Empower
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-600 mt-2.5 max-w-2xl mx-auto leading-relaxed">
             Delivering tailored additive manufacturing, metrology scanning, and parametric CAD workflows across diverse engineering verticals.
           </p>
         </div>
@@ -763,30 +763,30 @@ export const HomePage: React.FC = () => {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
 
           {/* Marquee Flex Track (Cards cloned for seamless 100% infinite loop) */}
-          <div className="flex w-max animate-marquee-cards space-x-5 py-3 px-4">
+          <div className="flex w-max animate-marquee-cards space-x-6 py-4 px-4">
             {[...industriesServed, ...industriesServed].map((ind, idx) => (
               <div
                 key={`${ind.name}-${idx}`}
-                className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-300 hover:-translate-y-1 transition-all select-none flex flex-col justify-between"
+                className="w-[300px] sm:w-[340px] md:w-[360px] flex-shrink-0 bg-white p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-slate-300 hover:-translate-y-1 transition-all select-none flex flex-col justify-between group"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="w-2 h-2 rounded-full bg-red-600" />
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                  <div className="flex items-center justify-between mb-3.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-600" />
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
                       Sector 0{((idx % industriesServed.length) + 1)}
                     </span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-2">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-2 group-hover:text-red-600 transition-colors">
                     {ind.name}
                   </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
                     {ind.description}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-red-600">
+                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
                   <span>Explore Solutions</span>
-                  <span>→</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             ))}
@@ -797,24 +797,24 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           KEY APPLICATIONS: SEE WHAT PRATHAM MINI CAN CREATE
          ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-10">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-wider text-red-600 font-mono">
             — KEY APPLICATIONS —
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight">
             See What Pratham Mini Can Create
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            From prototypes to learning projects, Pratham Mini helps students explore real-world ideas with hands-on 3D printing.
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            From functional prototypes to educational projects, Pratham Mini helps innovators, students, and engineers explore ideas with reliable 3D printing.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1: Educational Models */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-3.5">
-              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 border border-slate-200/70 relative">
                 <img
                   src="/images/showcase/app-stem-models.png"
                   alt="Educational Models — Pratham Mini"
@@ -823,50 +823,50 @@ export const HomePage: React.FC = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
-                  EDUCATIONAL MODELS
+              <div className="space-y-1.5">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  Educational Models
                 </span>
-                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
-                  MAKE LEARNING VISUAL & ENGAGING
+                <h3 className="text-base font-bold text-slate-950 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
+                  Make Learning Visual & Engaging
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                  3D printed models help students understand complex concepts in science, math and engineering.
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  3D printed models help students understand complex concepts in science, math, and engineering through hands-on interaction.
                 </p>
               </div>
 
               {/* Tag row */}
-              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+              <div className="pt-2 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                 <span className="inline-flex items-center space-x-1">
-                  <GraduationCap className="w-3.5 h-3.5 text-slate-500" />
+                  <GraduationCap className="w-3.5 h-3.5 text-slate-400" />
                   <span>STEM Education</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <BookOpen className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Hands-on Learning</span>
+                  <BookOpen className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Hands-on</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <School className="w-3.5 h-3.5 text-slate-500" />
-                  <span>School Projects</span>
+                  <School className="w-3.5 h-3.5 text-slate-400" />
+                  <span>School Labs</span>
                 </span>
               </div>
             </div>
 
-            <div className="pt-4 mt-3 border-t border-slate-100">
+            <div className="pt-5 mt-4 border-t border-slate-100">
               <Link
                 to="/products/pratham-mini"
-                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors"
               >
-                <span>LEARN MORE</span>
+                <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
           {/* Card 2: Prototyping Projects */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-3.5">
-              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 border border-slate-200/70 relative">
                 <img
                   src="/images/showcase/app-prototyping-projects.png"
                   alt="Prototyping Projects — Pratham Mini"
@@ -875,50 +875,50 @@ export const HomePage: React.FC = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
-                  PROTOTYPING PROJECTS
+              <div className="space-y-1.5">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  Prototyping Projects
                 </span>
-                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
-                  TURN IDEAS INTO TANGIBLE MODELS
+                <h3 className="text-base font-bold text-slate-950 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
+                  Turn Ideas into Tangible Models
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                  Students and innovators can quickly create prototypes to test ideas and improve designs.
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  Students and innovators can quickly create prototypes to validate form, fit, and ergonomics before tooling.
                 </p>
               </div>
 
               {/* Tag row */}
-              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+              <div className="pt-2 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                 <span className="inline-flex items-center space-x-1">
-                  <Lightbulb className="w-3.5 h-3.5 text-slate-500" />
+                  <Lightbulb className="w-3.5 h-3.5 text-slate-400" />
                   <span>Idea Validation</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Settings className="w-3.5 h-3.5 text-slate-500" />
+                  <Settings className="w-3.5 h-3.5 text-slate-400" />
                   <span>Design Iteration</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Box className="w-3.5 h-3.5 text-slate-500" />
+                  <Box className="w-3.5 h-3.5 text-slate-400" />
                   <span>Prototyping</span>
                 </span>
               </div>
             </div>
 
-            <div className="pt-4 mt-3 border-t border-slate-100">
+            <div className="pt-5 mt-4 border-t border-slate-100">
               <Link
                 to="/products/pratham-mini"
-                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors"
               >
-                <span>LEARN MORE</span>
+                <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
           {/* Card 3: Creative Art */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-3.5">
-              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 border border-slate-200/70 relative">
                 <img
                   src="/images/showcase/app-creative-art.png"
                   alt="Creative Art — Pratham Mini"
@@ -927,50 +927,50 @@ export const HomePage: React.FC = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
-                  CREATIVE ART
+              <div className="space-y-1.5">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  Creative Art & Design
                 </span>
-                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
-                  BRING IDEAS TO LIFE WITH 3D PRINTING
+                <h3 className="text-base font-bold text-slate-950 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
+                  Bring Complex Geometry to Life
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                  From architectural models to artistic creations, explore creativity without limits.
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  From architectural study scale models to organic sculptures, explore creative visualization with precision.
                 </p>
               </div>
 
               {/* Tag row */}
-              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+              <div className="pt-2 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                 <span className="inline-flex items-center space-x-1">
-                  <Palette className="w-3.5 h-3.5 text-slate-500" />
+                  <Palette className="w-3.5 h-3.5 text-slate-400" />
                   <span>Art & Design</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Building2 className="w-3.5 h-3.5 text-slate-500" />
+                  <Building2 className="w-3.5 h-3.5 text-slate-400" />
                   <span>Architecture</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Box className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Creative Projects</span>
+                  <Box className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Scale Models</span>
                 </span>
               </div>
             </div>
 
-            <div className="pt-4 mt-3 border-t border-slate-100">
+            <div className="pt-5 mt-4 border-t border-slate-100">
               <Link
                 to="/products/pratham-mini"
-                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors"
               >
-                <span>LEARN MORE</span>
+                <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
           {/* Card 4: Functional Components */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-3.5">
-              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 relative">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 border border-slate-200/70 relative">
                 <img
                   src="/images/showcase/app-functional-components.png"
                   alt="Functional Components — Pratham Mini"
@@ -979,41 +979,41 @@ export const HomePage: React.FC = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
-                  FUNCTIONAL COMPONENTS
+              <div className="space-y-1.5">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-600 block">
+                  Functional Components
                 </span>
-                <h3 className="text-sm font-black text-slate-950 tracking-tight uppercase">
-                  BUILD REAL-WORLD PROJECTS
+                <h3 className="text-base font-bold text-slate-950 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
+                  Build End-Use Fixtures & Parts
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                  Create functional parts, tools and mechanical components for engineering and robotics projects.
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  Create functional fixtures, jigs, brackets, and robotic mechanisms with engineering durability.
                 </p>
               </div>
 
               {/* Tag row */}
-              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-600">
+              <div className="pt-2 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                 <span className="inline-flex items-center space-x-1">
-                  <Wrench className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Functional Parts</span>
+                  <Wrench className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Jigs & Fixtures</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Settings className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Mechanical Components</span>
+                  <Settings className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Mechanical</span>
                 </span>
                 <span className="inline-flex items-center space-x-1">
-                  <Bot className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Robotics Projects</span>
+                  <Bot className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Robotics</span>
                 </span>
               </div>
             </div>
 
-            <div className="pt-4 mt-3 border-t border-slate-100">
+            <div className="pt-5 mt-4 border-t border-slate-100">
               <Link
                 to="/products/pratham-mini"
-                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors"
               >
-                <span>LEARN MORE</span>
+                <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-red-600 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -1024,14 +1024,14 @@ export const HomePage: React.FC = () => {
       {/* ====================================================
           BOTTOM HIGH-IMPACT CTA STRIP
          ==================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-800 text-center space-y-4 relative overflow-hidden">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
+        <div className="bg-slate-950 text-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-slate-800 text-center space-y-6 relative overflow-hidden shadow-2xl">
           <div className="max-w-2xl mx-auto space-y-3 relative z-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-400">Collaborate with Leniva</span>
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono">Collaborate with Leniva</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
               Ready to Accelerate Your Design & Manufacturing Workflow?
             </h2>
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
               Consult with our application engineers for custom equipment configurations, CAD licensing, or rapid contract manufacturing quotes.
             </p>
           </div>
@@ -1039,13 +1039,13 @@ export const HomePage: React.FC = () => {
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4 relative z-10">
             <button
               onClick={() => openQuoteModal('Bottom CTA - Start Project')}
-              className="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all"
+              className="px-8 py-4 bg-red-600 hover:bg-red-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-red-600/30 hover:scale-[1.02] transition-all cursor-pointer"
             >
               Request a Project Quote
             </button>
             <Link
               to="/contact"
-              className="px-8 py-3.5 bg-white hover:bg-slate-100 text-slate-950 text-xs font-bold rounded-xl transition-all"
+              className="px-8 py-4 bg-white hover:bg-slate-100 text-slate-950 text-sm font-bold rounded-xl transition-all shadow-sm"
             >
               Contact Our Engineers
             </Link>

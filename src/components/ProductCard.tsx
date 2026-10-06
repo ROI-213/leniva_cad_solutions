@@ -24,29 +24,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const brandLogo = brandLogoMap[product.brand]
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/90 hover:border-red-300 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
-      {/* Card Image Container */}
-      <div className="relative aspect-[4/3] bg-slate-50 overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-200/80 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+      {/* Card Image Container with Generous Padding */}
+      <div className="relative aspect-[4/3] bg-slate-50/70 p-6 flex items-center justify-center overflow-hidden">
         <img
           src={product.heroImage}
           alt={product.name}
-          className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
-          <span className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-slate-900/80 backdrop-blur-sm text-white rounded-md shadow-sm">
+        {/* Clean Single Badge */}
+        <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 z-10">
+          <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-white/95 text-slate-800 rounded-full shadow-2xs border border-slate-200/70 backdrop-blur-sm">
             {product.technology}
           </span>
           {product.isNew && (
-            <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-600 text-white rounded-md shadow-sm">
-              New Launch
-            </span>
-          )}
-          {product.isFeatured && (
-            <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-500 text-white rounded-md shadow-sm">
-              Featured
+            <span className="px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider bg-red-600 text-white rounded-full shadow-2xs">
+              New
             </span>
           )}
         </div>
@@ -66,10 +61,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               isQuoteRequired: true,
             })
           }}
-          className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
+          className={`absolute top-3.5 right-3.5 w-9 h-9 rounded-full flex items-center justify-center border transition-all ${
             inWishlist
-              ? 'bg-rose-50 text-rose-600 shadow'
-              : 'bg-white/80 text-slate-500 hover:text-rose-500 hover:bg-white'
+              ? 'bg-rose-50 border-rose-200 text-rose-600 shadow-sm'
+              : 'bg-white/90 border-slate-200/80 text-slate-400 hover:text-red-600 hover:bg-white shadow-2xs'
           }`}
           aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
         >
@@ -77,42 +72,42 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </button>
       </div>
 
-      {/* Card Content */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+      {/* Card Content with Readable Typography & Breathing Room */}
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          <div className="flex items-center justify-between min-h-[22px] mb-1">
+          {/* Brand Indicator */}
+          <div className="flex items-center justify-between min-h-[20px] mb-2">
             {brandLogo ? (
               <img
                 src={brandLogo}
                 alt={product.brand}
-                className="h-5 w-auto max-w-[95px] object-contain"
+                className="h-4.5 w-auto max-w-[90px] object-contain opacity-80"
                 loading="lazy"
               />
             ) : (
-              <div className="text-[11px] font-bold text-red-600 uppercase tracking-wider">
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 {product.brand}
               </div>
             )}
-            <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
-              {product.technology}
-            </span>
           </div>
-          <Link to={`/products/${product.slug}`} className="block mt-0.5">
-            <h3 className="text-base font-bold text-slate-950 group-hover:text-red-600 transition-colors">
+
+          <Link to={`/products/${product.slug}`} className="block">
+            <h3 className="text-lg font-bold text-slate-950 tracking-tight group-hover:text-red-600 transition-colors leading-snug">
               {product.name}
             </h3>
           </Link>
-          <p className="text-xs text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
+
+          <p className="text-sm text-slate-600 line-clamp-2 mt-2 leading-relaxed">
             {product.shortDescription}
           </p>
 
-          {/* Key Specs Tags */}
+          {/* Key Specs: Clean Minimal Layout without nested grey boxes */}
           {product.keySpecs && product.keySpecs.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px]">
+            <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-3">
               {product.keySpecs.slice(0, 2).map((s, idx) => (
-                <div key={idx} className="bg-slate-50 p-1.5 rounded border border-slate-100">
-                  <div className="text-slate-400 font-medium text-[10px]">{s.label}</div>
-                  <div className="font-semibold text-slate-800 truncate">{s.value}</div>
+                <div key={idx} className="min-w-0">
+                  <div className="text-xs text-slate-400 font-medium truncate">{s.label}</div>
+                  <div className="text-sm font-semibold text-slate-900 truncate mt-0.5">{s.value}</div>
                 </div>
               ))}
             </div>
@@ -120,16 +115,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-2 flex items-center gap-2">
+        <div className="pt-2 flex items-center gap-2.5">
           <Link
             to={`/products/${product.slug}`}
-            className="flex-1 py-2 px-3 text-center text-xs font-semibold text-slate-700 hover:text-red-600 bg-slate-100 hover:bg-red-50 rounded-lg transition-colors"
+            className="flex-1 py-2.5 px-3 text-center text-xs font-bold text-slate-800 hover:text-white bg-slate-100 hover:bg-slate-950 rounded-xl transition-all"
           >
             View Details
           </Link>
           <button
             onClick={() => openQuoteModal(product.name)}
-            className="flex-1 py-2 px-3 text-center text-xs font-bold text-white bg-slate-900 hover:bg-red-600 rounded-lg shadow-sm transition-colors"
+            className="flex-1 py-2.5 px-3 text-center text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-xs transition-colors"
           >
             Request Quote
           </button>
@@ -138,4 +133,5 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     </div>
   )
 }
+
 export default ProductCard

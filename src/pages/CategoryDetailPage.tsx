@@ -2,10 +2,7 @@ import React from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import {
   ChevronRight,
-  CheckCircle2,
   Phone,
-  ShieldCheck,
-  Layers,
 } from 'lucide-react'
 import { productCategories } from '../data/categories'
 import { products } from '../data/products'
@@ -113,40 +110,6 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
           </div>
         </div>
 
-        {/* Key Engineering Benefits & Common Applications Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <h3 className="text-base font-bold text-slate-950 flex items-center space-x-2">
-              <ShieldCheck className="w-5 h-5 text-red-600" />
-              <span>Key Technical Advantages</span>
-            </h3>
-            <ul className="space-y-2.5">
-              {category.keyBenefits.map((benefit, idx) => (
-                <li key={idx} className="flex items-start space-x-2 text-xs text-slate-600">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <h3 className="text-base font-bold text-slate-950 flex items-center space-x-2">
-              <Layers className="w-5 h-5 text-indigo-600" />
-              <span>Target Industrial Applications</span>
-            </h3>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {category.commonApplications.map((app, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1.5 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors"
-                >
-                  {app}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Product Cards Grid */}
         <div className="space-y-4">

@@ -629,7 +629,7 @@ export const aresCommanderData: AresCommanderData = {
   bimToCad: {
     heading: 'Unlock CAD Documentation from BIM Models',
     description: 'ARES Commander can import and view supported Revit (.RVT) and IFC models. It enables users to browse BIM information, extract information into tables and generate 2D drawings from BIM data.',
-    supportingDescription: 'ARES Commander bridges the gap between 3D BIM model data and DWG-based technical documentation. Architecture, engineering, and construction teams can access complete BIM building models, isolate relevant storeys or disciplines, and extract accurate 2D drawings without buying expensive full BIM software for every team member.',
+    supportingDescription: 'ARES Commander bridges the gap between 3D BIM model data and DWG-based technical documentation. Architecture, engineering, and construction teams can access BIM building models, isolate relevant storeys or disciplines, and extract 2D drawings without requiring full BIM software for every team member.',
     capabilities: [
       {
         title: 'BIM Model Import',

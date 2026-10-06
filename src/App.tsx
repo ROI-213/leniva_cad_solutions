@@ -366,30 +366,6 @@ export default function App() {
               path="/services/sla-3d-printing"
               element={<ServiceDetailPage forcedSlug="sla-3d-printing" />}
             />
-            <Route
-              path="/services/dlp-3d-printing"
-              element={<ServiceDetailPage forcedSlug="dlp-3d-printing" />}
-            />
-            <Route
-              path="/services/3d-scanning"
-              element={<ServiceDetailPage forcedSlug="3d-scanning" />}
-            />
-            <Route
-              path="/services/reverse-engineering"
-              element={<ServiceDetailPage forcedSlug="reverse-engineering" />}
-            />
-            <Route
-              path="/services/cad-training"
-              element={<ServiceDetailPage forcedSlug="cad-training" />}
-            />
-            <Route
-              path="/services/cad-consulting"
-              element={<ServiceDetailPage forcedSlug="cad-consulting" />}
-            />
-            <Route
-              path="/services/3d-visualization"
-              element={<ServiceDetailPage forcedSlug="3d-visualization" />}
-            />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
 
             {/* 4. Shop */}

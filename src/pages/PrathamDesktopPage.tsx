@@ -32,7 +32,7 @@ export const PrathamDesktopPage: React.FC = () => {
 
   // Interactive State
   const [activeSpecTab, setActiveSpecTab] = useState<'print' | 'motion' | 'hardware' | 'software'>('print')
-  const [speedPreset, setSpeedPreset] = useState<number>(150)
+  const [speedPreset, setSpeedPreset] = useState<number>(120)
   const [layerSlider, setLayerSlider] = useState<number>(150) // 80 to 400 microns
   const [selectedMaterial, setSelectedMaterial] = useState<string>('PLA')
   const [openFaq, setOpenFaq] = useState<number | null>(0)
@@ -462,7 +462,7 @@ export const PrathamDesktopPage: React.FC = () => {
                     Print Speed
                   </div>
                   <div className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5">
-                    Up to 150 mm/s
+                    Up to 120 mm/s
                   </div>
                   <div className="text-[10px] text-slate-500 mt-0.5">Rapid Prototyping</div>
                 </div>
@@ -803,10 +803,10 @@ export const PrathamDesktopPage: React.FC = () => {
               HIGH-SPEED PRINTING PERFORMANCE
             </h3>
             <div className="inline-block px-3 py-1 bg-red-50 text-red-700 font-mono text-xs font-bold rounded-lg border border-red-200">
-              MAIN SPECIFICATION: UP TO 150 MM/SEC
+              MAIN SPECIFICATION: UP TO 120 MM/SEC
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Achieve smooth and stable prints at speeds up to 150 mm/sec, optimized for fast prototyping and daily
+              Achieve smooth and stable prints at speeds up to 120 mm/s, optimized for fast prototyping and daily
               production needs. High-torque steppers and rigid round-shaft guidance eliminate layer shift even during
               rapid directional jerks.
             </p>
@@ -815,7 +815,7 @@ export const PrathamDesktopPage: React.FC = () => {
             <div className="pt-2 space-y-2">
               <div className="text-xs font-semibold text-slate-700">Select Print Velocity Preset:</div>
               <div className="flex flex-wrap gap-2">
-                {[40, 50, 80, 100, 120, 150].map((spd) => (
+                {[40, 50, 80, 100, 120].map((spd) => (
                   <button
                     key={spd}
                     onClick={() => setSpeedPreset(spd)}
@@ -842,7 +842,7 @@ export const PrathamDesktopPage: React.FC = () => {
             <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden p-0.5 border border-slate-700">
               <div
                 className="bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 h-full rounded-full transition-all duration-300"
-                style={{ width: `${(speedPreset / 150) * 100}%` }}
+                style={{ width: `${(speedPreset / 120) * 100}%` }}
               />
             </div>
 
@@ -1473,7 +1473,7 @@ export const PrathamDesktopPage: React.FC = () => {
                 <span className="text-slate-500 uppercase tracking-wider font-mono text-[10px] block">
                   Print Velocity
                 </span>
-                <strong className="text-slate-900 text-sm">Up to 150 mm/sec (Typical: 40–120 mm/s)</strong>
+                <strong className="text-slate-900 text-sm">Up to 120 mm/sec (Typical: 40–120 mm/s)</strong>
               </div>
               <div className="p-4 bg-slate-50 rounded-xl space-y-1">
                 <span className="text-slate-500 uppercase tracking-wider font-mono text-[10px] block">

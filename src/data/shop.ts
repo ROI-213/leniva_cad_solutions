@@ -31,6 +31,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Compact desktop FDM 3D printer (170 × 170 × 170 mm) engineered for learning labs, student research, and precision prototyping.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '170 × 170 × 170 mm',
       'Extruder': 'Direct Drive Precision Extruder',
       'Nozzle Temp': 'Up to 260°C',
@@ -58,6 +59,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Professional enclosed desktop 3D printer (200 × 200 × 250 mm) with touchscreen interface, all-metal hotend, and ultra-quiet drivers.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '200 × 200 × 250 mm',
       'Extruder': 'All-Metal Dual-Gear Extruder',
       'Nozzle Temp': 'Up to 300°C',
@@ -85,6 +87,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Heavy-duty dual-extrusion industrial 3D printer (300 × 300 × 300 mm) with heated chamber and high-flow hotend for engineering composites.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '300 × 300 × 300 mm',
       'Extrusion': 'Independent Dual Extrusion (IDEX)',
       'Nozzle Temp': 'Up to 350°C High-Temp',
@@ -112,6 +115,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Large-scale industrial additive manufacturing system (500 × 500 × 500 mm) with precision linear guides and automated bed leveling matrix.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '500 × 500 × 500 mm',
       'Print Accuracy': '±0.1 mm',
       'Layer Height': '0.05 – 0.4 mm',
@@ -138,6 +142,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Extra-large production 3D printer (600 × 600 × 600 mm) with closed-loop servo motors, HEPA air filtration, and continuous 24/7 reliability.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '600 × 600 × 600 mm',
       'Drive System': 'Closed-Loop AC Servo Motion',
       'Filtration': 'HEPA + Activated Carbon Filter',
@@ -163,6 +168,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Massive 1000 × 1000 × 600 mm build envelope with top open inspection canopy, Make In India engineering, and high-deposition throughput.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '1000 × 1000 × 600 mm',
       'Extruder': 'High-Deposition High-Flow Filament Extruder',
       'Bed Leveling': 'Multi-Point Electronic Probing',
@@ -188,6 +194,7 @@ export const shopItems: ShopItem[] = [
     isContain: true,
     shortDescription: 'Giant 1000 × 1000 × 1000 mm (1 Cubic Meter) build capacity engineered for extra-large industrial components and seamless large-scale models.',
     specifications: {
+      'Print Speed': 'Up to 120 mm/s',
       'Build Envelope': '1000 × 1000 × 1000 mm (1 m³)',
       'Extruder': 'High-Deposition High-Flow Filament Extruder',
       'Bed Leveling': 'Multi-Point Electronic Probing',
@@ -211,9 +218,9 @@ export const shopItems: ShopItem[] = [
     isQuoteBased: true,
     productSlug: 'pratham-3-rapid',
     isContain: true,
-    shortDescription: 'High-speed industrial FDM printer reaching print speeds up to 350 mm/s with input shaping vibration damping and ultra-rapid ceramic heater block.',
+    shortDescription: 'High-speed industrial FDM printer reaching print speeds up to 500 mm/s with input shaping vibration damping and ultra-rapid ceramic heater block.',
     specifications: {
-      'Max Speed': 'Up to 350 mm/s',
+      'Max Speed': 'Up to 500 mm/s',
       'Acceleration': 'Up to 10,000 mm/s²',
       'Build Volume': '300 × 300 × 300 mm',
       'Motion': 'CoreXY Kinematic Architecture',

@@ -646,7 +646,7 @@ export const PrathamMiniPage: React.FC = () => {
                 <div className="grid grid-cols-2 p-3.5"><span className="font-bold text-slate-700">Standard Build Volume</span><span className="text-slate-900 font-mono font-bold">170 × 170 × 170 mm</span></div>
                 <div className="grid grid-cols-2 p-3.5 bg-slate-50/50"><span className="font-bold text-slate-700">Customizable Volume</span><span className="text-slate-900 font-mono">Up to 200 × 200 × 200 mm</span></div>
                 <div className="grid grid-cols-2 p-3.5"><span className="font-bold text-slate-700">Layer Resolution</span><span className="text-slate-900 font-mono font-bold">0.1 – 0.3 mm (100 – 300 microns)</span></div>
-                <div className="grid grid-cols-2 p-3.5 bg-slate-50/50"><span className="font-bold text-slate-700">Print Speed</span><span className="text-slate-900 font-mono">40 – 120 mm/sec</span></div>
+                <div className="grid grid-cols-2 p-3.5 bg-slate-50/50"><span className="font-bold text-slate-700">Print Speed</span><span className="text-slate-900 font-mono">Up to 120 mm/s</span></div>
                 <div className="grid grid-cols-2 p-3.5"><span className="font-bold text-slate-700">Nozzle Diameter</span><span className="text-slate-900 font-mono">0.4 mm standard (all-metal)</span></div>
                 <div className="grid grid-cols-2 p-3.5 bg-slate-50/50"><span className="font-bold text-slate-700">Maximum Hotend Temperature</span><span className="text-slate-900 font-mono font-bold">280°C</span></div>
                 <div className="grid grid-cols-2 p-3.5"><span className="font-bold text-slate-700">Print Bed Temperature</span><span className="text-slate-900 font-mono">Up to 120°C with rapid heating</span></div>

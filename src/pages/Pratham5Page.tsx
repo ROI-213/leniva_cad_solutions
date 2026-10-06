@@ -501,7 +501,7 @@ export const Pratham5Page: React.FC = () => {
               },
               {
                 label: 'Print Speed',
-                val: '120–150 mm/s',
+                val: 'Up to 120 mm/s',
                 sub: '40–120 mm/s in Brochure',
                 src: 'Source-Differentiated',
               },
@@ -544,7 +544,7 @@ export const Pratham5Page: React.FC = () => {
           </div>
 
           <p className="text-[11px] text-slate-500 italic bg-amber-50/80 p-2.5 rounded-lg border border-amber-200/60">
-            <strong>Accuracy Notice:</strong> Official Make3D documentation lists speed up to 120–150 mm/sec on the product page and 40–120 mm/sec in the brochure; layer resolution from 80–600 microns on the product page and 0.08 / 0.1 / 0.2 / 0.3 / 0.4 mm in the brochure. Both sources are preserved above.
+            <strong>Accuracy Notice:</strong> Official Make3D documentation lists speed up to 120 mm/s on the product page and 40–120 mm/sec in the brochure; layer resolution from 80–600 microns on the product page and 0.08 / 0.1 / 0.2 / 0.3 / 0.4 mm in the brochure. Both sources are preserved above.
           </p>
         </div>
       </section>
@@ -949,7 +949,7 @@ export const Pratham5Page: React.FC = () => {
                       bro: '0.08 / 0.1 / 0.2 / 0.3 / 0.4 mm',
                     },
                     { spec: 'Dimensional Tolerance', page: 'Not specified on page', bro: '±0.1 mm' },
-                    { spec: 'Print Speed', page: 'Up to 120–150 mm/sec', bro: '40–120 mm/sec' },
+                    { spec: 'Print Speed', page: 'Up to 120 mm/s', bro: '40–120 mm/sec' },
                     { spec: 'Extruder Temperature', page: 'Not specified on page', bro: '280°C, single extruder' },
                     { spec: 'Printbed Temperature', page: 'Not specified on page', bro: '120°C' },
                     { spec: 'Nozzle Size (Standard)', page: 'Not specified on page', bro: '0.5 mm standard' },
@@ -2100,11 +2100,11 @@ export const Pratham5Page: React.FC = () => {
 const featuresList = [
   {
     title: 'High-Speed Industrial Printing',
-    desc: 'Product page lists speeds up to 120–150 mm/sec optimized for large components and continuous production. Brochure separately lists 40–120 mm/sec.',
+    desc: 'Product page lists speeds up to 120 mm/s optimized for large components and continuous production. Brochure separately lists 40–120 mm/sec.',
     icon: Gauge,
     badge: 'High-Speed Printing',
     source: 'Page & Brochure',
-    highlight: 'Up to 150 mm/s',
+    highlight: 'Up to 120 mm/s',
   },
   {
     title: 'Advanced Connectivity Options',
@@ -2396,7 +2396,7 @@ const faqs = [
   },
   {
     q: 'What is the print speed?',
-    a: 'The product page lists up to 120–150 mm/sec, while the brochure lists 40–120 mm/sec. Confirm the applicable speed for the current configuration.',
+    a: 'The product page lists up to 120 mm/s, while the brochure lists 40–120 mm/sec. Confirm the applicable speed for the current configuration.',
   },
   {
     q: 'What is the layer resolution?',

@@ -349,7 +349,7 @@ export const PrathamX1000Page: React.FC = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
               {[
                 { label: 'Build Envelope', value: '1000 × 1000 × 1000 mm', icon: Box },
-                { label: 'Print Speed', value: '40–120 mm/sec Listed', icon: Zap },
+                { label: 'Print Speed', value: 'Up to 120 mm/s', icon: Zap },
                 { label: 'Dimensional Tol.', value: '±0.2 mm Listed', icon: Compass },
                 { label: 'Extruder Temp', value: '280°C Single Extruder', icon: Flame },
                 { label: 'Heated Bed', value: '120°C Silicone Heatbed', icon: Thermometer },
@@ -486,7 +486,7 @@ export const PrathamX1000Page: React.FC = () => {
             {[
               { label: 'Build Volume', val: '1000×1000×1000', sub: '1 m³ Capacity' },
               { label: 'Technology', val: 'FDM / FFF', sub: 'Fused Filament' },
-              { label: 'Print Speed', val: '40–120 mm/s', sub: 'Brochure Listed' },
+              { label: 'Print Speed', val: 'Up to 120 mm/s', sub: 'Brochure Listed' },
               { label: 'Layer Resolution', val: '0.08–0.4 mm', sub: 'Adjustable' },
               { label: 'Dimensional Tol.', val: '±0.2 mm', sub: 'Machined Accuracy' },
               { label: 'Extruder Temp', val: '280°C', sub: 'Single Extruder' },
@@ -1107,7 +1107,7 @@ export const PrathamX1000Page: React.FC = () => {
                   { k: 'Build Volume', v: '1000 × 1000 × 1000 mm (1 m³ for this variant)' },
                   { k: 'Layer Resolution', v: '0.08 / 0.1 / 0.2 / 0.3 / 0.4 mm' },
                   { k: 'Dimensional Tolerance', v: '±0.2 mm' },
-                  { k: 'Print Speed', v: '40–120 mm/sec' },
+                  { k: 'Print Speed', v: 'Up to 120 mm/s' },
                   { k: 'Extruder Temperature', v: '280°C, single extruder' },
                   { k: 'Printbed Temperature', v: '120°C (Silicone fastest heating bed)' },
                   { k: 'Standard Nozzle', v: '0.5 mm' },

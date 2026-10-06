@@ -670,7 +670,7 @@ export const PrathamX600Page: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 p-4 hover:bg-slate-50">
                   <div className="font-bold text-slate-700">Print Speed Range</div>
-                  <div className="sm:col-span-2 text-slate-900">40 – 120 mm/sec</div>
+                  <div className="sm:col-span-2 text-slate-900">Up to 120 mm/s (40 – 120 mm/s)</div>
                 </div>
               </>
             )}

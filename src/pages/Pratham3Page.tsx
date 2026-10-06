@@ -32,7 +32,7 @@ export const Pratham3Page: React.FC = () => {
   // Interactive State
   const [activeSpecTab, setActiveSpecTab] = useState<'print' | 'motion' | 'hardware' | 'software'>('print')
   const [activeGalleryCat, setActiveGalleryCat] = useState<string>('all')
-  const [speedGauge, setSpeedGauge] = useState<number>(150)
+  const [speedGauge, setSpeedGauge] = useState<number>(120)
   const [layerSlider, setLayerSlider] = useState<number>(100) // 80 to 600 microns
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0)
@@ -1098,10 +1098,10 @@ export const Pratham3Page: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-lg font-black text-slate-950">High-Speed Industrial Printing</h3>
-                <p className="text-xs text-slate-500 font-semibold mt-0.5">Up to 150 mm/sec</p>
+                <p className="text-xs text-slate-500 font-semibold mt-0.5">Up to 120 mm/s</p>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Achieve stable and consistent prints at speeds up to 150 mm/sec, optimized for faster prototyping and
+                Achieve stable and consistent prints at speeds up to 120 mm/s, optimized for faster prototyping and
                 small-batch production without compromising dimensional tolerance.
               </p>
             </div>
@@ -1111,7 +1111,7 @@ export const Pratham3Page: React.FC = () => {
               <div className="text-3xl font-black text-amber-400">{speedGauge} mm/s</div>
               <div className="text-[10px] text-slate-400">Continuous Dynamic Velocity</div>
               <div className="flex justify-between items-center text-[10px] text-slate-400 pt-2 border-t border-slate-800">
-                {[40, 60, 80, 100, 120, 150].map((spd) => (
+                {[40, 60, 80, 100, 120].map((spd) => (
                   <button
                     key={spd}
                     onClick={() => setSpeedGauge(spd)}
@@ -1374,11 +1374,11 @@ export const Pratham3Page: React.FC = () => {
                 <div className="space-y-3 divide-y divide-slate-100 text-xs">
                   <div className="flex justify-between pt-2">
                     <span className="font-bold text-slate-600">Marketing Print Speed</span>
-                    <span className="font-mono text-slate-950 font-bold">Up to 150 mm/sec</span>
+                    <span className="font-mono text-slate-950 font-bold">Up to 120 mm/s</span>
                   </div>
                   <div className="flex justify-between pt-2">
                     <span className="font-bold text-slate-600">Brochure Print Speed</span>
-                    <span className="font-mono text-slate-950 font-bold">40 – 120 mm/sec</span>
+                    <span className="font-mono text-slate-950 font-bold">40 – 120 mm/s</span>
                   </div>
                   <div className="flex justify-between pt-2">
                     <span className="font-bold text-slate-600">Marketing Resolution</span>

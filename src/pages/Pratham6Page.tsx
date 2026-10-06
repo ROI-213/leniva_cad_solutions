@@ -495,7 +495,7 @@ export const Pratham6Page: React.FC = () => {
               },
               {
                 label: 'Print Speed',
-                val: '120–150 mm/s',
+                val: 'Up to 120 mm/s',
                 sub: '40–120 mm/s in Brochure',
                 src: 'Source-Differentiated',
               },
@@ -538,7 +538,7 @@ export const Pratham6Page: React.FC = () => {
           </div>
 
           <p className="text-[11px] text-slate-500 italic bg-amber-50/80 p-2.5 rounded-lg border border-amber-200/60">
-            <strong>Accuracy Notice:</strong> The official Make3D product page and brochure list distinct resolution (80–600 microns on page vs 0.08–0.4 mm in brochure) and speed values (up to 120–150 mm/s on page vs 40–120 mm/s in brochure). Both are preserved above with source attribution.
+            <strong>Accuracy Notice:</strong> The official Make3D product page and brochure list distinct resolution (80–600 microns on page vs 0.08–0.4 mm in brochure) and speed values (up to 120 mm/s on page vs 40–120 mm/s in brochure). Both are preserved above with source attribution.
           </p>
         </div>
       </section>
@@ -802,7 +802,7 @@ export const Pratham6Page: React.FC = () => {
                 <input
                   type="range"
                   min="40"
-                  max="150"
+                  max="120"
                   step="5"
                   value={simSpeed}
                   onChange={(e) => setSimSpeed(Number(e.target.value))}
@@ -811,7 +811,7 @@ export const Pratham6Page: React.FC = () => {
                 <div className="flex justify-between text-[10px] text-slate-500 font-mono">
                   <span>40 mm/s (Precision Outer Walls)</span>
                   <span>80 mm/s (Balanced Infill)</span>
-                  <span>150 mm/s (Rapid Infill / Drafts)</span>
+                  <span>120 mm/s (Rapid Infill / Drafts)</span>
                 </div>
               </div>
             </div>
@@ -968,7 +968,7 @@ export const Pratham6Page: React.FC = () => {
                       bro: '0.08 / 0.1 / 0.2 / 0.3 / 0.4 mm',
                     },
                     { spec: 'Dimensional Tolerance', page: 'Not specified on page', bro: '±0.1 mm' },
-                    { spec: 'Print Speed', page: 'Up to 120–150 mm/sec', bro: '40–120 mm/sec' },
+                    { spec: 'Print Speed', page: 'Up to 120 mm/s', bro: '40–120 mm/sec' },
                     { spec: 'Extruder Temperature', page: 'Not specified on page', bro: '280°C (Single Extruder)' },
                     { spec: 'Printbed Temperature', page: 'Not specified on page', bro: '120°C' },
                     { spec: 'Nozzle Size (Standard)', page: 'Not specified on page', bro: '0.5 mm standard' },
@@ -2314,7 +2314,7 @@ const faqs = [
   },
   {
     q: 'What is the print speed?',
-    a: 'The product page lists speeds up to 120–150 mm/sec, while the brochure lists 40–120 mm/sec. Actual speed depends on part geometry, selected filament material, and mechanical wall surface requirements.',
+    a: 'The product page lists speeds up to 120 mm/s, while the brochure lists 40–120 mm/sec. Actual speed depends on part geometry, selected filament material, and mechanical wall surface requirements.',
   },
   {
     q: 'What file formats are supported?',

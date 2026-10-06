@@ -136,10 +136,10 @@ export const Pratham3Page: React.FC = () => {
         },
         {
           '@type': 'Question',
-          name: 'Does Leniva / Make3D provide installation and training?',
+          name: 'Does Leniva / Make3D provide installation and onboarding?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. Full unboxing, calibration, on-site/guided installation, and hands-on slicing and operational training are provided.',
+            text: 'Yes. Full unboxing, calibration, on-site/guided installation, and hands-on slicing and operational onboarding are provided.',
           },
         },
       ],
@@ -455,8 +455,8 @@ export const Pratham3Page: React.FC = () => {
       a: 'Yes. Pratham 3.0 is entirely conceptualized, engineered, and manufactured in India, conforming to national industrial manufacturing standards with robust domestic support.',
     },
     {
-      q: 'Does Leniva / Make3D provide installation and training?',
-      a: 'Yes. Comprehensive installation, machine calibration, first-layer tramming, and operator slicing training (covering Simplify3D and Ultimaker Cura) are provided by factory-certified application specialists on-site or via dedicated interactive sessions.',
+      q: 'Does Leniva / Make3D provide installation and onboarding?',
+      a: 'Yes. Comprehensive installation, machine calibration, first-layer tramming, and operator slicing guidance (covering Simplify3D and Ultimaker Cura) are provided by factory-certified application specialists on-site or via dedicated interactive sessions.',
     },
   ]
 

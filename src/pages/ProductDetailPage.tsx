@@ -431,7 +431,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ forcedSlug
                   <span>Engineering Notice</span>
                 </div>
                 <p className="text-xs text-red-900">
-                  All machine installations by Leniva CAD Solutions include complete on-site commissioning, leveling calibration, operator software training, and sample benchmark print validation.
+                  All machine installations by Leniva CAD Solutions include complete on-site commissioning, leveling calibration, operator software onboarding, and sample benchmark print validation.
                 </p>
               </div>
             </div>

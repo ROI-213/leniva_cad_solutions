@@ -1300,7 +1300,7 @@ export const aresElectricalData: AresElectricalData = {
       },
       {
         title: 'Graebert Academy',
-        desc: 'Enroll in official online courses and structured training resources for CAD professionals.',
+        desc: 'Enroll in official online courses and structured learning resources for CAD professionals.',
         linkText: 'Visit Academy',
         url: 'https://www.graebert.com/academy/',
         icon: 'GraduationCap',

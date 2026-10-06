@@ -262,7 +262,7 @@ export const DevokMQPage: React.FC = () => {
               <div className="pt-6 border-t border-slate-800/80 flex items-start space-x-3 text-xs text-slate-400">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
-                  <strong className="text-white font-semibold">{devokMQData.trustLine}</strong> backed by Leniva CAD Solutions PAN-India calibration, field engineering, and software training network.
+                  <strong className="text-white font-semibold">{devokMQData.trustLine}</strong> backed by Leniva CAD Solutions PAN-India calibration, field engineering, and software onboarding network.
                 </p>
               </div>
             </div>

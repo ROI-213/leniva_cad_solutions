@@ -1855,7 +1855,7 @@ export const VRayPage: React.FC = () => {
               Request Chaos V-Ray Pricing & Consultation
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-              Connect with Leniva CAD Solutions for commercial licensing, educational institutional pricing, floating network setups, and local technical training across India.
+              Connect with Leniva CAD Solutions for commercial licensing, educational institutional pricing, floating network setups, and local technical onboarding across India.
             </p>
           </div>
 

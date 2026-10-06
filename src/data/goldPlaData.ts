@@ -261,7 +261,7 @@ export const initialGoldData: GoldProductData = {
     },
     {
       title: 'EDUCATIONAL PROJECTS',
-      description: 'Ideal for schools, colleges, laboratories, and training centers demonstrating 3D printing concepts.',
+      description: 'Ideal for schools, colleges, laboratories, and learning centers demonstrating 3D printing concepts.',
       iconName: 'GraduationCap',
     },
     {

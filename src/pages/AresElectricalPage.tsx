@@ -1502,7 +1502,7 @@ export const AresElectricalPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <div className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
-              Support & Training
+              Support & Onboarding
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               {data.resources.heading}

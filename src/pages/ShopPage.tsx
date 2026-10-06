@@ -312,7 +312,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ forcedCategory }) => {
             </div>
             <div>
               <strong className="block text-slate-900 font-bold text-sm">PAN-India Service</strong>
-              <span>On-site training & warranty</span>
+              <span>On-site onboarding & warranty</span>
             </div>
           </div>
         </div>

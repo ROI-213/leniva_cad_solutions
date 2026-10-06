@@ -417,7 +417,7 @@ export const aresCommanderData: AresCommanderData = {
       {
         number: '01',
         title: 'Familiar CAD Experience',
-        desc: 'Familiar command line, ribbon layouts, shortcuts, and aliases make transitioning from other DWG-based CAD software seamless without retraining.',
+        desc: 'Familiar command line, ribbon layouts, shortcuts, and aliases make transitioning from other DWG-based CAD software seamless without a learning curve.',
         detail: 'Experienced CAD drafters can type familiar commands like LINE, TRIM, OFFSET, and CIRCLE to start working immediately with zero learning curve.',
         icon: 'Command',
       },
@@ -832,7 +832,7 @@ export const aresCommanderData: AresCommanderData = {
       },
       {
         id: 'education',
-        title: 'Education & Academic Training',
+        title: 'Education & Academic Enablement',
         subtitle: 'Foundational CAD Curricula',
         description: 'Equip engineering faculties, polytechnic labs, and design universities with cross-platform CAD software for teaching foundational drafting principles.',
         toolTags: ['Student Exercises', 'LISP Basics', 'Classroom Labs', 'Cross-Platform'],
@@ -1040,8 +1040,8 @@ export const aresCommanderData: AresCommanderData = {
   },
 
   learningResources: {
-    heading: 'Learn ARES Commander with Official Training',
-    description: 'Graebert provides extensive learning resources, tutorials, documentation, and training courses to help drafters and engineering teams master ARES CAD software quickly.',
+    heading: 'Learn ARES Commander with Official Onboarding',
+    description: 'Graebert provides extensive learning resources, tutorials, documentation, and learning courses to help drafters and engineering teams master ARES CAD software quickly.',
     items: [
       {
         title: 'Graebert Academy',
@@ -1065,11 +1065,11 @@ export const aresCommanderData: AresCommanderData = {
         badge: 'Documentation',
       },
       {
-        title: 'On-Site & Online Training',
+        title: 'On-Site & Online Onboarding',
         description: 'Custom corporate onboarding and hands-on team workshops conducted by certified Leniva CAD Solutions technical specialists in India.',
         icon: 'Users',
         url: '#enquiry',
-        badge: 'Leniva Training',
+        badge: 'Leniva Onboarding',
       },
     ],
   },
@@ -1152,7 +1152,7 @@ export const aresCommanderData: AresCommanderData = {
     },
     {
       q: 'Is ARES Commander an alternative to AutoCAD?',
-      a: 'ARES Commander is marketed by Graebert as a professional alternative for DWG-based CAD workflows. It features a familiar command-line, standard CAD keyboard shortcuts, toolbars, ribbons, and native DWG file compatibility. Drafters experienced with AutoCAD can begin working with virtually zero retraining.',
+      a: 'ARES Commander is marketed by Graebert as a professional alternative for DWG-based CAD workflows. It features a familiar command-line, standard CAD keyboard shortcuts, toolbars, ribbons, and native DWG file compatibility. Drafters experienced with AutoCAD can begin working with virtually zero transition friction.',
       category: 'general',
     },
     {
@@ -1242,12 +1242,12 @@ export const aresCommanderData: AresCommanderData = {
     },
     {
       q: 'Does ARES Commander include technical support?',
-      a: 'Yes. Subscriptions and active perpetual maintenance agreements include official Graebert software updates and technical support. In addition, Leniva CAD Solutions provides local customer assistance, onboarding, and training across India.',
+      a: 'Yes. Subscriptions and active perpetual maintenance agreements include official Graebert software updates and technical support. In addition, Leniva CAD Solutions provides local customer assistance, onboarding, and onboarding across India.',
       category: 'licensing',
     },
     {
-      q: 'Where can I access training for ARES Commander?',
-      a: 'Graebert provides the Graebert Academy with free online video courses, official documentation, and video tutorials. Leniva CAD Solutions also offers customized corporate training workshops and webinars.',
+      q: 'Where can I access onboarding for ARES Commander?',
+      a: 'Graebert provides the Graebert Academy with free online video courses, official documentation, and video tutorials. Leniva CAD Solutions also offers customized corporate interactive workshops and webinars.',
       category: 'general',
     },
     {

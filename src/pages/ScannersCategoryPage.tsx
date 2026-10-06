@@ -215,7 +215,7 @@ export const ScannersCategoryPage: React.FC = () => {
       badgeColor: 'bg-emerald-600/10 text-emerald-700 border-emerald-600/20',
     },
     {
-      title: 'Education & Training',
+      title: 'Education & Enablement',
       category: 'Engineering Academies',
       desc: 'Equip next-generation engineering students with professional industrial 3D digitization tools for metrology and CAD/CAM research.',
       image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',

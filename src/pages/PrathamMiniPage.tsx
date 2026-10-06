@@ -64,8 +64,8 @@ export const PrathamMiniPage: React.FC = () => {
       a: 'Yes. Pratham Mini is proudly designed, engineered, and manufactured in India by Make3D, backed by Leniva CAD Solutions for nationwide sales, field installation, warranty fulfillment, and lifetime technical support.',
     },
     {
-      q: 'Does Leniva CAD Solutions provide installation and hands-on training?',
-      a: 'Yes. Every Pratham Mini comes with comprehensive installation support, live video/on-site commissioning, and hands-on slicing software training for faculty, lab instructors, and students across India.',
+      q: 'Does Leniva CAD Solutions provide installation and hands-on onboarding?',
+      a: 'Yes. Every Pratham Mini comes with comprehensive installation support, live video/on-site commissioning, and hands-on slicing software onboarding for faculty, lab instructors, and students across India.',
     },
   ]
 
@@ -741,7 +741,7 @@ export const PrathamMiniPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          9. SERVICE, TRAINING & SUPPORT
+          9. SERVICE, ONBOARDING & SUPPORT
          ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-1">
@@ -749,7 +749,7 @@ export const PrathamMiniPage: React.FC = () => {
             — Complete Ownership Experience —
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-            Installation, Training &amp; Support
+            Installation, Onboarding &amp; Support
           </h2>
         </div>
 
@@ -768,7 +768,7 @@ export const PrathamMiniPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
               02
             </div>
-            <h3 className="text-base font-bold text-slate-950">Hands-on Operator Training</h3>
+            <h3 className="text-base font-bold text-slate-950">Hands-on Operator Guidance</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
               Comprehensive slicing curriculum for students and lab technicians covering Cura setup, orientation strategies, support settings, and maintenance protocols.
             </p>

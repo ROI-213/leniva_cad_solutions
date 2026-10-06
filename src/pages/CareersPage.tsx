@@ -48,7 +48,7 @@ export const CareersPage: React.FC = () => {
       type: 'Full-Time / Graduate Engineering Trainee',
       targetAudience: 'B.E. Students / Freshers (Up to 1 Year Experience)',
       description:
-        'Hands-on technical engineering role focused on 3D printer commissioning, precision calibration, slicing optimization, and customer training for industrial FDM and resin systems.',
+        'Hands-on technical engineering role focused on 3D printer commissioning, precision calibration, slicing optimization, and customer onboarding for industrial FDM and resin systems.',
       responsibilities: [
         'Perform machine assembly, bed leveling, and optical alignment for 3D printers and scanners',
         'Assist customers in slicing parameter selection, material workflows (PLA, ABS, TPU, Resins), and troubleshooting',
@@ -134,7 +134,7 @@ export const CareersPage: React.FC = () => {
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               We are actively hiring <strong>B.E. students, freshers, and candidates with up to 1 year of experience</strong>.
-              Join Leniva CAD Solutions to get hands-on training on world-class industrial 3D printers, 3D metrology scanners, and licensed CAD engineering software.
+              Join Leniva CAD Solutions to get hands-on onboarding on world-class industrial 3D printers, 3D metrology scanners, and licensed CAD engineering software.
             </p>
           </div>
 
@@ -161,7 +161,7 @@ export const CareersPage: React.FC = () => {
             <div className="bg-white/5 p-3 rounded-xl border border-white/10 space-y-1">
               <div className="text-emerald-400 font-bold font-mono uppercase text-[11px] flex items-center space-x-1">
                 <Award className="w-3.5 h-3.5" />
-                <span>Training</span>
+                <span>Onboarding</span>
               </div>
               <div className="text-white font-semibold text-xs">Full In-House Mentorship</div>
               <div className="text-[10px] text-slate-400">Master real industrial machines</div>

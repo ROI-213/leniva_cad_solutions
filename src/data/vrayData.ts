@@ -1058,7 +1058,7 @@ export const vrayData: VRayCmsData = {
     },
     {
       q: 'How do I purchase genuine V-Ray licenses in India?',
-      a: 'Leniva CAD Solutions provides genuine commercial and educational Chaos V-Ray licenses in India with GST invoicing, floating license setup, volume deployment support, and certified technical training.',
+      a: 'Leniva CAD Solutions provides genuine commercial and educational Chaos V-Ray licenses in India with GST invoicing, floating license setup, volume deployment support, and certified technical onboarding.',
     },
   ],
 }

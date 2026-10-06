@@ -95,7 +95,7 @@ export const PrathamDesktopPage: React.FC = () => {
           name: 'Is this printer suitable for educational institutes?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. It is designed specifically for schools, colleges, training centers, and engineering design labs.',
+            text: 'Yes. It is designed specifically for schools, colleges, learning centers, and engineering design labs.',
           },
         },
         {
@@ -178,7 +178,7 @@ export const PrathamDesktopPage: React.FC = () => {
     },
     {
       title: 'Educational Models',
-      description: 'Create detailed and engaging models for STEM education, research and training.',
+      description: 'Create detailed and engaging models for STEM education, research and onboarding.',
       image: '/images/desktop-work/educational-models-hd.jpg',
       icon: GraduationCap,
       iconBg: 'bg-[#0d9488]',
@@ -213,7 +213,7 @@ export const PrathamDesktopPage: React.FC = () => {
       location: 'Chennai, Tamil Nadu',
       segment: 'Engineering Institute',
       printer: 'Pratham Desktop',
-      application: 'Mechanical & Mechatronics Additive Manufacturing Training',
+      application: 'Mechanical & Mechatronics Additive Manufacturing Onboarding',
     },
     {
       institution: 'Government Engineering College (GEC)',
@@ -261,8 +261,8 @@ export const PrathamDesktopPage: React.FC = () => {
       a: 'Yes. Pratham Desktop is engineered for 24×7 industrial reliability. Its rigid all-metal MS body, thermal heat dissipation design, silent stepper drivers, and stable linear shafts allow uninterrupted 72+ hour prints without positional drift or overheating.',
     },
     {
-      q: 'Does Make3D / Leniva CAD Solutions provide installation and training?',
-      a: 'Yes. We provide complete nationwide support including on-site installation, slicer workflow training (Cura/PrusaSlicer), hands-on operator guidance, and continuous technical support with guaranteed genuine spare parts availability across India.',
+      q: 'Does Make3D / Leniva CAD Solutions provide installation and onboarding?',
+      a: 'Yes. We provide complete nationwide support including on-site installation, slicer workflow onboarding (Cura/PrusaSlicer), hands-on operator guidance, and continuous technical support with guaranteed genuine spare parts availability across India.',
     },
   ]
 
@@ -1347,7 +1347,7 @@ export const PrathamDesktopPage: React.FC = () => {
                 PAN-INDIA SERVICE & SUPPORT NETWORK
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Leniva CAD Solutions provides end-to-end installation, operator training, preventive maintenance, and
+                Leniva CAD Solutions provides end-to-end installation, operator onboarding, preventive maintenance, and
                 immediate genuine spare parts fulfillment from hubs across India.
               </p>
               <div className="grid grid-cols-2 gap-4 pt-2">

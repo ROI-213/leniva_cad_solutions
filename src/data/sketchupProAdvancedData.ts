@@ -589,7 +589,7 @@ export const sketchupProAdvancedData = {
     },
     {
       q: 'What support is available?',
-      a: 'SketchUp Pro Advanced Workflows subscribers receive access to the SketchUp Help Center, community forums, and video tutorials. Premium support is available through Trimble. In India, Leniva CAD Solutions provides local support, training, and onboarding assistance.',
+      a: 'SketchUp Pro Advanced Workflows subscribers receive access to the SketchUp Help Center, community forums, and video tutorials. Premium support is available through Trimble. In India, Leniva CAD Solutions provides local support, onboarding, and onboarding assistance.',
       category: 'licensing',
     },
     {
@@ -604,7 +604,7 @@ export const sketchupProAdvancedData = {
     },
     {
       q: 'How do I get started with Pro Advanced Workflows in India?',
-      a: 'Contact Leniva CAD Solutions — Trimble\'s authorized SketchUp partner in India. We provide subscription purchase, onboarding, training for Scan Essentials and Revit Importer, and ongoing technical support in Indian time zones.',
+      a: 'Contact Leniva CAD Solutions — Trimble\'s authorized SketchUp partner in India. We provide subscription purchase, onboarding, onboarding for Scan Essentials and Revit Importer, and ongoing technical support in Indian time zones.',
       category: 'licensing',
     },
   ] as AdvancedFaq[],

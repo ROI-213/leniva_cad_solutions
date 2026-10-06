@@ -1902,7 +1902,7 @@ export const Pratham3RapidPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          20. LOCAL SUPPORT, SERVICE AND TRAINING
+          20. LOCAL SUPPORT, SERVICE AND ONBOARDING
          ==================================================== */}
       <section ref={supportRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -1942,9 +1942,9 @@ export const Pratham3RapidPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
               <GraduationCap className="w-5 h-5" />
             </div>
-            <h3 className="font-extrabold text-base text-slate-900">Installation and Training</h3>
+            <h3 className="font-extrabold text-base text-slate-900">Installation and Onboarding</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              The product page states that Make3D provides complete installation, setup and hands-on training for engineers, teams and institutions.
+              The product page states that Make3D provides complete installation, setup and hands-on onboarding for engineers, teams and institutions.
             </p>
           </div>
         </div>
@@ -2533,8 +2533,8 @@ const faqs = [
     a: 'The manufacturer describes the printer as designed for 24×7 industrial use, with thermal management, reinforced mechanics and a stable extrusion system. Actual operating results depend on configuration, maintenance, material and environment.',
   },
   {
-    q: 'Does Make3D provide installation and training?',
-    a: 'Yes. The official product page states that Make3D provides installation, setup and hands-on training for engineers, teams and institutions.',
+    q: 'Does Make3D provide installation and onboarding?',
+    a: 'Yes. The official product page states that Make3D provides installation, setup and hands-on onboarding for engineers, teams and institutions.',
   },
   {
     q: 'What is the build volume?',

@@ -945,8 +945,8 @@ export const sketchUpStudioData: SketchUpStudioData = {
     },
     {
       category: 'technical',
-      q: 'Where can I get technical support and training for SketchUp Studio?',
-      a: 'As an authorized CAD/CAM and 3D visualization solutions partner, Leniva CAD Solutions provides dedicated implementation support, software onboarding, training workshops, and assistance with point-cloud and V-Ray workflows, backed by official Trimble Help Center and Chaos documentation.',
+      q: 'Where can I get technical support and onboarding for SketchUp Studio?',
+      a: 'As an authorized CAD/CAM and 3D visualization solutions partner, Leniva CAD Solutions provides dedicated implementation support, software onboarding, interactive workshops, and assistance with point-cloud and V-Ray workflows, backed by official Trimble Help Center and Chaos documentation.',
     },
   ],
 

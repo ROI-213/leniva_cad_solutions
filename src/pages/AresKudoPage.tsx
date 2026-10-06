@@ -1602,7 +1602,7 @@ export const AresKudoPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          19. TRAINING & CERTIFICATION (GRAEBERT ACADEMY)
+          19. LEARNING & CERTIFICATION (GRAEBERT ACADEMY)
          ==================================================== */}
       <section className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1611,15 +1611,15 @@ export const AresKudoPage: React.FC = () => {
               Free Onboarding
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              {data.training.heading}
+              {data.onboarding.heading}
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
-              {data.training.subheading}. {data.training.description}
+              {data.onboarding.subheading}. {data.onboarding.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.training.resources.map((res, idx) => (
+            {data.onboarding.resources.map((res, idx) => (
               <div key={idx} className="p-6 rounded-2xl border border-slate-200 bg-slate-50 space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
                   {idx === 0 && <PlayCircle className="w-5 h-5" />}

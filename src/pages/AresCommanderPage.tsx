@@ -1464,7 +1464,7 @@ export const AresCommanderPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          24. LEARNING & TRAINING RESOURCES
+          24. LEARNING & KNOWLEDGE RESOURCES
          ==================================================== */}
       <section className="py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -1516,7 +1516,7 @@ export const AresCommanderPage: React.FC = () => {
                     onClick={() => scrollTo(enquiryRef, 'enquiry')}
                     className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 pt-2 border-t border-slate-100 cursor-pointer text-left"
                   >
-                    <span>Request Corporate Training</span>
+                    <span>Request corporate onboarding</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}

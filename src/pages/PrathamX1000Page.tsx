@@ -1389,7 +1389,7 @@ export const PrathamX1000Page: React.FC = () => {
             Pan-India Service, Technical Support & 12-Month Warranty
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Make3D's product page describes remote and onsite support across India, complete installation, starter package and onsite training.
+            Make3D's product page describes remote and onsite support across India, complete installation, starter package and onsite onboarding.
           </p>
         </div>
 
@@ -1408,9 +1408,9 @@ export const PrathamX1000Page: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
               <GraduationCap className="w-5 h-5" />
             </div>
-            <h3 className="font-extrabold text-base text-slate-900">Onsite Training</h3>
+            <h3 className="font-extrabold text-base text-slate-900">Onsite Onboarding</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Hardware and software training for engineers, teams, or institutions to ensure rapid operational productivity.
+              Hardware and software onboarding for engineers, teams, or institutions to ensure rapid operational productivity.
             </p>
           </div>
 
@@ -1539,7 +1539,7 @@ export const PrathamX1000Page: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Essential information regarding build volume, materials, precision, warranty, and training.
+            Essential information regarding build volume, materials, precision, warranty, and onboarding.
           </p>
         </div>
 
@@ -1993,8 +1993,8 @@ const faqs = [
     a: 'The official product page describes technical service and support across India, including remote and onsite support.',
   },
   {
-    q: 'Is training provided?',
-    a: 'The official product page states that onsite hardware and software training is provided for the concerned personnel.',
+    q: 'Is onboarding provided?',
+    a: 'The official product page states that onsite hardware and software onboarding is provided for the concerned personnel.',
   },
   {
     q: 'Is Pratham X made in India?',

@@ -257,7 +257,7 @@ export const DevokMTPage: React.FC = () => {
               <div className="pt-6 border-t border-slate-800/80 flex items-start space-x-3 text-xs text-slate-400">
                 <ShieldCheck className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
-                  <strong className="text-white font-semibold">{devokMTData.trustLine}</strong> backed by Leniva CAD Solutions technical training and calibration services across India.
+                  <strong className="text-white font-semibold">{devokMTData.trustLine}</strong> backed by Leniva CAD Solutions technical onboarding and calibration services across India.
                 </p>
               </div>
             </div>

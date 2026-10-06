@@ -337,7 +337,7 @@ export const aresTouchData = {
       title: 'FREESKETCH',
       subtitle: 'Mark up drawings like pen on paper',
       description:
-        'Use your finger or stylus to redline, write notes, or sketch directly over the drawing. FreeSketch makes visual communication instant, even for team members without formal CAD drafting training.',
+        'Use your finger or stylus to redline, write notes, or sketch directly over the drawing. FreeSketch makes visual communication instant, even for team members without formal CAD drafting onboarding.',
       workflow: ['Select FreeSketch', 'Choose Pen Color & Thickness', 'Draw Redlines with Finger', 'Save Markup Layer'],
       icon: 'Feather',
       badge: 'Natural Touch',

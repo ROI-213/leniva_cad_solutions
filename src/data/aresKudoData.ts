@@ -999,7 +999,7 @@ export const aresKudoData = {
     ],
   },
 
-  training: {
+  onboarding: {
     heading: 'Learn ARES Kudo with Free Graebert Academy Courses',
     subheading: 'Master Cloud CAD Drafting, Collaboration, and Administration at Your Own Pace',
     description:
@@ -1105,7 +1105,7 @@ export const aresKudoData = {
     },
     {
       category: 'overview' as const,
-      question: 'What training resources are available for new users?',
+      question: 'What learning resources are available for new users?',
       answer:
         'All users receive free access to the Graebert Academy, featuring structured video masterclasses, downloadable PDF handbooks, weekly live Q&A webinars, and official CAD certification exams.',
     },

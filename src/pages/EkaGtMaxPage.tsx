@@ -582,7 +582,7 @@ export const EkaGtMaxPage: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-xs text-slate-300">
                   <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span>Comprehensive PAN-India onsite installation and Chitubox training</span>
+                  <span>Comprehensive PAN-India onsite installation and Chitubox onboarding</span>
                 </div>
                 <div className="flex items-center space-x-3 text-xs text-slate-300">
                   <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />

@@ -136,8 +136,8 @@ export const AboutPage: React.FC = () => {
               <p className="text-[11px] text-slate-500 mt-1">Full parts and labor warranty on all industrial additive hardware.</p>
             </div>
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-              <h4 className="text-xs font-bold text-slate-900">Operator Training</h4>
-              <p className="text-[11px] text-slate-500 mt-1">Hands-on machine and software training during installation.</p>
+              <h4 className="text-xs font-bold text-slate-900">Operator Onboarding</h4>
+              <p className="text-[11px] text-slate-500 mt-1">Hands-on machine and software onboarding during installation.</p>
             </div>
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
               <h4 className="text-xs font-bold text-slate-900">Direct Helpline</h4>

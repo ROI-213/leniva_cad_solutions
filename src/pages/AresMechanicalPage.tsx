@@ -1154,7 +1154,7 @@ export const AresMechanicalPage: React.FC = () => {
                 Design. Draft. Document. With Mechanical Precision.
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Empower your engineering team with a dedicated 2D mechanical CAD environment in native DWG. Talk to our technical specialists to evaluate license options, legacy AutoCAD Mechanical compatibility, and corporate training.
+                Empower your engineering team with a dedicated 2D mechanical CAD environment in native DWG. Talk to our technical specialists to evaluate license options, legacy AutoCAD Mechanical compatibility, and corporate onboarding.
               </p>
 
               <div className="space-y-3 pt-2">

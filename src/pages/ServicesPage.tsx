@@ -19,7 +19,7 @@ export const ServicesPage: React.FC = () => {
             Professional 3D Printing & Digital Manufacturing Services
           </h1>
           <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
-            From initial metrology 3D scanning and parametric reverse engineering to high-precision contract 3D printing and CAD training, Leniva CAD Solutions supports your complete product lifecycle.
+            From initial metrology 3D scanning and parametric reverse engineering to high-precision contract 3D printing and CAD onboarding, Leniva CAD Solutions supports your complete product lifecycle.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-3">

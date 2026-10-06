@@ -462,7 +462,7 @@ export const HomePage: React.FC = () => {
                         <span className="text-[11px] font-mono font-bold text-slate-400">04</span>
                       </div>
                       <h3 className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors mt-2.5 leading-snug">Technical Support</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team training.</p>
+                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
                     </div>
                     <div>
                       <div className="w-6 h-0.5 bg-amber-500 rounded-full mt-3 mb-2" />
@@ -540,7 +540,7 @@ export const HomePage: React.FC = () => {
                         <span className="text-[11px] font-mono font-bold text-slate-400">04</span>
                       </div>
                       <h3 className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors mt-2.5 leading-snug">Technical Support</h3>
-                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team training.</p>
+                      <p className="text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2">Dedicated warranty, calibration, machine commissioning, and corporate team onboarding.</p>
                     </div>
                     <div>
                       <div className="w-6 h-0.5 bg-amber-500 rounded-full mt-3 mb-2" />

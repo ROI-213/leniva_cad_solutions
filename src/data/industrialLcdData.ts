@@ -279,7 +279,7 @@ export const ekaF116kData = {
     { property: 'Resin Tray', value: '1 Tray' },
     { property: 'Resin Direct Castable', value: '500 g Free Included' },
     { property: 'Software', value: 'Yes Included' },
-    { property: 'Onsite Training', value: 'Chargeable' },
+    { property: 'Onsite Onboarding', value: 'Chargeable' },
     { property: 'Shipping', value: 'Free' },
     { property: 'File Input Command', value: 'Wireless | USB' },
   ] as LcdProductSpec[],

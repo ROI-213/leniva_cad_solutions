@@ -201,7 +201,7 @@ export const enscapeData: EnscapeCmsData = {
   seo: {
     title: 'Chaos Enscape Real-Time Rendering & VR Software | Leniva CAD Solutions',
     description:
-      'Experience Chaos Enscape: real-time rendering, live synchronization, and virtual reality for Revit, SketchUp, Rhino, Archicad, and Vectorworks. Genuine licenses, enterprise training & consultation from Leniva CAD Solutions.',
+      'Experience Chaos Enscape: real-time rendering, live synchronization, and virtual reality for Revit, SketchUp, Rhino, Archicad, and Vectorworks. Genuine licenses, enterprise onboarding & consultation from Leniva CAD Solutions.',
     canonical: 'https://lenivacadsolution.com/products/enscape',
   },
   hero: {
@@ -775,7 +775,7 @@ export const enscapeData: EnscapeCmsData = {
       a: 'Leniva CAD Solutions provides genuine commercial and educational Chaos Enscape subscriptions in India with full invoicing, GST compliance, deployment support, and certified technical guidance. Simply click "Request a Quote" or contact our sales team.',
     },
     {
-      q: 'Where can I get technical support and training?',
+      q: 'Where can I get technical support and onboarding?',
       a: 'Leniva CAD Solutions provides localized technical onboarding and workflow guidance for architecture teams across India. You also receive full access to official Chaos knowledge bases, video tutorials, and technical support forums.',
     },
   ],

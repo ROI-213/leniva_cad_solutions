@@ -1488,11 +1488,11 @@ export const Pratham6Page: React.FC = () => {
               actionClick: () => openQuoteModal('Service & Technical Support - Pratham 6.0'),
             },
             {
-              title: 'Installation and Training',
-              desc: 'Make3D states that it provides complete machine installation, factory leveling setup, and hands-on training for engineers and teams.',
+              title: 'Installation and Onboarding',
+              desc: 'Make3D states that it provides complete machine installation, factory leveling setup, and hands-on onboarding for engineers and teams.',
               icon: GraduationCap,
-              actionText: 'Book Training Session',
-              actionClick: () => openQuoteModal('Installation & Training Booking - Pratham 6.0'),
+              actionText: 'Book Onboarding Session',
+              actionClick: () => openQuoteModal('Installation & Onboarding Booking - Pratham 6.0'),
             },
           ].map((card, idx) => {
             const Icon = card.icon
@@ -2301,8 +2301,8 @@ const faqs = [
     a: 'Make3D describes Pratham 6.0 as a 100% indigenous 3D printer designed and developed in India, manufactured at their facility in Surat, Gujarat.',
   },
   {
-    q: 'Does Make3D provide installation and training?',
-    a: 'Yes. Make3D states that comprehensive machine installation, leveling setup, and hands-on operational training are provided for engineers, operator teams, and academic institutions.',
+    q: 'Does Make3D provide installation and onboarding?',
+    a: 'Yes. Make3D states that comprehensive machine installation, leveling setup, and hands-on operational onboarding are provided for engineers, operator teams, and academic institutions.',
   },
   {
     q: 'What is the printing technology?',

@@ -38,9 +38,9 @@ export const ResellerPage: React.FC = () => {
 
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
             <Users className="w-8 h-8 text-emerald-600" />
-            <h3 className="text-base font-bold text-slate-950">Certified Partner Training</h3>
+            <h3 className="text-base font-bold text-slate-950">Certified Partner Enablement</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Comprehensive sales and technical training for your field staff, complete with demo machine subsidies and literature kits.
+              Comprehensive sales and technical onboarding for your field staff, complete with demo machine subsidies and literature kits.
             </p>
           </div>
         </div>

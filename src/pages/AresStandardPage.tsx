@@ -1258,7 +1258,7 @@ export const AresStandardPage: React.FC = () => {
                       <option value="Engineering Drafting">Engineering Drafting</option>
                       <option value="Mechanical Drafting">Mechanical Drafting</option>
                       <option value="Construction Documentation">Construction Documentation</option>
-                      <option value="Education / Training">Education / Training</option>
+                      <option value="Education / Enablement">Education / Enablement</option>
                     </select>
                   </div>
                 </div>

@@ -1533,11 +1533,11 @@ export const Pratham5Page: React.FC = () => {
               actionUrl: officialInstallationsUrl,
             },
             {
-              title: 'Installation and Training',
-              desc: 'Make3D states that it provides installation, setup and hands-on operational training for engineers, teams and institutions.',
+              title: 'Installation and Onboarding',
+              desc: 'Make3D states that it provides installation, setup and hands-on operational onboarding for engineers, teams and institutions.',
               icon: GraduationCap,
-              actionText: 'Request Training Details',
-              actionClick: () => openQuoteModal('Installation & Training - Pratham 5.0'),
+              actionText: 'Request Onboarding Details',
+              actionClick: () => openQuoteModal('Installation & Onboarding - Pratham 5.0'),
             },
           ].map((card, idx) => {
             const Icon = card.icon
@@ -2387,8 +2387,8 @@ const faqs = [
     a: 'Make3D describes Pratham 5.0 as designed and developed in India.',
   },
   {
-    q: 'Does Make3D provide installation and training?',
-    a: 'Yes. Make3D states that it provides installation, setup and hands-on training for engineers, teams and institutions.',
+    q: 'Does Make3D provide installation and onboarding?',
+    a: 'Yes. Make3D states that it provides installation, setup and hands-on onboarding for engineers, teams and institutions.',
   },
   {
     q: 'What is the printing technology?',

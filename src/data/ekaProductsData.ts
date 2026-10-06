@@ -127,7 +127,7 @@ export const ekaHtData = {
     { property: 'Resin Tray', value: '2 Tray Included' },
     { property: 'Resin Non Castable', value: '500 Gram Free' },
     { property: 'License Software', value: 'Yes Lifetime' },
-    { property: 'Onsite Training', value: 'Yes Free' },
+    { property: 'Onsite Onboarding', value: 'Yes Free' },
     { property: 'Shipping', value: 'Yes Free' },
     { property: 'Shipping Insurance', value: 'Yes Free' },
   ] as EkaProductSpec[],
@@ -145,8 +145,8 @@ export const ekaHtData = {
       a: '7 Days after order confirmation.',
     },
     {
-      q: 'Any Training Provided ?',
-      a: 'Yes, Onsite Training of Hardware and Software to concern Person.',
+      q: 'Any Onboarding Provided ?',
+      a: 'Yes, Onsite Onboarding of Hardware and Software to concern Person.',
     },
     {
       q: 'Any Extra Accessories Required to Run a Machine ?',
@@ -209,8 +209,8 @@ export const ekaXlData = {
       a: '7 Days after order confirmation.',
     },
     {
-      q: 'Any Training Provided ?',
-      a: 'Yes, Onsite Training of Hardware and Software to concern Person.',
+      q: 'Any Onboarding Provided ?',
+      a: 'Yes, Onsite Onboarding of Hardware and Software to concern Person.',
     },
     {
       q: 'Any Extra Accessories Required to Run a Machine ?',
@@ -281,7 +281,7 @@ export const ekaXleData = {
     { property: 'UV Curing Oven', value: 'Yes Free' },
     { property: 'Resin Tray', value: '1 Tray' },
     { property: 'License Software', value: 'Yes Lifetime' },
-    { property: 'Onsite Training', value: 'Yes Free' },
+    { property: 'Onsite Onboarding', value: 'Yes Free' },
     { property: 'Shipping', value: 'Yes Free' },
     { property: 'Shipping Insurance', value: 'Yes Free' },
   ] as EkaProductSpec[],
@@ -420,8 +420,8 @@ export const ekaXleData = {
       a: '7 Days after order confirmation.',
     },
     {
-      q: 'Any Training Provided ?',
-      a: 'Yes, Onsite Training of Hardware and Software to concern Person.',
+      q: 'Any Onboarding Provided ?',
+      a: 'Yes, Onsite Onboarding of Hardware and Software to concern Person.',
     },
     {
       q: 'Any Extra Accessories Required to Run a Machine ?',

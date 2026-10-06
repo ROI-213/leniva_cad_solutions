@@ -963,7 +963,7 @@ export default function AdminPage() {
       heroHeading: newCadForm.name,
       headline: `${newCadForm.name} â€” Engineering CAD`,
       supportingHeadline: `Professional ${newCadForm.category} Solutions`,
-      shortDescription: `Explore ${newCadForm.name} by ${newCadForm.brand}. Genuine software licenses, expert integration, and local training from Leniva CAD Solutions.`,
+      shortDescription: `Explore ${newCadForm.name} by ${newCadForm.brand}. Genuine software licenses, expert integration, and local onboarding from Leniva CAD Solutions.`,
     }
 
     const updatedCustom = [...customCadProducts, newProdItem]
@@ -1236,7 +1236,7 @@ export default function AdminPage() {
             email: 'anand.r@iitb.ac.in',
             phone: '+91 98190 23456',
             subject: 'Academic Center of Excellence Quotation',
-            message: 'IIT Bombay design lab seeks quote for 3D scanner suite and CAD training software package.',
+            message: 'IIT Bombay design lab seeks quote for 3D scanner suite and CAD onboarding software package.',
             status: 'new',
             created_at: new Date(Date.now() - 3600000 * 8).toISOString(),
           },

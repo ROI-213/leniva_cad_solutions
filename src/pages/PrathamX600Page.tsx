@@ -127,7 +127,7 @@ export const PrathamX600Page: React.FC = () => {
     },
     {
       q: 'What are the delivery and site requirements for a 250 KG machine?',
-      a: 'Pratham X features a robust all-metal MS body weighing 250 KG to eliminate frame flex and ground vibration. It requires standard 230V, 50Hz single-phase power (780W peak). Leniva CAD Solutions provides dedicated logistics, on-site rig-in, leveling, and full training.',
+      a: 'Pratham X features a robust all-metal MS body weighing 250 KG to eliminate frame flex and ground vibration. It requires standard 230V, 50Hz single-phase power (780W peak). Leniva CAD Solutions provides dedicated logistics, on-site rig-in, leveling, and full onboarding.',
     },
   ]
 

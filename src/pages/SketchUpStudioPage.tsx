@@ -1222,7 +1222,7 @@ export const SketchUpStudioPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          17. TRAINING & SUPPORT (34)
+          17. ONBOARDING & SUPPORT (34)
          ==================================================== */}
       <section className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

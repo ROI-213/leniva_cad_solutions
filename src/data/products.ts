@@ -862,45 +862,7 @@ export const products: Product[] = [
   },
 
   // --- CAD SOFTWARE SUITE ---
-  {
-    id: 'sketchup',
-    slug: 'sketchup',
-    name: 'SketchUp Pro',
-    brand: 'Trimble',
-    category: 'CAD & Engineering Software',
-    categorySlug: 'cad-software',
-    technology: 'CAD Software',
-    tagline: 'Intuitive 3D Architectural & Engineering Modeling',
-    shortDescription: 'The world�s most intuitive 3D design software for architects, interior designers, engineers, and construction professionals.',
-    description: 'SketchUp Pro is the premier 3D design software for turning concepts into constructible reality. Leniva CAD Solutions provides genuine licenses, customized template setups, enterprise onboarding, and ongoing technical support. From initial massing sketches to detailed 2D construction documentation in LayOut, SketchUp streamlines the entire architectural and design pipeline.',
-    heroImage: '/images/software/sketchup-pro.jpg',
-    images: ['/images/software/sketchup-pro.jpg'],
-    keySpecs: [
-      { label: 'License Type', value: 'Official Subscription with Updates' },
-      { label: 'Platforms', value: 'Windows & macOS' },
-      { label: 'Includes', value: 'SketchUp Pro, LayOut, Style Builder, 3D Warehouse' },
-      { label: 'Support', value: 'Leniva Certified Onboarding & Tech Support' },
-    ],
-    specifications: {
-      'Supported Operating Systems': 'Windows 11 / 10 (64-bit), macOS Ventura / Sonoma',
-      'Included Components': 'SketchUp Pro Desktop, LayOut, Style Builder, Web Modeler',
-      'Cloud Storage': 'Unlimited Trimble Connect Cloud Storage',
-      'Export Formats': 'DWG, DXF, 3DS, DAE, KMZ, IFC, OBJ, FBX, STL, PDF, EPS',
-      'Add-On Ecosystem': 'Full access to Extension Warehouse with thousands of plugins',
-    },
-    features: [
-      'Fast, intuitive 3D modeling workflow trusted by millions worldwide',
-      'LayOut integration: generate 2D architectural drawings directly linked to your 3D model',
-      'Access to 3D Warehouse: the world�s largest free repository of manufacturer 3D models',
-      'BIM classification and IFC export for collaborative engineering workflows',
-      'Authorized onboarding and on-boarding assistance by Leniva technical specialists',
-    ],
-    applications: ['Architectural Design & Space Planning', 'Interior Fit-Out & Furniture Modeling', 'Construction Documentation & Quantity Take-Off', 'Urban Planning & Landscape Architecture', '3D Printable Model Generation'],
-    whoIsItFor: ['Architects', 'Interior Designers', 'Civil Engineers', 'Urban Planners', 'General Contractors'],
-    inStock: true,
-    isFeatured: true,
-    relatedProductSlugs: ['enscape', 'vray', 'corona'],
-  },
+  
   {
     id: 'enscape',
     slug: 'enscape',

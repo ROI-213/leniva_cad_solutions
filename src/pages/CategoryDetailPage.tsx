@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import {
   ChevronRight,
@@ -20,6 +20,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
   const { categorySlug: paramSlug } = useParams<{ categorySlug: string }>()
   const slug = forcedSlug || paramSlug
   const { openQuoteModal } = useApp()
+  const [activeBrandTab, setActiveBrandTab] = useState<'all' | 'graebert' | 'sketchup' | 'chaos'>('all')
 
   if (slug === 'dlp-3d-printers' || slug === 'dlp') {
     return <DlpCategoryPage />
@@ -39,6 +40,51 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
 
   // Find all products matching this category
   const categoryProducts = products.filter(p => p.categorySlug === slug)
+
+  // Check if CAD Software category
+  const isCadSoftware = slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+
+  // Brand groupings in requested priority order: 1st Graebert, 2nd SketchUp, 3rd Chaos
+  const graebertProducts = categoryProducts.filter(
+    p => p.brand.toLowerCase().includes('graebert') || p.slug.startsWith('ares-')
+  )
+  const sketchupProducts = categoryProducts.filter(
+    p => p.brand.toLowerCase().includes('trimble') || p.slug.startsWith('sketchup')
+  )
+  const chaosProducts = categoryProducts.filter(
+    p => p.brand.toLowerCase().includes('chaos') || ['enscape', 'vray', 'corona'].includes(p.slug)
+  )
+
+  const brandSections = [
+    {
+      id: 'graebert' as const,
+      orderLabel: '1',
+      brandName: 'Graebert',
+      heading: 'Graebert — ARES CAD Ecosystem',
+      tagline: 'Professional Desktop (Commander), Cloud Browser (Kudo), and Mobile (Touch) DWG CAD Solutions',
+      logo: '/images/brands/grabert.png',
+      secondaryLogo: '/images/brands/ares-cad.png',
+      products: graebertProducts,
+    },
+    {
+      id: 'sketchup' as const,
+      orderLabel: '2',
+      brandName: 'SketchUp by Trimble',
+      heading: 'SketchUp — Trimble 3D Design & Modeling',
+      tagline: 'Intuitive 3D Architectural Modeling, LayOut 2D Documentation, Point Clouds & Revit Interoperability',
+      logo: '/images/brands/sketchup.png',
+      products: sketchupProducts,
+    },
+    {
+      id: 'chaos' as const,
+      orderLabel: '3',
+      brandName: 'Chaos',
+      heading: 'Chaos — Photorealistic 3D Rendering & Virtual Reality',
+      tagline: 'Industry-Standard Real-Time Visualization (Enscape), Metrology Ray-Tracing (V-Ray), and Architectural Mood (Corona)',
+      logo: '/images/brands/chaos.jpg',
+      products: chaosProducts,
+    },
+  ]
 
   return (
     <div className="bg-slate-50 min-h-screen py-8 space-y-12">
@@ -72,15 +118,15 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
               {category.description}
             </p>
 
-            {slug === 'cad-software' && (
+            {isCadSoftware && (
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Authorized Brand Portfolio:</span>
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                    <img src="/images/brands/ares-cad.png" alt="ARES" className="h-full w-auto max-w-[70px] object-contain" />
+                    <img src="/images/brands/grabert.png" alt="Graebert" className="h-full w-auto max-w-[70px] object-contain" />
                   </div>
                   <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                    <img src="/images/brands/grabert.png" alt="Graebert" className="h-full w-auto max-w-[70px] object-contain" />
+                    <img src="/images/brands/ares-cad.png" alt="ARES" className="h-full w-auto max-w-[70px] object-contain" />
                   </div>
                   <div className="h-7 px-2 py-0.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                     <img src="/images/brands/sketchup.png" alt="Trimble SketchUp" className="h-full w-auto max-w-[75px] object-contain" />
@@ -110,37 +156,157 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
           </div>
         </div>
 
+        {/* ─── CAD SOFTWARES: DISPLAYED BY BRANDS IN REQUESTED ORDER ─── */}
+        {isCadSoftware ? (
+          <div className="space-y-8">
+            {/* Header with Title and Brand Filter Pills */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
+                  Available Softwares
+                </h2>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Official commercial licenses, education pricing, and Indian GST invoicing
+                </p>
+              </div>
 
-        {/* Product Cards Grid */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-            <h2 className="text-xl font-bold text-slate-950">
-              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
-                ? 'Available Softwares'
-                : 'Available Models'}
-            </h2>
-            <span className="text-xs text-slate-500">
-              Verified specifications and genuine manufacturer warranties
-            </span>
-          </div>
+              {/* Brand Filter Tabs */}
+              <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-200/70 rounded-xl">
+                <button
+                  onClick={() => setActiveBrandTab('all')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    activeBrandTab === 'all'
+                      ? 'bg-white text-slate-950 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-950'
+                  }`}
+                >
+                  All Brands
+                </button>
+                <button
+                  onClick={() => setActiveBrandTab('graebert')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeBrandTab === 'graebert'
+                      ? 'bg-sky-600 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-950'
+                  }`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-300" />
+                  <span>1. Graebert</span>
+                </button>
+                <button
+                  onClick={() => setActiveBrandTab('sketchup')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeBrandTab === 'sketchup'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-950'
+                  }`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-300" />
+                  <span>2. SketchUp</span>
+                </button>
+                <button
+                  onClick={() => setActiveBrandTab('chaos')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeBrandTab === 'chaos'
+                      ? 'bg-red-600 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-950'
+                  }`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-300" />
+                  <span>3. Chaos</span>
+                </button>
+              </div>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {categoryProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {/* Brand Sections in Exact Requested Order: 1st Graebert, 2nd SketchUp, 3rd Chaos */}
+            <div className="space-y-12">
+              {brandSections
+                .filter(b => activeBrandTab === 'all' || activeBrandTab === b.id)
+                .map(brand => (
+                  <div
+                    key={brand.id}
+                    className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6"
+                  >
+                      {/* Brand Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 px-3 py-1 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
+                            <img
+                              src={brand.logo}
+                              alt={brand.brandName}
+                              className="h-full w-auto max-w-[85px] object-contain"
+                            />
+                          </div>
+                          {brand.secondaryLogo && (
+                            <div className="h-10 px-3 py-1 rounded-xl bg-slate-50 border border-slate-200 hidden sm:flex items-center justify-center shrink-0">
+                              <img
+                                src={brand.secondaryLogo}
+                                alt="ARES CAD"
+                                className="h-full w-auto max-w-[85px] object-contain"
+                              />
+                            </div>
+                          )}
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-slate-900 text-white">
+                                Brand {brand.orderLabel}
+                              </span>
+                              <h3 className="text-lg sm:text-xl font-bold text-slate-950">
+                                {brand.heading}
+                              </h3>
+                            </div>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              {brand.tagline}
+                            </p>
+                          </div>
+                        </div>
+
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700 self-start sm:self-center">
+                          {brand.products.length} Products Available
+                        </span>
+                      </div>
+
+                      {/* Product Cards Grid for this Brand */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {brand.products.map(product => (
+                          <ProductCard key={product.id} product={product} />
+                        ))}
+                      </div>
+                    </div>
+                  )
+                )}
+            </div>
           </div>
-        </div>
+        ) : (
+          /* ─── STANDARD CATEGORIES (FDM, SCANNERS, ETC.) ─── */
+          <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+              <h2 className="text-xl font-bold text-slate-950">
+                Available Models
+              </h2>
+              <span className="text-xs text-slate-500">
+                Verified specifications and genuine manufacturer warranties
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {categoryProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Bottom Consultation Banner */}
         <div className="bg-gradient-to-r from-slate-900 to-red-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base font-bold">
-              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+              {isCadSoftware
                 ? 'Uncertain Which Software Fits Your Requirements?'
                 : 'Uncertain Which Model Fits Your Requirements?'}
             </h4>
             <p className="text-xs text-slate-300">
-              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+              {isCadSoftware
                 ? 'Our technical sales consultants provide licensing guidance, feature comparisons, and multi-seat enterprise quotations.'
                 : 'Our application engineers provide benchmark print tests, build volume analysis, and total cost of ownership estimates.'}
             </p>
@@ -156,4 +322,5 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
     </div>
   )
 }
+
 export default CategoryDetailPage

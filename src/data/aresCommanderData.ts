@@ -698,7 +698,7 @@ export const aresCommanderData: AresCommanderData = {
         platformRole: 'Mobile CAD (Android & iOS)',
         description: 'Mobile CAD application tailored for tablets and smartphones. Inspect drawings on construction job sites, record voice notes, snap photos, and markup DWG files.',
         icon: 'Smartphone',
-        features: ['Full offline drawing access', 'Field markups & voice memos', 'Apple Pencil & stylus support', 'Synchronizes on reconnect'],
+        features: ['Full offline drawing access', 'Field markups & voice memos', 'Synchronizes on reconnect'],
       },
     ],
     collaborationPoints: [

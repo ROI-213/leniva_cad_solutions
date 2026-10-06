@@ -895,13 +895,13 @@ export const AresStandardPage: React.FC = () => {
                   <Sparkles className="w-4 h-4" />
                   <span>Start Free 30-Day Trial</span>
                 </a>
-                <button
-                  onClick={() => openQuoteModal('ARES Standard')}
+                <Link
+                  to="/contact"
                   className="px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-colors flex items-center space-x-2"
                 >
                   <PhoneCall className="w-4 h-4" />
-                  <span>Talk to a CAD Specialist</span>
-                </button>
+                  <span>Contact Us</span>
+                </Link>
               </div>
 
               <p className="text-[11px] text-slate-400 italic pt-2">

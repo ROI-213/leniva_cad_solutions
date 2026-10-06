@@ -604,7 +604,6 @@ export const aresStandardData: AresStandardData = {
         popular: true,
         badge: 'Popular',
         features: [
-          'Full ARES Standard desktop software on Windows 64-bit',
           'Complete 2D drafting, layer, and dimensioning tools',
           'Native DWG file read, write, and editing',
           'BatchPrint utility & PC3 plotter support',

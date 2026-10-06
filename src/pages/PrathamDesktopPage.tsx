@@ -238,7 +238,7 @@ export const PrathamDesktopPage: React.FC = () => {
     },
     {
       name: 'Pratham 3 Rapid',
-      buildVolume: '300 × 300 × 300 mm',
+      buildVolume: '350 × 350 × 350 mm',
       tagline: 'High-Speed Industrial FDM for Rapid Production',
       image: '/images/products/pratham-3-rapid.png',
       slug: '/products/pratham-3-rapid',

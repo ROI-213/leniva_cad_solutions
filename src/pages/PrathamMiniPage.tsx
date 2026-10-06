@@ -113,7 +113,7 @@ export const PrathamMiniPage: React.FC = () => {
   const prathamSeries = [
     { name: 'Pratham Mini', vol: '170 × 170 × 170 mm', tag: 'Classroom & Lab', active: true, img: '/images/products/pratham-mini.png' },
     { name: 'Pratham Desktop', vol: '200 × 200 × 250 mm', tag: 'Studio Series', link: '/products/pratham-desktop', img: '/images/products/pratham-desktop.png' },
-    { name: 'Pratham 3 Rapid', vol: '300 × 300 × 300 mm', tag: '500 mm/s CoreXY', link: '/products/pratham-3-rapid', img: '/images/products/pratham-3-rapid.png' },
+    { name: 'Pratham 3 Rapid', vol: '350 × 350 × 350 mm', tag: '500 mm/s CoreXY', link: '/products/pratham-3-rapid', img: '/images/products/pratham-3-rapid.png' },
     { name: 'Pratham 3.0', vol: '300 × 300 × 300 mm', tag: '24/7 Factory Workhorse', link: '/products/pratham-3', img: '/images/products/pratham-3-0.png' },
     { name: 'Pratham 5.0', vol: '500 × 500 × 500 mm', tag: 'Heated Chamber FDM', link: '/products/pratham-5', img: '/images/products/pratham-5-0.png' },
     { name: 'Pratham 6.0', vol: '600 × 600 × 600 mm', tag: 'Large Format Industrial', link: '/products/pratham-6', img: '/images/products/pratham-6-0.png' },

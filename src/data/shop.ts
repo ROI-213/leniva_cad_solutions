@@ -222,7 +222,7 @@ export const shopItems: ShopItem[] = [
     specifications: {
       'Max Speed': 'Up to 500 mm/s',
       'Acceleration': 'Up to 10,000 mm/s²',
-      'Build Volume': '300 × 300 × 300 mm',
+      'Build Volume': '350 × 350 × 350 mm',
       'Motion': 'CoreXY Kinematic Architecture',
     },
   },

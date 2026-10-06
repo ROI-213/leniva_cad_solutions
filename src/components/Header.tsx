@@ -100,7 +100,7 @@ export const Header: React.FC = () => {
         { name: 'Pratham 6.0', slug: 'pratham-6', spec: '600 × 600 × 600 mm' },
         { name: 'Pratham X (600)', slug: 'pratham-x-600', spec: '1000 × 1000 × 600 mm' },
         { name: 'Pratham X (1000)', slug: 'pratham-x', spec: '1000 × 1000 × 1000 mm (1 m³)' },
-        { name: 'Pratham 3 Rapid', slug: 'pratham-3-rapid', spec: '500 mm/s High Speed', badge: 'Featured' },
+        { name: 'Pratham 3 Rapid', slug: 'pratham-3-rapid', spec: '350 × 350 × 350 mm | 500 mm/s', badge: 'Featured' },
       ],
     },
     {

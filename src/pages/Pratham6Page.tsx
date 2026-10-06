@@ -2274,7 +2274,7 @@ const relatedPrinters: RelatedPrinter[] = [
   },
   {
     name: 'Pratham 3 Rapid',
-    vol: '300 × 300 × 300 mm',
+    vol: '350 × 350 × 350 mm',
     tag: '500 mm/s CoreXY',
     link: '/products/pratham-3-rapid',
     img: '/images/products/pratham-3-rapid.png',

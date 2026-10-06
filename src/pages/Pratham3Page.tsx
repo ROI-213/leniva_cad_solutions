@@ -345,7 +345,7 @@ export const Pratham3Page: React.FC = () => {
     },
     {
       name: 'Pratham 3 Rapid',
-      vol: '300 × 300 × 300 mm',
+      vol: '350 × 350 × 350 mm',
       tag: '500 mm/s CoreXY',
       desc: 'High-speed industrial FDM 3D printer built for rapid prototyping and production efficiency.',
       link: '/products/pratham-3-rapid',

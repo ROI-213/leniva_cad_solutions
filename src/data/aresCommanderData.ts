@@ -653,7 +653,7 @@ export const aresCommanderData: AresCommanderData = {
       },
       {
         title: 'Keep Drawings in Sync',
-        desc: 'When an updated Revit or IFC file is received, refresh the model reference in ARES Commander to update extracted CAD documentation, saving hours of redrafting.',
+        desc: 'When an updated Revit or IFC model is received, refresh the BIM reference in ARES Commander to update associated CAD documentation and reduce repetitive redrafting.',
         icon: 'RefreshCw',
       },
     ],

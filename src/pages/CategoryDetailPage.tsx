@@ -115,7 +115,9 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
         <div className="space-y-4">
           <div className="flex items-center justify-between border-b border-slate-200 pb-3">
             <h2 className="text-xl font-bold text-slate-950">
-              Available Models ({categoryProducts.length})
+              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+                ? 'Available Softwares'
+                : 'Available Models'}
             </h2>
             <span className="text-xs text-slate-500">
               Verified specifications and genuine manufacturer warranties
@@ -132,9 +134,15 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ forcedSl
         {/* Bottom Consultation Banner */}
         <div className="bg-gradient-to-r from-slate-900 to-red-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
           <div className="space-y-1 text-center sm:text-left">
-            <h4 className="text-base font-bold">Uncertain Which Model Fits Your Requirements?</h4>
+            <h4 className="text-base font-bold">
+              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+                ? 'Uncertain Which Software Fits Your Requirements?'
+                : 'Uncertain Which Model Fits Your Requirements?'}
+            </h4>
             <p className="text-xs text-slate-300">
-              Our application engineers provide benchmark print tests, build volume analysis, and total cost of ownership estimates.
+              {slug === 'cad-software' || category.slug === 'cad-software' || category.id === 'software'
+                ? 'Our technical sales consultants provide licensing guidance, feature comparisons, and multi-seat enterprise quotations.'
+                : 'Our application engineers provide benchmark print tests, build volume analysis, and total cost of ownership estimates.'}
             </p>
           </div>
           <button

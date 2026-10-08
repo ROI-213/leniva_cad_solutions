@@ -312,7 +312,7 @@ export const HomePage: React.FC = () => {
                 </span>
               </h1>
               <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-3xl">
-                Industrial FDM, DLP & LCD 3D printing systems, high-precision 3D scanning, and Trimble / Chaos certified software across India.
+                Official Trimble & Chaos certified CAD and rendering software, industrial FDM, DLP & LCD 3D printing systems, and high-precision metrology 3D scanners across India.
               </p>
             </div>
 
@@ -369,7 +369,7 @@ export const HomePage: React.FC = () => {
                 TOMORROW
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed max-w-sm">
-                From 3D scanning to CAD, from prototyping to production — we empower industries with end-to-end 3D solutions.
+                From licensed CAD software to industrial 3D printers and high-precision 3D scanners — we empower industries with end-to-end 3D solutions.
               </p>
               <div className="pt-2">
                 <button
@@ -669,27 +669,30 @@ export const HomePage: React.FC = () => {
               <span className="text-red-600">Advanced 3D Solutions</span>
             </h2>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-              Leniva CAD Solutions is a trusted supplier and solutions provider of 3D printers, 3D scanners, CAD software and related accessories. We bring global technologies to help industries, businesses and educational institutions adopt advanced 3D solutions for design, prototyping and production.
+              Leniva CAD Solutions is a trusted supplier and solutions provider of CAD software, 3D printers, 3D scanners and related accessories. We bring proven engineering technologies to help industries, businesses and educational institutions adopt advanced 3D solutions for design, prototyping and production.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm font-semibold text-slate-800 pt-1">
               <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>3D Printers (Global Brands)</span>
+                <span>1. Licensed CAD & Rendering Software</span>
               </div>
               <div className="flex items-center space-x-2.5">
                 <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>3D Scanners (Professional Metrology)</span>
+                <span>2. Industrial & Desktop 3D Printers</span>
+              </div>
+              <div className="flex items-center space-x-2.5 sm:col-span-2 p-2 bg-red-50/80 border border-red-200 rounded-xl shadow-2xs">
+                <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
+                <span className="font-bold text-red-950">3. 3D Scanners (Professional Metrology & Reverse Engineering)</span>
+                <span className="ml-auto px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shrink-0 shadow-2xs">
+                  Highlighted
+                </span>
               </div>
               <div className="flex items-center space-x-2.5">
-                <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
-                <span>Licensed CAD & Rendering Software</span>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
+                <span className="w-2 h-2 bg-slate-400 rounded-full shrink-0" />
                 <span>Accessories & Specialized Materials</span>
               </div>
-              <div className="flex items-center space-x-2.5 sm:col-span-2">
-                <span className="w-2 h-2 bg-red-600 rounded-full shrink-0" />
+              <div className="flex items-center space-x-2.5">
+                <span className="w-2 h-2 bg-slate-400 rounded-full shrink-0" />
                 <span>Expert Engineering Guidance & Field Support</span>
               </div>
             </div>

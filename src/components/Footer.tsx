@@ -84,40 +84,48 @@ export const Footer: React.FC = () => {
 
         {/* Multi-Column Main Footer Links */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-12 border-b border-slate-800 text-xs">
-          {/* Col 1: Products */}
+          {/* Col 1: CAD Software (First in hierarchy) */}
           <div className="space-y-3">
-            <h4 className="font-bold text-white uppercase tracking-wider text-xs">3D Hardware</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li><Link to="/products/fdm-3d-printers" className="hover:text-red-400 transition-colors">FDM 3D Printers</Link></li>
-              <li><Link to="/products/dlp-3d-printers" className="hover:text-red-400 transition-colors">DLP 3D Printers</Link></li>
-              <li><Link to="/products/industrial-lcd-3d-printers" className="hover:text-red-400 transition-colors">Industrial LCD Systems</Link></li>
-              <li><Link to="/products/3d-scanners" className="hover:text-red-400 transition-colors">3D Scanners</Link></li>
-              <li><Link to="/products/pratham-3-rapid" className="hover:text-red-400 transition-colors">Pratham 3 Rapid (500 mm/s)</Link></li>
-              <li><Link to="/products" className="hover:text-red-400 font-semibold text-red-400">View Full Catalog →</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 2: CAD Software */}
-          <div className="space-y-3">
-            <h4 className="font-bold text-white uppercase tracking-wider text-xs">CAD Software</h4>
+            <h4 className="font-bold text-white uppercase tracking-wider text-xs flex items-center space-x-1.5">
+              <span>CAD Software</span>
+            </h4>
             <ul className="space-y-2 text-slate-400">
               <li><Link to="/products/sketchup" className="hover:text-red-400 transition-colors">SketchUp Pro</Link></li>
-              <li><Link to="/cad-software/ares-touch" className="hover:text-red-400 transition-colors">ARES Touch (Mobile CAD)</Link></li>
-              <li><Link to="/cad-software/ares-kudo" className="hover:text-red-400 transition-colors">ARES Kudo (Cloud CAD)</Link></li>
-              <li><Link to="/products/enscape" className="hover:text-red-400 transition-colors">Enscape</Link></li>
-              <li><Link to="/products/vray" className="hover:text-red-400 transition-colors">V-Ray</Link></li>
-              <li><Link to="/products/corona" className="hover:text-red-400 transition-colors">Corona</Link></li>
+              <li><Link to="/cad-software/ares-standard" className="hover:text-red-400 transition-colors">ARES Standard</Link></li>
+              <li><Link to="/cad-software/ares-commander" className="hover:text-red-400 transition-colors">ARES Commander</Link></li>
+              <li><Link to="/products/vray" className="hover:text-red-400 transition-colors">Chaos V-Ray</Link></li>
+              <li><Link to="/products/enscape" className="hover:text-red-400 transition-colors">Chaos Enscape</Link></li>
               <li><Link to="/products/cad-software" className="hover:text-red-400 font-semibold text-red-400">Software Suite →</Link></li>
             </ul>
           </div>
 
-          {/* Col 3: Services */}
+          {/* Col 2: 3D Printers (Second in hierarchy) */}
           <div className="space-y-3">
-            <h4 className="font-bold text-white uppercase tracking-wider text-xs">Services</h4>
+            <h4 className="font-bold text-white uppercase tracking-wider text-xs">3D Printers</h4>
             <ul className="space-y-2 text-slate-400">
-              <li><Link to="/services/3d-printing" className="hover:text-red-400 transition-colors">Contract 3D Printing</Link></li>
-              <li><Link to="/services/fdm-3d-printing" className="hover:text-red-400 transition-colors">FDM Tooling & Jigs</Link></li>
-              <li><Link to="/services" className="hover:text-red-400 font-semibold text-red-400">View All Services →</Link></li>
+              <li><Link to="/products/fdm-3d-printers" className="hover:text-red-400 transition-colors">FDM 3D Printers</Link></li>
+              <li><Link to="/products/dlp-3d-printers" className="hover:text-red-400 transition-colors">DLP 3D Printers</Link></li>
+              <li><Link to="/products/industrial-lcd-3d-printers" className="hover:text-red-400 transition-colors">Industrial LCD Systems</Link></li>
+              <li><Link to="/products/pratham-3-rapid" className="hover:text-red-400 transition-colors">Pratham 3 Rapid (500 mm/s)</Link></li>
+              <li><Link to="/products/pratham-6" className="hover:text-red-400 transition-colors">Pratham 6.0 Large Format</Link></li>
+              <li><Link to="/products" className="hover:text-red-400 font-semibold text-red-400">Printers Catalog →</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 3: 3D Scanners (Third in hierarchy - HIGHLIGHTED) */}
+          <div className="space-y-3 bg-red-950/20 p-3 rounded-xl border border-red-900/40">
+            <h4 className="font-bold text-red-400 uppercase tracking-wider text-xs flex items-center justify-between">
+              <span>3D Scanners</span>
+              <span className="px-1.5 py-0.2 bg-red-600 text-white text-[8px] font-black uppercase rounded shadow-2xs">
+                Highlighted
+              </span>
+            </h4>
+            <ul className="space-y-2 text-slate-300">
+              <li><Link to="/3d-scanners/3devok-mq" className="hover:text-red-400 transition-colors">3DeVOK MQ Color</Link></li>
+              <li><Link to="/3d-scanners/3devok-mt" className="hover:text-red-400 transition-colors">3DeVOK MT Metrology</Link></li>
+              <li><Link to="/products/einscan" className="hover:text-red-400 transition-colors">EINSTAR Handheld</Link></li>
+              <li><Link to="/products/3d-scanners" className="hover:text-red-400 transition-colors">Optical Inspection</Link></li>
+              <li><Link to="/products/3d-scanners" className="hover:text-red-400 font-semibold text-red-400">All 3D Scanners →</Link></li>
             </ul>
           </div>
 

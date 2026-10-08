@@ -338,16 +338,16 @@ const showcaseCategories: ShowcaseCategorySection[] = [
     ],
   },
 
-  // 4. 3D SCANNERS
+  // 4. 3D SCANNERS (HIGHLIGHTED)
   {
     id: 'scanners',
-    categoryTag: 'PRECISION METROLOGY & DIGITIZATION',
+    categoryTag: '★ HIGHLIGHTED SOLUTION — PRECISION METROLOGY',
     titlePrimary: '3D Scanners',
     titleAccent: 'Technology',
     subtitle: 'Metrology-grade optical, laser & infrared digitizing systems for inspection, CMM and reverse engineering.',
     catalogLink: '/products/3d-scanners',
     catalogText: 'Explore All 3D Scanners',
-    accentColor: '#2563eb',
+    accentColor: '#dc2626',
     badges: [
       { icon: Award, label: '0.015mm Accuracy' },
       { icon: Zap, label: 'Fast Acquisition' },
@@ -577,9 +577,15 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     ) : (
                       /* DOWN 3 CATEGORIES: ONLY DISPLAY NAME & LINK */
                       <div className="relative z-20 mb-6 sm:mb-8 text-center space-y-2">
+                        {section.id === 'scanners' && (
+                          <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-red-600 text-white rounded-full text-[11px] font-black uppercase tracking-wider shadow-sm mb-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                            <span>★ Highlighted Technology Suite</span>
+                          </div>
+                        )}
                         <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
                           {section.titlePrimary}{' '}
-                          <span className="text-blue-600">{section.titleAccent}</span>
+                          <span className="text-red-600">{section.titleAccent}</span>
                         </h3>
                         <div>
                           <Link

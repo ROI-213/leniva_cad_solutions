@@ -316,134 +316,7 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* 3D Printers Mega Menu Trigger */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setActiveMegaMenu('products')}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-            >
-              <Link
-                to="/products"
-                className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative"
-              >
-                <Printer className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
-                <div className="flex items-center space-x-0.5 mt-1">
-                  <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
-                    3D Printers
-                  </span>
-                  <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
-                </div>
-                {location.pathname.startsWith('/products') && (
-                  <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
-                )}
-              </Link>
-
-              {/* MEGA MENU FLYOUT */}
-              {activeMegaMenu === 'products' && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50 animate-fade-in w-[900px] max-w-[90vw]">
-                  <div className="w-full bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden grid grid-cols-12">
-                    {/* Left categories column */}
-                    <div className="col-span-4 bg-slate-50 p-4 border-r border-slate-200 space-y-1">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
-                        Technology Categories
-                      </div>
-                      {megaCategories.map(cat => {
-                        const Icon = cat.icon
-                        const isSelected = activeMegaCategory === cat.id
-                        return (
-                          <div
-                            key={cat.id}
-                            onMouseEnter={() => setActiveMegaCategory(cat.id)}
-                            className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
-                              isSelected
-                                ? 'bg-white text-red-600 shadow-sm font-bold border border-slate-200'
-                                : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
-                            }`}
-                          >
-                            <div className="flex items-center space-x-2.5">
-                              <Icon className={`w-4 h-4 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
-                              <span className="text-xs">{cat.label}</span>
-                            </div>
-                            <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
-                          </div>
-                        )
-                      })}
-                      <div className="pt-3 px-3">
-                        <Link
-                          to="/products"
-                          className="block text-center py-2 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                        >
-                          Explore Full Catalog →
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Right products preview panel */}
-                    <div className="col-span-8 p-6 flex flex-col justify-between">
-                      <div>
-                        {(() => {
-                          const currentCat = megaCategories.find(c => c.id === activeMegaCategory)!
-                          return (
-                            <>
-                              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                                <div>
-                                  <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
-                                  <p className="text-xs text-slate-500 mt-0.5">{currentCat.description}</p>
-                                </div>
-                                <Link
-                                  to={currentCat.route}
-                                  className="text-xs font-semibold text-red-600 hover:underline flex items-center space-x-1"
-                                >
-                                  <span>View Category Page</span>
-                                  <ChevronRight className="w-3.5 h-3.5" />
-                                </Link>
-                              </div>
-
-                              <div className="grid grid-cols-2 gap-3">
-                                {currentCat.products.map(prod => (
-                                  <Link
-                                    key={prod.slug}
-                                    to={`/products/${prod.slug}`}
-                                    className="p-2.5 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50/40 transition-all group"
-                                  >
-                                    <div className="flex items-center justify-between">
-                                      <span className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                                        {prod.name}
-                                      </span>
-                                      {prod.badge && (
-                                        <span className="text-[10px] font-semibold px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded">
-                                          {prod.badge}
-                                        </span>
-                                      )}
-                                    </div>
-                                    <p className="text-[11px] text-slate-500 mt-0.5">{prod.spec}</p>
-                                  </Link>
-                                ))}
-                              </div>
-                            </>
-                          )
-                        })()}
-                      </div>
-
-                      {/* Mega Menu Footer Banner */}
-                      <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Need tailored machine specifications or CAD configuration advice?</span>
-                        <button
-                          onClick={() => openQuoteModal('General Inquiry')}
-                          className="font-bold text-red-600 hover:text-red-800"
-                        >
-                          Talk to an Engineer →
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-
-
-            {/* 3. CAD Software Mega Menu */}
+            {/* 2. CAD Software Mega Menu (FIRST in hierarchy) */}
             <div
               className="relative shrink-0"
               onMouseEnter={() => setActiveMegaMenu('cad-software')}
@@ -460,6 +333,9 @@ export const Header: React.FC = () => {
                   </span>
                   <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
                 </div>
+                {location.pathname.startsWith('/products/cad-software') && (
+                  <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+                )}
               </Link>
 
               {/* CAD Software Mega Menu Flyout */}
@@ -597,6 +473,154 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
+
+            {/* 3. 3D Printers Mega Menu Trigger (SECOND in hierarchy) */}
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => setActiveMegaMenu('products')}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <Link
+                to="/products"
+                className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative"
+              >
+                <Printer className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                <div className="flex items-center space-x-0.5 mt-1">
+                  <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                    3D Printers
+                  </span>
+                  <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
+                </div>
+                {location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') && (
+                  <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+                )}
+              </Link>
+
+              {/* MEGA MENU FLYOUT */}
+              {activeMegaMenu === 'products' && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50 animate-fade-in w-[900px] max-w-[90vw]">
+                  <div className="w-full bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden grid grid-cols-12">
+                    {/* Left categories column */}
+                    <div className="col-span-4 bg-slate-50 p-4 border-r border-slate-200 space-y-1">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
+                        Technology Categories
+                      </div>
+                      {megaCategories.map(cat => {
+                        const Icon = cat.icon
+                        const isSelected = activeMegaCategory === cat.id
+                        return (
+                          <div
+                            key={cat.id}
+                            onMouseEnter={() => setActiveMegaCategory(cat.id)}
+                            className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
+                              isSelected
+                                ? 'bg-white text-red-600 shadow-sm font-bold border border-slate-200'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
+                            }`}
+                          >
+                            <div className="flex items-center space-x-2.5">
+                              <Icon className={`w-4 h-4 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
+                              <span className="text-xs">{cat.label}</span>
+                            </div>
+                            <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-red-600' : 'text-slate-400'}`} />
+                          </div>
+                        )
+                      })}
+                      <div className="pt-3 px-3">
+                        <Link
+                          to="/products"
+                          className="block text-center py-2 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                        >
+                          Explore Full Catalog →
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Right products preview panel */}
+                    <div className="col-span-8 p-6 flex flex-col justify-between">
+                      <div>
+                        {(() => {
+                          const currentCat = megaCategories.find(c => c.id === activeMegaCategory)!
+                          return (
+                            <>
+                              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                                <div>
+                                  <h4 className="text-base font-bold text-slate-950">{currentCat.label}</h4>
+                                  <p className="text-xs text-slate-500 mt-0.5">{currentCat.description}</p>
+                                </div>
+                                <Link
+                                  to={currentCat.route}
+                                  className="text-xs font-semibold text-red-600 hover:underline flex items-center space-x-1"
+                                >
+                                  <span>View Category Page</span>
+                                  <ChevronRight className="w-3.5 h-3.5" />
+                                </Link>
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-3">
+                                {currentCat.products.map(prod => (
+                                  <Link
+                                    key={prod.slug}
+                                    to={`/products/${prod.slug}`}
+                                    className="p-2.5 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50/40 transition-all group"
+                                  >
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs font-bold text-slate-900 group-hover:text-red-600">
+                                        {prod.name}
+                                      </span>
+                                      {prod.badge && (
+                                        <span className="text-[10px] font-semibold px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded">
+                                          {prod.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <p className="text-[11px] text-slate-500 mt-0.5">{prod.spec}</p>
+                                  </Link>
+                                ))}
+                              </div>
+                            </>
+                          )
+                        })()}
+                      </div>
+
+                      {/* Mega Menu Footer Banner */}
+                      <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Need tailored machine specifications or CAD configuration advice?</span>
+                        <button
+                          onClick={() => openQuoteModal('General Inquiry')}
+                          className="font-bold text-red-600 hover:text-red-800"
+                        >
+                          Talk to an Engineer →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 4. 3D Scanners (THIRD in hierarchy - HIGHLIGHTED EVERYWHERE) */}
+            <Link
+              to="/products/3d-scanners"
+              className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative shrink-0"
+            >
+              <div className="relative">
+                <Scan className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                <span className="absolute -top-1 -right-1.5 w-2 h-2 bg-red-600 rounded-full animate-ping" />
+                <span className="absolute -top-1 -right-1.5 w-2 h-2 bg-red-600 rounded-full" />
+              </div>
+              <div className="flex items-center space-x-1 mt-1">
+                <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                  3D Scanners
+                </span>
+                <span className="px-1 py-0.2 bg-red-600 text-white text-[8px] font-black uppercase rounded tracking-wider shadow-2xs">
+                  Highlighted
+                </span>
+              </div>
+              {(location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan')) && (
+                <div className="w-8 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+              )}
+            </Link>
 
             {/* 4. Shop with Dropdown for Products and Filaments */}
             <div
@@ -848,58 +872,13 @@ export const Header: React.FC = () => {
                 Home
               </Link>
 
-              {/* 3D Printers Accordion */}
-              <div>
-                <button
-                  onClick={() => toggleMobileSection('products')}
-                  className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
-                >
-                  <span>3D Printers</span>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${
-                      expandedMobileSection === 'products' ? 'rotate-180 text-red-600' : ''
-                    }`}
-                  />
-                </button>
-                {expandedMobileSection === 'products' && (
-                  <div className="pl-4 py-1 space-y-2 border-l-2 border-red-100 ml-3">
-                    <Link to="/products" className="block text-xs font-bold text-red-600 py-1">
-                      View All 3D Printers Catalog →
-                    </Link>
-                    {megaCategories.map(cat => (
-                      <div key={cat.id} className="pt-1">
-                        <Link
-                          to={cat.route}
-                          className="block text-xs font-bold text-slate-800 hover:text-red-600"
-                        >
-                          {cat.label}
-                        </Link>
-                        <div className="pl-2 pt-1 space-y-1">
-                          {cat.products.map(p => (
-                            <Link
-                              key={p.slug}
-                              to={`/products/${p.slug}`}
-                              className="block text-[11px] text-slate-500 hover:text-slate-900"
-                            >
-                              • {p.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-
-
-              {/* CAD Software Accordion */}
+              {/* 1. CAD Software Accordion (FIRST in hierarchy) */}
               <div>
                 <button
                   onClick={() => toggleMobileSection('cad-software')}
                   className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
                 >
-                  <span>CAD Software</span>
+                  <span className="font-semibold">CAD Software</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
                       expandedMobileSection === 'cad-software' ? 'rotate-180 text-red-600' : ''
@@ -908,7 +887,7 @@ export const Header: React.FC = () => {
                 </button>
                 {expandedMobileSection === 'cad-software' && (
                   <div className="pl-4 py-1 space-y-2 border-l-2 border-red-100 ml-3">
-                    <Link to="/products/cad-software" className="block text-xs font-bold text-red-600 py-1">
+                    <Link to="/products/cad-software" onClick={() => setIsMobileMenuOpen(false)} className="block text-xs font-bold text-red-600 py-1">
                       View All CAD Software →
                     </Link>
                     {cadSoftwareCategories.map(cat => (
@@ -950,6 +929,66 @@ export const Header: React.FC = () => {
                   </div>
                 )}
               </div>
+
+              {/* 2. 3D Printers Accordion (SECOND in hierarchy) */}
+              <div>
+                <button
+                  onClick={() => toggleMobileSection('products')}
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-800 hover:bg-slate-50"
+                >
+                  <span className="font-semibold">3D Printers</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      expandedMobileSection === 'products' ? 'rotate-180 text-red-600' : ''
+                    }`}
+                  />
+                </button>
+                {expandedMobileSection === 'products' && (
+                  <div className="pl-4 py-1 space-y-2 border-l-2 border-red-100 ml-3">
+                    <Link to="/products" onClick={() => setIsMobileMenuOpen(false)} className="block text-xs font-bold text-red-600 py-1">
+                      View All 3D Printers Catalog →
+                    </Link>
+                    {megaCategories.map(cat => (
+                      <div key={cat.id} className="pt-1">
+                        <Link
+                          to={cat.route}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block text-xs font-bold text-slate-800 hover:text-red-600"
+                        >
+                          {cat.label}
+                        </Link>
+                        <div className="pl-2 pt-1 space-y-1">
+                          {cat.products.map(p => (
+                            <Link
+                              key={p.slug}
+                              to={`/products/${p.slug}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="block text-[11px] text-slate-500 hover:text-slate-900"
+                            >
+                              • {p.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 3. 3D Scanners (THIRD in hierarchy - HIGHLIGHTED) */}
+              <Link
+                to="/products/3d-scanners"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-lg bg-red-50 text-red-950 font-bold border border-red-200/80 shadow-2xs"
+              >
+                <div className="flex items-center space-x-2">
+                  <Scan className="w-4 h-4 text-red-600" />
+                  <span>3D Scanners</span>
+                </div>
+                <span className="px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-2xs">
+                  Highlighted
+                </span>
+              </Link>
 
               {/* Shop Accordion */}
               <div>

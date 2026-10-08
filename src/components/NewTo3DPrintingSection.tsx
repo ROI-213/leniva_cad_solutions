@@ -90,11 +90,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/materials-spools-hd.jpg',
     imageAlt: 'Engineering Filaments, Resins and 3D Printing Accessories',
     headerIcon: Settings,
-    accentColor: '#2563eb',
-    accentBg: 'bg-blue-50',
-    accentText: 'text-blue-600',
-    accentBorder: 'border-blue-200',
-    glowGradient: 'from-blue-500/15 via-blue-500/5 to-transparent',
+    accentColor: '#0f172a',
+    accentBg: 'bg-slate-100',
+    accentText: 'text-slate-900',
+    accentBorder: 'border-slate-300',
+    glowGradient: 'from-slate-900/10 via-slate-900/5 to-transparent',
     ctaText: 'View Materials',
     linkTo: '/materials',
     bullets: [
@@ -113,11 +113,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/pratham-desktop.png',
     imageAlt: 'Pratham Desktop 3D Printer Prototyping',
     headerIcon: Lightbulb,
-    accentColor: '#059669',
-    accentBg: 'bg-emerald-50',
-    accentText: 'text-emerald-600',
-    accentBorder: 'border-emerald-200',
-    glowGradient: 'from-emerald-500/15 via-emerald-500/5 to-transparent',
+    accentColor: '#dc2626',
+    accentBg: 'bg-red-50',
+    accentText: 'text-red-600',
+    accentBorder: 'border-red-200',
+    glowGradient: 'from-red-500/15 via-red-500/5 to-transparent',
     ctaText: 'Start Creating',
     linkTo: '/services',
     quoteInquiry: 'Turn Ideas into Reality - Prototyping & Custom Project Inquiry',
@@ -137,11 +137,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/pratham-x.png',
     imageAlt: 'Pratham X Large-Format Industrial 3D Printer Support',
     headerIcon: Headphones,
-    accentColor: '#4f46e5',
-    accentBg: 'bg-indigo-50',
-    accentText: 'text-indigo-600',
-    accentBorder: 'border-indigo-200',
-    glowGradient: 'from-indigo-500/15 via-indigo-500/5 to-transparent',
+    accentColor: '#0f172a',
+    accentBg: 'bg-slate-100',
+    accentText: 'text-slate-900',
+    accentBorder: 'border-slate-300',
+    glowGradient: 'from-slate-900/10 via-slate-900/5 to-transparent',
     ctaText: 'Get Support',
     linkTo: '/contact',
     quoteInquiry: 'Expert Technical Support, Maintenance & Onboarding Inquiry',
@@ -161,11 +161,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/eka-ht.png',
     imageAlt: 'Eka HT Industrial Resin 3D Printer Enterprise Scaling',
     headerIcon: TrendingUp,
-    accentColor: '#ea580c',
-    accentBg: 'bg-orange-50',
-    accentText: 'text-orange-600',
-    accentBorder: 'border-orange-200',
-    glowGradient: 'from-orange-500/15 via-orange-500/5 to-transparent',
+    accentColor: '#dc2626',
+    accentBg: 'bg-red-50',
+    accentText: 'text-red-600',
+    accentBorder: 'border-red-200',
+    glowGradient: 'from-red-500/15 via-red-500/5 to-transparent',
     ctaText: 'Grow With Us',
     linkTo: '/contact',
     quoteInquiry: 'Scale Your Business - Enterprise 3D Printing Solutions',
@@ -287,8 +287,8 @@ export const NewTo3DPrintingSection: React.FC = () => {
         />
 
         {/* Ambient background glows matching design */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-10 left-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-slate-900/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl 2xl:max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-between h-full gap-1 sm:gap-2">
           {/* ====================================================
@@ -298,7 +298,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-4">
               {/* Left Bracket Tag: ADVANCED 3D PRINTING SOLUTIONS */}
               <div className="hidden md:flex items-center space-x-2">
-                <div className="w-1 h-8 border-l-2 border-t-2 border-b-2 border-blue-500/70 rounded-l-xs" />
+                <div className="w-1 h-8 border-l-2 border-t-2 border-b-2 border-red-600/70 rounded-l-xs" />
                 <div className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-tight">
                   <div>ADVANCED</div>
                   <div>3D PRINTING</div>
@@ -313,7 +313,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                 </div>
 
                 <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight leading-tight">
-                  New to <span className="text-blue-600">3D Printing?</span> This Is the Place to Start
+                  New to <span className="text-red-600">3D Printing?</span> This Is the Place to Start
                 </h2>
 
                 <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-normal">
@@ -328,7 +328,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                   <div>TO REAL-WORLD</div>
                   <div>IMPACT</div>
                 </div>
-                <div className="w-1 h-8 border-r-2 border-t-2 border-b-2 border-blue-500/70 rounded-r-xs" />
+                <div className="w-1 h-8 border-r-2 border-t-2 border-b-2 border-red-600/70 rounded-r-xs" />
               </div>
             </div>
 
@@ -339,20 +339,20 @@ export const NewTo3DPrintingSection: React.FC = () => {
                 className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 sm:py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-md text-[11px] sm:text-xs font-bold shadow-2xs transition-colors cursor-pointer"
                 title="View full 5-card panoramic banner"
               >
-                <Maximize2 className="w-3 h-3 text-blue-600" />
+                <Maximize2 className="w-3 h-3 text-red-600" />
                 <span className="hidden sm:inline">View Full Master Banner</span>
                 <span className="sm:hidden">Full Banner</span>
               </button>
 
-              <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 sm:py-1 bg-blue-50/90 border border-blue-200/90 rounded-md text-[11px] sm:text-xs font-semibold text-blue-700">
-                <div className="w-16 sm:w-24 h-1.5 bg-blue-200/70 rounded-full overflow-hidden">
+              <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 sm:py-1 bg-red-50/90 border border-red-200/90 rounded-md text-[11px] sm:text-xs font-semibold text-red-700">
+                <div className="w-16 sm:w-24 h-1.5 bg-red-200/70 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-blue-600 rounded-full transition-all duration-75"
+                    className="h-full bg-red-600 rounded-full transition-all duration-75"
                     style={{ width: `${Math.round(progress * 100)}%` }}
                   />
                 </div>
                 <span>Step 0{activeStep + 1} of 05</span>
-                <span className="hidden sm:inline text-blue-500 font-normal">({Math.round(progress * 100)}%)</span>
+                <span className="hidden sm:inline text-red-500 font-normal">({Math.round(progress * 100)}%)</span>
               </div>
             </div>
           </div>
@@ -365,7 +365,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
             <button
               onClick={prevSlide}
               aria-label="Previous Step"
-              className="absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
+              className="absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" />
             </button>
@@ -373,7 +373,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
             <button
               onClick={nextSlide}
               aria-label="Next Step"
-              className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
+              className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-lg flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95"
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
             </button>
@@ -420,7 +420,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                           </div>
 
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-xs sm:text-sm font-black text-slate-900 tracking-tight leading-snug group-hover:text-blue-600 transition-colors truncate">
+                            <h3 className="text-xs sm:text-sm font-black text-slate-900 tracking-tight leading-snug group-hover:text-red-600 transition-colors truncate">
                               {card.title}
                             </h3>
                           </div>
@@ -448,7 +448,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                               e.stopPropagation()
                               setSelectedZoomImg({ src: card.image, title: card.title })
                             }}
-                            className="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-slate-900/60 hover:bg-blue-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-xs z-20"
+                            className="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-slate-900/60 hover:bg-red-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-xs z-20"
                             title="View Full Resolution Asset"
                           >
                             <Maximize2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -463,7 +463,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                                 key={bullet.label}
                                 className="flex items-center space-x-1.5 text-slate-700 group/bullet"
                               >
-                                <BulletIcon className="w-3 h-3 text-slate-500 group-hover/bullet:text-blue-600 shrink-0 transition-colors" />
+                                <BulletIcon className="w-3 h-3 text-slate-500 group-hover/bullet:text-red-600 shrink-0 transition-colors" />
                                 <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 leading-tight truncate">
                                   {bullet.label}
                                 </span>
@@ -525,7 +525,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
                     onClick={() => jumpToCard(idx)}
                     className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center space-x-1.5 border shadow-2xs ${
                       isCurrent
-                        ? `${card.accentBg} ${card.accentText} ${card.accentBorder} ring-2 ring-blue-400/40 shadow-xs scale-102`
+                        ? `${card.accentBg} ${card.accentText} ${card.accentBorder} ring-2 ring-red-500/30 shadow-xs scale-102`
                         : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
                     }`}
                   >
@@ -544,9 +544,9 @@ export const NewTo3DPrintingSection: React.FC = () => {
 
             <div className="flex items-center justify-center">
               <div className="flex items-center space-x-2 text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase">
-                <span className="h-px w-6 sm:w-12 bg-gradient-to-r from-transparent to-blue-400" />
+                <span className="h-px w-6 sm:w-12 bg-gradient-to-r from-transparent to-red-500/50" />
                 <span>INNOVATION TODAY &nbsp;|&nbsp; A BRIGHTER TOMORROW</span>
-                <span className="h-px w-6 sm:w-12 bg-gradient-to-l from-transparent to-blue-400" />
+                <span className="h-px w-6 sm:w-12 bg-gradient-to-l from-transparent to-red-500/50" />
               </div>
             </div>
           </div>
@@ -613,7 +613,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
                 <h3 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
-                  <Layers className="w-5 h-5 text-blue-600" />
+                  <Layers className="w-5 h-5 text-red-600" />
                   <span>Full Master Banner: New to 3D Printing?</span>
                 </h3>
                 <p className="text-xs text-slate-500">

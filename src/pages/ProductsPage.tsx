@@ -38,48 +38,48 @@ export const ProductsPage: React.FC = () => {
   // Technology Categories Hubs Data
   const categoryHubs = [
     {
+      id: 'cad',
+      title: 'CAD & Visualization Software',
+      tag: 'TRIMBLE • GRAEBERT • CHAOS',
+      description: 'Official Trimble SketchUp Pro, Graebert ARES Trinity DWG CAD, Chaos V-Ray & Enscape rendering suites.',
+      icon: Layers,
+      route: '/products/cad-software',
+      accent: 'border-red-500 hover:border-red-600',
+      badgeColor: 'bg-red-50 text-red-700 border-red-200',
+      flagships: ['SketchUp Pro', 'ARES Standard', 'ARES Commander', 'Chaos V-Ray', 'Enscape'],
+    },
+    {
       id: 'fdm',
       title: 'FDM 3D Printers',
       tag: 'PRATHAM SERIES',
       description: 'Industrial CoreXY & heated-chamber FDM systems from 170 mm desktop to 1-meter giants.',
       icon: Printer,
       route: '/products/fdm-3d-printers',
-      accent: 'border-red-500 hover:border-red-600',
-      badgeColor: 'bg-red-50 text-red-700 border-red-200',
-      flagships: ['Pratham 3.0', 'Pratham 6.0', 'Pratham Desktop', 'Pratham Mini'],
+      accent: 'border-slate-300 hover:border-slate-800',
+      badgeColor: 'bg-slate-100 text-slate-800 border-slate-200',
+      flagships: ['Pratham 3.0', 'Pratham 6.0', 'Pratham Desktop', 'Pratham Mini', 'Pratham 3 Rapid'],
     },
     {
       id: 'dlp',
-      title: 'DLP 3D Printers',
-      tag: 'EKA DLP JEWELRY & ENGR',
-      description: 'Ultra-precision optical systems for direct gold/silver investment casting and micro-mechanics.',
-      icon: Layers,
-      route: '/products/dlp-3d-printers',
-      accent: 'border-amber-500 hover:border-amber-600',
-      badgeColor: 'bg-amber-50 text-amber-800 border-amber-200',
-      flagships: ['EKA HT (130×73mm)', 'EKA XL (125×70mm)', 'EKA XLE (202×113mm)'],
-    },
-    {
-      id: 'lcd',
-      title: 'Industrial LCD Printers',
-      tag: '8K – 16K MONOCHROME',
-      description: 'High-yield monochrome masking arrays for large engineering prototypes and fine jewelry.',
+      title: 'DLP & LCD Resin 3D Printers',
+      tag: 'EKA DLP & 16K MONOCHROME',
+      description: 'Ultra-precision resin systems for direct jewelry casting, dental models, and sub-micron micro-mechanics.',
       icon: Box,
-      route: '/products/industrial-lcd-3d-printers',
-      accent: 'border-blue-500 hover:border-blue-600',
-      badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
-      flagships: ['EKA GT MAX (16" 8K)', 'EKA F1 16K (14–19µm)'],
+      route: '/products/dlp-3d-printers',
+      accent: 'border-slate-300 hover:border-slate-800',
+      badgeColor: 'bg-slate-100 text-slate-800 border-slate-200',
+      flagships: ['EKA HT', 'EKA XL', 'EKA XLE', 'EKA GT MAX (8K)', 'EKA F1 16K'],
     },
     {
       id: 'scanners',
-      title: '3D Scanners',
-      tag: 'METROLOGY & REVERSE ENGR',
-      description: 'Handheld & optical laser digitizers capturing millions of points per second down to 0.04 mm.',
+      title: '3D Scanners & Metrology',
+      tag: '★ HIGHLIGHTED • METROLOGY',
+      description: 'Handheld & optical coordinate laser digitizers capturing millions of points per second down to 0.04 mm.',
       icon: Scan,
       route: '/products/3d-scanners',
-      accent: 'border-cyan-500 hover:border-cyan-600',
-      badgeColor: 'bg-cyan-50 text-cyan-800 border-cyan-200',
-      flagships: ['3DeVOK MT (Hybrid Laser)', '3DeVOK MQ (Wireless)', 'EINSTAR'],
+      accent: 'border-2 border-red-600 shadow-md ring-2 ring-red-500/20',
+      badgeColor: 'bg-red-600 text-white border-red-600',
+      flagships: ['3DeVOK MT (Hybrid Laser)', '3DeVOK MQ (Color 3D)', 'EINSTAR Handheld'],
     },
   ]
 
@@ -326,12 +326,24 @@ export const ProductsPage: React.FC = () => {
             >
               All Hardware &amp; Software ({products.length})
             </button>
+            {/* 1. CAD Software First */}
+            <button
+              onClick={() => setSelectedTech('cad')}
+              className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
+                selectedTech === 'cad'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              CAD &amp; Rendering Software
+            </button>
+            {/* 2. 3D Printers Second */}
             <button
               onClick={() => setSelectedTech('fdm')}
               className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
                 selectedTech === 'fdm'
                   ? 'bg-red-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
               FDM 3D Printers
@@ -340,41 +352,25 @@ export const ProductsPage: React.FC = () => {
               onClick={() => setSelectedTech('dlp')}
               className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
                 selectedTech === 'dlp'
-                  ? 'bg-amber-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              DLP 3D Printers (Jewelry &amp; Engr)
+              DLP &amp; LCD Resin Printers
             </button>
-            <button
-              onClick={() => setSelectedTech('lcd')}
-              className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
-                selectedTech === 'lcd'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Industrial LCD (8K &amp; 16K)
-            </button>
+            {/* 3. 3D Scanners Third - HIGHLIGHTED */}
             <button
               onClick={() => setSelectedTech('scanners')}
-              className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-bold cursor-pointer border flex items-center space-x-1.5 ${
                 selectedTech === 'scanners'
-                  ? 'bg-cyan-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-red-600 text-white border-red-600 shadow-sm'
+                  : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'
               }`}
             >
-              3D Scanners (Metrology)
-            </button>
-            <button
-              onClick={() => setSelectedTech('cad')}
-              className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold cursor-pointer ${
-                selectedTech === 'cad'
-                  ? 'bg-purple-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              CAD &amp; Rendering Software
+              <span>3D Scanners (Metrology)</span>
+              <span className={`px-1.5 py-0.2 text-[9px] uppercase font-black rounded ${selectedTech === 'scanners' ? 'bg-white text-red-600' : 'bg-red-600 text-white'}`}>
+                ★ Highlighted
+              </span>
             </button>
           </div>
         </div>

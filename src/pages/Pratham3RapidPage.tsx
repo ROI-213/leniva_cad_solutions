@@ -102,7 +102,7 @@ export const Pratham3RapidPage: React.FC = () => {
   }
 
   // Official URLs
-  const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2026/09/Pratham-3-Rapid-Brochure-350_compressed.pdf'
+  const officialBrochureUrl = '/brochures/pratham-3-rapid.pdf'
   const officialProductUrl = 'https://make3d.in/pratham-3-rapid-3d-printer/'
 
   // SEO & Structured Data

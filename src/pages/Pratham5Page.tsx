@@ -93,7 +93,7 @@ export const Pratham5Page: React.FC = () => {
   }
 
   // Official URLs
-  const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2025/10/M-Pratham-5.0.pdf'
+  const officialBrochureUrl = '/brochures/pratham-5.pdf'
   const officialProductUrl = 'https://make3d.in/pratham-5-0/'
 
   // SEO & Structured Data

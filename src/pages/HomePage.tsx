@@ -305,13 +305,13 @@ export const HomePage: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                 <span>{slides[currentSlide].tag}</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950 tracking-tight leading-snug">
                 {slides[currentSlide].title}{' '}
-                <span className="text-slate-600 font-extrabold">
+                <span className="text-slate-600 font-semibold">
                   — {slides[currentSlide].subtitle}
                 </span>
               </h1>
-              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-[15px] text-slate-600 font-normal leading-relaxed max-w-2xl">
                 Official Trimble & Chaos certified CAD and rendering software, industrial FDM, DLP & LCD 3D printing systems, and high-precision metrology 3D scanners across India.
               </p>
             </div>

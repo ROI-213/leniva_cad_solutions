@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ChevronLeft,
@@ -18,6 +18,7 @@ import {
   Clock,
   Sparkles,
   ArrowRight,
+  Heart,
   LucideIcon,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
@@ -415,520 +416,251 @@ const showcaseCategories: ShowcaseCategorySection[] = [
 
 export const ShowroomSolutionsSection: React.FC = () => {
   const { openQuoteModal } = useApp()
-  // Maintain current slide index for each category
-  const [activeIndices, setActiveIndices] = useState<{ [catId: string]: number }>({
-    fdm: 0,
-    'resin-engineering': 0,
-    'resin-jewellery': 0,
-    scanners: 0,
-  })
   const [zoomItem, setZoomItem] = useState<ShowcaseProductItem | null>(null)
+  const trackRefs = useRef<{ [catId: string]: HTMLDivElement | null }>({})
 
-  const handlePrev = (catId: string, totalCount: number) => {
-    setActiveIndices(prev => ({
-      ...prev,
-      [catId]: (prev[catId] - 1 + totalCount) % totalCount,
-    }))
-  }
-
-  const handleNext = (catId: string, totalCount: number) => {
-    setActiveIndices(prev => ({
-      ...prev,
-      [catId]: (prev[catId] + 1) % totalCount,
-    }))
-  }
-
-  const handleSetIndex = (catId: string, index: number) => {
-    setActiveIndices(prev => ({
-      ...prev,
-      [catId]: index,
-    }))
+  const scrollTrack = (catId: string, direction: 'left' | 'right') => {
+    const el = trackRefs.current[catId]
+    if (!el) return
+    const scrollAmount = direction === 'left' ? -300 : 300
+    el.scrollBy({ left: scrollAmount, behavior: 'smooth' })
   }
 
   return (
     <>
-      <section id="showroom-solutions" className="w-full relative overflow-hidden py-1 sm:py-2">
-        {/* Showroom Panoramic Background */}
-        <div className="relative w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6">
-          {/* Showroom Stage Outer Container: Single unified section without blank spaces */}
-          <div className="relative rounded-3xl bg-gradient-to-b from-[#f8fafc]/95 via-[#f0f7ff]/75 to-[#e2e8f0]/65 p-4 sm:p-6 lg:p-7 xl:p-8 border border-slate-200/90 shadow-2xl overflow-hidden">
-            {/* Background Ambient Lighting & Potted Plant Accents */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/6 rounded-full blur-3xl pointer-events-none" />
+      <section id="showroom-solutions" className="w-full bg-white py-10 sm:py-16 border-y border-slate-200">
+        <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+          {showcaseCategories.map((section, catIndex) => {
+            const isScanners = section.id === 'scanners'
 
-            {/* Subtle Industrial Grid Floor Pattern */}
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{
-                backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
-                backgroundSize: '48px 48px',
-              }}
-            />
+            return (
+              <div
+                key={section.id}
+                id={`showcase-${section.id}`}
+                className="w-full scroll-mt-24"
+              >
+                {/* Subtle Divider between categories */}
+                {catIndex > 0 && (
+                  <div className="border-t border-slate-200 mb-10 sm:mb-14" />
+                )}
 
-            <div className="relative z-10 space-y-6 sm:space-y-8">
-              {showcaseCategories.map((section, catIndex) => {
-                const isFirstCategory = catIndex === 0
-                const currentIndex = activeIndices[section.id] || 0
-                const totalProducts = section.products.length
-
-                // Get 4 cards to display simultaneously across the showroom carousel:
-                // Card 0: Previous item (peeking from left edge)
-                // Card 1: Active item 1 (full card)
-                // Card 2: Active item 2 (full card)
-                // Card 3: Next item (peeking from right edge)
-                const prevProductIndex = (currentIndex - 1 + totalProducts) % totalProducts
-                const prevProduct = section.products[prevProductIndex]
-
-                const firstProduct = section.products[currentIndex]
-
-                const secondProductIndex = (currentIndex + 1) % totalProducts
-                const secondProduct = totalProducts > 1 ? section.products[secondProductIndex] : null
-
-                const nextProductIndex = (currentIndex + 2) % totalProducts
-                const nextProduct = totalProducts > 2 ? section.products[nextProductIndex] : prevProduct
-
-                return (
-                  <div
-                    key={section.id}
-                    id={`showcase-${section.id}`}
-                    className="w-full relative scroll-mt-24"
-                  >
-                    {/* Subtle Elegant Divider for Down 3 Categories */}
-                    {!isFirstCategory && (
-                      <div className="border-t border-slate-200/90 mb-8 sm:mb-12" />
-                    )}
-
-                    {/* ====================================================
-                        HEADER:
-                        Category 1: Full Showcase Header (Tag, Title, Subtitle, Badges, Side Tags)
-                        Down 3 Categories: ONLY Category Name & Products (no separate sections)
-                       ==================================================== */}
-                    {isFirstCategory ? (
-                      <div className="relative z-20 mb-6 sm:mb-10">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                          {/* Left Decorative Side Tag: FROM CONCEPT TO CREATION */}
-                          <div className="hidden xl:flex items-center space-x-2.5 shrink-0">
-                            <div className="w-1.5 h-10 border-l-2 border-t-2 border-b-2 border-red-500/80 rounded-l-xs" />
-                            <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug">
-                              <div>FROM</div>
-                              <div>CONCEPT</div>
-                              <div>TO CREATION</div>
-                            </div>
-                          </div>
-
-                          {/* Center Header: Category Title & Feature Pills */}
-                          <div className="text-center space-y-2 max-w-3xl mx-auto">
-                            {/* Top Tag: — EXPLORE OUR — */}
-                            <div className="flex items-center justify-center space-x-2 text-[11px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">
-                              <span className="w-6 h-[1.5px] bg-slate-300" />
-                              <span>{section.categoryTag}</span>
-                              <span className="w-6 h-[1.5px] bg-slate-300" />
-                            </div>
-
-                            {/* Main Title */}
-                            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-                              {section.titlePrimary}{' '}
-                              <span className="text-blue-600">{section.titleAccent}</span>
-                            </h2>
-
-                            {/* Subtitle */}
-                            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
-                              {section.subtitle}
-                            </p>
-
-                            {/* Feature Highlights Bar (4 Badges with Icons) */}
-                            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-2">
-                              {section.badges.map(b => {
-                                const IconComponent = b.icon
-                                return (
-                                  <div
-                                    key={b.label}
-                                    className="flex items-center space-x-1.5 text-xs text-slate-700 font-semibold"
-                                  >
-                                    <IconComponent className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                                    <span>{b.label}</span>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </div>
-
-                          {/* Right Decorative Side Tag & Catalog Link Button */}
-                          <div className="flex flex-col items-center md:items-end space-y-2 shrink-0">
-                            <Link
-                              to={section.catalogLink}
-                              className="px-5 py-2.5 rounded-full border border-red-500/80 hover:border-red-600 bg-white hover:bg-red-50 text-red-600 hover:text-red-700 text-xs font-bold transition-all shadow-xs flex items-center space-x-1.5 group cursor-pointer"
-                            >
-                              <span>{section.catalogText}</span>
-                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-
-                            <div className="hidden xl:flex items-center space-x-2.5 pt-1">
-                              <div className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase leading-snug text-right">
-                                <div>INDUSTRIAL</div>
-                                <div>3D PRINTING</div>
-                                <div>TECHNOLOGY</div>
-                              </div>
-                              <div className="w-1.5 h-10 border-r-2 border-t-2 border-b-2 border-red-500/80 rounded-r-xs" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      /* DOWN 3 CATEGORIES: ONLY DISPLAY NAME & LINK */
-                      <div className="relative z-20 mb-6 sm:mb-8 text-center space-y-2">
-                        {section.id === 'scanners' && (
-                          <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-red-600 text-white rounded-full text-[11px] font-black uppercase tracking-wider shadow-sm mb-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                            <span>★ Highlighted Technology Suite</span>
-                          </div>
-                        )}
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
-                          {section.titlePrimary}{' '}
-                          <span className="text-red-600">{section.titleAccent}</span>
-                        </h3>
-                        <div>
-                          <Link
-                            to={section.catalogLink}
-                            className="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 hover:underline transition-all group"
-                          >
-                            <span>{section.catalogText}</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* ====================================================
-                        2. SHOWROOM STAGE: PRODUCTS DISPLAYED SIMULTANEOUSLY
-                       ==================================================== */}
-                    <div className="relative z-10 w-full">
-                      {/* Left / Right Navigation Chevrons */}
-                      <button
-                        onClick={() => handlePrev(section.id, totalProducts)}
-                        aria-label="Previous Product"
-                        className={`absolute ${
-                          totalProducts > 2
-                            ? 'left-1 sm:left-3 lg:left-[115px] xl:left-[145px] 2xl:left-[170px]'
-                            : 'left-1 sm:left-3'
-                        } top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95`}
-                      >
-                        <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
-                      </button>
-
-                      <button
-                        onClick={() => handleNext(section.id, totalProducts)}
-                        aria-label="Next Product"
-                        className={`absolute ${
-                          totalProducts > 2
-                            ? 'right-1 sm:right-3 lg:right-[115px] xl:right-[145px] 2xl:right-[170px]'
-                            : 'right-1 sm:right-3'
-                        } top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200/90 shadow-xl flex items-center justify-center transition-all cursor-pointer group hover:scale-105 active:scale-95`}
-                      >
-                        <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
-                      </button>
-
-                  {/* 4-Product Horizontal Track */}
-                  <div className="flex items-stretch justify-center gap-4 sm:gap-6 lg:gap-7 w-full">
-                    {/* Card 0: Left Peeking Product */}
-                    {prevProduct && totalProducts > 2 && (
-                      <div
-                        onClick={() => handlePrev(section.id, totalProducts)}
-                        className="hidden lg:flex flex-col justify-between shrink-0 w-[140px] xl:w-[175px] 2xl:w-[210px] -ml-6 xl:-ml-10 2xl:-ml-14 rounded-3xl bg-white/80 backdrop-blur-md border border-white/90 shadow-xl p-3 sm:p-4 cursor-pointer hover:bg-white/95 hover:shadow-2xl transition-all duration-300 opacity-70 hover:opacity-100 group overflow-hidden relative select-none"
-                        title={`View Previous: ${prevProduct.name} ${prevProduct.nameAccent || ''}`}
-                      >
-                        {/* Ambient Glow */}
-                        <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-xl pointer-events-none" />
-
-                        {/* Top Badge */}
-                        <div className="relative z-10 flex items-center justify-between">
-                          <span className="px-2 py-0.5 bg-red-600 text-white font-black text-[9px] tracking-wider uppercase rounded shadow-xs">
-                            {prevProduct.modelsCount}
-                          </span>
-                          <span className="text-[10px] font-mono font-bold text-slate-400">
-                            {prevProductIndex + 1}/{totalProducts}
-                          </span>
-                        </div>
-
-                        {/* Machine on Pedestal */}
-                        <div className="relative z-10 my-auto py-2 flex flex-col items-center justify-center">
-                          <div className="relative w-full aspect-square flex items-center justify-center">
-                            <div className="absolute bottom-1 inset-x-2 h-7 bg-cyan-400/25 rounded-[100%] blur-sm pointer-events-none" />
-                            <div className="absolute bottom-2 inset-x-3 h-4 bg-gradient-to-b from-white via-slate-100 to-sky-100 rounded-[100%] border border-cyan-200 shadow-sm pointer-events-none" />
-                            <img
-                              src={prevProduct.image}
-                              alt={`${prevProduct.name} ${prevProduct.nameAccent || ''}`}
-                              className="relative z-10 max-h-32 xl:max-h-40 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
-                            />
-                          </div>
-                          <div className="text-center mt-2">
-                            <div className="text-[11px] font-black text-slate-800 tracking-tight truncate">
-                              {prevProduct.name} <span className="text-blue-600">{prevProduct.nameAccent}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Bottom Hint */}
-                        <div className="relative z-10 flex items-center justify-center text-slate-400 group-hover:text-red-600 transition-colors text-[10px] font-bold">
-                          <ChevronLeft className="w-3.5 h-3.5 mr-0.5 group-hover:-translate-x-0.5 transition-transform" />
-                          <span>PREV</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Card 1: Main Left Full Card */}
-                    <div className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-300 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative">
-                      {/* Top Red Glow Gradient */}
-                      <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-red-500/10 via-red-500/5 to-transparent rounded-full blur-2xl pointer-events-none -mr-20 -mt-20" />
-
-                      {/* Header Row: Badge & Index / Fullscreen */}
-                      <div className="flex items-center justify-between relative z-10 mb-3 sm:mb-4">
-                        <span className="px-3 py-1 bg-red-600 text-white font-black text-[11px] tracking-wider uppercase rounded-md shadow-xs">
-                          {firstProduct.modelsCount}
+                {/* ====================================================
+                    CATEGORY HEADER (matching Image 2)
+                    Icon/Badge + Category Title + Total count | Catalog Link + Chevrons
+                   ==================================================== */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
+                      {isScanners && (
+                        <span className="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-2xs">
+                          ★ Highlighted Solution
                         </span>
+                      )}
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
+                        {section.titlePrimary}{' '}
+                        <span className="text-red-600">{section.titleAccent}</span>
+                      </h3>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs">
+                        {section.products.length} Models Available
+                      </span>
+                    </div>
 
-                        <div className="flex items-center space-x-2">
-                          <span className="text-xs font-mono font-bold text-slate-400">
-                            {currentIndex + 1} / {totalProducts}
-                          </span>
-                          <button
-                            onClick={() => setZoomItem(firstProduct)}
-                            className="p-1 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
-                            title="Inspect HD Model"
+                    <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-2xl">
+                      {section.subtitle}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center space-x-3 shrink-0 self-end md:self-auto">
+                    <Link
+                      to={section.catalogLink}
+                      className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline flex items-center space-x-1 group"
+                    >
+                      <span>{section.catalogText}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+
+                    {/* Compact Chevrons */}
+                    <div className="flex items-center space-x-1.5">
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(section.id, 'left')}
+                        className="w-8 h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                        aria-label="Scroll Left"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(section.id, 'right')}
+                        className="w-8 h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                        aria-label="Scroll Right"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ====================================================
+                    HORIZONTAL PRODUCT TRACK (matching Image 2)
+                    Feature Banner Card on Left + Small Vertical Product Cards
+                   ==================================================== */}
+                <div
+                  ref={el => {
+                    trackRefs.current[section.id] = el
+                  }}
+                  className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
+                >
+                  {/* Left Spotlight / Feature Card (matching Image 2's feature card) */}
+                  <div className="relative w-[260px] sm:w-[280px] shrink-0 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-sm snap-start border border-slate-800 group">
+                    {/* Top Tag & Bullet Features */}
+                    <div className="relative z-10 space-y-3">
+                      <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-red-600 text-white font-mono font-bold text-[10px] tracking-wider uppercase shadow-2xs">
+                        <Sparkles className="w-3 h-3" />
+                        <span>{section.categoryTag}</span>
+                      </span>
+
+                      <div className="space-y-2 pt-1">
+                        {section.badges.map(b => (
+                          <div
+                            key={b.label}
+                            className="flex items-center space-x-2 text-xs text-slate-300 font-medium"
                           >
-                            <Maximize2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Middle Body: Left Typography + Right Showroom Machine on Pedestal */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center flex-1 relative z-10 my-1">
-                        {/* Left Details (col-span-7) */}
-                        <div className="sm:col-span-7 space-y-3">
-                          <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight leading-tight">
-                            {firstProduct.name}{' '}
-                            <span className="text-blue-600">{firstProduct.nameAccent}</span>
-                          </h3>
-
-                          <div className="text-xs font-bold text-slate-700">
-                            {firstProduct.subtitle}
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
+                            <span className="truncate">{b.label}</span>
                           </div>
-
-                          <p className="text-xs text-slate-500 leading-relaxed font-normal line-clamp-3">
-                            {firstProduct.description}
-                          </p>
-
-                          {/* 3 Spec Icons */}
-                          <div className="space-y-2 pt-1">
-                            {firstProduct.features.map(f => {
-                              const FeatIcon = f.icon
-                              return (
-                                <div
-                                  key={f.label}
-                                  className="flex items-center space-x-2 text-xs text-slate-700 font-semibold"
-                                >
-                                  <div className="w-6 h-6 rounded-lg bg-slate-100 border border-slate-200/80 flex items-center justify-center shrink-0 text-slate-600">
-                                    <FeatIcon className="w-3.5 h-3.5" />
-                                  </div>
-                                  <span>{f.label}</span>
-                                </div>
-                              )
-                            })}
-                          </div>
-
-                          {/* Red Pill CTA Button - Single Row Guaranteed */}
-                          <div className="pt-2 sm:pt-3">
-                            <Link
-                              to={firstProduct.link}
-                              className="inline-flex items-center space-x-2 px-5 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn whitespace-nowrap shrink-0 max-w-full"
-                            >
-                              <span className="whitespace-nowrap">Explore {firstProduct.name} {firstProduct.nameAccent}</span>
-                              <ArrowRight className="w-4 h-4 shrink-0 group-hover/btn:translate-x-1 transition-transform" />
-                            </Link>
-                          </div>
-                        </div>
-
-                        {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
-                        <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
-                          {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
-                          <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-cyan-400/35 via-blue-500/25 to-transparent rounded-[100%] blur-md pointer-events-none" />
-                          <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-sky-100 rounded-[100%] border border-cyan-200/90 shadow-[0_12px_28px_rgba(56,189,248,0.3)] pointer-events-none" />
-                          <div className="absolute bottom-5 inset-x-8 h-5 bg-white/95 rounded-[100%] border border-white shadow-xs pointer-events-none" />
-
-                          {/* Transparent Product Image sitting directly on the pedestal */}
-                          <img
-                            src={firstProduct.image}
-                            alt={`${firstProduct.name} ${firstProduct.nameAccent}`}
-                            className="relative z-10 max-h-56 sm:max-h-60 xl:max-h-64 w-auto object-contain drop-shadow-[0_20px_25px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-105 select-none"
-                          />
-                        </div>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Card 2: Main Right Full Card */}
-                    {secondProduct && (
-                      <div className="flex-1 min-w-[280px] max-w-[580px] 2xl:max-w-[640px] rounded-3xl bg-white/95 backdrop-blur-md border border-white shadow-xl hover:shadow-2xl transition-all duration-300 p-5 sm:p-7 xl:p-8 flex flex-col justify-between overflow-hidden group relative">
-                        {/* Top Glow Gradient */}
-                        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-red-500/10 via-rose-500/5 to-transparent rounded-full blur-2xl pointer-events-none -mr-20 -mt-20" />
-
-                        {/* Header Row: Badge & Index / Fullscreen */}
-                        <div className="flex items-center justify-between relative z-10 mb-3 sm:mb-4">
-                          <span className="px-3 py-1 bg-red-600 text-white font-black text-[11px] tracking-wider uppercase rounded-md shadow-xs">
-                            {secondProduct.modelsCount}
-                          </span>
-
-                          <div className="flex items-center space-x-2">
-                            <span className="text-xs font-mono font-bold text-slate-400">
-                              {secondProductIndex + 1} / {totalProducts}
-                            </span>
-                            <button
-                              onClick={() => setZoomItem(secondProduct)}
-                              className="p-1 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
-                              title="Inspect HD Model"
-                            >
-                              <Maximize2 className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Middle Body: Left Typography + Right Showroom Machine on Pedestal */}
-                        <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center flex-1 relative z-10 my-1">
-                          {/* Left Details (col-span-7) */}
-                          <div className="sm:col-span-7 space-y-3">
-                            <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight leading-tight">
-                              {secondProduct.name}{' '}
-                              <span className="text-red-600">{secondProduct.nameAccent}</span>
-                            </h3>
-
-                            <div className="text-xs font-bold text-slate-700">
-                              {secondProduct.subtitle}
-                            </div>
-
-                            <p className="text-xs text-slate-500 leading-relaxed font-normal line-clamp-3">
-                              {secondProduct.description}
-                            </p>
-
-                            {/* 3 Spec Icons */}
-                            <div className="space-y-2 pt-1">
-                              {secondProduct.features.map(f => {
-                                const FeatIcon = f.icon
-                                return (
-                                  <div
-                                    key={f.label}
-                                    className="flex items-center space-x-2 text-xs text-slate-700 font-semibold"
-                                  >
-                                    <div className="w-6 h-6 rounded-lg bg-slate-100 border border-slate-200/80 flex items-center justify-center shrink-0 text-slate-600">
-                                      <FeatIcon className="w-3.5 h-3.5" />
-                                    </div>
-                                    <span>{f.label}</span>
-                                  </div>
-                                )
-                              })}
-                            </div>
-
-                            {/* Red Pill CTA Button - Single Row Guaranteed */}
-                            <div className="pt-2 sm:pt-3">
-                              <Link
-                                to={secondProduct.link}
-                                className="inline-flex items-center space-x-2 px-5 py-2.5 sm:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] transition-all cursor-pointer group/btn whitespace-nowrap shrink-0 max-w-full"
-                              >
-                                <span className="whitespace-nowrap">Explore {secondProduct.name} {secondProduct.nameAccent}</span>
-                                <ArrowRight className="w-4 h-4 shrink-0 group-hover/btn:translate-x-1 transition-transform" />
-                              </Link>
-                            </div>
-                          </div>
-
-                          {/* Right Machine Imagery on Lighted Circular Podium (col-span-5) */}
-                          <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-72 xl:h-76 flex items-center justify-center pt-2 pb-4">
-                            {/* 3D Multi-Tier Illuminated Circular Showroom Pedestal */}
-                            <div className="absolute bottom-2 inset-x-2 h-14 bg-gradient-to-t from-red-500/25 via-rose-400/20 to-transparent rounded-[100%] blur-md pointer-events-none" />
-                            <div className="absolute bottom-4 inset-x-4 h-7 bg-gradient-to-b from-white via-slate-100 to-rose-50 rounded-[100%] border border-red-200/80 shadow-[0_12px_28px_rgba(244,63,94,0.25)] pointer-events-none" />
-                            <div className="absolute bottom-5 inset-x-8 h-5 bg-white/95 rounded-[100%] border border-white shadow-xs pointer-events-none" />
-
-                            {/* Transparent Product Image sitting directly on the pedestal */}
-                            <img
-                              src={secondProduct.image}
-                              alt={`${secondProduct.name} ${secondProduct.nameAccent}`}
-                              className="relative z-10 max-h-56 sm:max-h-60 xl:max-h-64 w-auto object-contain drop-shadow-[0_20px_25px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-105 select-none"
-                            />
-                          </div>
-                        </div>
+                    {/* Bottom Card Inset */}
+                    <div className="relative z-10 mt-6 p-4 rounded-xl bg-white text-slate-900 space-y-2 shadow-md">
+                      <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
+                        Leniva Showcase Series
                       </div>
-                    )}
-
-                    {/* Card 3: Right Peeking Product */}
-                    {nextProduct && totalProducts > 2 && (
-                      <div
-                        onClick={() => handleNext(section.id, totalProducts)}
-                        className="hidden lg:flex flex-col justify-between shrink-0 w-[140px] xl:w-[175px] 2xl:w-[210px] -mr-6 xl:-mr-10 2xl:-mr-14 rounded-3xl bg-white/80 backdrop-blur-md border border-white/90 shadow-xl p-3 sm:p-4 cursor-pointer hover:bg-white/95 hover:shadow-2xl transition-all duration-300 opacity-70 hover:opacity-100 group overflow-hidden relative select-none"
-                        title={`View Next: ${nextProduct.name} ${nextProduct.nameAccent || ''}`}
-                      >
-                        {/* Ambient Glow */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-xl pointer-events-none" />
-
-                        {/* Top Badge */}
-                        <div className="relative z-10 flex items-center justify-between">
-                          <span className="px-2 py-0.5 bg-red-600 text-white font-black text-[9px] tracking-wider uppercase rounded shadow-xs">
-                            {nextProduct.modelsCount}
-                          </span>
-                          <span className="text-[10px] font-mono font-bold text-slate-400">
-                            {nextProductIndex + 1}/{totalProducts}
-                          </span>
-                        </div>
-
-                        {/* Machine on Pedestal */}
-                        <div className="relative z-10 my-auto py-2 flex flex-col items-center justify-center">
-                          <div className="relative w-full aspect-square flex items-center justify-center">
-                            <div className="absolute bottom-1 inset-x-2 h-7 bg-red-400/25 rounded-[100%] blur-sm pointer-events-none" />
-                            <div className="absolute bottom-2 inset-x-3 h-4 bg-gradient-to-b from-white via-slate-100 to-rose-100 rounded-[100%] border border-red-200 shadow-sm pointer-events-none" />
-                            <img
-                              src={nextProduct.image}
-                              alt={`${nextProduct.name} ${nextProduct.nameAccent || ''}`}
-                              className="relative z-10 max-h-32 xl:max-h-40 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
-                            />
-                          </div>
-                          <div className="text-center mt-2">
-                            <div className="text-[11px] font-black text-slate-800 tracking-tight truncate">
-                              {nextProduct.name} <span className="text-red-600">{nextProduct.nameAccent}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Bottom Hint */}
-                        <div className="relative z-10 flex items-center justify-center text-slate-400 group-hover:text-red-600 transition-colors text-[10px] font-bold">
-                          <span>NEXT</span>
-                          <ChevronRight className="w-3.5 h-3.5 ml-0.5 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
+                      <h4 className="text-sm font-black text-slate-950 leading-tight">
+                        {section.titlePrimary}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 leading-normal line-clamp-2">
+                        {section.subtitle}
+                      </p>
+                      <div className="pt-1">
+                        <Link
+                          to={section.catalogLink}
+                          className="w-full py-1.5 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-lg text-center transition-colors flex items-center justify-center space-x-1 shadow-2xs cursor-pointer"
+                        >
+                          <span>Explore All</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
                       </div>
-                    )}
+                    </div>
                   </div>
 
-                  {/* Bottom Pagination Dots with Active Red Pill */}
-                  <div className="flex items-center justify-center space-x-2 mt-6 sm:mt-8">
-                    {section.products.map((p, pIdx) => {
-                      const isActive = pIdx === currentIndex
-                      return (
-                        <button
-                          key={p.id}
-                          onClick={() => handleSetIndex(section.id, pIdx)}
-                          aria-label={`Go to ${p.name}`}
-                          className={`transition-all duration-300 rounded-full cursor-pointer ${
-                            isActive
-                              ? 'w-7 h-2 bg-red-600 shadow-sm shadow-red-500/50'
-                              : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                          }`}
+                  {/* Product Cards (matching Image 2: compact vertical card style) */}
+                  {section.products.map(product => (
+                    <div
+                      key={product.id}
+                      className="w-[220px] sm:w-[240px] md:w-[250px] shrink-0 bg-white rounded-2xl border border-slate-200 hover:border-red-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start"
+                    >
+                      {/* Top Image Box with corner badges & actions */}
+                      <div className="relative aspect-[4/3] bg-slate-50/80 p-3 sm:p-4 flex items-center justify-center overflow-hidden border-b border-slate-100">
+                        {/* Top-Left Badge (e.g. Build volume or status) */}
+                        <span className="absolute top-2.5 left-2.5 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-2xs z-10 max-w-[130px] truncate">
+                          {product.modelsCount}
+                        </span>
+
+                        {/* Top-Right Action Circles (Zoom & Inquiry) */}
+                        <div className="absolute top-2.5 right-2.5 flex items-center space-x-1 z-10">
+                          <button
+                            type="button"
+                            onClick={() => setZoomItem(product)}
+                            className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                            title="Inspect Model Asset"
+                          >
+                            <Maximize2 className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => openQuoteModal(product.quoteInquiry)}
+                            className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                            title="Quick Inquiry"
+                          >
+                            <Heart className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        {/* Centered Product Image */}
+                        <img
+                          src={product.image}
+                          alt={`${product.name} ${product.nameAccent || ''}`}
+                          className="max-h-28 sm:max-h-32 w-auto object-contain transition-transform duration-500 group-hover:scale-105 select-none"
+                          loading="lazy"
                         />
-                      )
-                    })}
-                  </div>
+                      </div>
+
+                      {/* Bottom Content Body */}
+                      <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between space-y-2">
+                        <div className="space-y-1">
+                          {/* Series / Subcategory label */}
+                          <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider truncate">
+                            {product.subtitle}
+                          </div>
+
+                          {/* Product Title */}
+                          <Link to={product.link} className="block">
+                            <h4 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-red-600 transition-colors leading-tight truncate">
+                              {product.name} {product.nameAccent}
+                            </h4>
+                          </Link>
+
+                          {/* Short Description */}
+                          <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
+                            {product.description}
+                          </p>
+                        </div>
+
+                        {/* Feature Badges */}
+                        <div className="space-y-1 pt-1 border-t border-slate-100">
+                          {product.features.slice(0, 2).map((f, i) => {
+                            const FeatIcon = f.icon
+                            return (
+                              <div
+                                key={i}
+                                className="flex items-center space-x-1.5 text-[11px] text-slate-600 font-medium truncate"
+                              >
+                                <FeatIcon className="w-3 h-3 text-red-600 shrink-0" />
+                                <span className="truncate">{f.label}</span>
+                              </div>
+                            )
+                          })}
+                        </div>
+
+                        {/* Bottom Actions Row: Explore + Quote */}
+                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-1.5">
+                          <Link
+                            to={product.link}
+                            className="flex-1 py-1.5 px-2.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] text-center transition-all flex items-center justify-center space-x-1 shadow-2xs group-hover:shadow-xs"
+                          >
+                            <span>Explore</span>
+                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={() => openQuoteModal(product.quoteInquiry)}
+                            className="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] text-center transition-colors cursor-pointer"
+                          >
+                            Quote
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )
           })}
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
       {/* FULLSCREEN ZOOM MODAL */}
       {zoomItem && (
@@ -937,7 +669,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
           onClick={() => setZoomItem(null)}
         >
           <div
-            className="relative max-w-3xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 text-slate-900 space-y-4"
+            className="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 text-slate-900 space-y-4"
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -957,11 +689,11 @@ export const ShowroomSolutionsSection: React.FC = () => {
               </button>
             </div>
 
-            <div className="bg-slate-50 rounded-2xl p-4 sm:p-6 flex items-center justify-center min-h-[320px] max-h-[60vh] overflow-hidden border border-slate-100">
+            <div className="bg-slate-50 rounded-2xl p-4 sm:p-6 flex items-center justify-center min-h-[280px] max-h-[60vh] overflow-hidden border border-slate-100">
               <img
                 src={zoomItem.image}
-                alt={`${zoomItem.name} ${zoomItem.nameAccent}`}
-                className="max-h-full max-w-full object-contain drop-shadow-2xl"
+                alt={`${zoomItem.name} ${zoomItem.nameAccent || ''}`}
+                className="max-h-full max-w-full object-contain drop-shadow-xl"
               />
             </div>
 

@@ -1346,65 +1346,6 @@ export const AresStandardPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 20. FINAL CONVERSION CALL TO ACTION */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-950 border border-blue-500/30 text-blue-400 text-xs font-semibold">
-            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-            <span>Practical 2D DWG CAD Software</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Make Your 2D CAD Workflow More Practical
-          </h2>
-
-          <p className="text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Create, view, modify and print DWG drawings with a focused desktop CAD solution designed around everyday 2D drafting needs.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 pt-4">
-            <a
-              href={data.identity.trialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center space-x-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Start Your Free Trial</span>
-            </a>
-
-            <a
-              href={data.identity.downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all flex items-center space-x-2"
-            >
-              <Download className="w-4 h-4 text-blue-400" />
-              <span>Download</span>
-            </a>
-
-            <button
-              onClick={() => openQuoteModal('ARES Standard')}
-              className="px-7 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all flex items-center space-x-2"
-            >
-              <Send className="w-4 h-4 text-slate-400" />
-              <span>Request Pricing</span>
-            </button>
-          </div>
-
-          <div className="pt-2">
-            <a
-              href="#comparison"
-              className="text-xs text-blue-400 hover:text-blue-300 inline-flex items-center space-x-1"
-            >
-              <span>Compare with ARES Commander</span>
-              <ArrowRight className="w-3 h-3" />
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

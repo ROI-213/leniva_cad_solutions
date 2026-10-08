@@ -490,7 +490,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'Internal Spiral Fluid Manifold',
     category: 'functional',
     material: 'High Temperature Resin',
-    image: '/images/showcase/app-functional-components.png',
+    image: '/images/ekaxle/ekaxle-spiral-manifold.jpg',
     notes: 'Transparent fluid chambers for laminar flow visualization and pressure testing.',
   },
   {
@@ -498,7 +498,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'Precision Planetary Gearbox Core',
     category: 'mechanical',
     material: 'Tough Pro Resin',
-    image: '/images/products/pratham-mini-gear.png',
+    image: '/images/ekaxle/ekaxle-planetary-gearbox.jpg',
     notes: 'Involute tooth profile with 48-micron XY accuracy for silent mechanical engagement.',
   },
   {
@@ -506,7 +506,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'Watertight Electronic Sensor Enclosure',
     category: 'industrial',
     material: 'ABS Pro Resin',
-    image: '/images/showcase/app-prototyping-projects.png',
+    image: '/images/ekaxle/ekaxle-sensor-enclosure.jpg',
     notes: 'Integrated O-ring sealing groove with threaded brass insert bosses.',
   },
   {
@@ -514,7 +514,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'Custom Robotic Gripper Fingers',
     category: 'functional',
     material: 'Tough Flexible Resin',
-    image: '/images/products/pratham-mini-stand.png',
+    image: '/images/ekaxle/ekaxle-robotic-gripper.jpg',
     notes: 'Compliant elastomer pads for delicate automated pick-and-place cycles.',
   },
   {
@@ -522,7 +522,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'High-Voltage Ceramic Test Insulator',
     category: 'industrial',
     material: 'Ceramic Pro Resin',
-    image: '/images/showcase/showcase-4.png',
+    image: '/images/ekaxle/ekaxle-ceramic-insulator.jpg',
     notes: 'Ultra-stiff non-conductive dielectric prototype tested under electrical arc stress.',
   },
   {
@@ -530,7 +530,7 @@ export const engineeringWorkGallery: EkaGalleryItem[] = [
     title: 'Automotive Snap-Fit Bezel Clip',
     category: 'mechanical',
     material: 'Tough Resin',
-    image: '/images/showcase/showcase-2.png',
+    image: '/images/ekaxle/ekaxle-automotive-clip.jpg',
     notes: 'High-fatigue cantilever arm withstands repeated assembly insertion testing.',
   },
 ]

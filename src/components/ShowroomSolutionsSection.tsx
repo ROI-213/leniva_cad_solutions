@@ -50,6 +50,7 @@ export interface ShowcaseCategorySection {
   catalogLink: string
   catalogText: string
   accentColor: string
+  featuredImage?: string
   badges: {
     icon: LucideIcon
     label: string
@@ -67,6 +68,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
     subtitle: 'Industrial-grade FDM 3D printers for functional prototyping, production tooling and large-format manufacturing.',
     catalogLink: '/products/fdm-3d-printers',
     catalogText: 'View All FDM Printers',
+    featuredImage: '/images/blogs/blog-industrial-3d-printing.jpg',
     accentColor: '#dc2626',
     badges: [
       { icon: Target, label: 'High Precision' },
@@ -223,6 +225,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
     subtitle: 'Industrial DLP & LCD resin systems delivering tight dimensional tolerances for engineering prototypes and functional parts.',
     catalogLink: '/products/dlp-3d-printers',
     catalogText: 'Explore Engineering Resin Printers',
+    featuredImage: '/images/blogs/blog-fdm-lcd-dlp.jpg',
     accentColor: '#ea580c',
     badges: [
       { icon: Sparkles, label: 'Exceptional Detail' },
@@ -277,6 +280,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
     subtitle: 'Ultra-high resolution DLP & LCD systems tailored for zero-ash direct investment casting and intricate jewellery masters.',
     catalogLink: '/products/dlp-3d-printers',
     catalogText: 'Explore Jewellery Resin Printers',
+    featuredImage: '/images/jewelry/jewelry-casting-tree.jpg',
     accentColor: '#0284c7',
     badges: [
       { icon: Target, label: 'Down to 16K Precision' },
@@ -348,6 +352,7 @@ const showcaseCategories: ShowcaseCategorySection[] = [
     subtitle: 'Metrology-grade optical, laser & infrared digitizing systems for inspection, CMM and reverse engineering.',
     catalogLink: '/products/3d-scanners',
     catalogText: 'Explore All 3D Scanners',
+    featuredImage: '/images/blogs/blog-3d-scanning-inspection.jpg',
     accentColor: '#dc2626',
     badges: [
       { icon: Award, label: '0.015mm Accuracy' },
@@ -444,39 +449,22 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   <div className="border-t border-slate-200 mb-10 sm:mb-14" />
                 )}
 
-                {/* ====================================================
-                    CATEGORY HEADER (matching Image 2)
-                    Icon/Badge + Category Title + Total count | Catalog Link + Chevrons
-                   ==================================================== */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
-                      {isScanners && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-2xs">
-                          ★ Highlighted Solution
-                        </span>
-                      )}
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
-                        {section.titlePrimary}{' '}
-                        <span className="text-red-600">{section.titleAccent}</span>
-                      </h3>
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs">
-                        {section.products.length} Models Available
-                      </span>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-2xl">
-                      {section.subtitle}
-                    </p>
+                {/* Compact Top Navigation Bar (minimal vertical space) */}
+                <div className="flex items-center justify-between mb-3 px-1">
+                  <div className="flex items-center space-x-2">
+                    <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                    <span className="text-xs font-black uppercase tracking-wider text-slate-900 font-mono">
+                      {section.titlePrimary} <span className="text-red-600">{section.titleAccent}</span>
+                    </span>
                   </div>
 
-                  <div className="flex items-center space-x-3 shrink-0 self-end md:self-auto">
+                  <div className="flex items-center space-x-2">
                     <Link
                       to={section.catalogLink}
-                      className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline flex items-center space-x-1 group"
+                      className="hidden sm:inline-flex text-xs font-bold text-red-600 hover:text-red-700 hover:underline items-center space-x-1 mr-2"
                     >
                       <span>{section.catalogText}</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
 
                     {/* Compact Chevrons */}
@@ -484,7 +472,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => scrollTrack(section.id, 'left')}
-                        className="w-8 h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
                         aria-label="Scroll Left"
                       >
                         <ChevronLeft className="w-4 h-4" />
@@ -492,7 +480,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => scrollTrack(section.id, 'right')}
-                        className="w-8 h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white hover:bg-red-600 text-slate-700 hover:text-white border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
                         aria-label="Scroll Right"
                       >
                         <ChevronRight className="w-4 h-4" />
@@ -502,8 +490,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
                 </div>
 
                 {/* ====================================================
-                    HORIZONTAL PRODUCT TRACK (matching Image 2)
-                    Feature Banner Card on Left + Small Vertical Product Cards
+                    HORIZONTAL TRACK (matching Image 2)
+                    Left End Big Box side with title + 4 Products next to it
                    ==================================================== */}
                 <div
                   ref={el => {
@@ -511,11 +499,78 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   }}
                   className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
                 >
-                  {/* Product Cards: All displayed one after another */}
+                  {/* Left-End Big Box (matching Image 2) displaying title and details */}
+                  <div className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-5 group snap-start">
+                    {/* Background image & dark gradient overlay */}
+                    {section.featuredImage && (
+                      <img
+                        src={section.featuredImage}
+                        alt={section.titlePrimary}
+                        className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 group-hover:opacity-45 transition-all duration-700 pointer-events-none"
+                        loading="lazy"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/60 pointer-events-none" />
+
+                    {/* Top Content: Badge & Bullet Points */}
+                    <div className="relative z-10 space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider">
+                          <Sparkles className="w-3 h-3 text-red-500" />
+                          <span>{section.products.length} Models Available</span>
+                        </span>
+                        {isScanners && (
+                          <span className="px-2 py-0.5 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-2xs">
+                            ★ Highlighted
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Bullet Highlights matching Image 2 */}
+                      <ul className="space-y-2 pt-1">
+                        {section.badges.slice(0, 3).map((b, i) => (
+                          <li key={i} className="flex items-center space-x-2 text-xs text-slate-200 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
+                            <span>{b.label}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Bottom Inset White Card matching Image 2 */}
+                    <div className="relative z-10 bg-white rounded-2xl p-4 sm:p-5 shadow-xl border border-slate-100 text-slate-900 space-y-2 mt-4 sm:mt-6">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-600 block">
+                        {section.categoryTag}
+                      </span>
+                      <h3 className="text-base sm:text-lg font-black text-slate-950 leading-tight">
+                        {section.titlePrimary} <span className="text-red-600">{section.titleAccent}</span>
+                      </h3>
+                      <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        {section.subtitle}
+                      </p>
+                      <div className="pt-2 flex items-center justify-between gap-2">
+                        <Link
+                          to={section.catalogLink}
+                          className="px-4 py-2 rounded-xl bg-slate-950 hover:bg-red-600 text-white text-xs font-bold transition-colors inline-flex items-center space-x-1.5 shadow-sm"
+                        >
+                          <span>Explore All</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                        <Link
+                          to={section.catalogLink}
+                          className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline inline-flex items-center space-x-1"
+                        >
+                          <span>{section.products.length} Models →</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Product Cards: Displayed side-by-side next to the Left Big Box */}
                   {section.products.map(product => (
                     <div
                       key={product.id}
-                      className="w-[220px] sm:w-[240px] md:w-[250px] shrink-0 bg-white rounded-2xl border border-slate-200 hover:border-red-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start"
+                      className="w-[210px] sm:w-[230px] md:w-[240px] shrink-0 bg-white rounded-2xl border border-slate-200 hover:border-red-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start"
                     >
                       {/* Top Image Box with corner badges & actions */}
                       <div className="relative aspect-[4/3] bg-slate-50/80 p-3 sm:p-4 flex items-center justify-center overflow-hidden border-b border-slate-100">

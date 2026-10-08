@@ -599,26 +599,17 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            {/* 4. 3D Scanners (THIRD in hierarchy - HIGHLIGHTED EVERYWHERE) */}
+            {/* 4. 3D Scanners (THIRD in hierarchy) */}
             <Link
               to="/products/3d-scanners"
               className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative shrink-0"
             >
-              <div className="relative">
-                <Scan className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
-                <span className="absolute -top-1 -right-1.5 w-2 h-2 bg-red-600 rounded-full animate-ping" />
-                <span className="absolute -top-1 -right-1.5 w-2 h-2 bg-red-600 rounded-full" />
-              </div>
-              <div className="flex items-center space-x-1 mt-1">
-                <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
-                  3D Scanners
-                </span>
-                <span className="px-1 py-0.2 bg-red-600 text-white text-[8px] font-black uppercase rounded tracking-wider shadow-2xs">
-                  Highlighted
-                </span>
-              </div>
-              {(location.pathname.startsWith('/products/3d-scanners') || location.pathname.includes('3devok') || location.pathname.includes('einscan')) && (
-                <div className="w-8 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
+              <Scan className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+              <span className={`text-xs mt-1 whitespace-nowrap transition-colors ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                3D Scanners
+              </span>
+              {location.pathname.startsWith('/products/3d-scanners') && (
+                <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
               )}
             </Link>
 
@@ -975,19 +966,18 @@ export const Header: React.FC = () => {
                 )}
               </div>
 
-              {/* 3. 3D Scanners (THIRD in hierarchy - HIGHLIGHTED) */}
+              {/* 3. 3D Scanners (THIRD in hierarchy) */}
               <Link
                 to="/products/3d-scanners"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between px-3 py-2 rounded-lg bg-red-50 text-red-950 font-bold border border-red-200/80 shadow-2xs"
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-semibold transition-colors ${
+                  location.pathname.startsWith('/products/3d-scanners')
+                    ? 'text-red-600 bg-red-50'
+                    : 'text-slate-800 hover:bg-slate-50'
+                }`}
               >
-                <div className="flex items-center space-x-2">
-                  <Scan className="w-4 h-4 text-red-600" />
-                  <span>3D Scanners</span>
-                </div>
-                <span className="px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-2xs">
-                  Highlighted
-                </span>
+                <Scan className={`w-4 h-4 ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600'}`} />
+                <span>3D Scanners</span>
               </Link>
 
               {/* Shop Accordion */}

@@ -44,8 +44,6 @@ export const AresTouchPage: React.FC = () => {
 
   // State management
   const [activeSection, setActiveSection] = useState('overview')
-  const [currency, setCurrency] = useState<'eur' | 'usd' | 'inr'>('eur')
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual')
   const [activePrecisionTool, setActivePrecisionTool] = useState(0)
   const [activeWorkspace, setActiveWorkspace] = useState(2) // Default: Field -> ARES Touch
   const [activeFaqCategory, setActiveFaqCategory] = useState<string>('all')
@@ -1178,66 +1176,34 @@ export const AresTouchPage: React.FC = () => {
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="max-w-3xl mx-auto text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-sky-600">Transparent Licensing</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-red-600">Commercial Licensing</span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
               {data.pricing.heading}
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed">
               {data.pricing.subheading}
             </p>
-
-            {/* Currency & Billing Switchers */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <div className="inline-flex rounded-xl border border-slate-200 p-1 bg-slate-50 text-xs font-semibold">
-                {(['eur', 'usd', 'inr'] as const).map(c => (
-                  <button
-                    key={c}
-                    onClick={() => setCurrency(c)}
-                    className={`px-4 py-1.5 rounded-lg transition-colors uppercase ${
-                      currency === c ? 'bg-sky-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-950'
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-
-              <div className="inline-flex rounded-xl border border-slate-200 p-1 bg-slate-50 text-xs font-semibold">
-                {(['monthly', 'annual'] as const).map(b => (
-                  <button
-                    key={b}
-                    onClick={() => setBillingCycle(b)}
-                    className={`px-4 py-1.5 rounded-lg transition-colors capitalize ${
-                      billingCycle === b ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-950'
-                    }`}
-                  >
-                    {b === 'annual' ? 'Annual (Recommended)' : 'Monthly'}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Pricing Cards Grid */}
           <div className="grid md:grid-cols-3 gap-8">
             {data.pricing.plans.map(plan => {
-              const priceObj = currency === 'eur' ? plan.priceEur : currency === 'usd' ? plan.priceUsd : plan.priceInr
               return (
                 <div
                   key={plan.id}
                   className={`rounded-3xl p-8 border-2 transition-all flex flex-col justify-between ${
                     plan.isPopular
-                      ? 'border-sky-600 bg-sky-50/30 shadow-xl shadow-sky-600/10'
+                      ? 'border-red-600 bg-red-50/20 shadow-xl shadow-red-600/5'
                       : 'border-slate-200 bg-white hover:border-slate-300'
                   }`}
                 >
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-wider text-sky-700">
+                      <span className="text-xs font-bold uppercase tracking-wider text-red-600">
                         {plan.badge}
                       </span>
                       {plan.isPopular && (
-                        <span className="px-3 py-1 rounded-full bg-sky-600 text-white text-[10px] font-extrabold">
+                        <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold">
                           ALL-IN-ONE
                         </span>
                       )}
@@ -1248,18 +1214,11 @@ export const AresTouchPage: React.FC = () => {
                       <p className="text-xs text-slate-500 mt-1">{plan.description}</p>
                     </div>
 
-                    <div className="py-3 border-y border-slate-100">
-                      <div className="text-3xl sm:text-4xl font-black text-slate-950">
-                        {priceObj.display}
-                      </div>
-                      <p className="text-xs text-slate-500 mt-0.5">{priceObj.subtext}</p>
-                    </div>
-
                     <div className="space-y-2.5">
                       <p className="text-xs font-bold text-slate-800 uppercase tracking-wider">Includes:</p>
                       {plan.features.map((f, i) => (
                         <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-sky-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                           <span>{f}</span>
                         </div>
                       ))}
@@ -1279,10 +1238,10 @@ export const AresTouchPage: React.FC = () => {
 
                   <div className="pt-8">
                     <button
-                      onClick={() => openQuoteModal(`${plan.name} Enquiry (${currency.toUpperCase()})`)}
-                      className={`w-full py-3.5 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2 ${
+                      onClick={() => openQuoteModal(`${plan.name} Licensing Enquiry`)}
+                      className={`w-full py-3.5 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer ${
                         plan.isPopular
-                          ? 'bg-sky-600 hover:bg-sky-700 text-white shadow-md'
+                          ? 'bg-red-600 hover:bg-red-700 text-white shadow-md'
                           : 'bg-slate-950 hover:bg-slate-800 text-white'
                       }`}
                     >

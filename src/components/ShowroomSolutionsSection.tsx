@@ -511,52 +511,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   }}
                   className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
                 >
-                  {/* Left Spotlight / Feature Card (matching Image 2's feature card) */}
-                  <div className="relative w-[260px] sm:w-[280px] shrink-0 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-sm snap-start border border-slate-800 group">
-                    {/* Top Tag & Bullet Features */}
-                    <div className="relative z-10 space-y-3">
-                      <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-red-600 text-white font-mono font-bold text-[10px] tracking-wider uppercase shadow-2xs">
-                        <Sparkles className="w-3 h-3" />
-                        <span>{section.categoryTag}</span>
-                      </span>
-
-                      <div className="space-y-2 pt-1">
-                        {section.badges.map(b => (
-                          <div
-                            key={b.label}
-                            className="flex items-center space-x-2 text-xs text-slate-300 font-medium"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
-                            <span className="truncate">{b.label}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Card Inset */}
-                    <div className="relative z-10 mt-6 p-4 rounded-xl bg-white text-slate-900 space-y-2 shadow-md">
-                      <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
-                        Leniva Showcase Series
-                      </div>
-                      <h4 className="text-sm font-black text-slate-950 leading-tight">
-                        {section.titlePrimary}
-                      </h4>
-                      <p className="text-[11px] text-slate-500 leading-normal line-clamp-2">
-                        {section.subtitle}
-                      </p>
-                      <div className="pt-1">
-                        <Link
-                          to={section.catalogLink}
-                          className="w-full py-1.5 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-lg text-center transition-colors flex items-center justify-center space-x-1 shadow-2xs cursor-pointer"
-                        >
-                          <span>Explore All</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Product Cards (matching Image 2: compact vertical card style) */}
+                  {/* Product Cards: All displayed one after another */}
                   {section.products.map(product => (
                     <div
                       key={product.id}

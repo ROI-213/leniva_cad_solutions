@@ -484,14 +484,14 @@ export const Header: React.FC = () => {
                 to="/products"
                 className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative"
               >
-                <Printer className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
+                <Printer className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
                 <div className="flex items-center space-x-0.5 mt-1">
-                  <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
+                  <span className={`text-xs whitespace-nowrap transition-colors ${location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
                     3D Printers
                   </span>
                   <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-red-600" />
                 </div>
-                {location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && !location.pathname.startsWith('/products/3d-scanners') && (
+                {location.pathname.startsWith('/products') && !location.pathname.startsWith('/products/cad-software') && (
                   <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
                 )}
               </Link>
@@ -599,19 +599,6 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            {/* 4. 3D Scanners (THIRD in hierarchy) */}
-            <Link
-              to="/products/3d-scanners"
-              className="flex flex-col items-center group px-2 sm:px-2.5 py-1 relative shrink-0"
-            >
-              <Scan className={`w-4 h-4 transition-colors ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600 group-hover:text-red-600'}`} />
-              <span className={`text-xs mt-1 whitespace-nowrap transition-colors ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600 font-bold' : 'text-slate-700 font-medium group-hover:text-red-600'}`}>
-                3D Scanners
-              </span>
-              {location.pathname.startsWith('/products/3d-scanners') && (
-                <div className="w-6 h-[2.5px] bg-red-600 rounded-full mt-0.5 absolute -bottom-1" />
-              )}
-            </Link>
 
             {/* 4. Shop with Dropdown for Products and Filaments */}
             <div
@@ -966,19 +953,6 @@ export const Header: React.FC = () => {
                 )}
               </div>
 
-              {/* 3. 3D Scanners (THIRD in hierarchy) */}
-              <Link
-                to="/products/3d-scanners"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-semibold transition-colors ${
-                  location.pathname.startsWith('/products/3d-scanners')
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-slate-800 hover:bg-slate-50'
-                }`}
-              >
-                <Scan className={`w-4 h-4 ${location.pathname.startsWith('/products/3d-scanners') ? 'text-red-600' : 'text-slate-600'}`} />
-                <span>3D Scanners</span>
-              </Link>
 
               {/* Shop Accordion */}
               <div>

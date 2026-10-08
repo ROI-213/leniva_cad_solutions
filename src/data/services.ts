@@ -7,7 +7,7 @@ export const services: Service[] = [
     title: '3D Printing & Additive Manufacturing Services',
     shortDescription: 'End-to-end contract additive manufacturing services across FDM, SLA, and DLP technologies for functional prototypes and production batches.',
     description: 'Leniva CAD Solutions operates an advanced additive manufacturing facility equipped with industrial FDM, high-precision SLA, and micro-detail DLP systems. Whether you require a single large-format prototype, a batch of production tooling jigs, or thousands of end-use parts, our engineering team manages material selection, print orientation, post-curing, and dimensional inspection.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/images/services/service-additive-manufacturing.jpg',
     badge: 'Core Service',
     applications: [
       'Rapid Concept Models & Ergonomic Prototypes',
@@ -39,7 +39,7 @@ export const services: Service[] = [
     title: 'FDM 3D Printing Services',
     shortDescription: 'Rugged thermoplastic functional prototypes, manufacturing jigs, tooling fixtures, and durable enclosures in PLA, ABS, PETG, and Carbon-Fiber composites.',
     description: 'Our FDM 3D printing service provides cost-effective, high-strength thermoplastic components. Utilizing machines ranging from desktop workhorses to our 1-meter cubic Pratham X, we print everything from hand-held enclosures to full-scale automotive assembly jigs with isotropic infill patterns and reinforced walls.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/images/services/service-fdm-printing.jpg',
     badge: 'Industrial FDM',
     applications: [
       'Functional Prototypes for Fit & Form Testing',
@@ -71,7 +71,7 @@ export const services: Service[] = [
     title: 'SLA 3D Printing Services',
     shortDescription: 'Industrial laser stereolithography delivering mirror-smooth surface quality, tight dimensional tolerances, and injection-mold appearance.',
     description: 'When cosmetic appearance, fluid-tightness, and sub-millimeter detail are paramount, Leniva’s industrial SLA service is the solution. Powered by our large-scale ZRapid iSLA systems, we manufacture models with undetectable layer steps, sharp corners, and glass-clear transparencies.',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+    image: '/images/services/service-sla-printing.jpg',
     badge: 'Mirror Finish',
     applications: [
       'High-Finish Visual & Presentation Prototypes',

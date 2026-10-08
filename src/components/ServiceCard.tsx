@@ -61,7 +61,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
           </Link>
           <button
             onClick={() => openQuoteModal(service.title)}
-            className="flex-1 py-2 px-3 text-center text-xs font-bold text-white bg-slate-900 hover:bg-red-600 rounded-lg shadow-sm transition-colors"
+            className="flex-1 py-2 px-3 text-center text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             Enquire Now
           </button>

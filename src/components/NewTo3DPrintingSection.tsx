@@ -71,7 +71,7 @@ const guideCards: GuideStepCard[] = [
     accentBg: 'bg-red-50',
     accentText: 'text-red-600',
     accentBorder: 'border-red-200',
-    glowGradient: 'from-red-500/15 via-red-500/5 to-transparent',
+    glowGradient: 'from-transparent to-transparent',
     ctaText: 'Explore Applications',
     linkTo: '/applications',
     bullets: [
@@ -90,11 +90,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/materials-spools-hd.jpg',
     imageAlt: 'Engineering Filaments, Resins and 3D Printing Accessories',
     headerIcon: Settings,
-    accentColor: '#0f172a',
-    accentBg: 'bg-slate-100',
-    accentText: 'text-slate-900',
-    accentBorder: 'border-slate-300',
-    glowGradient: 'from-slate-900/10 via-slate-900/5 to-transparent',
+    accentColor: '#dc2626',
+    accentBg: 'bg-red-50',
+    accentText: 'text-red-600',
+    accentBorder: 'border-red-200',
+    glowGradient: 'from-transparent to-transparent',
     ctaText: 'View Materials',
     linkTo: '/materials',
     bullets: [
@@ -117,7 +117,7 @@ const guideCards: GuideStepCard[] = [
     accentBg: 'bg-red-50',
     accentText: 'text-red-600',
     accentBorder: 'border-red-200',
-    glowGradient: 'from-red-500/15 via-red-500/5 to-transparent',
+    glowGradient: 'from-transparent to-transparent',
     ctaText: 'Start Creating',
     linkTo: '/services',
     quoteInquiry: 'Turn Ideas into Reality - Prototyping & Custom Project Inquiry',
@@ -137,11 +137,11 @@ const guideCards: GuideStepCard[] = [
     image: '/images/products/pratham-x.png',
     imageAlt: 'Pratham X Large-Format Industrial 3D Printer Support',
     headerIcon: Headphones,
-    accentColor: '#0f172a',
-    accentBg: 'bg-slate-100',
-    accentText: 'text-slate-900',
-    accentBorder: 'border-slate-300',
-    glowGradient: 'from-slate-900/10 via-slate-900/5 to-transparent',
+    accentColor: '#dc2626',
+    accentBg: 'bg-red-50',
+    accentText: 'text-red-600',
+    accentBorder: 'border-red-200',
+    glowGradient: 'from-transparent to-transparent',
     ctaText: 'Get Support',
     linkTo: '/contact',
     quoteInquiry: 'Expert Technical Support, Maintenance & Onboarding Inquiry',
@@ -165,7 +165,7 @@ const guideCards: GuideStepCard[] = [
     accentBg: 'bg-red-50',
     accentText: 'text-red-600',
     accentBorder: 'border-red-200',
-    glowGradient: 'from-red-500/15 via-red-500/5 to-transparent',
+    glowGradient: 'from-transparent to-transparent',
     ctaText: 'Grow With Us',
     linkTo: '/contact',
     quoteInquiry: 'Scale Your Business - Enterprise 3D Printing Solutions',
@@ -272,24 +272,11 @@ export const NewTo3DPrintingSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-[#f8fafc] via-[#f0f7ff]/40 to-[#e2e8f0]/40 border-y border-slate-200/80"
+      className="relative bg-white border-y border-slate-200"
       style={{ height: '220vh' }}
     >
       {/* Sticky Viewport Stage: Pinned as user scrolls down through the height */}
       <div className="sticky top-[60px] sm:top-[70px] lg:top-[76px] h-[calc(100vh-60px)] sm:h-[calc(100vh-70px)] lg:h-[calc(100vh-76px)] min-h-[540px] max-h-[840px] flex flex-col justify-between py-2 sm:py-3 overflow-hidden z-20">
-        {/* Subtle technical background grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035] pointer-events-none"
-          style={{
-            backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
-
-        {/* Ambient background glows matching design */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-slate-900/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="max-w-7xl 2xl:max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-between h-full gap-1 sm:gap-2">
           {/* ====================================================
               SECTION HEADER
@@ -392,29 +379,21 @@ export const NewTo3DPrintingSection: React.FC = () => {
                   const HeaderIcon = card.headerIcon
 
                   const cardContent = (
-                    <div className="relative rounded-2xl sm:rounded-3xl bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-lg hover:shadow-xl transition-all duration-300 p-3.5 sm:p-5 flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 h-[310px] sm:h-[335px] lg:h-[350px]">
-                      {/* Top Colored Accent Line */}
-                      <div
-                        className="absolute top-0 inset-x-0 h-1 sm:h-1.5 w-full"
-                        style={{ backgroundColor: card.accentColor }}
-                      />
-
-                      {/* Top Subtle Aura Glow Matching Theme Color */}
-                      <div
-                        className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${card.glowGradient} rounded-full blur-2xl pointer-events-none -mr-12 -mt-12`}
-                      />
+                    <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 p-3.5 sm:p-5 flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 h-[310px] sm:h-[335px] lg:h-[350px]">
+                      {/* Top Red Accent Line */}
+                      <div className="absolute top-0 inset-x-0 h-1 sm:h-1.5 w-full bg-red-600" />
 
                       {/* 1. Header: Step Number, Squircle Icon, Title, and Subtitle */}
                       <div className="relative z-10 shrink-0">
                         <div className="flex items-center gap-2 sm:gap-2.5 mb-1.5">
                           <span
-                            className={`text-[10px] sm:text-xs font-mono font-black px-2 py-0.5 rounded-full border ${card.accentBg} ${card.accentText} ${card.accentBorder} shadow-2xs`}
+                            className="text-[10px] sm:text-xs font-mono font-black px-2 py-0.5 rounded-full border bg-red-50 text-red-600 border-red-200 shadow-2xs"
                           >
                             {card.step}
                           </span>
 
                           <div
-                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center border shadow-2xs ${card.accentBg} ${card.accentText} ${card.accentBorder}`}
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center border shadow-2xs bg-red-50 text-red-600 border-red-200"
                           >
                             <HeaderIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
@@ -473,11 +452,10 @@ export const NewTo3DPrintingSection: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* 3. Bottom: Full-Width Vibrant Pill Button */}
+                      {/* 3. Bottom: Full-Width Vibrant Red Button */}
                       <div className="relative z-10 w-full pt-1 shrink-0">
                         <button
-                          className="w-full py-1.5 sm:py-2 px-3 rounded-full text-white font-bold text-[11px] sm:text-xs tracking-wide shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center space-x-1.5 group-hover:scale-[1.01] cursor-pointer"
-                          style={{ backgroundColor: card.accentColor }}
+                          className="w-full py-1.5 sm:py-2 px-3 rounded-full text-white font-bold text-[11px] sm:text-xs tracking-wide bg-red-600 hover:bg-red-700 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center space-x-1.5 group-hover:scale-[1.01] cursor-pointer"
                         >
                           <span>{card.ctaText}</span>
                           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -525,14 +503,11 @@ export const NewTo3DPrintingSection: React.FC = () => {
                     onClick={() => jumpToCard(idx)}
                     className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center space-x-1.5 border shadow-2xs ${
                       isCurrent
-                        ? `${card.accentBg} ${card.accentText} ${card.accentBorder} ring-2 ring-red-500/30 shadow-xs scale-102`
-                        : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
+                        ? 'bg-red-50 text-red-600 border-red-200 ring-2 ring-red-500/30 shadow-xs scale-102'
+                        : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
                     }`}
                   >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ backgroundColor: card.accentColor }}
-                    />
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-red-600" />
                     <span>Step {card.step}</span>
                     <span className="hidden md:inline font-sans font-medium text-slate-400">
                       • {card.title.split(' ')[0]}
@@ -589,7 +564,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
               <span>Retina High-Definition Product Studio Asset</span>
               <button
                 onClick={() => setSelectedZoomImg(null)}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl cursor-pointer"
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl cursor-pointer"
               >
                 Close View
               </button>
@@ -639,7 +614,7 @@ export const NewTo3DPrintingSection: React.FC = () => {
             <div className="flex items-center justify-end pt-2 border-t border-slate-100">
               <button
                 onClick={() => setShowFullBannerModal(false)}
-                className="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl cursor-pointer"
+                className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl cursor-pointer"
               >
                 Close Preview
               </button>

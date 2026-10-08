@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   Check,
   Send,
-  MessageSquare,
   Award,
   Flame,
   Zap,
@@ -769,37 +768,38 @@ export const EkaF116kPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          6. LIGHTBOX MODAL FOR WORK GALLERY
+          6. LIGHTBOX MODAL FOR WORK GALLERY (HD INSPECTION)
          ==================================================== */}
       {selectedGalleryItem && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
           onClick={() => setSelectedGalleryItem(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200"
+            className="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-fade-in my-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-16/10 bg-slate-900">
+            <div className="relative aspect-[16/10] bg-slate-950 flex items-center justify-center overflow-hidden">
               <img
                 src={selectedGalleryItem.image}
                 alt={selectedGalleryItem.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
               <button
                 onClick={() => setSelectedGalleryItem(null)}
-                className="absolute top-3 right-3 p-1.5 bg-black/60 hover:bg-black text-white rounded-full transition-colors cursor-pointer"
+                className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/60 hover:bg-red-600 text-white flex items-center justify-center transition-colors cursor-pointer shadow-md z-10"
+                title="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             <div className="p-6 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-mono font-bold uppercase">
+                <span className="px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 text-[10px] font-mono font-bold uppercase">
                   {selectedGalleryItem.category}
                 </span>
                 <span className="text-xs font-mono font-semibold text-slate-500">
-                  EKA F1 16K Micro-Detail
+                  EKA F1 16K Micro-Detail Specimen
                 </span>
               </div>
               <h3 className="text-lg font-bold text-slate-950">{selectedGalleryItem.title}</h3>
@@ -815,7 +815,7 @@ export const EkaF116kPage: React.FC = () => {
                     setSelectedGalleryItem(null)
                     openQuoteModal(`Sample benchmark request: ${selectedGalleryItem.title}`)
                   }}
-                  className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow transition-colors cursor-pointer"
                 >
                   Request Similar Sample
                 </button>
@@ -824,26 +824,6 @@ export const EkaF116kPage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* ====================================================
-          7. FLOATING QUICK ACTION BAR
-         ==================================================== */}
-      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center space-x-2 bg-white/95 backdrop-blur-md px-3 py-2 rounded-2xl shadow-xl border border-slate-200">
-        <span className="text-xs font-bold text-slate-800 pl-1">EKA F1 16K:</span>
-        <button
-          onClick={() => openQuoteModal('EKA F1 16K Floating Widget')}
-          className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors cursor-pointer"
-        >
-          Get Quote
-        </button>
-        <button
-          onClick={() => scrollTo(contactRef)}
-          className="p-1.5 hover:bg-slate-100 text-slate-600 hover:text-amber-700 rounded-lg transition-colors cursor-pointer"
-          title="Jump to Contact Form"
-        >
-          <MessageSquare className="w-4 h-4" />
-        </button>
-      </div>
     </div>
   )
 }

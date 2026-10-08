@@ -16,7 +16,6 @@ import {
   Check,
   Send,
   HelpCircle,
-  MessageSquare,
   Factory,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
@@ -430,7 +429,7 @@ export const EkaGtMaxPage: React.FC = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                   activeCategory === cat.id
-                    ? 'bg-blue-600 text-white shadow-sm'
+                    ? 'bg-red-600 text-white shadow-sm'
                     : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
@@ -440,16 +439,16 @@ export const EkaGtMaxPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Gallery Grid - Matching Reference Image 2 Exactly */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredGallery.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedGalleryItem(item)}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-red-200 transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[16/11] bg-slate-950 overflow-hidden">
+                <div className="relative aspect-[16/10] bg-slate-950 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -457,18 +456,18 @@ export const EkaGtMaxPage: React.FC = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <span className="px-3 py-1.5 bg-white/95 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-lg shadow-md flex items-center space-x-1.5">
-                      <Maximize2 className="w-3.5 h-3.5 text-blue-600" />
+                    <span className="px-3.5 py-1.5 bg-white/95 backdrop-blur-xs text-slate-900 text-xs font-bold rounded-lg shadow-md flex items-center space-x-1.5">
+                      <Maximize2 className="w-3.5 h-3.5 text-red-600" />
                       <span>Inspect Part</span>
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-md sm:rounded-lg bg-slate-900/90 text-white text-[11px] sm:text-xs font-bold font-sans shadow-md tracking-tight">
+                  <span className="absolute top-3 left-3 px-3 py-1 rounded-md bg-slate-900/90 text-white text-[11px] sm:text-xs font-bold font-sans shadow-md tracking-tight">
                     {item.badge || item.category}
                   </span>
                 </div>
 
                 <div className="p-4 sm:p-5">
-                  <h4 className="text-sm sm:text-base font-bold text-slate-950 leading-snug group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-950 leading-snug group-hover:text-red-600 transition-colors">
                     {item.title}
                   </h4>
                 </div>
@@ -749,33 +748,34 @@ export const EkaGtMaxPage: React.FC = () => {
       </section>
 
       {/* ====================================================
-          6. LIGHTBOX MODAL FOR WORK GALLERY
+          6. LIGHTBOX MODAL FOR WORK GALLERY (HD INSPECTION)
          ==================================================== */}
       {selectedGalleryItem && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
           onClick={() => setSelectedGalleryItem(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200"
+            className="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-fade-in my-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-16/10 bg-slate-900">
+            <div className="relative aspect-[16/10] bg-slate-950 flex items-center justify-center overflow-hidden">
               <img
                 src={selectedGalleryItem.image}
                 alt={selectedGalleryItem.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
               <button
                 onClick={() => setSelectedGalleryItem(null)}
-                className="absolute top-3 right-3 p-1.5 bg-black/60 hover:bg-black text-white rounded-full transition-colors cursor-pointer"
+                className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/60 hover:bg-red-600 text-white flex items-center justify-center transition-colors cursor-pointer shadow-md z-10"
+                title="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             <div className="p-6 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-mono font-bold uppercase">
+                <span className="px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 text-[10px] font-mono font-bold uppercase">
                   {selectedGalleryItem.category}
                 </span>
                 <span className="text-xs font-mono font-semibold text-slate-500">
@@ -795,7 +795,7 @@ export const EkaGtMaxPage: React.FC = () => {
                     setSelectedGalleryItem(null)
                     openQuoteModal(`Sample benchmark request: ${selectedGalleryItem.title}`)
                   }}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow transition-colors cursor-pointer"
                 >
                   Request Similar Sample
                 </button>
@@ -804,26 +804,6 @@ export const EkaGtMaxPage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* ====================================================
-          7. FLOATING QUICK ACTION BAR
-         ==================================================== */}
-      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center space-x-2 bg-white/95 backdrop-blur-md px-3 py-2 rounded-2xl shadow-xl border border-slate-200">
-        <span className="text-xs font-bold text-slate-800 pl-1">EKA GT MAX:</span>
-        <button
-          onClick={() => openQuoteModal('EKA GT MAX Floating Widget')}
-          className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors cursor-pointer"
-        >
-          Get Quote
-        </button>
-        <button
-          onClick={() => scrollTo(contactRef)}
-          className="p-1.5 hover:bg-slate-100 text-slate-600 hover:text-blue-600 rounded-lg transition-colors cursor-pointer"
-          title="Jump to Contact Form"
-        >
-          <MessageSquare className="w-4 h-4" />
-        </button>
-      </div>
     </div>
   )
 }

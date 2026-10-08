@@ -76,16 +76,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
         <div>
           {/* Brand Indicator */}
-          <div className="flex items-center justify-between min-h-[20px] mb-2">
+          <div className="flex items-center justify-between h-5 mb-2">
             {brandLogo ? (
               <img
                 src={brandLogo}
                 alt={product.brand}
-                className="h-4.5 w-auto max-w-[90px] object-contain opacity-80"
+                className="h-5 max-h-5 w-auto max-w-[55px] object-contain rounded-xs"
                 loading="lazy"
               />
             ) : (
-              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                 {product.brand}
               </div>
             )}

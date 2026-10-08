@@ -20,7 +20,6 @@ import {
 } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { industriesServed } from '../data/siteConfig'
-import { PromoBannerSlider } from '../components/PromoBannerSlider'
 import { ShowroomSolutionsSection } from '../components/ShowroomSolutionsSection'
 import { NewTo3DPrintingSection } from '../components/NewTo3DPrintingSection'
 
@@ -724,10 +723,6 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ====================================================
-          PROMO BANNER SLIDER SECTION
-         ==================================================== */}
-      <PromoBannerSlider />
 
       {/* ====================================================
           SECTION 8: 3D PRINTING SOLUTIONS SHOWROOM SHOWCASE

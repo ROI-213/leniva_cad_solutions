@@ -21,6 +21,7 @@ import {
 import { useApp } from '../context/AppContext'
 import { industriesServed } from '../data/siteConfig'
 import { ShowroomSolutionsSection } from '../components/ShowroomSolutionsSection'
+import { SoftwareSuiteSection } from '../components/SoftwareSuiteSection'
 import { NewTo3DPrintingSection } from '../components/NewTo3DPrintingSection'
 
 export const HomePage: React.FC = () => {
@@ -723,6 +724,11 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* ====================================================
+          PROFESSIONAL SOFTWARE SUITE SECTION
+          (Design. Model. Render. Build. - ARES, SketchUp, Chaos)
+         ==================================================== */}
+      <SoftwareSuiteSection />
 
       {/* ====================================================
           SECTION 8: 3D PRINTING SOLUTIONS SHOWROOM SHOWCASE

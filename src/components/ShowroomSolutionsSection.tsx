@@ -433,8 +433,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
 
   return (
     <>
-      <section id="showroom-solutions" className="w-full bg-white py-10 sm:py-16 border-y border-slate-200">
-        <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+      <section id="showroom-solutions" className="w-full bg-white py-6 sm:py-10 border-y border-slate-200">
+        <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5">
           {showcaseCategories.map((section, catIndex) => {
             const isScanners = section.id === 'scanners'
 
@@ -446,11 +446,11 @@ export const ShowroomSolutionsSection: React.FC = () => {
               >
                 {/* Subtle Divider between categories */}
                 {catIndex > 0 && (
-                  <div className="border-t border-slate-200 mb-10 sm:mb-14" />
+                  <div className="border-t border-slate-200 mb-3 sm:mb-4" />
                 )}
 
                 {/* Compact Top Navigation Bar (minimal vertical space) */}
-                <div className="flex items-center justify-between mb-3 px-1">
+                <div className="flex items-center justify-between mb-2 sm:mb-2.5 px-1">
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                     <span className="text-xs font-black uppercase tracking-wider text-slate-900 font-mono">

@@ -435,6 +435,31 @@ export const ShowroomSolutionsSection: React.FC = () => {
     <>
       <section id="showroom-solutions" className="w-full bg-white py-6 sm:py-10 border-y border-slate-200">
         <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5">
+          {/* Main Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-3 border-b border-slate-200">
+            <div>
+              <div className="flex items-center space-x-2 mb-1">
+                <span className="w-5 h-0.5 bg-red-600 rounded-full" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-red-600">
+                  HARDWARE SOLUTIONS
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+                3D Printers and <span className="text-red-600">Scanners</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-2xl mt-1">
+                Explore industrial FDM, DLP & LCD 3D printers, precision metrology scanners, and high-performance materials.
+              </p>
+            </div>
+            <Link
+              to="/products"
+              className="hidden sm:inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 hover:underline shrink-0 pb-1"
+            >
+              <span>View All Hardware</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
           {showcaseCategories.map((section, catIndex) => {
             const isScanners = section.id === 'scanners'
 

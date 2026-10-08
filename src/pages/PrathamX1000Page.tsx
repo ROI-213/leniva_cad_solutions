@@ -89,7 +89,7 @@ export const PrathamX1000Page: React.FC = () => {
   }
 
   // Official URLs
-  const officialBrochureUrl = 'https://make3d.in/wp-content/uploads/2025/10/M-Pratham-X.pdf'
+  const officialBrochureUrl = '/brochures/pratham-x-1000.pdf'
   const officialVideoId = 'NYvsYd-THAs' // Official Make3D Pratham X Jumbo Video (Life-Sized Chair 3D Printed)
 
   // SEO & Structured Data

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ChevronLeft,
@@ -423,6 +423,18 @@ export const ShowroomSolutionsSection: React.FC = () => {
   const { openQuoteModal } = useApp()
   const [zoomItem, setZoomItem] = useState<ShowcaseProductItem | null>(null)
   const trackRefs = useRef<{ [catId: string]: HTMLDivElement | null }>({})
+  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+
+  // Track active showcased product index per category
+  const [activeProductIndices, setActiveProductIndices] = useState<{ [catId: string]: number }>({
+    fdm: 0,
+    'resin-engineering': 0,
+    'resin-jewellery': 0,
+    scanners: 0,
+  })
+
+  // Track pause on hover state per category
+  const [pausedCategories, setPausedCategories] = useState<{ [catId: string]: boolean }>({})
 
   const scrollTrack = (catId: string, direction: 'left' | 'right') => {
     const el = trackRefs.current[catId]
@@ -430,6 +442,49 @@ export const ShowroomSolutionsSection: React.FC = () => {
     const scrollAmount = direction === 'left' ? -300 : 300
     el.scrollBy({ left: scrollAmount, behavior: 'smooth' })
   }
+
+  const handleSelectProduct = (catId: string, index: number) => {
+    setActiveProductIndices(prev => ({ ...prev, [catId]: index }))
+    const cardEl = cardRefs.current[`${catId}-${index}`]
+    const containerEl = trackRefs.current[catId]
+    if (cardEl && containerEl) {
+      const containerRect = containerEl.getBoundingClientRect()
+      const cardRect = cardEl.getBoundingClientRect()
+      if (cardRect.right > containerRect.right || cardRect.left < containerRect.left) {
+        cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+      }
+    }
+  }
+
+  // Auto-cycle products one-by-one in the marked box
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveProductIndices(prev => {
+        const next = { ...prev }
+        showcaseCategories.forEach(cat => {
+          if (!pausedCategories[cat.id] && cat.products.length > 0) {
+            const current = prev[cat.id] ?? 0
+            const nextIndex = (current + 1) % cat.products.length
+            next[cat.id] = nextIndex
+
+            // Gently scroll track if highlighted card moves outside horizontal visible bounds
+            const cardEl = cardRefs.current[`${cat.id}-${nextIndex}`]
+            const containerEl = trackRefs.current[cat.id]
+            if (cardEl && containerEl) {
+              const containerRect = containerEl.getBoundingClientRect()
+              const cardRect = cardEl.getBoundingClientRect()
+              if (cardRect.right > containerRect.right || cardRect.left < containerRect.left) {
+                cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+              }
+            }
+          }
+        })
+        return next
+      })
+    }, 3200)
+
+    return () => clearInterval(interval)
+  }, [pausedCategories])
 
   return (
     <>
@@ -461,7 +516,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
           </div>
 
           {showcaseCategories.map((section, catIndex) => {
-            const isScanners = section.id === 'scanners'
+            const activeIdx = activeProductIndices[section.id] ?? 0
+            const activeProduct = section.products[activeIdx] || section.products[0]
 
             return (
               <div
@@ -525,41 +581,83 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
                 >
                   {/* Left-End Big Box (matching Image 2) displaying title and details */}
-                  <div className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-5 group snap-start">
+                  <div
+                    onMouseEnter={() => setPausedCategories(p => ({ ...p, [section.id]: true }))}
+                    onMouseLeave={() => setPausedCategories(p => ({ ...p, [section.id]: false }))}
+                    className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-5 group snap-start"
+                  >
                     {/* Background image & dark gradient overlay */}
                     {section.featuredImage && (
                       <img
                         src={section.featuredImage}
                         alt={section.titlePrimary}
-                        className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 group-hover:opacity-45 transition-all duration-700 pointer-events-none"
+                        className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-105 group-hover:opacity-30 transition-all duration-700 pointer-events-none"
                         loading="lazy"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/70 pointer-events-none" />
 
-                    {/* Top Content: Badges & Bullet Highlights */}
-                    <div className="relative z-10 space-y-3">
-                      {isScanners && (
-                        <div className="flex items-center justify-start">
-                          <span className="px-2.5 py-1 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-2xs">
-                            ★ Highlighted
-                          </span>
+                    {/* Top Content: Animated Live Product Showcase */}
+                    <div className="relative z-10 flex flex-col">
+                      {/* Header bar: Live Showcase Badge + counter */}
+                      <div className="flex items-center justify-between">
+                        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-red-600/90 text-white text-[9px] font-black uppercase tracking-wider border border-red-400/30 shadow-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                          <span>Live Showcase</span>
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400 font-bold bg-slate-900/80 px-2 py-0.5 rounded-full border border-slate-800">
+                          {activeIdx + 1} / {section.products.length}
+                        </span>
+                      </div>
+
+                      {/* Display active product with animation & atmospheric red glow */}
+                      {activeProduct && (
+                        <div className="relative my-2 sm:my-3">
+                          <div className="absolute inset-0 bg-gradient-to-b from-red-600/20 via-red-500/10 to-transparent rounded-2xl blur-xl pointer-events-none" />
+
+                          <div className="relative h-28 sm:h-32 w-full flex items-center justify-center p-1">
+                            <img
+                              key={activeProduct.id}
+                              src={activeProduct.image}
+                              alt={`${activeProduct.name} ${activeProduct.nameAccent || ''}`}
+                              className="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] animate-showcase-swap select-none cursor-pointer"
+                              onClick={() => setZoomItem(activeProduct)}
+                              title="Click to zoom model"
+                            />
+                          </div>
+
+                          <div key={`info-${activeProduct.id}`} className="mt-1 text-center animate-showcase-swap">
+                            <div className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider truncate">
+                              {activeProduct.modelsCount || activeProduct.subtitle}
+                            </div>
+                            <h4 className="text-sm sm:text-base font-black text-white tracking-wide truncate">
+                              {activeProduct.name} <span className="text-red-400">{activeProduct.nameAccent}</span>
+                            </h4>
+                          </div>
                         </div>
                       )}
 
-                      {/* Bullet Highlights matching Image 2 */}
-                      <ul className="space-y-2 pt-1">
-                        {section.badges.slice(0, 3).map((b, i) => (
-                          <li key={i} className="flex items-center space-x-2 text-xs text-slate-200 font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
-                            <span>{b.label}</span>
-                          </li>
+                      {/* Interactive Progress Indicator Dots */}
+                      <div className="flex items-center justify-center gap-1.5 pt-1">
+                        {section.products.map((p, dotIdx) => (
+                          <button
+                            key={p.id}
+                            type="button"
+                            onClick={() => handleSelectProduct(section.id, dotIdx)}
+                            className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                              dotIdx === activeIdx
+                                ? 'w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
+                                : 'w-1.5 bg-slate-700 hover:bg-slate-500'
+                            }`}
+                            title={`Switch to ${p.name}`}
+                            aria-label={`View ${p.name}`}
+                          />
                         ))}
-                      </ul>
+                      </div>
                     </div>
 
                     {/* Bottom Inset White Card matching Image 2 */}
-                    <div className="relative z-10 bg-white rounded-2xl p-4 sm:p-5 shadow-xl border border-slate-100 text-slate-900 space-y-2 mt-4 sm:mt-6">
+                    <div className="relative z-10 bg-white rounded-2xl p-4 sm:p-5 shadow-xl border border-slate-100 text-slate-900 space-y-2 mt-3 sm:mt-4">
                       <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-600 block">
                         {section.categoryTag}
                       </span>
@@ -588,104 +686,135 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   </div>
 
                   {/* Product Cards: Displayed side-by-side next to the Left Big Box */}
-                  {section.products.map(product => (
-                    <div
-                      key={product.id}
-                      className="w-[210px] sm:w-[230px] md:w-[240px] shrink-0 bg-white rounded-2xl border border-slate-200 hover:border-red-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start"
-                    >
-                      {/* Top Image Box with corner badges & actions */}
-                      <div className="relative aspect-[4/3] bg-slate-50/80 p-3 sm:p-4 flex items-center justify-center overflow-hidden border-b border-slate-100">
-                        {/* Top-Left Badge (e.g. Build volume or status) */}
-                        <span className="absolute top-2.5 left-2.5 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-2xs z-10 max-w-[130px] truncate">
-                          {product.modelsCount}
-                        </span>
+                  {section.products.map((product, pIdx) => {
+                    const isHighlighted = pIdx === activeIdx
+                    return (
+                      <div
+                        key={product.id}
+                        ref={el => {
+                          cardRefs.current[`${section.id}-${pIdx}`] = el
+                        }}
+                        onClick={() => handleSelectProduct(section.id, pIdx)}
+                        onMouseEnter={() => setPausedCategories(p => ({ ...p, [section.id]: true }))}
+                        onMouseLeave={() => setPausedCategories(p => ({ ...p, [section.id]: false }))}
+                        className={`w-[210px] sm:w-[230px] md:w-[240px] shrink-0 bg-white rounded-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start cursor-pointer ${
+                          isHighlighted
+                            ? 'border-2 border-red-600 ring-4 ring-red-500/25 shadow-xl shadow-red-600/15 scale-[1.02] -translate-y-1 z-10'
+                            : 'border border-slate-200 hover:border-red-300 shadow-sm hover:shadow-xl'
+                        }`}
+                      >
+                        {/* Top Image Box with corner badges & actions */}
+                        <div className="relative aspect-[4/3] bg-slate-50/80 p-3 sm:p-4 flex items-center justify-center overflow-hidden border-b border-slate-100">
+                          {/* Top-Left Badge (e.g. Build volume or status) */}
+                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-2xs z-10 max-w-[130px] truncate">
+                            {product.modelsCount}
+                          </span>
 
-                        {/* Top-Right Action Circles (Zoom & Inquiry) */}
-                        <div className="absolute top-2.5 right-2.5 flex items-center space-x-1 z-10">
-                          <button
-                            type="button"
-                            onClick={() => setZoomItem(product)}
-                            className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
-                            title="Inspect Model Asset"
-                          >
-                            <Maximize2 className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => openQuoteModal(product.quoteInquiry)}
-                            className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
-                            title="Quick Inquiry"
-                          >
-                            <Heart className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
+                          {/* Highlighted indicator badge in center-top */}
+                          {isHighlighted && (
+                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-slate-950 text-white text-[9px] font-black uppercase tracking-wider flex items-center space-x-1 border border-red-500/50 shadow-md z-20">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+                              <span className="text-red-400">Showcased</span>
+                            </div>
+                          )}
 
-                        {/* Centered Product Image */}
-                        <img
-                          src={product.image}
-                          alt={`${product.name} ${product.nameAccent || ''}`}
-                          className="max-h-28 sm:max-h-32 w-auto object-contain transition-transform duration-500 group-hover:scale-105 select-none"
-                          loading="lazy"
-                        />
-                      </div>
-
-                      {/* Bottom Content Body */}
-                      <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between space-y-2">
-                        <div className="space-y-1">
-                          {/* Series / Subcategory label */}
-                          <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider truncate">
-                            {product.subtitle}
+                          {/* Top-Right Action Circles (Zoom & Inquiry) */}
+                          <div className="absolute top-2.5 right-2.5 flex items-center space-x-1 z-10">
+                            <button
+                              type="button"
+                              onClick={e => {
+                                e.stopPropagation()
+                                setZoomItem(product)
+                              }}
+                              className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                              title="Inspect Model Asset"
+                            >
+                              <Maximize2 className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={e => {
+                                e.stopPropagation()
+                                openQuoteModal(product.quoteInquiry)
+                              }}
+                              className="w-7 h-7 rounded-full bg-white/95 hover:bg-red-50 hover:text-red-600 text-slate-600 border border-slate-200 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                              title="Quick Inquiry"
+                            >
+                              <Heart className="w-3.5 h-3.5" />
+                            </button>
                           </div>
 
-                          {/* Product Title */}
-                          <Link to={product.link} className="block">
-                            <h4 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-red-600 transition-colors leading-tight truncate">
-                              {product.name} {product.nameAccent}
-                            </h4>
-                          </Link>
-
-                          {/* Short Description */}
-                          <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
-                            {product.description}
-                          </p>
+                          {/* Centered Product Image */}
+                          <img
+                            src={product.image}
+                            alt={`${product.name} ${product.nameAccent || ''}`}
+                            className="max-h-28 sm:max-h-32 w-auto object-contain transition-transform duration-500 group-hover:scale-105 select-none"
+                            loading="lazy"
+                          />
                         </div>
 
-                        {/* Feature Badges */}
-                        <div className="space-y-1 pt-1 border-t border-slate-100">
-                          {product.features.slice(0, 2).map((f, i) => {
-                            const FeatIcon = f.icon
-                            return (
-                              <div
-                                key={i}
-                                className="flex items-center space-x-1.5 text-[11px] text-slate-600 font-medium truncate"
-                              >
-                                <FeatIcon className="w-3 h-3 text-red-600 shrink-0" />
-                                <span className="truncate">{f.label}</span>
-                              </div>
-                            )
-                          })}
-                        </div>
+                        {/* Bottom Content Body */}
+                        <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between space-y-2">
+                          <div className="space-y-1">
+                            {/* Series / Subcategory label */}
+                            <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider truncate">
+                              {product.subtitle}
+                            </div>
 
-                        {/* Bottom Actions Row: Explore + Quote */}
-                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-1.5">
-                          <Link
-                            to={product.link}
-                            className="flex-1 py-1.5 px-2.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] text-center transition-all flex items-center justify-center space-x-1 shadow-2xs group-hover:shadow-xs"
-                          >
-                            <span>Explore</span>
-                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                          </Link>
-                          <button
-                            type="button"
-                            onClick={() => openQuoteModal(product.quoteInquiry)}
-                            className="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] text-center transition-colors cursor-pointer"
-                          >
-                            Quote
-                          </button>
+                            {/* Product Title */}
+                            <Link to={product.link} className="block" onClick={e => e.stopPropagation()}>
+                              <h4 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-red-600 transition-colors leading-tight truncate">
+                                {product.name} {product.nameAccent}
+                              </h4>
+                            </Link>
+
+                            {/* Short Description */}
+                            <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
+                              {product.description}
+                            </p>
+                          </div>
+
+                          {/* Feature Badges */}
+                          <div className="space-y-1 pt-1 border-t border-slate-100">
+                            {product.features.slice(0, 2).map((f, i) => {
+                              const FeatIcon = f.icon
+                              return (
+                                <div
+                                  key={i}
+                                  className="flex items-center space-x-1.5 text-[11px] text-slate-600 font-medium truncate"
+                                >
+                                  <FeatIcon className="w-3 h-3 text-red-600 shrink-0" />
+                                  <span className="truncate">{f.label}</span>
+                                </div>
+                              )
+                            })}
+                          </div>
+
+                          {/* Bottom Actions Row: Explore + Quote */}
+                          <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-1.5">
+                            <Link
+                              to={product.link}
+                              onClick={e => e.stopPropagation()}
+                              className="flex-1 py-1.5 px-2.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] text-center transition-all flex items-center justify-center space-x-1 shadow-2xs group-hover:shadow-xs"
+                            >
+                              <span>Explore</span>
+                              <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                            </Link>
+                            <button
+                              type="button"
+                              onClick={e => {
+                                e.stopPropagation()
+                                openQuoteModal(product.quoteInquiry)
+                              }}
+                              className="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] text-center transition-colors cursor-pointer"
+                            >
+                              Quote
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )

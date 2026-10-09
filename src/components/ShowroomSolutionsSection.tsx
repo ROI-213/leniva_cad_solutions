@@ -578,13 +578,13 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   ref={el => {
                     trackRefs.current[section.id] = el
                   }}
-                  className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
+                  className="flex items-start gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
                 >
-                  {/* Left-End Big Box - Full Live Showcase Card */}
+                  {/* Left-End Spotlight Showcase Box - Compact without blank space */}
                   <div
                     onMouseEnter={() => setPausedCategories(p => ({ ...p, [section.id]: true }))}
                     onMouseLeave={() => setPausedCategories(p => ({ ...p, [section.id]: false }))}
-                    className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-5 group snap-start"
+                    className="w-[250px] sm:w-[270px] md:w-[280px] shrink-0 self-start rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white p-3.5 sm:p-4 group snap-start space-y-2.5"
                   >
                     {/* Background image & dark gradient overlay */}
                     {section.featuredImage && (
@@ -597,7 +597,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/70 pointer-events-none" />
 
-                    {/* Top Content: Live Showcase Header */}
+                    {/* Header: Live Showcase Badge + counter */}
                     <div className="relative z-10 flex items-center justify-between">
                       <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-red-600/90 text-white text-[9px] font-black uppercase tracking-wider border border-red-400/30 shadow-xs">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
@@ -608,36 +608,33 @@ export const ShowroomSolutionsSection: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Middle Content: Active Machine Spotlight */}
+                    {/* Active Machine Spotlight */}
                     {activeProduct && (
-                      <div className="relative z-10 my-auto py-2 flex flex-col items-center text-center">
+                      <div className="relative z-10 flex flex-col items-center text-center space-y-1.5">
                         <div className="absolute inset-0 bg-gradient-to-b from-red-600/20 via-red-500/10 to-transparent rounded-2xl blur-xl pointer-events-none" />
 
-                        <div className="relative h-44 sm:h-52 w-full flex items-center justify-center p-2">
+                        <div className="relative h-28 sm:h-32 w-full flex items-center justify-center p-1">
                           <img
                             key={activeProduct.id}
                             src={activeProduct.image}
                             alt={`${activeProduct.name} ${activeProduct.nameAccent || ''}`}
-                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)] animate-showcase-swap select-none cursor-pointer"
+                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)] animate-showcase-swap select-none cursor-pointer"
                             onClick={() => setZoomItem(activeProduct)}
                             title="Click to zoom model"
                           />
                         </div>
 
-                        <div key={`info-${activeProduct.id}`} className="mt-2 space-y-1 animate-showcase-swap px-2">
-                          <div className="text-[11px] font-mono font-bold text-red-400 uppercase tracking-wider">
+                        <div key={`info-${activeProduct.id}`} className="space-y-0.5 animate-showcase-swap px-1">
+                          <div className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider truncate">
                             {activeProduct.modelsCount || activeProduct.subtitle}
                           </div>
-                          <h4 className="text-base sm:text-lg font-black text-white tracking-wide">
+                          <h4 className="text-sm sm:text-base font-black text-white tracking-wide truncate">
                             {activeProduct.name} <span className="text-red-400">{activeProduct.nameAccent}</span>
                           </h4>
-                          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            {activeProduct.description}
-                          </p>
                         </div>
 
                         {/* Interactive Progress Indicator Dots */}
-                        <div className="flex items-center justify-center gap-1.5 pt-3">
+                        <div className="flex items-center justify-center gap-1.5 pt-1">
                           {section.products.map((p, dotIdx) => (
                             <button
                               key={p.id}
@@ -645,7 +642,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                               onClick={() => handleSelectProduct(section.id, dotIdx)}
                               className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                                 dotIdx === activeIdx
-                                  ? 'w-7 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.9)]'
+                                  ? 'w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
                                   : 'w-1.5 bg-slate-700 hover:bg-slate-500'
                               }`}
                               title={`Switch to ${p.name}`}
@@ -655,24 +652,6 @@ export const ShowroomSolutionsSection: React.FC = () => {
                         </div>
                       </div>
                     )}
-
-                    {/* Bottom Action Bar */}
-                    <div className="relative z-10 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
-                      <Link
-                        to={activeProduct?.link || section.catalogLink}
-                        className="flex-1 py-2 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all flex items-center justify-center space-x-1.5 shadow-md shadow-red-600/30"
-                      >
-                        <span>Explore Model</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => openQuoteModal(activeProduct?.quoteInquiry || section.titlePrimary)}
-                        className="py-2 px-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer border border-slate-700"
-                      >
-                        Quick Quote
-                      </button>
-                    </div>
                   </div>
 
                   {/* Product Cards: Displayed side-by-side next to the Left Big Box */}

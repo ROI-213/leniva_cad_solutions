@@ -707,14 +707,7 @@ export const HomePage: React.FC = () => {
                   Highlighted
                 </span>
               </div>
-              <div className="flex items-center space-x-2.5">
-                <span className="w-2 h-2 bg-slate-400 rounded-full shrink-0" />
-                <span>Accessories & Specialized Materials</span>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <span className="w-2 h-2 bg-slate-400 rounded-full shrink-0" />
-                <span>Expert Engineering Guidance & Field Support</span>
-              </div>
+
             </div>
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link

@@ -1,12 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Headphones,
-  Layers,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 interface SoftwareProduct {
   id: string
@@ -165,48 +159,7 @@ export const SoftwareSuiteSection: React.FC = () => {
               Explore industry-leading software solutions for architecture, engineering, construction and visualization.
             </p>
 
-            {/* 4 Trust Badges in compact inline layout */}
-            <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[11px] font-bold text-slate-900">Trusted Brands</div>
-                  <div className="text-[10px] text-slate-500">Industry leaders</div>
-                </div>
-              </div>
 
-              <div className="flex items-center space-x-2">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[11px] font-bold text-slate-900">Genuine Licensing</div>
-                  <div className="text-[10px] text-slate-500">100% authentic software</div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
-                  <Headphones className="w-4 h-4" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[11px] font-bold text-slate-900">Expert Support</div>
-                  <div className="text-[10px] text-slate-500">Installation & guidance</div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
-                  <Layers className="w-4 h-4" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[11px] font-bold text-slate-900">End-to-End Solutions</div>
-                  <div className="text-[10px] text-slate-500">Design to visualization</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ChevronLeft,
@@ -425,16 +425,13 @@ export const ShowroomSolutionsSection: React.FC = () => {
   const trackRefs = useRef<{ [catId: string]: HTMLDivElement | null }>({})
   const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
-  // Track active showcased product index per category
+  // Track active showcased product index per category (static, defaults to first product)
   const [activeProductIndices, setActiveProductIndices] = useState<{ [catId: string]: number }>({
     fdm: 0,
     'resin-engineering': 0,
     'resin-jewellery': 0,
     scanners: 0,
   })
-
-  // Track pause on hover state per category
-  const [pausedCategories, setPausedCategories] = useState<{ [catId: string]: boolean }>({})
 
   const scrollTrack = (catId: string, direction: 'left' | 'right') => {
     const el = trackRefs.current[catId]
@@ -445,46 +442,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
 
   const handleSelectProduct = (catId: string, index: number) => {
     setActiveProductIndices(prev => ({ ...prev, [catId]: index }))
-    const cardEl = cardRefs.current[`${catId}-${index}`]
-    const containerEl = trackRefs.current[catId]
-    if (cardEl && containerEl) {
-      const containerRect = containerEl.getBoundingClientRect()
-      const cardRect = cardEl.getBoundingClientRect()
-      if (cardRect.right > containerRect.right || cardRect.left < containerRect.left) {
-        cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-      }
-    }
   }
-
-  // Auto-cycle products one-by-one in the marked box
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveProductIndices(prev => {
-        const next = { ...prev }
-        showcaseCategories.forEach(cat => {
-          if (!pausedCategories[cat.id] && cat.products.length > 0) {
-            const current = prev[cat.id] ?? 0
-            const nextIndex = (current + 1) % cat.products.length
-            next[cat.id] = nextIndex
-
-            // Gently scroll track if highlighted card moves outside horizontal visible bounds
-            const cardEl = cardRefs.current[`${cat.id}-${nextIndex}`]
-            const containerEl = trackRefs.current[cat.id]
-            if (cardEl && containerEl) {
-              const containerRect = containerEl.getBoundingClientRect()
-              const cardRect = cardEl.getBoundingClientRect()
-              if (cardRect.right > containerRect.right || cardRect.left < containerRect.left) {
-                cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-              }
-            }
-          }
-        })
-        return next
-      })
-    }, 3200)
-
-    return () => clearInterval(interval)
-  }, [pausedCategories])
 
   return (
     <>
@@ -580,10 +538,8 @@ export const ShowroomSolutionsSection: React.FC = () => {
                   }}
                   className="flex items-start gap-4 sm:gap-5 overflow-x-auto scroll-smooth scrollbar-none py-2 px-1 snap-x"
                 >
-                  {/* Left-End Spotlight Showcase Box - Compact without blank space */}
+                  {/* Left-End Spotlight Showcase Box - Compact and completely static */}
                   <div
-                    onMouseEnter={() => setPausedCategories(p => ({ ...p, [section.id]: true }))}
-                    onMouseLeave={() => setPausedCategories(p => ({ ...p, [section.id]: false }))}
                     className="w-[250px] sm:w-[270px] md:w-[280px] shrink-0 self-start rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden bg-slate-950 text-white p-3.5 sm:p-4 group snap-start space-y-2.5"
                   >
                     {/* Background image & dark gradient overlay */}
@@ -597,18 +553,18 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/70 pointer-events-none" />
 
-                    {/* Header: Live Showcase Badge + counter */}
+                    {/* Header: Static Showcase Badge + counter */}
                     <div className="relative z-10 flex items-center justify-between">
                       <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-red-600/90 text-white text-[9px] font-black uppercase tracking-wider border border-red-400/30 shadow-xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                        <span>Live Showcase</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <span>Showcase</span>
                       </div>
                       <span className="text-[10px] font-mono text-slate-400 font-bold bg-slate-900/80 px-2 py-0.5 rounded-full border border-slate-800">
                         {activeIdx + 1} / {section.products.length}
                       </span>
                     </div>
 
-                    {/* Active Machine Spotlight */}
+                    {/* Static Machine Spotlight */}
                     {activeProduct && (
                       <div className="relative z-10 flex flex-col items-center text-center space-y-1.5">
                         <div className="absolute inset-0 bg-gradient-to-b from-red-600/20 via-red-500/10 to-transparent rounded-2xl blur-xl pointer-events-none" />
@@ -618,13 +574,13 @@ export const ShowroomSolutionsSection: React.FC = () => {
                             key={activeProduct.id}
                             src={activeProduct.image}
                             alt={`${activeProduct.name} ${activeProduct.nameAccent || ''}`}
-                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)] animate-showcase-swap select-none cursor-pointer"
+                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)] select-none cursor-pointer"
                             onClick={() => setZoomItem(activeProduct)}
                             title="Click to zoom model"
                           />
                         </div>
 
-                        <div key={`info-${activeProduct.id}`} className="space-y-0.5 animate-showcase-swap px-1">
+                        <div key={`info-${activeProduct.id}`} className="space-y-0.5 px-1">
                           <div className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider truncate">
                             {activeProduct.modelsCount || activeProduct.subtitle}
                           </div>
@@ -664,8 +620,6 @@ export const ShowroomSolutionsSection: React.FC = () => {
                           cardRefs.current[`${section.id}-${pIdx}`] = el
                         }}
                         onClick={() => handleSelectProduct(section.id, pIdx)}
-                        onMouseEnter={() => setPausedCategories(p => ({ ...p, [section.id]: true }))}
-                        onMouseLeave={() => setPausedCategories(p => ({ ...p, [section.id]: false }))}
                         className={`w-[210px] sm:w-[230px] md:w-[240px] shrink-0 bg-white rounded-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group snap-start cursor-pointer ${
                           isHighlighted
                             ? 'border-2 border-red-600 ring-4 ring-red-500/25 shadow-xl shadow-red-600/15 scale-[1.02] -translate-y-1 z-10'
@@ -682,7 +636,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                           {/* Highlighted indicator badge in center-top */}
                           {isHighlighted && (
                             <div className="absolute top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-slate-950 text-white text-[9px] font-black uppercase tracking-wider flex items-center space-x-1 border border-red-500/50 shadow-md z-20">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                               <span className="text-red-400">Showcased</span>
                             </div>
                           )}

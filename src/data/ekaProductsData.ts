@@ -486,44 +486,12 @@ export const jewelryWorkGallery: EkaGalleryItem[] = [
 
 export const engineeringWorkGallery: EkaGalleryItem[] = [
   {
-    id: 'eng-1',
-    title: 'Internal Spiral Fluid Manifold',
-    category: 'functional',
-    material: 'High Temperature Resin',
-    image: '/images/ekaxle/ekaxle-spiral-manifold.jpg',
-    notes: 'Transparent fluid chambers for laminar flow visualization and pressure testing.',
-  },
-  {
     id: 'eng-2',
     title: 'Precision Planetary Gearbox Core',
     category: 'mechanical',
     material: 'Tough Pro Resin',
     image: '/images/ekaxle/ekaxle-planetary-gearbox.jpg',
     notes: 'Involute tooth profile with 48-micron XY accuracy for silent mechanical engagement.',
-  },
-  {
-    id: 'eng-3',
-    title: 'Watertight Electronic Sensor Enclosure',
-    category: 'industrial',
-    material: 'ABS Pro Resin',
-    image: '/images/ekaxle/ekaxle-sensor-enclosure.jpg',
-    notes: 'Integrated O-ring sealing groove with threaded brass insert bosses.',
-  },
-  {
-    id: 'eng-4',
-    title: 'Custom Robotic Gripper Fingers',
-    category: 'functional',
-    material: 'Tough Flexible Resin',
-    image: '/images/ekaxle/ekaxle-robotic-gripper.jpg',
-    notes: 'Compliant elastomer pads for delicate automated pick-and-place cycles.',
-  },
-  {
-    id: 'eng-5',
-    title: 'High-Voltage Ceramic Test Insulator',
-    category: 'industrial',
-    material: 'Ceramic Pro Resin',
-    image: '/images/ekaxle/ekaxle-ceramic-insulator.jpg',
-    notes: 'Ultra-stiff non-conductive dielectric prototype tested under electrical arc stress.',
   },
   {
     id: 'eng-6',

@@ -442,32 +442,12 @@ export const EkaXlePage: React.FC = () => {
             Work From EKA XLE
           </h2>
           <p className="text-xs sm:text-sm text-slate-500">
-            Mechanical prototypes, functional assemblies, fluid manifolds, and high-temp test components.
+            High-accuracy photopolymer benchmark specimens including planetary gearboxes and snap-fit assemblies.
           </p>
         </div>
 
-        {/* Master Showcase Banner for 'Work From EKA XLE' */}
-        <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-950 aspect-[21/9] sm:aspect-[16/7]">
-          <img
-            src="/images/ekaxle/work-from-eka-xle.jpg"
-            alt="Work From EKA XLE - Engineering DLP Prototyping Showcase"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent flex items-end p-6 sm:p-8">
-            <div className="text-white space-y-1.5">
-              <span className="px-2.5 py-1 rounded-md bg-red-600 text-white font-mono text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                Industrial DLP Gallery
-              </span>
-              <h3 className="text-lg sm:text-2xl font-bold">Precision-Engineered Components from EKA XLE</h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-                High-accuracy photopolymer benchmark specimens including fluid dynamics manifolds, robotics effectors, and gearbox assemblies cured at 48-micron XY precision.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl">
           {engineeringWorkGallery.map((item) => (
             <div
               key={item.id}

@@ -537,19 +537,15 @@ export const ShowroomSolutionsSection: React.FC = () => {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/60 pointer-events-none" />
 
-                    {/* Top Content: Badge & Bullet Points */}
+                    {/* Top Content: Badges & Bullet Highlights */}
                     <div className="relative z-10 space-y-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider">
-                          <Sparkles className="w-3 h-3 text-red-500" />
-                          <span>{section.products.length} Models Available</span>
-                        </span>
-                        {isScanners && (
-                          <span className="px-2 py-0.5 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-2xs">
+                      {isScanners && (
+                        <div className="flex items-center justify-start">
+                          <span className="px-2.5 py-1 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-2xs">
                             ★ Highlighted
                           </span>
-                        )}
-                      </div>
+                        </div>
+                      )}
 
                       {/* Bullet Highlights matching Image 2 */}
                       <ul className="space-y-2 pt-1">
@@ -585,7 +581,7 @@ export const ShowroomSolutionsSection: React.FC = () => {
                           to={section.catalogLink}
                           className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline inline-flex items-center space-x-1"
                         >
-                          <span>{section.products.length} Models →</span>
+                          <span>View Catalog →</span>
                         </Link>
                       </div>
                     </div>

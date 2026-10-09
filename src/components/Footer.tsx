@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Multi-Column Main Footer Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-12 border-b border-slate-800 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800 text-xs">
           {/* Col 1: CAD Software (First in hierarchy) */}
           <div className="space-y-3">
             <h4 className="font-bold text-white uppercase tracking-wider text-xs flex items-center space-x-1.5">
@@ -126,19 +126,6 @@ export const Footer: React.FC = () => {
               <li><Link to="/products/einscan" className="hover:text-red-400 transition-colors">EINSTAR Handheld</Link></li>
               <li><Link to="/products/3d-scanners" className="hover:text-red-400 transition-colors">Optical Inspection</Link></li>
               <li><Link to="/products/3d-scanners" className="hover:text-red-400 font-semibold text-red-400">All 3D Scanners →</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Shop & Materials */}
-          <div className="space-y-3">
-            <h4 className="font-bold text-white uppercase tracking-wider text-xs">Shop & Consumables</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li><Link to="/shop/filaments" className="hover:text-red-400 transition-colors">3D Printer Filaments</Link></li>
-              <li><Link to="/shop/special-filaments" className="hover:text-red-400 transition-colors">CarbonX Composites</Link></li>
-              <li><Link to="/shop/resin" className="hover:text-red-400 transition-colors">UV Photopolymer Resins</Link></li>
-              <li><Link to="/shop/accessories" className="hover:text-red-400 transition-colors">Nozzles, Belts & Spares</Link></li>
-              <li><Link to="/materials" className="hover:text-red-400 transition-colors">Materials Guide</Link></li>
-              <li><Link to="/shop/miniatures" className="hover:text-red-400 transition-colors">Scale Models & Demo Parts</Link></li>
             </ul>
           </div>
 
